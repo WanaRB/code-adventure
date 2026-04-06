@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bvntwt7umpnyy"]
+
+[ext_resource type="Script" uid="uid://b4c5mtxtxebwg" path="res://scenes/Item/apple.gd" id="1_7vr8k"]
+[ext_resource type="Texture2D" uid="uid://dpjwfyms2283f" path="res://assets/image/item/apple.png" id="1_h071m"]
+[ext_resource type="AudioStream" uid="uid://dkcgdraduxxnh" path="res://assets/sound/ambatukam-yes-thank-you-su-much.mp3" id="3_3dmh2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbfbk"]
+radius = 28.0
+
+[node name="apple" type="Area2D" unique_id=666788976]
+script = ExtResource("1_7vr8k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=616021172]
+texture_filter = 1
+position = Vector2(40.00003, 268)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_h071m")
+region_enabled = true
+region_rect = Rect2(133.6, 0, 118.399994, 136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1287190285]
+position = Vector2(40, 268)
+shape = SubResource("CircleShape2D_gbfbk")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2034924432]
+stream = ExtResource("3_3dmh2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
