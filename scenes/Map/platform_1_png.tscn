@@ -14,3 +14,4 @@ texture = ExtResource("1_liypo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1484914748]
 shape = SubResource("RectangleShape2D_liypo")
+one_way_collision = true

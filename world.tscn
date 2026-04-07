@@ -5,9 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cpwj4apon4fl" path="res://assets/image/map/Building Tiles 32x32.png" id="3_dwbse"]
 [ext_resource type="Texture2D" uid="uid://dugb26t4mw5v" path="res://assets/image/map/Decoration 32x32.png" id="4_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://bdkcukgpsal8s" path="res://scenes/Map/platform_1_png.tscn" id="5_gbfbk"]
 [ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://scenes/Character/jikri.gd" id="6_dwbse"]
-[ext_resource type="Texture2D" uid="uid://dlgxw2r1iueiv" path="res://assets/image/map/platform-1.png.png" id="7_pkg7o"]
-[ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="8_gbfbk"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://game_manager.gd" id="9_ioo17"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
@@ -468,7 +467,9 @@ texture = ExtResource("3_dwbse")
 32:2/0 = 0
 33:2/0 = 0
 34:2/0 = 0
+34:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 35:2/0 = 0
+35:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 36:2/0 = 0
 37:2/0 = 0
 38:2/0 = 0
@@ -512,7 +513,9 @@ texture = ExtResource("3_dwbse")
 32:3/0 = 0
 33:3/0 = 0
 34:3/0 = 0
+34:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 35:3/0 = 0
+35:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 36:3/0 = 0
 37:3/0 = 0
 38:3/0 = 0
@@ -1045,9 +1048,6 @@ texture = ExtResource("4_pkg7o")
 [sub_resource type="TileSet" id="TileSet_2o6r5"]
 sources/0 = SubResource("TileSetAtlasSource_k3n1d")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_liypo"]
-size = Vector2(48, 9)
-
 [node name="Node" type="Node" unique_id=771745439]
 
 [node name="Map" type="Node" parent="." unique_id=1398429459]
@@ -1082,92 +1082,25 @@ texture_filter = 1
 scale = Vector2(2.5, 2.5)
 tile_set = SubResource("TileSet_2o6r5")
 format = 2
-layer_0/tile_data = PackedInt32Array(655387, 786432, 2, 720923, 786432, 3, 655388, 851968, 2, 720924, 851968, 3, 786460, 851968, 4, 851996, 851968, 5, 917532, 851968, 6, 983068, 851968, 7, 655360, 786432, 2, 720896, 786432, 3, 655361, 851968, 2, 720897, 851968, 3, 786433, 851968, 4, 851969, 851968, 5, 917505, 851968, 6, 983041, 851968, 7, 655372, 786432, 2, 720908, 786432, 3, 655373, 851968, 2, 720909, 851968, 3, 786445, 851968, 4, 851981, 851968, 5, 917517, 851968, 6, 983053, 851968, 7)
 
 [node name="Platform" type="Node" parent="Map" unique_id=1670196326]
 
-[node name="Platform1" type="Sprite2D" parent="Map/Platform" unique_id=817175857]
-texture_filter = 1
-position = Vector2(173, 527)
+[node name="Platform1_png" parent="Map" unique_id=416016548 instance=ExtResource("5_gbfbk")]
+position = Vector2(138, 521)
 scale = Vector2(3, 3)
-texture = ExtResource("7_pkg7o")
-metadata/_edit_group_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Map/Platform/Platform1" unique_id=311963915]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Platform/Platform1/StaticBody2D" unique_id=1667894629]
-shape = SubResource("RectangleShape2D_liypo")
-one_way_collision = true
-
-[node name="Platform2" type="Sprite2D" parent="Map/Platform" unique_id=697051974]
-texture_filter = 1
-position = Vector2(387, 419)
+[node name="Platform1_png3" parent="Map" unique_id=2109669022 instance=ExtResource("5_gbfbk")]
+position = Vector2(70, 264)
 scale = Vector2(3, 3)
-texture = ExtResource("7_pkg7o")
-metadata/_edit_group_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Map/Platform/Platform2" unique_id=1281879876]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Platform/Platform2/StaticBody2D" unique_id=1840582119]
-shape = SubResource("RectangleShape2D_liypo")
-one_way_collision = true
-
-[node name="Platform4" type="Sprite2D" parent="Map/Platform" unique_id=1091374051]
-texture_filter = 1
-position = Vector2(1501, 522)
-scale = Vector2(3, 3)
-texture = ExtResource("7_pkg7o")
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Map/Platform/Platform4" unique_id=1595623394]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Platform/Platform4/StaticBody2D" unique_id=833961244]
-shape = SubResource("RectangleShape2D_liypo")
-one_way_collision = true
-
-[node name="Platform5" type="Sprite2D" parent="Map/Platform" unique_id=1479234237]
-texture_filter = 1
-position = Vector2(1373.0001, 390)
-scale = Vector2(3, 3)
-texture = ExtResource("7_pkg7o")
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Map/Platform/Platform5" unique_id=1901536030]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Platform/Platform5/StaticBody2D" unique_id=40729482]
-shape = SubResource("RectangleShape2D_liypo")
-one_way_collision = true
-
-[node name="Platform6" type="Sprite2D" parent="Map/Platform" unique_id=1909341039]
-texture_filter = 1
-position = Vector2(1736, 285)
-scale = Vector2(3, 3)
-texture = ExtResource("7_pkg7o")
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Map/Platform/Platform6" unique_id=1586682995]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Platform/Platform6/StaticBody2D" unique_id=681844017]
-shape = SubResource("RectangleShape2D_liypo")
-one_way_collision = true
-
-[node name="Platform3" type="Sprite2D" parent="Map/Platform" unique_id=840515522]
-texture_filter = 1
-position = Vector2(75, 323)
-scale = Vector2(3, 3)
-texture = ExtResource("7_pkg7o")
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Map/Platform/Platform3" unique_id=764063798]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Platform/Platform3/StaticBody2D" unique_id=1207824219]
-shape = SubResource("RectangleShape2D_liypo")
-one_way_collision = true
+[node name="Platform1_png2" parent="Map" unique_id=1624272845 instance=ExtResource("5_gbfbk")]
+position = Vector2(459.5, 392.00003)
+scale = Vector2(3.020833, 3)
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("5_036b0")]
-position = Vector2(188.00002, -391.99997)
+position = Vector2(157.00002, -430)
 script = ExtResource("6_dwbse")
 metadata/_edit_group_ = true
 
@@ -1177,18 +1110,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
-
-[node name="apple" parent="Item" unique_id=666788976 instance=ExtResource("8_gbfbk")]
-position = Vector2(15, 12)
-
-[node name="apple2" parent="Item" unique_id=1471479914 instance=ExtResource("8_gbfbk")]
-position = Vector2(347, 108)
-
-[node name="apple3" parent="Item" unique_id=1896315018 instance=ExtResource("8_gbfbk")]
-position = Vector2(131, 215)
-
-[node name="apple4" parent="Item" unique_id=278999505 instance=ExtResource("8_gbfbk")]
-position = Vector2(2180, -162)
 
 [node name="game_manager" type="Node" parent="." unique_id=1134001816]
 unique_name_in_owner = true
