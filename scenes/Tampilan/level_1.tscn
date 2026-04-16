@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://scenes/Character/jikri.gd" id="6_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="9_bq8j7"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://game_manager.gd" id="9_ioo17"]
+[ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="10_6u07p"]
+[ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://scenes/Tampilan/pause.gd" id="11_h1ne5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_036b0")
@@ -1020,6 +1022,27 @@ texture = ExtResource("4_pkg7o")
 [sub_resource type="TileSet" id="TileSet_2o6r5"]
 sources/0 = SubResource("TileSetAtlasSource_k3n1d")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6u07p"]
+bg_color = Color(0.1721153, 0.17211533, 0.1721152, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1ne5"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4crhs"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Node" type="Node" unique_id=771745439]
 
 [node name="Map" type="Node" parent="." unique_id=1398429459]
@@ -1029,8 +1052,10 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2329.0
-offset_bottom = 23.0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 2326.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_aqk2v")
@@ -1093,25 +1118,47 @@ position_smoothing_speed = 7.0
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
+[node name="apple" parent="Item" unique_id=666788976 instance=ExtResource("9_bq8j7")]
+position = Vector2(2464, 5)
+
+[node name="apple2" parent="Item" unique_id=680868859 instance=ExtResource("9_bq8j7")]
+position = Vector2(421, 74)
+
+[node name="apple3" parent="Item" unique_id=300574820 instance=ExtResource("9_bq8j7")]
+position = Vector2(27, -54)
+
+[node name="apple4" parent="Item" unique_id=101033889 instance=ExtResource("9_bq8j7")]
+position = Vector2(103, 208)
+
+[node name="apple5" parent="Item" unique_id=710943144 instance=ExtResource("9_bq8j7")]
+position = Vector2(3399, 322)
+
+[node name="apple6" parent="Item" unique_id=492602000 instance=ExtResource("9_bq8j7")]
+position = Vector2(2174, 219)
+
 [node name="game_manager" type="Node" parent="." unique_id=1134001816]
 unique_name_in_owner = true
 script = ExtResource("9_ioo17")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=446060044]
 
-[node name="Panel" type="Panel" parent="UI" unique_id=478292088]
+[node name="point" type="Panel" parent="UI" unique_id=478292088]
 texture_filter = 1
-offset_left = 33.0
+offset_left = 40.0
 offset_top = 28.0
-offset_right = 196.0
+offset_right = 216.0
 offset_bottom = 98.0
 
-[node name="Point_Label" type="Label" parent="UI/Panel" unique_id=21390896]
+[node name="Point_Label" type="Label" parent="UI/point" unique_id=21390896]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = -11.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
@@ -1119,20 +1166,101 @@ text = "Points = 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="apple" parent="." unique_id=666788976 instance=ExtResource("9_bq8j7")]
-position = Vector2(2464, 5)
+[node name="darah" type="Panel" parent="UI" unique_id=763605018]
+offset_left = 40.0
+offset_top = 112.0
+offset_right = 216.0
+offset_bottom = 177.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
-[node name="apple2" parent="." unique_id=680868859 instance=ExtResource("9_bq8j7")]
-position = Vector2(421, 74)
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/darah" unique_id=1496721897]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 176.0
+offset_bottom = 60.0
 
-[node name="apple3" parent="." unique_id=300574820 instance=ExtResource("9_bq8j7")]
-position = Vector2(27, -54)
+[node name="darah" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=2007656572]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("10_6u07p")
+expand_mode = 2
 
-[node name="apple4" parent="." unique_id=101033889 instance=ExtResource("9_bq8j7")]
-position = Vector2(103, 208)
+[node name="darah2" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=602193384]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("10_6u07p")
+expand_mode = 2
 
-[node name="apple5" parent="." unique_id=710943144 instance=ExtResource("9_bq8j7")]
-position = Vector2(3399, 322)
+[node name="darah3" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=895814521]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("10_6u07p")
+expand_mode = 2
 
-[node name="apple6" parent="." unique_id=492602000 instance=ExtResource("9_bq8j7")]
-position = Vector2(2174, 219)
+[node name="pause" type="Node" parent="UI" unique_id=1755196272]
+script = ExtResource("11_h1ne5")
+
+[node name="pause_panel" type="Panel" parent="UI/pause" unique_id=37173988]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/pause/pause_panel" unique_id=1757377958]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -188.0
+offset_right = 140.0
+offset_bottom = -133.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "GAME PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/pause/pause_panel" unique_id=1326228284]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -20.0
+offset_right = 104.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Resume" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=1745347127]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_6u07p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h1ne5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4crhs")
+text = "RESUME	"
+
+[node name="main_menu" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=345632533]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_6u07p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h1ne5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4crhs")
+text = "Go to Main Menu"
+
+[connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]
