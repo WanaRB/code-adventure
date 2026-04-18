@@ -6,11 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://dugb26t4mw5v" path="res://assets/image/map/Decoration 32x32.png" id="4_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://bdkcukgpsal8s" path="res://scenes/Map/platform_1_png.tscn" id="5_gbfbk"]
-[ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://scenes/Character/jikri.gd" id="6_dwbse"]
+[ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/jikri.gd" id="6_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="9_bq8j7"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://game_manager.gd" id="9_ioo17"]
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="10_6u07p"]
-[ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://scenes/Tampilan/pause.gd" id="11_h1ne5"]
+[ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://scenes/Tampilan/hud_controller.gd" id="10_yqhaf"]
+[ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/pause.gd" id="11_h1ne5"]
+[ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Laptop.tscn" id="12_4crhs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_036b0")
@@ -1043,7 +1045,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Node" type="Node" unique_id=771745439]
+[node name="Level1" type="Node" unique_id=771745439]
 
 [node name="Map" type="Node" parent="." unique_id=1398429459]
 
@@ -1141,6 +1143,7 @@ unique_name_in_owner = true
 script = ExtResource("9_ioo17")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=446060044]
+script = ExtResource("10_yqhaf")
 
 [node name="point" type="Panel" parent="UI" unique_id=478292088]
 texture_filter = 1
@@ -1261,6 +1264,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6u07p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_h1ne5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4crhs")
 text = "Go to Main Menu"
+
+[node name="Laptop" parent="." unique_id=994781868 instance=ExtResource("12_4crhs")]
+position = Vector2(2544, 600)
 
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]

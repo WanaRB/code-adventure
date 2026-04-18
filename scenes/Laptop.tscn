@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cfhry3uycfkfg"]
+
+[ext_resource type="Script" uid="uid://br5roy58wusl6" path="res://Laptop.gd" id="1_3vh0c"]
+[ext_resource type="Resource" uid="uid://d0au60qbx4i2u" path="res://resource/Kuis_Level1.tres" id="2_qoesn"]
+[ext_resource type="PackedScene" uid="uid://5oipsur4fh7u" path="res://scenes/QuizUI.tscn" id="3_f6pfd"]
+[ext_resource type="Texture2D" uid="uid://b5iodmupqy754" path="res://assets/image/item/laptop.png" id="4_5tm3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ijq5"]
+size = Vector2(144, 92.5)
+
+[node name="Laptop" type="Area2D" unique_id=994781868]
+script = ExtResource("1_3vh0c")
+data_kuis = ExtResource("2_qoesn")
+scene_ui_kuis = ExtResource("3_f6pfd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1759996860]
+position = Vector2(-3.8146973e-06, -1.9073486e-06)
+scale = Vector2(0.68390805, 0.66161615)
+texture = ExtResource("4_5tm3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=234864366]
+position = Vector2(0, -6.25)
+shape = SubResource("RectangleShape2D_5ijq5")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://d0au60qbx4i2u"]
+
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/QuizResource.gd" id="1_jinkr"]
+
+[resource]
+script = ExtResource("1_jinkr")
+question = "Apa perintah untuk simpan perubahan di Git?"
+options = Array[String](["git push", "git commit", "git add ."])
+correct_index = 1
+metadata/_custom_type_script = "uid://xogopct8jm5a"

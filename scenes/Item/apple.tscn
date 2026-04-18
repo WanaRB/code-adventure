@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvntwt7umpnyy"]
 
-[ext_resource type="Script" uid="uid://b4c5mtxtxebwg" path="res://scenes/Item/apple.gd" id="1_7vr8k"]
+[ext_resource type="Script" uid="uid://b4c5mtxtxebwg" path="res://script/apple.gd" id="1_7vr8k"]
 [ext_resource type="Texture2D" uid="uid://dpjwfyms2283f" path="res://assets/image/item/apple.png" id="1_h071m"]
 [ext_resource type="AudioStream" uid="uid://dkcgdraduxxnh" path="res://assets/sound/ambatukam-yes-thank-you-su-much.mp3" id="3_3dmh2"]
 
