@@ -3,6 +3,7 @@ extends Area2D
 # Slot untuk memasukkan file kuis (.tres) dan tampilan kuis (.tscn)
 @export var data_kuis: QuizResource
 @export var scene_ui_kuis: PackedScene
+@export var target_door_id: int = 1 # ID pintu yang akan dibuka
 
 var player_didalam_area = false
 
@@ -35,4 +36,7 @@ func buka_kuis():
 	instance_kuis.setup_quiz(data_kuis)
 	
 	# Hentikan gerakan game agar pemain fokus menjawab
+	get_tree().paused = true
+	
+	instance_kuis.set_door_id(target_door_id) 
 	get_tree().paused = true

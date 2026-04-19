@@ -7,6 +7,10 @@ extends CanvasLayer
 @onready var tombol_2 = $Panel/MarginContainer/VBoxContainer/Option2
 
 var correct_index: int = 0
+var current_door_id: int = 1
+
+func set_door_id(id):
+	current_door_id = id
 
 func setup_quiz(data: QuizResource):
 	label_soal.text = data.question
@@ -18,6 +22,7 @@ func setup_quiz(data: QuizResource):
 func _on_option_pressed(index: int):
 	if index == correct_index:
 		print("Jawaban Benar! Memicu perubahan dunia...")
+		GameEvents.quiz_answered_correct.emit(current_door_id)
 	else:
 		print("Jawaban Salah! HP berkurang.")
 	
@@ -33,3 +38,5 @@ func tutup_kuis():
 	
 	get_tree().paused = false
 	queue_free()
+	
+	

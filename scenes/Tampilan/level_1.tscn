@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://scenes/Tampilan/hud_controller.gd" id="10_yqhaf"]
 [ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/pause.gd" id="11_h1ne5"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Laptop.tscn" id="12_4crhs"]
+[ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/pintu_menang.tscn" id="14_db8ju"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_036b0")
@@ -1106,10 +1107,13 @@ scale = Vector2(3.020833, 3)
 position = Vector2(2502.0002, 325)
 scale = Vector2(3.020833, 3)
 
+[node name="PintuMenang" parent="." unique_id=1498396234 instance=ExtResource("14_db8ju")]
+position = Vector2(3001, 559)
+
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("5_036b0")]
-position = Vector2(733.99994, 66.00001)
+position = Vector2(2495.9998, 72)
 script = ExtResource("6_dwbse")
 metadata/_edit_group_ = true
 

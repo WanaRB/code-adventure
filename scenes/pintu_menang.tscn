@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dkxx5r2oktxf4"]
+
+[ext_resource type="Script" uid="uid://brtggkst565f" path="res://scenes/pintu_menang.gd" id="1_u2a78"]
+[ext_resource type="Texture2D" uid="uid://cbcbsbsa0guup" path="res://assets/image/map/pintu kuning.png" id="1_u74in"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2a78"]
+size = Vector2(96, 176)
+
+[node name="PintuMenang" type="Area2D" unique_id=1498396234 groups=["interactable"]]
+script = ExtResource("1_u2a78")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=819170531]
+position = Vector2(-1.1920929e-07, 0)
+scale = Vector2(0.6175373, 0.6175373)
+texture = ExtResource("1_u74in")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1061791934]
+shape = SubResource("RectangleShape2D_u2a78")
