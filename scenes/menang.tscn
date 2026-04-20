@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://6u8o4m8f2w47"]
 
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="1_ncako"]
-[ext_resource type="AudioStream" uid="uid://0k6qc3w31706" path="res://assets/sound/ambatukam-harmony.mp3" id="2_h5lhe"]
+[ext_resource type="AudioStream" uid="uid://8ddssgut6p2a" path="res://assets/sound/you-are-my-sunshine-lebron-james.mp3" id="2_h5lhe"]
 [ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://scenes/button_menang.gd" id="3_h5lhe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlail"]
