@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://d225uwnj07qnl"]
+
+[ext_resource type="Script" uid="uid://csg78l1m30ykx" path="res://drone_musuh.gd" id="1_y8y3m"]
+[ext_resource type="Texture2D" uid="uid://7fmyu8r1oett" path="res://assets/image/character/drone_Idle.png" id="2_qyic8"]
+[ext_resource type="Texture2D" uid="uid://7683p0aqwili" path="res://assets/image/character/drone_Walk.png" id="3_2nsmo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wv7l"]
+atlas = ExtResource("2_qyic8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grc1q"]
+atlas = ExtResource("2_qyic8")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3846b"]
+atlas = ExtResource("2_qyic8")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvbob"]
+atlas = ExtResource("2_qyic8")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofovr"]
+atlas = ExtResource("3_2nsmo")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3hir"]
+atlas = ExtResource("3_2nsmo")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki13i"]
+atlas = ExtResource("3_2nsmo")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxuyh"]
+atlas = ExtResource("3_2nsmo")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnp2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wv7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grc1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3846b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvbob")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofovr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3hir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki13i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxuyh")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8y3m"]
+radius = 48.0
+
+[node name="DroneMusuh" type="CharacterBody2D" unique_id=1779015776]
+script = ExtResource("1_y8y3m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1320896093]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_qnp2r")
+animation = &"idle"
+frame = 1
+frame_progress = 0.7007111
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1225529820]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2065968931]
+shape = SubResource("CircleShape2D_y8y3m")
