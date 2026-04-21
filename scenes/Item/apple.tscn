@@ -8,18 +8,21 @@
 radius = 28.0
 
 [node name="apple" type="Area2D" unique_id=666788976]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_7vr8k")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=616021172]
 texture_filter = 1
-position = Vector2(40.00003, 268)
+position = Vector2(-0.4000001, -4.7999983)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_h071m")
 region_enabled = true
 region_rect = Rect2(133.6, 0, 118.399994, 136)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1287190285]
-position = Vector2(40, 268)
+texture_filter = 1
+position = Vector2(-0.40003395, -4.8000298)
 shape = SubResource("CircleShape2D_gbfbk")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1193312845]

@@ -7,6 +7,8 @@
 size = Vector2(96, 176)
 
 [node name="PintuMenang" type="Area2D" unique_id=1498396234 groups=["interactable"]]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_u2a78")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=819170531]

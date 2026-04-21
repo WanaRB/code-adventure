@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://3gvkrps24iiu"]
+
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/QuizResource.gd" id="1_asyvg"]
+
+[resource]
+script = ExtResource("1_asyvg")
+question = "Drone patroli sedang dalam mode otomatis. Metode apa yang paling efektif bagi seorang peretas untuk mengambil alih fungsi navigasi drone tersebut?"
+options = Array[String](["Data Encryption", "Disk Formatting", "Access Control Bypass"])
+correct_index = 2
+metadata/_custom_type_script = "uid://xogopct8jm5a"

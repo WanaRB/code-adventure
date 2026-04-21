@@ -1,19 +1,18 @@
 extends Area2D
 
-# Slot untuk memasukkan file kuis (.tres) dan tampilan kuis (.tscn)
 @export var data_kuis: QuizResource
 @export var scene_ui_kuis: PackedScene
-@export var target_door_id: int = 1 # ID pintu yang akan dibuka
+@export var target_door_id: int = 1 
+# TAMBAHKAN INI: Agar tiap laptop bisa punya aksi berbeda (misal: "convert_drones")
+@export var action_to_trigger: String = "convert_drones" 
 
 var player_didalam_area = false
 
 func _ready():
-	# Menghubungkan sinyal deteksi otomatis
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
-	# Laptop hanya bereaksi jika yang mendekat masuk grup "player"
 	if body.is_in_group("player"):
 		player_didalam_area = true
 
@@ -22,21 +21,19 @@ func _on_body_exited(body):
 		player_didalam_area = false
 
 func _input(event):
-	# Jika tombol "E" ditekan dan pemain ada di dekat laptop
 	if event.is_action_pressed("interact") and player_didalam_area:
 		buka_kuis()
 
 func buka_kuis():
-	# Memunculkan kuis di layar [cite: 26]
 	GameEvents.quiz_opened.emit()
 	var instance_kuis = scene_ui_kuis.instantiate()
 	get_tree().root.add_child(instance_kuis)
 	
-	# Kirim data soal ke UI tersebut
 	instance_kuis.setup_quiz(data_kuis)
-	
-	# Hentikan gerakan game agar pemain fokus menjawab
-	get_tree().paused = true
-	
 	instance_kuis.set_door_id(target_door_id) 
+	
+	# PENTING: Kirim nama aksi dari laptop ini ke UI kuis
+	if "action_to_trigger" in instance_kuis:
+		instance_kuis.action_to_trigger = action_to_trigger
+	
 	get_tree().paused = true

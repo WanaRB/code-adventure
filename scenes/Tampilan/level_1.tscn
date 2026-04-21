@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="9_bq8j7"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://game_manager.gd" id="9_ioo17"]
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="10_6u07p"]
+[ext_resource type="Resource" uid="uid://b36c7pnjwot2f" path="res://resource/Kuis_Level1.tres" id="10_wls72"]
 [ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://scenes/Tampilan/hud_controller.gd" id="10_yqhaf"]
 [ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/pause.gd" id="11_h1ne5"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="12_4crhs"]
@@ -1122,6 +1123,7 @@ target_level_path = "uid://bulwlp62y0s0e"
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
 [node name="apple" parent="Item" unique_id=666788976 instance=ExtResource("9_bq8j7")]
+visible = false
 position = Vector2(2464, 5)
 
 [node name="apple2" parent="Item" unique_id=680868859 instance=ExtResource("9_bq8j7")]
@@ -1141,11 +1143,12 @@ position = Vector2(2174, 219)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("12_4crhs")]
 position = Vector2(2544, 600)
+data_kuis = ExtResource("10_wls72")
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("5_036b0")]
-position = Vector2(1863.9999, -71.99998)
+position = Vector2(832.0001, 71.99998)
 script = ExtResource("6_dwbse")
 metadata/_edit_group_ = true
 

@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://bjnclj2trf24u" path="res://scenes/Map/spike.gd" id="1_se7t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ol6w"]
-size = Vector2(52, 48)
+size = Vector2(40, 48)
 
 [node name="spike" type="Area2D" unique_id=811342459]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_se7t7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1553840373]
@@ -18,5 +20,5 @@ region_rect = Rect2(7.353245, 8, 8.646755, 8)
 region_filter_clip_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=760404475]
-position = Vector2(-2, 8)
+position = Vector2(-4, 8)
 shape = SubResource("RectangleShape2D_1ol6w")

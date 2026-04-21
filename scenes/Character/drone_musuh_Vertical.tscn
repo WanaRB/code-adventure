@@ -39,13 +39,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fkipo"]
-radius = 40.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckswm"]
+size = Vector2(64, 56)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8y3m"]
 radius = 48.0
 
 [node name="DroneMusuh" type="CharacterBody2D" unique_id=1779015776]
+collision_layer = 4
 script = ExtResource("1_fkipo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1320896093]
@@ -56,10 +57,12 @@ animation = &"walk"
 frame_progress = 0.15927552
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1704032727]
-shape = SubResource("CircleShape2D_fkipo")
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ckswm")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1225529820]
 collision_layer = 0
+collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2065968931]

@@ -5,68 +5,86 @@ const SPEED = 400.0
 const JUMP_VELOCITY = -500.0
 @export var knockback_power = 800.0
 
+# Referensi Node
+@onready var sprite = $AnimatedSprite2D
+
 # Status Karakter
 var is_hurt = false
 
 func _physics_process(delta: float) -> void:
-	# 1. Logika Gravitasi (Selalu Berjalan)
+	# 1. Logika Gravitasi
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# 2. Logika Pergerakan & Input (Hanya jika TIDAK sedang terkena serangan)
+	# 2. Logika Pergerakan & Input
 	if not is_hurt:
 		handle_movement()
 	else:
-		# Jika sedang hurt, biarkan gaya dorong melambat perlahan (Friction)
-		velocity.x = move_toward(velocity.x, 0, 5.0)
+		# Friction saat terkena knockback
+		velocity.x = move_toward(velocity.x, 0, 10.0)
 
-	# 3. Eksekusi Gerakan Fisika
+	# 3. Update Animasi
+	update_animation()
+
+	# 4. Eksekusi Fisika
 	move_and_slide()
 
 func handle_movement():
-	# Lompat
 	if Input.is_action_just_pressed("lompat") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Gerak Kiri/Kanan
 	var direction := Input.get_axis("kiri", "kanan")
 	if direction:
 		velocity.x = direction * SPEED
+		sprite.flip_h = direction < 0 
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+func update_animation():
+	# Prioritas 1: Kena Hit
+	if is_hurt:
+		sprite.play("hit")
+		return
+
+	# Prioritas 2: Di Udara (Jump vs Fall)
+	if not is_on_floor():
+		if velocity.y < 0:
+			sprite.play("jump")
+		else:
+			sprite.play("fall")
+		return # Keluar agar tidak tertimpa animasi walk/idle saat di udara
+
+	# Prioritas 3: Berjalan
+	if velocity.x != 0:
+		sprite.play("walk")
+	
+	# Prioritas 4: Diam (Idle)
+	else:
+		sprite.play("idle")
 
 func take_damage(amount: int, source_position: Vector2):
 	if is_hurt: return 
 	is_hurt = true
 	
-	velocity = Vector2.ZERO # Reset momentum
+	velocity = Vector2.ZERO
 	GameEvents.player_hit.emit(amount)
 	
 	if not is_inside_tree(): return 
 
-	# LOGIKA DETEKSI SISI (RELATIF)
+	# Logika Knockback (Bias -350 sesuai koordinat map)
 	var arah_horisontal = 0
-	
-	# Gunakan perbandingan posisi dengan toleransi offset
-	# Karena debug kamu menunjukkan angka -262 (kanan) dan -440 (kiri),
-	# titik tengahnya adalah sekitar -350.
 	var diff_x = global_position.x - source_position.x
 	
-	# Kita gunakan logika: jika diff_x lebih besar dari rata-rata bias, berarti di kanan
 	if diff_x > -350: 
-		arah_horisontal = 1  # Terpental ke kanan
+		arah_horisontal = 1  
 	else:
-		arah_horisontal = -1 # Terpental ke kiri
+		arah_horisontal = -1 
 
-	# Eksekusi Knockback dengan rasio X lebih besar agar jauh menyamping
 	var knockback_vector = Vector2(arah_horisontal * 2.0, -1.0).normalized()
 	velocity = knockback_vector * knockback_power
-	
-	modulate = Color(2.29, 0.25, 0.0, 1.0) 
 	
 	var tree = get_tree()
 	if tree:
 		await tree.create_timer(0.4).timeout
 		if is_inside_tree():
-			modulate = Color(1, 1, 1)
 			is_hurt = false

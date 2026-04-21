@@ -6,6 +6,9 @@ extends CanvasLayer
 @onready var tombol_1 = $Panel/MarginContainer/VBoxContainer/Option1
 @onready var tombol_2 = $Panel/MarginContainer/VBoxContainer/Option2
 
+@export var quiz_id: int = 1
+@export var action_to_trigger: String = "convert_drones" # Nama aksi unik yang diatur di Inspector
+
 var correct_index: int = 0
 var current_door_id: int = 1
 
@@ -21,21 +24,17 @@ func setup_quiz(data: QuizResource):
 
 func _on_option_pressed(index: int):
 	if index == correct_index:
-		GameEvents.quiz_answered_correct.emit(current_door_id)
+		# Mengirim dua parameter: ID (untuk pintu) dan Nama Aksi (untuk perubahan dunia)
+		GameEvents.quiz_answered_correct.emit(current_door_id, action_to_trigger)
 	else:
 		GameEvents.player_hit.emit(1)
 	
 	tutup_kuis()
-	
 
 func _on_close_button_pressed():
 	tutup_kuis()
 
 func tutup_kuis():
-	# Kirim sinyal agar HUD tahu kuis sudah selesai
 	GameEvents.quiz_closed.emit() 
-	
 	get_tree().paused = false
 	queue_free()
-	
-	

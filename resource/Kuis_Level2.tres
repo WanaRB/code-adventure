@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://d0au60qbx4i2u"]
+
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/QuizResource.gd" id="1_ud3tk"]
+
+[resource]
+script = ExtResource("1_ud3tk")
+question = "Sistem mendeteksi akses masuk. Kode Python manakah yang paling tepat untuk mengizinkan pengguna masuk HANYA jika statusnya adalah Admin?"
+options = Array[String](["if user_status == \"admin\":", "if user_status = \"admin\":", "while user_status == \"admin\":"])
+metadata/_custom_type_script = "uid://xogopct8jm5a"

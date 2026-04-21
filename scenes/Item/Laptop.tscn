@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfhry3uycfkfg"]
 
 [ext_resource type="Script" uid="uid://br5roy58wusl6" path="res://Laptop.gd" id="1_3vh0c"]
-[ext_resource type="Resource" uid="uid://d0au60qbx4i2u" path="res://resource/Kuis_Level1.tres" id="2_qoesn"]
+[ext_resource type="Resource" uid="uid://d0au60qbx4i2u" path="res://resource/Kuis_Level2.tres" id="2_qoesn"]
 [ext_resource type="PackedScene" uid="uid://5oipsur4fh7u" path="res://scenes/Tampilan/QuizUI.tscn" id="3_f6pfd"]
 [ext_resource type="Texture2D" uid="uid://b5iodmupqy754" path="res://assets/image/item/laptop.png" id="4_5tm3d"]
 
@@ -9,6 +9,8 @@
 size = Vector2(144, 92.5)
 
 [node name="Laptop" type="Area2D" unique_id=994781868]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_3vh0c")
 data_kuis = ExtResource("2_qoesn")
 scene_ui_kuis = ExtResource("3_f6pfd")
