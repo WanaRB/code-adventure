@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://br5roy58wusl6" path="res://Laptop.gd" id="1_3vh0c"]
 [ext_resource type="Resource" uid="uid://d0au60qbx4i2u" path="res://resource/Kuis_Level1.tres" id="2_qoesn"]
-[ext_resource type="PackedScene" uid="uid://5oipsur4fh7u" path="res://scenes/QuizUI.tscn" id="3_f6pfd"]
+[ext_resource type="PackedScene" uid="uid://5oipsur4fh7u" path="res://scenes/Tampilan/QuizUI.tscn" id="3_f6pfd"]
 [ext_resource type="Texture2D" uid="uid://b5iodmupqy754" path="res://assets/image/item/laptop.png" id="4_5tm3d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ijq5"]

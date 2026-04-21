@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var game_manager: Node = %game_manager
-@onready var sfx = $AudioStreamPlayer2D 
+@onready var sfx : AudioStreamPlayer = $AudioStreamPlayer
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "jikri":

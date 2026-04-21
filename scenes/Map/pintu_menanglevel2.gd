@@ -32,4 +32,4 @@ func _input(event):
 
 func ke_halaman_menang():
 	# Memindahkan player dari level ke layar kemenangan
-	get_tree().change_scene_to_file("res://scenes/menang.tscn")
+	get_tree().change_scene_to_file("res://scenes/Tampilan/menang.tscn")

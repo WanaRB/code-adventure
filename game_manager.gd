@@ -3,12 +3,14 @@ extends Node
 @onready var point_label: Label = %Point_Label
 # Ambil referensi ke container yang menampung 3 gambar darah
 @onready var h_box_darah = %darah.get_node("HBoxContainer") 
+@onready var hit_sfx: AudioStreamPlayer = %HitSfx
 
 var points = 0
 var health = 3 
 
 func _ready():
 	GameEvents.player_hit.connect(_on_player_hit)
+	GameEvents.last_level_path = get_tree().current_scene.scene_file_path
 	update_ui()
 
 # game_manager.gd
@@ -20,6 +22,9 @@ func add_point():
 	
 func _on_player_hit(amount):
 	health -= amount
+	if hit_sfx:
+		hit_sfx.play()
+		print("hidup")
 	update_ui()
 	if health <= 0:
 		panggil_layar_kalah()
@@ -38,4 +43,4 @@ func update_ui():
 			list_darah[i].visible = i < health
 
 func panggil_layar_kalah():
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/LoseScreen.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/Tampilan/LoseScreen.tscn")

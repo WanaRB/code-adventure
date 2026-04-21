@@ -17,4 +17,9 @@ func _on_kembali_ke_menu_pressed() -> void:
 
 
 func _on_retry_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Tampilan/level_1.tscn")
+	if GameEvents.last_level_path != "":
+			# Memuat ulang level terakhir yang disimpan
+		get_tree().change_scene_to_file(GameEvents.last_level_path)
+	else:
+			# Fallback jika terjadi error, kembali ke Level 1
+		get_tree().change_scene_to_file("res://scenes/Level1.tscn")

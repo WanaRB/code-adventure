@@ -12,3 +12,4 @@ signal health_changed(new_health)
 signal quiz_answered_correct(id) # ID digunakan jika ada banyak pintu
 
 signal player_hit(damage_amount)
+var last_level_path: String = ""

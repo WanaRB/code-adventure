@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dkxx5r2oktxf4"]
 
-[ext_resource type="Script" uid="uid://brtggkst565f" path="res://scenes/pintu_menang.gd" id="1_u2a78"]
+[ext_resource type="Script" uid="uid://brtggkst565f" path="res://script/pintu_menang.gd" id="1_u2a78"]
 [ext_resource type="Texture2D" uid="uid://cbcbsbsa0guup" path="res://assets/image/map/pintu kuning.png" id="1_u74in"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2a78"]

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://6u8o4m8f2w47"]
 
-[ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="1_ncako"]
-[ext_resource type="AudioStream" uid="uid://8ddssgut6p2a" path="res://assets/sound/you-are-my-sunshine-lebron-james.mp3" id="2_h5lhe"]
-[ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://scenes/button_menang.gd" id="3_h5lhe"]
+[ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="1_155iy"]
+[ext_resource type="AudioStream" uid="uid://8ddssgut6p2a" path="res://assets/sound/you-are-my-sunshine-lebron-james.mp3" id="2_f321c"]
+[ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://script/button_menang.gd" id="3_aubvg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlail"]
 bg_color = Color(0, 0, 0, 1)
@@ -48,10 +48,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mlail")
 [node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=1155262618]
 position = Vector2(584, 320)
 scale = Vector2(0.95231247, 1)
-texture = ExtResource("1_ncako")
+texture = ExtResource("1_155iy")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Panel" unique_id=857182827]
-stream = ExtResource("2_h5lhe")
+stream = ExtResource("2_f321c")
 autoplay = true
 
 [node name="Label" type="Label" parent="Panel" unique_id=726280935]
@@ -86,6 +86,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_h5lhe")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_juabm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yqv8y")
 text = "Kembali ke Menu"
-script = ExtResource("3_h5lhe")
+script = ExtResource("3_aubvg")
 
 [connection signal="pressed" from="Panel/Button" to="Panel/Button" method="_on_pressed"]

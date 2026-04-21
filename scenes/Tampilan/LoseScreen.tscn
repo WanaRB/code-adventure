@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://clg2ksjyx6017"]
 
-[ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="1_aeugc"]
-[ext_resource type="Script" uid="uid://cgdt1i5p8po2o" path="res://scenes/lose_screen.gd" id="1_x2vho"]
-[ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://scenes/button_menang.gd" id="3_jsjd0"]
-[ext_resource type="AudioStream" uid="uid://dejqkem445wlx" path="res://assets/sound/let-me-know.mp3" id="3_x2vho"]
+[ext_resource type="Script" uid="uid://cgdt1i5p8po2o" path="res://script/lose_screen.gd" id="1_b0fvu"]
+[ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="2_jh85y"]
+[ext_resource type="AudioStream" uid="uid://dejqkem445wlx" path="res://assets/sound/let-me-know.mp3" id="3_wo6oc"]
+[ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://script/button_menang.gd" id="4_6wpo7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlail"]
 bg_color = Color(0, 0, 0, 1)
@@ -36,7 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_x2vho")
+script = ExtResource("1_b0fvu")
 
 [node name="Panel" type="Panel" parent="." unique_id=1445932400]
 layout_mode = 1
@@ -50,10 +50,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mlail")
 [node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=1155262618]
 position = Vector2(584, 320)
 scale = Vector2(0.95231247, 1)
-texture = ExtResource("1_aeugc")
+texture = ExtResource("2_jh85y")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Panel" unique_id=857182827]
-stream = ExtResource("3_x2vho")
+stream = ExtResource("3_wo6oc")
 autoplay = true
 
 [node name="Label" type="Label" parent="Panel" unique_id=726280935]
@@ -88,7 +88,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_h5lhe")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_juabm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yqv8y")
 text = "Ulangi"
-script = ExtResource("3_jsjd0")
+script = ExtResource("4_6wpo7")
 
 [node name="KembaliKeMenu" type="Button" parent="Panel" unique_id=2051223822]
 layout_mode = 1
@@ -111,7 +111,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_h5lhe")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_juabm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yqv8y")
 text = "   Kembali ke Menu   "
-script = ExtResource("3_jsjd0")
+script = ExtResource("4_6wpo7")
 
 [connection signal="pressed" from="Panel/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="Panel/KembaliKeMenu" to="." method="_on_kembali_ke_menu_pressed"]

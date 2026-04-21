@@ -21,10 +21,9 @@ func setup_quiz(data: QuizResource):
 
 func _on_option_pressed(index: int):
 	if index == correct_index:
-		print("Jawaban Benar! Memicu perubahan dunia...")
 		GameEvents.quiz_answered_correct.emit(current_door_id)
 	else:
-		print("Jawaban Salah! HP berkurang.")
+		GameEvents.player_hit.emit(1)
 	
 	tutup_kuis()
 	
