@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://csg78l1m30ykx" path="res://drone_musuh.gd" id="1_y8y3m"]
 [ext_resource type="Texture2D" uid="uid://7683p0aqwili" path="res://assets/image/character/drone_Walk.png" id="3_2nsmo"]
+[ext_resource type="Texture2D" uid="uid://c7wja7s8fnfll" path="res://assets/image/character/baik_Walk.png" id="3_y8y3m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofovr"]
 atlas = ExtResource("3_2nsmo")
@@ -17,6 +18,22 @@ region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxuyh"]
 atlas = ExtResource("3_2nsmo")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyic8"]
+atlas = ExtResource("3_y8y3m")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nsmo"]
+atlas = ExtResource("3_y8y3m")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wv7l"]
+atlas = ExtResource("3_y8y3m")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grc1q"]
+atlas = ExtResource("3_y8y3m")
 region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qnp2r"]
@@ -35,7 +52,24 @@ animations = [{
 "texture": SubResource("AtlasTexture_yxuyh")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_evil",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyic8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nsmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wv7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grc1q")
+}],
+"loop": true,
+"name": &"walk_friendly",
 "speed": 5.0
 }]
 
@@ -53,7 +87,7 @@ script = ExtResource("1_y8y3m")
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_qnp2r")
-animation = &"walk"
+animation = &"walk_evil"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1972322571]
 shape = SubResource("RectangleShape2D_rkjs5")

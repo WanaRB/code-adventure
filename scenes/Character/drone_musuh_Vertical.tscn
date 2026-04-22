@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dkwhp1x7q50mt"]
 
 [ext_resource type="Script" uid="uid://dppxt710c07ta" path="res://scenes/Character/drone_musuh_vertical.gd" id="1_fkipo"]
+[ext_resource type="Texture2D" uid="uid://c7wja7s8fnfll" path="res://assets/image/character/baik_Walk.png" id="3_fkipo"]
 [ext_resource type="Texture2D" uid="uid://7683p0aqwili" path="res://assets/image/character/drone_Walk.png" id="3_wmnog"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofovr"]
@@ -19,6 +20,22 @@ region = Rect2(96, 0, 48, 48)
 atlas = ExtResource("3_wmnog")
 region = Rect2(144, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_20hh1"]
+atlas = ExtResource("3_fkipo")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmnog"]
+atlas = ExtResource("3_fkipo")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk7vr"]
+atlas = ExtResource("3_fkipo")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb5da"]
+atlas = ExtResource("3_fkipo")
+region = Rect2(144, 0, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qnp2r"]
 animations = [{
 "frames": [{
@@ -35,7 +52,24 @@ animations = [{
 "texture": SubResource("AtlasTexture_yxuyh")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_evil",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20hh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmnog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk7vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb5da")
+}],
+"loop": true,
+"name": &"walk_friendly",
 "speed": 5.0
 }]
 
@@ -53,8 +87,7 @@ script = ExtResource("1_fkipo")
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_qnp2r")
-animation = &"walk"
-frame_progress = 0.15927552
+animation = &"walk_evil"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1704032727]
 position = Vector2(0, 4)

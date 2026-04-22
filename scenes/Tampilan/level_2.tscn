@@ -1092,14 +1092,14 @@ layer_0/tile_data = PackedInt32Array(655395, 786432, 2, 720931, 786432, 3, 65539
 [node name="Platform" type="Node" parent="Map" unique_id=1670196326]
 
 [node name="Platform1_png" parent="Map/Platform" unique_id=416016548 instance=ExtResource("5_3jjit")]
-position = Vector2(1461, 424.00003)
+position = Vector2(1432, 424.00003)
 scale = Vector2(4, 3.6666667)
 
 [node name="apple" parent="Map" unique_id=666788976 instance=ExtResource("8_idsdl")]
 position = Vector2(1272, 608)
 
 [node name="apple2" parent="Map" unique_id=1139145556 instance=ExtResource("8_idsdl")]
-position = Vector2(1512, 384)
+position = Vector2(1496, 376)
 
 [node name="Laptop" parent="Map" unique_id=994781868 instance=ExtResource("9_7ia63")]
 position = Vector2(3296, 600)
@@ -1116,7 +1116,7 @@ target_level_path = "uid://babfsu63orby"
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_wd48c")]
-position = Vector2(-183.99976, -176)
+position = Vector2(711.99994, -40.000015)
 script = ExtResource("11_k4pb6")
 metadata/_edit_group_ = true
 
@@ -1266,19 +1266,21 @@ collision_layer = 0
 collision_mask = 2
 kecepatan = 200.0
 jarak_patroli = 400.0
-bisa_jadi_baik = true
 
 [node name="DroneMusuhV" parent="Musuh" unique_id=824156789 instance=ExtResource("7_65m6i")]
 position = Vector2(2736, 288)
 kecepatan = 180.0
 jarak_patroli = 300.0
-bisa_jadi_baik = true
+
+[node name="DroneMusuhV2" parent="Musuh" unique_id=1518811677 instance=ExtResource("7_65m6i")]
+position = Vector2(1256, 264)
+kecepatan = 180.0
+jarak_patroli = 300.0
 
 [node name="DroneMusuh3" parent="Musuh" unique_id=332037986 instance=ExtResource("5_f0dxm")]
 position = Vector2(2376, 472)
 kecepatan = 180.0
 jarak_patroli = 750.0
-bisa_jadi_baik = true
 
 [node name="Jebakan" type="Node" parent="." unique_id=494006911]
 

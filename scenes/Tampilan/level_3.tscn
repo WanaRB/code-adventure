@@ -1117,7 +1117,7 @@ data_kuis = ExtResource("9_p18bu")
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_iareu")]
-position = Vector2(-232, 71.99997)
+position = Vector2(1848.0001, -119.99999)
 script = ExtResource("11_pipf5")
 metadata/_edit_group_ = true
 
@@ -1365,18 +1365,20 @@ position = Vector2(2592, 616)
 [node name="V" type="Node" parent="Musuh" unique_id=2000134448]
 
 [node name="DroneMusuhV" parent="Musuh/V" unique_id=1779015776 instance=ExtResource("13_vb8yo")]
-position = Vector2(848, 384)
-kecepatan = 200.0
-
-[node name="DroneMusuh2" parent="Musuh/V" unique_id=1330835656 instance=ExtResource("13_vb8yo")]
-position = Vector2(720, 336)
+position = Vector2(872, 328)
 kecepatan = 200.0
 jarak_patroli = 250.0
 
-[node name="DroneMusuh" parent="Musuh/V" unique_id=1869809422 instance=ExtResource("13_vb8yo")]
-position = Vector2(1904, 232)
+[node name="DroneMusuh2" parent="Musuh/V" unique_id=1330835656 instance=ExtResource("13_vb8yo")]
+position = Vector2(760, 584)
 kecepatan = 200.0
-jarak_patroli = 300.0
+jarak_patroli = 250.0
+mulai_ke_atas = true
+
+[node name="DroneMusuh" parent="Musuh/V" unique_id=1869809422 instance=ExtResource("13_vb8yo")]
+position = Vector2(1912, 144)
+kecepatan = 150.0
+jarak_patroli = 350.0
 bisa_jadi_baik = true
 
 [node name="DroneMusuh3" parent="Musuh/V" unique_id=631702655 instance=ExtResource("13_vb8yo")]
@@ -1388,18 +1390,20 @@ bisa_jadi_baik = true
 [node name="H" type="Node" parent="Musuh" unique_id=1625600553]
 
 [node name="DroneMusuh" parent="Musuh/H" unique_id=342791994 instance=ExtResource("14_4capa")]
-position = Vector2(1344, 464)
+position = Vector2(1232, 456)
 kecepatan = 200.0
-jarak_patroli = 250.0
+jarak_patroli = 350.0
 
 [node name="DroneMusuh3" parent="Musuh/H" unique_id=1230716661 instance=ExtResource("14_4capa")]
 position = Vector2(2024, 192)
-kecepatan = 200.0
+kecepatan = 150.0
+jarak_patroli = 220.0
 bisa_jadi_baik = true
 
 [node name="DroneMusuh4" parent="Musuh/H" unique_id=1385406697 instance=ExtResource("14_4capa")]
 position = Vector2(2584, 192)
-kecepatan = 200.0
+kecepatan = 150.0
+jarak_patroli = 220.0
 bisa_jadi_baik = true
 mulai_ke_kiri = true
 

@@ -31,6 +31,7 @@ func _ready():
 		batas_kiri = global_position.x
 		batas_kanan = global_position.x + jarak_patroli
 	
+	update_animation()
 	sprite.play("walk")
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	collision_priority = 10.0
@@ -45,13 +46,19 @@ func _ready():
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(2, false)
 
+func update_animation():
+	if is_friendly:
+		sprite.play("walk_friendly")
+	else:
+		sprite.play("walk_evil")
+		
 func _on_quiz_solved(_quiz_id: int, action_name: String):
 	if bisa_jadi_baik and action_name == "convert_drones":
 		become_friendly()
 
 func become_friendly():
 	is_friendly = true
-	modulate = Color(0, 0.7, 1)
+	update_animation()
 	if hurt_box_collision:
 		hurt_box_collision.set_deferred("disabled", true)
 	set_collision_mask_value(2, false)
