@@ -30,7 +30,6 @@ func _ready():
 		batas_bawah = global_position.y + jarak_patroli
 	
 	update_animation()
-	sprite.play("walk") 
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	collision_priority = 10.0
 

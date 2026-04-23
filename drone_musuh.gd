@@ -32,7 +32,6 @@ func _ready():
 		batas_kanan = global_position.x + jarak_patroli
 	
 	update_animation()
-	sprite.play("walk")
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	collision_priority = 10.0
 
