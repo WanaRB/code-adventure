@@ -1,15 +1,16 @@
 extends Node
 
-# Sinyal untuk memberitahu HUD kapan harus bersembunyi
+# ─── Sinyal Quiz ──────────────────────────────────────────────────────────────
 signal quiz_opened
 signal quiz_closed
 
-# Sinyal untuk menambah skor atau mengurangi darah [cite: 4, 28]
-signal score_changed(new_score)
-signal health_changed(new_health)
+## Dipancarkan ketika semua highlight pada satu soal dijawab benar.
+## Tiap script yang ingin bereaksi terhadap perubahan dunia harus
+## connect ke sinyal ini lalu cek isi array world_changes.
+signal quiz_answered_correct(world_changes: Array)
 
-# TAMBAHKAN SINYAL BARU INI
-signal quiz_answered_correct(id:int, action_name:String) # ID digunakan jika ada banyak pintu
+# ─── Sinyal Player ────────────────────────────────────────────────────────────
+signal player_hit(damage_amount: int)
 
-signal player_hit(damage_amount)
+# ─── State Global ─────────────────────────────────────────────────────────────
 var last_level_path: String = ""
