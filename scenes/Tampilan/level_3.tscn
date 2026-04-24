@@ -8,17 +8,20 @@
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="6_cqgid"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="7_h8oa6"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="7_umhir"]
-[ext_resource type="Resource" uid="uid://3gvkrps24iiu" path="res://resource/Kuis_Level3.tres" id="9_p18bu"]
+[ext_resource type="Resource" uid="uid://b54bj4vh2gfn7" path="res://resource/Kuis_Level3.tres" id="9_p18bu"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_iareu"]
-[ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/jikri.gd" id="11_pipf5"]
-[ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://game_manager.gd" id="12_kt0sy"]
+[ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/character/jikri.gd" id="11_pipf5"]
+[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://scenes/Tampilan/camera_2d.gd" id="12_ciivf"]
+[ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://script/konfigurasi/game_manager.gd" id="12_kt0sy"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="13_cqggq"]
 [ext_resource type="PackedScene" uid="uid://dkwhp1x7q50mt" path="res://scenes/Character/drone_musuh_Vertical.tscn" id="13_vb8yo"]
 [ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://scenes/Tampilan/hud_controller.gd" id="14_1cfia"]
 [ext_resource type="PackedScene" uid="uid://d225uwnj07qnl" path="res://scenes/Character/drone_musuh.tscn" id="14_4capa"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="15_aypik"]
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="15_vltpx"]
-[ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/pause.gd" id="16_4vggx"]
+[ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="16_4vggx"]
+[ext_resource type="Script" uid="uid://be6iiw8cyqqar" path="res://scenes/Tampilan/WorldChangeMarker.gd" id="20_pyv1r"]
+[ext_resource type="AudioStream" uid="uid://wgt5a26lsbb7" path="res://assets/sound/omaygot.mp3" id="21_0u6kc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_umhir")
@@ -1051,7 +1054,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="level2" type="Node" unique_id=771745439]
+[node name="level3" type="Node" unique_id=771745439]
 
 [node name="Map" type="Node" parent="." unique_id=1398429459]
 
@@ -1125,6 +1128,7 @@ metadata/_edit_group_ = true
 position = Vector2(140.79999, 203.19998)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+script = ExtResource("12_ciivf")
 
 [node name="game_manager" type="Node" parent="." unique_id=1134001816]
 unique_name_in_owner = true
@@ -1406,6 +1410,16 @@ kecepatan = 150.0
 jarak_patroli = 220.0
 bisa_jadi_baik = true
 mulai_ke_kiri = true
+
+[node name="Node" type="Node2D" parent="." unique_id=1917418961 node_paths=PackedStringArray("sfx_player")]
+position = Vector2(2240, 192)
+script = ExtResource("20_pyv1r")
+sfx_player = NodePath("AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node" unique_id=1000840633]
+process_mode = 3
+position = Vector2(8, 0)
+stream = ExtResource("21_0u6kc")
 
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]

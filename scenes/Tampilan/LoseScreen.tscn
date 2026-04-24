@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clg2ksjyx6017"]
 
-[ext_resource type="Script" uid="uid://cgdt1i5p8po2o" path="res://script/lose_screen.gd" id="1_b0fvu"]
+[ext_resource type="Script" uid="uid://cgdt1i5p8po2o" path="res://script/tampilan/lose_screen.gd" id="1_b0fvu"]
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="2_jh85y"]
 [ext_resource type="AudioStream" uid="uid://dejqkem445wlx" path="res://assets/sound/let-me-know.mp3" id="3_wo6oc"]
 [ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://script/button_menang.gd" id="4_6wpo7"]

@@ -49,16 +49,25 @@ const C_WRONG       := Color("#f38ba8")
 
 # ─── State ────────────────────────────────────────────────────────────────────
 var _quiz_data: QuizResource = null
-var _current_door_id: int = 1
-var _action_to_trigger: String = ""
+var _current_door_id: int = 1          # Tidak lagi dipakai langsung, tapi disimpan
+var _action_to_trigger: String = ""    # Tidak lagi dipakai langsung
 
 var _highlight_buttons: Array[Button] = []
 var _highlight_correct: Array[bool] = []
 var _current_hl_idx: int = -1
 
+# Referensi UI yang perlu diakses setelah build
 var _options_container: Control = null
 var _options_context_label: Label = null
 var _option_buttons: Array[Button] = []
+
+# ─── Sound Effect ─────────────────────────────────────────────────────────────
+## AudioStreamPlayer untuk suara jawaban BENAR.
+## Tambahkan node AudioStreamPlayer sebagai child QuizUI di scene .tscn,
+## lalu drag ke field ini di Inspector.
+@export var sfx_benar: AudioStreamPlayer
+## AudioStreamPlayer untuk suara jawaban SALAH.
+@export var sfx_salah: AudioStreamPlayer
 
 # ─── Setup API (dipanggil dari Laptop.gd) ─────────────────────────────────────
 func set_door_id(id: int):
@@ -72,6 +81,7 @@ func setup_quiz(data: QuizResource):
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
+	# Bersihkan node warisan dari scene template agar tidak konflik
 	for child in get_children():
 		child.queue_free()
 
@@ -83,17 +93,20 @@ func _build_ui():
 
 	var mono_font := _load_mono_font()
 
+	# Dim gelap di belakang panel
 	var dim := ColorRect.new()
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	dim.color = Color(0, 0, 0, 0.65)
 	dim.mouse_filter = Control.MOUSE_FILTER_STOP
 	add_child(dim)
 
+	# CenterContainer agar panel selalu di tengah layar
 	var center := CenterContainer.new()
 	center.set_anchors_preset(Control.PRESET_FULL_RECT)
 	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(center)
 
+	# Panel utama
 	var panel := Panel.new()
 	panel.custom_minimum_size = Vector2(CFG_PANEL_WIDTH, 400)
 	var ps := StyleBoxFlat.new()
@@ -104,6 +117,7 @@ func _build_ui():
 	panel.add_theme_stylebox_override("panel", ps)
 	center.add_child(panel)
 
+	# Root VBox
 	var root_vbox := VBoxContainer.new()
 	root_vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 	root_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -147,6 +161,7 @@ func _make_title_bar(mono_font: Font) -> Control:
 	inner.add_theme_constant_override("separation", 7)
 	m.add_child(inner)
 
+	# Titik macOS style
 	for col: Color in [C_WRONG, Color("#f9e2af"), C_SUCCESS]:
 		var dot := ColorRect.new()
 		dot.custom_minimum_size = Vector2(12, 12)
@@ -170,6 +185,9 @@ func _make_title_bar(mono_font: Font) -> Control:
 	sp2.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	inner.add_child(sp2)
 
+	# ─── Tombol Exit ───
+	# Background: C_BG (hitam kebiru-biruan), teks "✕" putih
+	# Hover & pressed: merah, "✕" tetap putih
 	var close_btn := Button.new()
 	close_btn.text = "✕"
 	close_btn.flat = false
@@ -247,17 +265,20 @@ func _make_code_block(mono_font: Font) -> Control:
 	outer_hbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	code_panel.add_child(outer_hbox)
 
+	# Kolom nomor baris
 	var lineno_col := VBoxContainer.new()
 	lineno_col.custom_minimum_size = Vector2(CFG_LINE_NUMBER_WIDTH, 0)
 	lineno_col.add_theme_constant_override("separation", 0)
 	outer_hbox.add_child(lineno_col)
 
+	# Garis vertikal pemisah
 	var divider := ColorRect.new()
 	divider.custom_minimum_size = Vector2(1, 0)
 	divider.color = C_SEPARATOR
 	divider.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	outer_hbox.add_child(divider)
 
+	# Kolom kode
 	var code_col := VBoxContainer.new()
 	code_col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	code_col.add_theme_constant_override("separation", 0)
@@ -328,6 +349,7 @@ func _make_highlight_line(text: String, hw: String, hl_idx: int, mono_font: Font
 	hbox.add_theme_constant_override("separation", 0)
 	row_panel.add_child(hbox)
 
+	# Margin kiri
 	var lpad := Control.new()
 	lpad.custom_minimum_size = Vector2(CFG_MARGIN_H, 0)
 	hbox.add_child(lpad)
@@ -344,9 +366,11 @@ func _make_highlight_line(text: String, hw: String, hl_idx: int, mono_font: Font
 		push_warning("QuizUI: highlight_word '%s' tidak ditemukan di baris '%s'" % [hw, text])
 		return row_panel
 
+	# Teks sebelum kata
 	if idx > 0:
 		hbox.add_child(_code_label(text.substr(0, idx), mono_font))
 
+	# Tombol kata highlight
 	var btn := Button.new()
 	btn.text = hw
 	btn.flat = false
@@ -390,6 +414,7 @@ func _make_highlight_line(text: String, hw: String, hl_idx: int, mono_font: Font
 	_highlight_buttons[hl_idx] = btn
 	hbox.add_child(btn)
 
+	# Teks setelah kata
 	var after := text.substr(idx + hw.length())
 	if after.length() > 0:
 		hbox.add_child(_code_label(after, mono_font))
@@ -424,6 +449,7 @@ func _make_options_section(mono_font: Font) -> Control:
 	vbox.add_theme_constant_override("separation", 10)
 	m.add_child(vbox)
 
+	# Label konteks: menampilkan kata mana yang sedang diperbaiki
 	_options_context_label = Label.new()
 	_options_context_label.text = "Pilih nilai yang benar:"
 	_options_context_label.add_theme_color_override("font_color", C_HINT)
@@ -431,11 +457,13 @@ func _make_options_section(mono_font: Font) -> Control:
 	_options_context_label.add_theme_font_size_override("font_size", CFG_FONT_SIZE_HINT)
 	vbox.add_child(_options_context_label)
 
+	# Baris tombol pilihan
 	var btn_hbox := HBoxContainer.new()
 	btn_hbox.add_theme_constant_override("separation", 10)
 	vbox.add_child(btn_hbox)
 
 	_option_buttons.clear()
+	# Buat 3 tombol (teks akan diisi saat highlight diklik)
 	for i: int in range(3):
 		var opt_btn := Button.new()
 		opt_btn.text = ""
@@ -471,7 +499,7 @@ func _make_options_section(mono_font: Font) -> Control:
 # ─── Helper Font ──────────────────────────────────────────────────────────────
 func _load_mono_font() -> Font:
 	const PATHS := [
-		"res://assets/PeaberryBase.ttf",
+		"res://assets/Fonts/PeaberryBase.ttf",
 		"res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf",
 	]
 	for p: String in PATHS:
@@ -484,12 +512,14 @@ func _load_mono_font() -> Font:
 # ─── Callbacks ────────────────────────────────────────────────────────────────
 func _on_highlight_clicked(hl_idx: int):
 	if _highlight_correct[hl_idx]:
-		return
+		return  # Sudah benar, abaikan
 	_current_hl_idx = hl_idx
 
+	# Update label konteks
 	var hl := _quiz_data.highlights[hl_idx]
 	_options_context_label.text = "🔧  Memperbaiki   [ %s ]   — pilih pengganti yang benar:" % hl.word
 
+	# Update teks tombol opsi
 	for i: int in range(_option_buttons.size()):
 		if i < hl.options.size():
 			_option_buttons[i].text = hl.options[i]
@@ -515,8 +545,11 @@ func _on_option_pressed(option_idx: int):
 		_options_container.visible = false
 		_current_hl_idx = -1
 
-		# ── Cek apakah SEMUA highlight sudah dijawab benar ──
-		# Perubahan dunia hanya aktif setelah semua soal selesai
+		# Mainkan suara benar
+		if sfx_benar != null:
+			sfx_benar.play()
+
+		# Cek apakah SEMUA highlight sudah dijawab benar
 		var semua_benar := true
 		for c: bool in _highlight_correct:
 			if not c:
@@ -524,18 +557,24 @@ func _on_option_pressed(option_idx: int):
 				break
 
 		if semua_benar:
+			# Tunggu 0.35 detik agar player bisa lihat jawaban benar
 			await get_tree().create_timer(0.35).timeout
-			# Emit sinyal dengan array WorldChangeEntry — diterima oleh pintu, drone, dll.
+			if not is_inside_tree():
+				return
+			# Emit sinyal → pintu/drone/marker mulai bereaksi
 			GameEvents.quiz_answered_correct.emit(_quiz_data.world_changes)
 			_tutup_kuis()
 	else:
 		# ── SALAH ──
 		btn.text = hl.options[option_idx]
 		btn.add_theme_color_override("font_color", C_WRONG)
+		if sfx_salah != null:
+			sfx_salah.play()
 		GameEvents.player_hit.emit(1)
 
 		await get_tree().create_timer(0.4).timeout
 		if is_inside_tree():
+			# Reset tombol highlight ke kata semula
 			btn.text = hl.word
 			btn.add_theme_color_override("font_color", C_HL_WORD)
 

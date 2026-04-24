@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://5oipsur4fh7u"]
 
-[ext_resource type="Script" uid="uid://bloqjmnfc6hvh" path="res://script/QuizUI.gd" id="1_e8cok"]
+[ext_resource type="Script" uid="uid://bloqjmnfc6hvh" path="res://script/tampilan/QuizUI.gd" id="1_e8cok"]
+[ext_resource type="AudioStream" uid="uid://wgt5a26lsbb7" path="res://assets/sound/omaygot.mp3" id="2_1ukt7"]
+[ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="3_ciwco"]
 
-[node name="QuizUI" type="CanvasLayer" unique_id=1969209755]
+[node name="QuizUI" type="CanvasLayer" unique_id=1969209755 node_paths=PackedStringArray("sfx_benar", "sfx_salah")]
 process_mode = 3
 script = ExtResource("1_e8cok")
-quiz_id = null
-action_to_trigger = null
+sfx_benar = NodePath("SfxBenar")
+sfx_salah = NodePath("SfxSalah")
+
+[node name="SfxBenar" type="AudioStreamPlayer" parent="." unique_id=1608877675]
+stream = ExtResource("2_1ukt7")
+
+[node name="SfxSalah" type="AudioStreamPlayer" parent="." unique_id=1901016099]
+stream = ExtResource("3_ciwco")

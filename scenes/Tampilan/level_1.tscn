@@ -6,15 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://dugb26t4mw5v" path="res://assets/image/map/Decoration 32x32.png" id="4_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://bdkcukgpsal8s" path="res://scenes/Map/platform_1_png.tscn" id="5_gbfbk"]
-[ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/jikri.gd" id="6_dwbse"]
+[ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/character/jikri.gd" id="6_dwbse"]
 [ext_resource type="PackedScene" uid="uid://dkwhp1x7q50mt" path="res://scenes/Character/drone_musuh_Vertical.tscn" id="6_l400i"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="9_bq8j7"]
-[ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://game_manager.gd" id="9_ioo17"]
+[ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://script/konfigurasi/game_manager.gd" id="9_ioo17"]
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="10_6u07p"]
 [ext_resource type="Resource" uid="uid://b36c7pnjwot2f" path="res://resource/Kuis_Level1.tres" id="10_wls72"]
 [ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://scenes/Tampilan/hud_controller.gd" id="10_yqhaf"]
-[ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/pause.gd" id="11_h1ne5"]
+[ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="11_h1ne5"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="12_4crhs"]
+[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://scenes/Tampilan/camera_2d.gd" id="13_siom5"]
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="14_db8ju"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="14_jxlcw"]
 [ext_resource type="PackedScene" uid="uid://d225uwnj07qnl" path="res://scenes/Character/drone_musuh.tscn" id="15_s1sp0"]
@@ -1161,6 +1162,7 @@ metadata/_edit_group_ = true
 position = Vector2(140.79999, 203.19998)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+script = ExtResource("13_siom5")
 
 [node name="DroneMusuh" parent="Character" unique_id=227089108 instance=ExtResource("15_s1sp0")]
 position = Vector2(264, 584)

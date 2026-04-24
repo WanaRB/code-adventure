@@ -5,6 +5,9 @@ extends CharacterBody2D
 @export var bisa_jadi_baik: bool = false
 @export var mulai_ke_atas: bool = false
 
+## [Opsional] Suara drone berubah jadi baik.
+@export var sfx_konversi: AudioStreamPlayer2D
+
 @onready var sprite = $AnimatedSprite2D
 @onready var hurt_box_collision = $HurtBox/CollisionShape2D
 
@@ -38,10 +41,11 @@ func _ready():
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(2, false)
 
-# ── Handler World Change ────────────────────────────────────────────────────
 func _on_quiz_solved(world_changes: Array):
 	for entry: WorldChangeEntry in world_changes:
 		if entry.action == WorldChangeEntry.ActionType.CONVERT_DRONES and bisa_jadi_baik:
+			var delay := CameraDirector.DURATION_PAN_TO + CameraDirector.DELAY_BEFORE_EFFECT
+			await get_tree().create_timer(delay).timeout
 			_become_friendly()
 
 func _become_friendly():
@@ -49,6 +53,8 @@ func _become_friendly():
 		return
 	is_friendly = true
 	update_animation()
+	if sfx_konversi != null:
+		sfx_konversi.play()
 	if hurt_box_collision:
 		hurt_box_collision.set_deferred("disabled", true)
 	set_collision_mask_value(2, false)

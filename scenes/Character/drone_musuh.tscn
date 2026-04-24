@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d225uwnj07qnl"]
 
-[ext_resource type="Script" uid="uid://csg78l1m30ykx" path="res://drone_musuh.gd" id="1_y8y3m"]
+[ext_resource type="Script" uid="uid://csg78l1m30ykx" path="res://script/character/drone_musuh.gd" id="1_y8y3m"]
 [ext_resource type="Texture2D" uid="uid://7683p0aqwili" path="res://assets/image/character/drone_Walk.png" id="3_2nsmo"]
 [ext_resource type="Texture2D" uid="uid://c7wja7s8fnfll" path="res://assets/image/character/baik_Walk.png" id="3_y8y3m"]
 

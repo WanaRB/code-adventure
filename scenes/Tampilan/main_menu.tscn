@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cn31x40n7mqu8"]
 
 [ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_q3tsx"]
-[ext_resource type="Script" uid="uid://dmt0uib03u6n7" path="res://script/main_menu.gd" id="1_u4y5d"]
+[ext_resource type="Script" uid="uid://dmt0uib03u6n7" path="res://script/tampilan/main_menu.gd" id="1_u4y5d"]
 [ext_resource type="Texture2D" uid="uid://c0w5b8ruj43xj" path="res://assets/image/map/logo.png" id="2_0m03y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3tsx"]

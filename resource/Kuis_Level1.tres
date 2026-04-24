@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://b36c7pnjwot2f"]
 
-[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/Highlightquestion.gd" id="1_2msv3"]
-[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/QuizResource.gd" id="1_asyvg"]
-[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/Worldchangeentry.gd" id="3_2piu5"]
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_2msv3"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="1_asyvg"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="3_2piu5"]
 
 [sub_resource type="Resource" id="Resource_dmg7l"]
 script = ExtResource("1_2msv3")
@@ -11,7 +11,7 @@ word = "true"
 options = Array[String](["\"true\"", "false", "null"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
-[sub_resource type="Resource" id="Resource_ta4ex"]
+[sub_resource type="Resource" id="Resource_2msv3"]
 script = ExtResource("3_2piu5")
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
@@ -19,5 +19,5 @@ metadata/_custom_type_script = "uid://cc7st7sddsu03"
 script = ExtResource("1_asyvg")
 code_lines = Array[String](["func _on_interact():", "     if door_locked == true:", "          door_locked = true", "          print(\"Pintu Terbuka!\")"])
 highlights = Array[ExtResource("1_2msv3")]([SubResource("Resource_dmg7l")])
-world_changes = Array[ExtResource("3_2piu5")]([SubResource("Resource_ta4ex")])
+world_changes = Array[ExtResource("3_2piu5")]([SubResource("Resource_2msv3")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"
