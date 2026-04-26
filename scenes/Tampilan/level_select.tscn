@@ -39,7 +39,7 @@ shadow_offset = Vector2(0, 3.5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m03y"]
 
-[node name="MainMenu" type="Control" unique_id=425800775]
+[node name="MainMenu" type="Control" unique_id=425800775 node_paths=PackedStringArray("btn_level_1", "btn_level_2", "btn_level_3")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,6 +47,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yus8d")
+btn_level_1 = NodePath("VBoxContainer/button_level1")
+btn_level_2 = NodePath("VBoxContainer/button_level2")
+btn_level_3 = NodePath("VBoxContainer/button_level3")
 
 [node name="Panel" type="Panel" parent="." unique_id=1794435827]
 layout_mode = 1

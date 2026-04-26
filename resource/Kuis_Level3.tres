@@ -23,13 +23,9 @@ script = ExtResource("3_mw5fk")
 action = 1
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
-[sub_resource type="Resource" id="Resource_mw5fk"]
-script = ExtResource("3_mw5fk")
-metadata/_custom_type_script = "uid://cc7st7sddsu03"
-
 [resource]
 script = ExtResource("1_asyvg")
 code_lines = Array[String](["# Ambil alih navigasi drone!", "# Nonaktifkan sistem keamanan:", "", "drone.mode = \"manual\"", "drone.security_enabled = True"])
 highlights = Array[ExtResource("1_e3ie7")]([SubResource("Resource_cvjqn"), SubResource("Resource_3xgih")])
-world_changes = Array[ExtResource("3_mw5fk")]([SubResource("Resource_e3ie7"), SubResource("Resource_mw5fk")])
+world_changes = Array[ExtResource("3_mw5fk")]([SubResource("Resource_e3ie7")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

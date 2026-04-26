@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmtvlijg7cwnr"]
 
 [ext_resource type="Texture2D" uid="uid://uxmkchue224f" path="res://assets/image/map/spike.png" id="1_1ol6w"]
-[ext_resource type="Script" uid="uid://bjnclj2trf24u" path="res://scenes/Map/spike.gd" id="1_se7t7"]
+[ext_resource type="Script" uid="uid://bjnclj2trf24u" path="res://script/object/spike.gd" id="1_se7t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ol6w"]
 size = Vector2(40, 48)

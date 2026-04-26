@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brtggkst565f" path="res://script/object/pintu_menang.gd" id="1_u2a78"]
 [ext_resource type="Texture2D" uid="uid://cbcbsbsa0guup" path="res://assets/image/map/pintu kuning.png" id="1_u74in"]
-[ext_resource type="AudioStream" uid="uid://wgt5a26lsbb7" path="res://assets/sound/omaygot.mp3" id="3_oh8y5"]
+[ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot (mp3cut.net).mp3" id="3_oh8y5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2a78"]
 size = Vector2(96, 176)

@@ -8,14 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://bdkcukgpsal8s" path="res://scenes/Map/platform_1_png.tscn" id="5_gbfbk"]
 [ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/character/jikri.gd" id="6_dwbse"]
 [ext_resource type="PackedScene" uid="uid://dkwhp1x7q50mt" path="res://scenes/Character/drone_musuh_Vertical.tscn" id="6_l400i"]
+[ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot (mp3cut.net).mp3" id="6_sawe4"]
+[ext_resource type="Resource" uid="uid://b6nsdt3jidwur" path="res://resource/Kuis_Level1_platform.tres" id="7_idnlo"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="9_bq8j7"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://script/konfigurasi/game_manager.gd" id="9_ioo17"]
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="10_6u07p"]
 [ext_resource type="Resource" uid="uid://b36c7pnjwot2f" path="res://resource/Kuis_Level1.tres" id="10_wls72"]
-[ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://scenes/Tampilan/hud_controller.gd" id="10_yqhaf"]
+[ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://script/tampilan/hud_controller.gd" id="10_yqhaf"]
 [ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="11_h1ne5"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="12_4crhs"]
-[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://scenes/Tampilan/camera_2d.gd" id="13_siom5"]
+[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="13_siom5"]
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="14_db8ju"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="14_jxlcw"]
 [ext_resource type="PackedScene" uid="uid://d225uwnj07qnl" path="res://scenes/Character/drone_musuh.tscn" id="15_s1sp0"]
@@ -1105,12 +1107,21 @@ position = Vector2(459.5, 392.00003)
 scale = Vector2(3.020833, 3)
 
 [node name="Platform1_png6" parent="Map/Platform" unique_id=2014804322 instance=ExtResource("5_gbfbk")]
-position = Vector2(800, 288)
+position = Vector2(751.99994, 288)
 scale = Vector2(3.020833, 3)
 
-[node name="Platform1_png7" parent="Map/Platform" unique_id=1719501059 instance=ExtResource("5_gbfbk")]
-position = Vector2(1368, 400)
+[node name="Platform1_png7" parent="Map/Platform" unique_id=1719501059 node_paths=PackedStringArray("sfx_aktif") instance=ExtResource("5_gbfbk")]
+process_mode = 3
+position = Vector2(1512, 408.00003)
 scale = Vector2(3.020833, 3)
+platform_id = 2
+direction = 2
+kecepatan = 100.0
+sfx_aktif = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="Map/Platform/Platform1_png7" unique_id=809142140]
+process_mode = 3
+stream = ExtResource("6_sawe4")
 
 [node name="Platform1_png4" parent="Map/Platform" unique_id=196900045 instance=ExtResource("5_gbfbk")]
 position = Vector2(2502.0002, 325)
@@ -1120,10 +1131,9 @@ scale = Vector2(3.020833, 3)
 position = Vector2(2502.0002, 325)
 scale = Vector2(3.020833, 3)
 
-[node name="DroneMusuh_vertical" parent="Map" unique_id=1779015776 instance=ExtResource("6_l400i")]
-position = Vector2(2368, 256)
-kecepatan = 200.0
-jarak_patroli = 350.0
+[node name="Laptop" parent="Map/Platform" unique_id=994781868 instance=ExtResource("12_4crhs")]
+position = Vector2(752, 240)
+data_kuis = ExtResource("7_idnlo")
 
 [node name="PintuMenang" parent="Map" unique_id=1498396234 instance=ExtResource("14_db8ju")]
 position = Vector2(3001, 559)
@@ -1136,7 +1146,7 @@ visible = false
 position = Vector2(2464, 5)
 
 [node name="apple2" parent="Item" unique_id=680868859 instance=ExtResource("9_bq8j7")]
-position = Vector2(1368, 352)
+position = Vector2(1512, 360)
 
 [node name="apple3" parent="Item" unique_id=300574820 instance=ExtResource("9_bq8j7")]
 position = Vector2(64, 216)
@@ -1147,14 +1157,14 @@ position = Vector2(3440, 600)
 [node name="apple6" parent="Item" unique_id=492602000 instance=ExtResource("9_bq8j7")]
 position = Vector2(2496, 272)
 
-[node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("12_4crhs")]
+[node name="Laptop" parent="Item" unique_id=1688558783 instance=ExtResource("12_4crhs")]
 position = Vector2(2544, 600)
 data_kuis = ExtResource("10_wls72")
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("5_036b0")]
-position = Vector2(2152, 56.000008)
+position = Vector2(823.99994, 39.99994)
 script = ExtResource("6_dwbse")
 metadata/_edit_group_ = true
 
@@ -1163,11 +1173,6 @@ position = Vector2(140.79999, 203.19998)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 script = ExtResource("13_siom5")
-
-[node name="DroneMusuh" parent="Character" unique_id=227089108 instance=ExtResource("15_s1sp0")]
-position = Vector2(264, 584)
-kecepatan = 200.0
-jarak_patroli = 500.0
 
 [node name="game_manager" type="Node" parent="." unique_id=1134001816]
 unique_name_in_owner = true
@@ -1301,6 +1306,18 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6u07p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_h1ne5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4crhs")
 text = "Go to Main Menu"
+
+[node name="Musuh" type="Node" parent="." unique_id=1816379245]
+
+[node name="DroneMusuh_vertical" parent="Musuh" unique_id=1779015776 instance=ExtResource("6_l400i")]
+position = Vector2(2368, 256)
+kecepatan = 200.0
+jarak_patroli = 350.0
+
+[node name="DroneMusuh" parent="Musuh" unique_id=227089108 instance=ExtResource("15_s1sp0")]
+position = Vector2(264, 584)
+kecepatan = 200.0
+jarak_patroli = 500.0
 
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]

@@ -12,9 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="9_7ia63"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_wd48c"]
 [ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/character/jikri.gd" id="11_k4pb6"]
+[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="11_kjyq4"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://script/konfigurasi/game_manager.gd" id="13_f074n"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="14_wb70b"]
-[ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://scenes/Tampilan/hud_controller.gd" id="15_l1ylq"]
+[ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://script/tampilan/hud_controller.gd" id="15_l1ylq"]
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="16_ggxvv"]
 [ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="17_g7j1d"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="18_fmda1"]
@@ -1095,28 +1096,28 @@ layer_0/tile_data = PackedInt32Array(655395, 786432, 2, 720931, 786432, 3, 65539
 position = Vector2(1432, 424.00003)
 scale = Vector2(4, 3.6666667)
 
-[node name="apple" parent="Map" unique_id=666788976 instance=ExtResource("8_idsdl")]
+[node name="Item" type="Node" parent="." unique_id=162585964]
+
+[node name="apple" parent="Item" unique_id=666788976 instance=ExtResource("8_idsdl")]
 position = Vector2(1272, 608)
 
-[node name="apple2" parent="Map" unique_id=1139145556 instance=ExtResource("8_idsdl")]
+[node name="apple2" parent="Item" unique_id=1139145556 instance=ExtResource("8_idsdl")]
 position = Vector2(1496, 376)
 
-[node name="Laptop" parent="Map" unique_id=994781868 instance=ExtResource("9_7ia63")]
+[node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("9_7ia63")]
 position = Vector2(3296, 600)
 
-[node name="apple3" parent="Map" unique_id=1473572142 instance=ExtResource("8_idsdl")]
+[node name="apple3" parent="Item" unique_id=1473572142 instance=ExtResource("8_idsdl")]
 position = Vector2(3432, 392)
 
-[node name="PintuMenang" parent="Map" unique_id=1498396234 instance=ExtResource("7_bbmdg")]
+[node name="PintuMenang" parent="Item" unique_id=1498396234 instance=ExtResource("7_bbmdg")]
 position = Vector2(1920, 560)
 target_level_path = "uid://babfsu63orby"
-
-[node name="Item" type="Node" parent="." unique_id=162585964]
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_wd48c")]
-position = Vector2(711.99994, -40.000015)
+position = Vector2(-167.99976, -208)
 script = ExtResource("11_k4pb6")
 metadata/_edit_group_ = true
 
@@ -1124,6 +1125,7 @@ metadata/_edit_group_ = true
 position = Vector2(140.79999, 203.19998)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+script = ExtResource("11_kjyq4")
 
 [node name="game_manager" type="Node" parent="." unique_id=1134001816]
 unique_name_in_owner = true

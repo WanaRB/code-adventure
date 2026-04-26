@@ -1,9 +1,23 @@
-[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://d0au60qbx4i2u"]
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://3gvkrps24iiu"]
 
 [ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="1_ud3tk"]
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_vd14l"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="3_82uln"]
+
+[sub_resource type="Resource" id="Resource_dmg7l"]
+script = ExtResource("1_vd14l")
+line = 2
+word = "true"
+options = Array[String](["\"true\"", "false", "null"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_2msv3"]
+script = ExtResource("3_82uln")
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [resource]
 script = ExtResource("1_ud3tk")
-question = "Sistem mendeteksi akses masuk. Kode Python manakah yang paling tepat untuk mengizinkan pengguna masuk HANYA jika statusnya adalah Admin?"
-options = Array[String](["if user_status == \"admin\":", "if user_status = \"admin\":", "while user_status == \"admin\":"])
+code_lines = Array[String](["func _on_interact():", "     if door_locked == true:", "          door_locked = true", "          print(\"Pintu Terbuka!\")"])
+highlights = Array[ExtResource("1_vd14l")]([SubResource("Resource_dmg7l")])
+world_changes = Array[ExtResource("3_82uln")]([SubResource("Resource_2msv3")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

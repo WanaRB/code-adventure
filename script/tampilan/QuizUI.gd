@@ -55,6 +55,11 @@ var _action_to_trigger: String = ""    # Tidak lagi dipakai langsung
 var _highlight_buttons: Array[Button] = []
 var _highlight_correct: Array[bool] = []
 var _current_hl_idx: int = -1
+var _hl_start_times: Array[float] = []
+var _hl_timer_on: Array[bool] = []
+var _session_correct := 0
+var _session_bonus   := 0
+var _session_wrong   := 0
 
 # Referensi UI yang perlu diakses setelah build
 var _options_container: Control = null
@@ -77,6 +82,14 @@ func setup_quiz(data: QuizResource):
 	_quiz_data = data
 	_highlight_correct.resize(data.highlights.size())
 	_highlight_correct.fill(false)
+	var _now := Time.get_ticks_msec() / 1000.0
+	_hl_start_times.resize(data.highlights.size())
+	_hl_start_times.fill(_now)
+	_hl_timer_on.resize(data.highlights.size())
+	_hl_timer_on.fill(false)
+	_session_correct = 0
+	_session_bonus   = 0
+	_session_wrong   = 0
 	_build_ui()
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
@@ -499,7 +512,7 @@ func _make_options_section(mono_font: Font) -> Control:
 # ─── Helper Font ──────────────────────────────────────────────────────────────
 func _load_mono_font() -> Font:
 	const PATHS := [
-		"res://assets/Fonts/PeaberryBase.ttf",
+		"res://assets/PeaberryBase.ttf",
 		"res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf",
 	]
 	for p: String in PATHS:
@@ -514,6 +527,11 @@ func _on_highlight_clicked(hl_idx: int):
 	if _highlight_correct[hl_idx]:
 		return  # Sudah benar, abaikan
 	_current_hl_idx = hl_idx
+
+	# Start timer saat pertama kali highlight ini diklik
+	if not _hl_timer_on[hl_idx]:
+		_hl_timer_on[hl_idx] = true
+		_hl_start_times[hl_idx] = Time.get_ticks_msec() / 1000.0
 
 	# Update label konteks
 	var hl := _quiz_data.highlights[hl_idx]
@@ -543,7 +561,17 @@ func _on_option_pressed(option_idx: int):
 		btn.disabled = true
 		btn.add_theme_color_override("font_disabled_color", C_SUCCESS)
 		_options_container.visible = false
-		_current_hl_idx = -1
+
+		# ── Hitung bonus kecepatan ──
+		var elapsed := (Time.get_ticks_msec() / 1000.0) - _hl_start_times[_current_hl_idx]
+		var bonus := 0
+		if elapsed <= 5.0:
+			bonus = 50
+		elif elapsed <= 15.0:
+			bonus = 25
+		_session_correct += 1
+		_session_bonus   += bonus
+		_current_hl_idx   = -1
 
 		# Mainkan suara benar
 		if sfx_benar != null:
@@ -557,20 +585,20 @@ func _on_option_pressed(option_idx: int):
 				break
 
 		if semua_benar:
-			# Tunggu 0.35 detik agar player bisa lihat jawaban benar
 			await get_tree().create_timer(0.35).timeout
 			if not is_inside_tree():
 				return
-			# Emit sinyal → pintu/drone/marker mulai bereaksi
+			GameEvents.quiz_points_earned.emit(_session_correct, _session_bonus, _session_wrong)
 			GameEvents.quiz_answered_correct.emit(_quiz_data.world_changes)
 			_tutup_kuis()
 	else:
 		# ── SALAH ──
+		_session_wrong += 1          # Kurangi poin (-10 per kesalahan)
+		GameEvents.player_hit.emit(1) # FIX: kurangi nyawa juga
 		btn.text = hl.options[option_idx]
 		btn.add_theme_color_override("font_color", C_WRONG)
 		if sfx_salah != null:
 			sfx_salah.play()
-		GameEvents.player_hit.emit(1)
 
 		await get_tree().create_timer(0.4).timeout
 		if is_inside_tree():
@@ -583,5 +611,6 @@ func _on_close_pressed():
 
 func _tutup_kuis():
 	GameEvents.quiz_closed.emit()
-	get_tree().paused = false
+	if not CameraDirector._is_busy:
+		get_tree().paused = false
 	queue_free()

@@ -1,32 +1,6 @@
 [gd_scene format=3 uid="uid://6u8o4m8f2w47"]
 
-[ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="1_155iy"]
-[ext_resource type="AudioStream" uid="uid://8ddssgut6p2a" path="res://assets/sound/you-are-my-sunshine-lebron-james.mp3" id="2_f321c"]
-[ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://script/button_menang.gd" id="3_aubvg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlail"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5lhe"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_juabm"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqv8y"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://script/tampilan/button_menang.gd" id="3_aubvg"]
 
 [node name="Control" type="Control" unique_id=911284679]
 layout_mode = 3
@@ -35,57 +9,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="." unique_id=1445932400]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mlail")
-
-[node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=1155262618]
-position = Vector2(584, 320)
-scale = Vector2(0.95231247, 1)
-texture = ExtResource("1_155iy")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Panel" unique_id=857182827]
-stream = ExtResource("2_f321c")
-autoplay = true
-
-[node name="Label" type="Label" parent="Panel" unique_id=726280935]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 16.0
-offset_bottom = 85.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
-text = "SELAMAT KAMU MENANG"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="Panel" unique_id=1210579415]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -136.0
-offset_top = -68.0
-offset_right = 123.0
-offset_bottom = -18.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_h5lhe")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_juabm")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yqv8y")
-text = "Kembali ke Menu"
 script = ExtResource("3_aubvg")
-
-[connection signal="pressed" from="Panel/Button" to="Panel/Button" method="_on_pressed"]

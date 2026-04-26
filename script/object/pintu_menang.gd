@@ -1,20 +1,14 @@
 extends Area2D
 
-# ╔══════════════════════════════════════════════════════════════════════════════╗
-# ║  Setup sound efek:                                                         ║
-# ║    1. Tambahkan node AudioStreamPlayer2D sebagai child node ini            ║
-# ║    2. Drag node tersebut ke field "Sfx Buka" di Inspector                  ║
-# ║    3. Assign audio stream (file .ogg/.wav) di node AudioStreamPlayer2D     ║
-# ╚══════════════════════════════════════════════════════════════════════════════╝
-
-## ID pintu ini. Di Inspector soal (.tres), buat WorldChangeEntry:
-##   Action = OPEN_DOOR  |  Door Id = (angka yang sama dengan ini)
 @export var door_id: int = 1
-
-## AudioStreamPlayer2D untuk suara pintu terbuka. Buat sebagai child node.
+@export var terbuka_dari_awal: bool = false
 @export var sfx_buka: AudioStreamPlayer2D
-
 @onready var sprite = $Sprite2D
+
+## Path tujuan. Untuk level 1 & 2 biarkan kosong atau isi menang.tscn.
+## Script ini SELALU mengarah ke menang.tscn untuk level 1-3.
+## Ubah ke false hanya jika ingin skip winscreen dan langsung ke scene lain.
+@export var pakai_winscreen: bool = true
 @export_file("*.tscn") var target_level_path: String
 
 var is_open := false
@@ -24,42 +18,53 @@ func _ready():
 	GameEvents.quiz_answered_correct.connect(_on_quiz_solved)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	sprite.frame = 1  # Tertutup
+	if terbuka_dari_awal:
+		is_open = true
+		sprite.frame = 0
+	else:
+		sprite.frame = 1
 
-# ─── World Change Handler ─────────────────────────────────────────────────────
 func _on_quiz_solved(world_changes: Array):
 	for entry: WorldChangeEntry in world_changes:
 		if entry.action == WorldChangeEntry.ActionType.OPEN_DOOR and entry.door_id == door_id:
-			# Kirim event cinematic ke CameraDirector:
-			# kamera pan ke pintu → 0.3 detik → pintu terbuka + suara → kamera kembali
-			CameraDirector.queue_cinematic(
-				global_position,
-				_buka_pintu,   # dipanggil saat kamera sudah tiba di pintu
-				Callable()
-			)
+			CameraDirector.queue_cinematic(global_position, _buka_pintu, Callable())
 			break
 
 func _buka_pintu():
-	if is_open:
-		return
+	if is_open: return
 	is_open = true
-	sprite.frame = 0  # Visual pintu terbuka
-	if sfx_buka != null:
-		sfx_buka.play()
+	sprite.frame = 0
+	if sfx_buka != null: sfx_buka.play()
 
-# ─── Interaksi Player ─────────────────────────────────────────────────────────
 func _on_body_entered(body):
-	if body.is_in_group("player"):
-		player_di_dekat_pintu = true
+	if body.is_in_group("player"): player_di_dekat_pintu = true
 
 func _on_body_exited(body):
-	if body.is_in_group("player"):
-		player_di_dekat_pintu = false
+	if body.is_in_group("player"): player_di_dekat_pintu = false
 
 func _input(event):
 	if event.is_action_pressed("interact") and player_di_dekat_pintu and is_open:
 		_pindah_level()
 
 func _pindah_level():
-	if target_level_path != "":
+	var current: int = _nomor_level_dari_path(GameEvents.last_level_path)
+
+	# Unlock level berikutnya
+	if current > 0 and current < 3:
+		SaveManager.unlock_level(current + 1)
+
+	# Simpan stats sebelum pindah scene
+	GameEvents.level_won.emit()
+
+	# FIX: Jika pakai_winscreen = true (default), SELALU ke menang.tscn
+	# Ini mengatasi masalah target_level_path yang masih menunjuk ke level berikutnya
+	if pakai_winscreen:
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/Tampilan/menang.tscn")
+	elif target_level_path != "":
 		get_tree().call_deferred("change_scene_to_file", target_level_path)
+
+func _nomor_level_dari_path(path: String) -> int:
+	if "level_1" in path: return 1
+	if "level_2" in path: return 2
+	if "level_3" in path: return 3
+	return 0

@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://bdkcukgpsal8s"]
 
+[ext_resource type="Script" uid="uid://8xhcti8k0v7o" path="res://script/object/platform_bergerak.gd" id="1_aunig"]
 [ext_resource type="Texture2D" uid="uid://dlgxw2r1iueiv" path="res://assets/image/map/platform-1.png.png" id="1_liypo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_liypo"]
 size = Vector2(48, 9)
 
-[node name="Platform1_png" type="Sprite2D" unique_id=416016548]
+[node name="Platform1_png" type="AnimatableBody2D" unique_id=1076731607]
 texture_filter = 1
 scale = Vector2(4, 4)
-texture = ExtResource("1_liypo")
+script = ExtResource("1_aunig")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1646537857]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1484914748]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1484914748]
 shape = SubResource("RectangleShape2D_liypo")
 one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=128955391]
+texture = ExtResource("1_liypo")
