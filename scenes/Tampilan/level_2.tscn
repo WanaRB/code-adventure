@@ -1093,7 +1093,7 @@ layer_0/tile_data = PackedInt32Array(655395, 786432, 2, 720931, 786432, 3, 65539
 [node name="Platform" type="Node" parent="Map" unique_id=1670196326]
 
 [node name="Platform1_png" parent="Map/Platform" unique_id=416016548 instance=ExtResource("5_3jjit")]
-position = Vector2(1432, 424.00003)
+position = Vector2(1432, 445)
 scale = Vector2(4, 3.6666667)
 
 [node name="Item" type="Node" parent="." unique_id=162585964]

@@ -1146,7 +1146,7 @@ visible = false
 position = Vector2(2464, 5)
 
 [node name="apple2" parent="Item" unique_id=680868859 instance=ExtResource("9_bq8j7")]
-position = Vector2(1192, 608)
+position = Vector2(1520, 360)
 
 [node name="apple3" parent="Item" unique_id=300574820 instance=ExtResource("9_bq8j7")]
 position = Vector2(64, 216)
@@ -1164,7 +1164,7 @@ data_kuis = ExtResource("10_wls72")
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("5_036b0")]
-position = Vector2(2384, -24.000004)
+position = Vector2(760.0001, 55.99999)
 script = ExtResource("6_dwbse")
 metadata/_edit_group_ = true
 

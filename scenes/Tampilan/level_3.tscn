@@ -1115,13 +1115,13 @@ position = Vector2(976, 592)
 position = Vector2(1440, 376)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("7_umhir")]
-position = Vector2(3008, 384)
+position = Vector2(2064, 432)
 data_kuis = ExtResource("9_p18bu")
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_iareu")]
-position = Vector2(2696, -151.99998)
+position = Vector2(1815.9999, -112)
 script = ExtResource("11_pipf5")
 metadata/_edit_group_ = true
 
