@@ -53,10 +53,8 @@ var _button_visuals: Dictionary = {}   # action string → Control node
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
 	# Deteksi mobile: cek fitur platform Godot (reliable di HTML5)
-	var is_mobile_web := OS.has_feature("web_android") or OS.has_feature("web_ios")
-	var is_touch      := DisplayServer.is_touchscreen_available()
-
-	if not is_mobile_web and not is_touch:
+	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios")
+	if not is_mobile:
 		queue_free()
 		return
 
