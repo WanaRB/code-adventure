@@ -1065,8 +1065,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -3.0
 offset_top = 1.0
-offset_right = 2326.0
-offset_bottom = 24.0
+offset_right = 1600.0
+offset_bottom = -400.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_cqgid")
@@ -1115,13 +1115,13 @@ position = Vector2(976, 592)
 position = Vector2(1440, 376)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("7_umhir")]
-position = Vector2(2072, 432)
+position = Vector2(3008, 384)
 data_kuis = ExtResource("9_p18bu")
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_iareu")]
-position = Vector2(1760, -112)
+position = Vector2(2696, -151.99998)
 script = ExtResource("11_pipf5")
 metadata/_edit_group_ = true
 

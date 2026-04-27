@@ -12,13 +12,13 @@ const CFG_PANEL_H     := 320.0
 ## Jarak antar baris
 const CFG_ROW_GAP     := 12
 ## Ukuran font judul (GAME OVER)
-const CFG_SIZE_JUDUL  := 30
+const CFG_SIZE_JUDUL  := 32
 ## Ukuran font poin
-const CFG_SIZE_POIN   := 18
+const CFG_SIZE_POIN   := 24
 ## Ukuran font sub-keterangan
 const CFG_SIZE_HINT   := 13
 ## Ukuran font tombol
-const CFG_SIZE_BTN    := 15
+const CFG_SIZE_BTN    := 18
 ## Tinggi tombol (pixel)
 const CFG_BTN_H       := 44.0
 ## Margin kiri & kanan isi panel
@@ -62,28 +62,34 @@ func _build_ui():
 	ps.border_color = C_BORDER
 	ps.shadow_color = Color(0, 0, 0, 0.5)
 	ps.shadow_size = 20
-	ps.content_margin_left   = CFG_MARGIN_H
-	ps.content_margin_right  = CFG_MARGIN_H
-	ps.content_margin_top    = CFG_MARGIN_TOP
-	ps.content_margin_bottom = 24
+	ps.content_margin_left   = 0
+	ps.content_margin_right  = 0
+	ps.content_margin_top    = 0
+	ps.content_margin_bottom = 0
 	panel.add_theme_stylebox_override("panel", ps)
 	center.add_child(panel)
 
+	# ── MarginContainer sebagai padding dalam panel ──
+	var margin_c := MarginContainer.new()
+	margin_c.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin_c.add_theme_constant_override("margin_left",   CFG_MARGIN_H)
+	margin_c.add_theme_constant_override("margin_right",  CFG_MARGIN_H)
+	margin_c.add_theme_constant_override("margin_top",    CFG_MARGIN_TOP)
+	margin_c.add_theme_constant_override("margin_bottom", 24)
+	panel.add_child(margin_c)
+
 	# ── VBox utama ──
 	var vbox := VBoxContainer.new()
-	vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 	vbox.add_theme_constant_override("separation", CFG_ROW_GAP)
-	panel.add_child(vbox)
+	margin_c.add_child(vbox)
 
 	# ── Konten ──
 	var net: int = GameEvents.last_session_net
 
 	_lbl(vbox, "✖  GAME OVER  ✖", CFG_SIZE_JUDUL, C_JUDUL)
 	_sep(vbox)
-	_lbl(vbox, "Poin sesi ini", CFG_SIZE_HINT, C_HINT)
 	_lbl(vbox, "%d poin" % net, CFG_SIZE_POIN, C_POIN)
 	_sep(vbox)
-	_lbl(vbox, "Ulangi level atau kembali ke menu?", CFG_SIZE_HINT, C_HINT)
 
 	# Spacer
 	var spacer := Control.new()

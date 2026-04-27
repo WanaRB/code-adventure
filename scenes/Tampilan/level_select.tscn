@@ -39,7 +39,7 @@ shadow_offset = Vector2(0, 3.5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m03y"]
 
-[node name="MainMenu" type="Control" unique_id=425800775 node_paths=PackedStringArray("btn_level_1", "btn_level_2", "btn_level_3")]
+[node name="MainMenu" type="Control" unique_id=425800775]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,9 +47,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yus8d")
-btn_level_1 = NodePath("VBoxContainer/button_level1")
-btn_level_2 = NodePath("VBoxContainer/button_level2")
-btn_level_3 = NodePath("VBoxContainer/button_level3")
 
 [node name="Panel" type="Panel" parent="." unique_id=1794435827]
 layout_mode = 1
@@ -62,17 +59,17 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_q3tsx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=632943988]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -115.75
-offset_top = -286.0
-offset_right = 115.75
-offset_bottom = -40.0
+anchor_bottom = 0.5
+offset_left = -167.09375
+offset_top = -177.55966
+offset_right = 165.0
+offset_bottom = 175.33484
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="button_level1" type="Button" parent="VBoxContainer" unique_id=297542021]

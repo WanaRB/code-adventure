@@ -16,7 +16,7 @@ const CFG_SIZE_JUDUL    := 32
 ## Ukuran font subjudul (Hasil Level X)
 const CFG_SIZE_SUBJUDUL := 18
 ## Ukuran font baris detail poin
-const CFG_SIZE_DETAIL   := 15
+const CFG_SIZE_DETAIL   := 20
 ## Ukuran font baris total poin
 const CFG_SIZE_TOTAL    := 22
 ## Ukuran font tombol
@@ -74,18 +74,27 @@ func _build_ui():
 	ps.border_color = C_BORDER
 	ps.shadow_color = Color(0, 0, 0, 0.5)
 	ps.shadow_size = 20
-	ps.content_margin_left   = CFG_MARGIN_H
-	ps.content_margin_right  = CFG_MARGIN_H
-	ps.content_margin_top    = CFG_MARGIN_TOP
-	ps.content_margin_bottom = 24
+	# Margin diatur oleh MarginContainer di bawah, bukan StyleBox
+	ps.content_margin_left   = 0
+	ps.content_margin_right  = 0
+	ps.content_margin_top    = 0
+	ps.content_margin_bottom = 0
 	panel.add_theme_stylebox_override("panel", ps)
 	center.add_child(panel)
 
+	# ── MarginContainer sebagai padding dalam panel ──
+	var margin_c := MarginContainer.new()
+	margin_c.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin_c.add_theme_constant_override("margin_left",   CFG_MARGIN_H)
+	margin_c.add_theme_constant_override("margin_right",  CFG_MARGIN_H)
+	margin_c.add_theme_constant_override("margin_top",    CFG_MARGIN_TOP)
+	margin_c.add_theme_constant_override("margin_bottom", 24)
+	panel.add_child(margin_c)
+
 	# ── VBox utama ──
 	var vbox := VBoxContainer.new()
-	vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 	vbox.add_theme_constant_override("separation", CFG_ROW_GAP)
-	panel.add_child(vbox)
+	margin_c.add_child(vbox)
 
 	# ── Konten ──
 	var level: int = _get_level()
