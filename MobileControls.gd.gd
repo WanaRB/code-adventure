@@ -1,65 +1,45 @@
 extends CanvasLayer
 
-# ╔══════════════════════════════════════════════════════════════════════════════╗
-# ║              KONFIGURASI UKURAN & POSISI TOMBOL MOBILE                     ║
-# ║                                                                            ║
-# ║  Semua angka dalam pixel. Koordinat (0,0) = pojok kiri atas layar.         ║
-# ║                                                                            ║
-# ║  Cara mengatur posisi tombol:                                              ║
-# ║    PAD_LEFT   → geser tombol KIRI/KANAN menjauhi tepi kiri                 ║
-# ║    PAD_RIGHT  → geser tombol LOMPAT/E menjauhi tepi kanan                  ║
-# ║    PAD_BOTTOM → naikkan semua tombol dari tepi bawah (angka lebih besar   ║
-# ║                 = tombol lebih tinggi dari bawah layar)                    ║
-# ║    GAP_DIR    → jarak antara tombol KIRI dan KANAN                         ║
-# ║    GAP_ACTION → jarak antara tombol E dan LOMPAT                           ║
-# ║                                                                            ║
-# ║  Cara mengatur ukuran tombol:                                              ║
-# ║    BTN_DIR_SIZE    → ukuran tombol ◄ dan ► (lebih besar = lebih mudah tap) ║
-# ║    BTN_JUMP_SIZE   → ukuran tombol LOMPAT (sedikit lebih besar dari arah)  ║
-# ║    BTN_E_SIZE      → ukuran tombol INTERAKSI (E)                           ║
-# ╚══════════════════════════════════════════════════════════════════════════════╝
+# ─── KONFIGURASI ──────────────────────────────────────────────────────────────
+# Ukuran tombol (pixel) — perbesar jika terlalu kecil di HP kamu
+const BTN_DIR_SIZE    := 110.0   ## Ukuran tombol KIRI dan KANAN
+const BTN_JUMP_SIZE   := 130.0   ## Ukuran tombol LOMPAT
+const BTN_E_SIZE      := 95.0    ## Ukuran tombol INTERAKSI (E)
 
-# ─── Ukuran tombol ────────────────────────────────────────────────────────────
-const BTN_DIR_SIZE    := 200.0   ## Ukuran tombol kiri & kanan (pixel)
-const BTN_JUMP_SIZE   := 200.0  ## Ukuran tombol lompat (pixel)
-const BTN_E_SIZE      := 200.0   ## Ukuran tombol interaksi E (pixel)
+# Posisi dari tepi layar (pixel)
+# PAD_BOTTOM → naikkan angka = tombol naik dari bawah
+# PAD_LEFT   → naikkan angka = tombol arah menjauh dari tepi kiri
+# PAD_RIGHT  → naikkan angka = tombol lompat menjauh dari tepi kanan
+const PAD_LEFT        := 40.0
+const PAD_RIGHT       := 40.0
+const PAD_BOTTOM      := 60.0
+const GAP_DIR         := 16.0    ## Jarak antara tombol kiri dan kanan
+const GAP_ACTION      := 16.0    ## Jarak antara tombol E dan lompat
 
-# ─── Posisi (jarak dari tepi layar) ──────────────────────────────────────────
-const PAD_LEFT        := 200.0   ## Jarak tombol kiri dari tepi kiri layar
-const PAD_RIGHT       := 200.0   ## Jarak tombol lompat dari tepi kanan layar
-const PAD_BOTTOM      := 200.0   ## Jarak semua tombol dari tepi bawah layar
-const GAP_DIR         := 200.0   ## Jarak antara tombol kiri dan kanan
-const GAP_ACTION      := 100.0   ## Jarak antara tombol E dan Lompat
+const OPACITY_IDLE    := 0.55
+const OPACITY_PRESSED := 0.95
 
-# ─── Tampilan ─────────────────────────────────────────────────────────────────
-const OPACITY_IDLE    := 0.70   ## Transparansi tombol saat tidak ditekan (0.0–1.0)
-const OPACITY_PRESSED := 0.95   ## Transparansi tombol saat ditekan
-
-# ─── Path gambar tombol ───────────────────────────────────────────────────────
-# Tombol kiri  → dpad_element_west.png
-# Tombol kanan → dpad_element_east.png
-# Tombol lompat → dpad_element_south.png  (dibalik vertikal agar panah ke atas)
-# Tombol E     → button_circle.png + label "E"
-const IMG_KIRI   := "res://assets/image/MobileUI/dpad_element_east.png"
-const IMG_KANAN  := "res://assets/image/MobileUI/dpad_element_west.png"
+# Path gambar — pastikan file ini ada di project
+const IMG_KIRI   := "res://assets/image/MobileUI/dpad_element_west.png"
+const IMG_KANAN  := "res://assets/image/MobileUI/dpad_element_east.png"
 const IMG_LOMPAT := "res://assets/image/MobileUI/dpad_element_south.png"
 const IMG_E      := "res://assets/image/MobileUI/button_circle.png"
 
-# ─── State internal ────────────────────────────────────────────────────────────
-var _finger_action : Dictionary = {}   # finger_index → action string
-var _button_rects  : Dictionary = {}   # action string → Rect2
-var _button_visuals: Dictionary = {}   # action string → Control node
+# ─── State ────────────────────────────────────────────────────────────────────
+var _finger_action : Dictionary = {}
+var _button_rects  : Dictionary = {}
+var _button_visuals: Dictionary = {}
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
-	# Deteksi mobile: cek fitur platform Godot (reliable di HTML5)
+	# Hanya muncul di web mobile (Android/iOS) — tidak di laptop/PC
 	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios")
 	if not is_mobile:
 		queue_free()
 		return
 
 	layer        = 10
-	process_mode = Node.PROCESS_MODE_ALWAYS   # Tetap aktif saat game di-pause
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_ui()
 
 # ─── Build UI ─────────────────────────────────────────────────────────────────
@@ -67,67 +47,57 @@ func _build_ui():
 	var W := float(get_viewport().get_visible_rect().size.x)
 	var H := float(get_viewport().get_visible_rect().size.y)
 
-	# ── Tombol KIRI ──
-	_tambah_gambar("kiri",
+	_tambah("kiri",
 		Rect2(PAD_LEFT, H - PAD_BOTTOM - BTN_DIR_SIZE, BTN_DIR_SIZE, BTN_DIR_SIZE),
 		IMG_KIRI, "", false)
 
-	# ── Tombol KANAN ──
-	_tambah_gambar("kanan",
-		Rect2(PAD_LEFT + BTN_DIR_SIZE + GAP_DIR, H - PAD_BOTTOM - BTN_DIR_SIZE,
-			BTN_DIR_SIZE, BTN_DIR_SIZE),
+	_tambah("kanan",
+		Rect2(PAD_LEFT + BTN_DIR_SIZE + GAP_DIR,
+			H - PAD_BOTTOM - BTN_DIR_SIZE, BTN_DIR_SIZE, BTN_DIR_SIZE),
 		IMG_KANAN, "", false)
 
-	# ── Tombol LOMPAT (kanan bawah) — gambar dibalik agar panah ke atas ──
-	_tambah_gambar("lompat",
-		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE, H - PAD_BOTTOM - BTN_JUMP_SIZE,
-			BTN_JUMP_SIZE, BTN_JUMP_SIZE),
-		IMG_LOMPAT, "", false)   # flip = true
+	_tambah("lompat",
+		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE,
+			H - PAD_BOTTOM - BTN_JUMP_SIZE, BTN_JUMP_SIZE, BTN_JUMP_SIZE),
+		IMG_LOMPAT, "", true)
 
-	# ── Tombol E / INTERACT (kiri dari lompat) ──
-	_tambah_gambar("interact",
+	_tambah("interact",
 		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE - GAP_ACTION - BTN_E_SIZE,
 			H - PAD_BOTTOM - BTN_E_SIZE, BTN_E_SIZE, BTN_E_SIZE),
 		IMG_E, "E", false)
 
-func _tambah_gambar(action: String, rect: Rect2,
-		img_path: String, label_text: String, flip_v: bool):
+func _tambah(action: String, rect: Rect2, img: String, lbl_text: String, flip: bool):
 	_button_rects[action] = rect
+	var c := Control.new()
+	c.position     = rect.position
+	c.size         = rect.size
+	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	c.modulate.a   = OPACITY_IDLE
+	add_child(c)
 
-	# Container agar gambar + label bisa ditumpuk
-	var container := Control.new()
-	container.position = rect.position
-	container.size     = rect.size
-	container.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(container)
+	if img != "" and ResourceLoader.exists(img):
+		var t := TextureRect.new()
+		t.texture      = load(img)
+		t.set_anchors_preset(Control.PRESET_FULL_RECT)
+		t.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		t.flip_v       = flip
+		t.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		c.add_child(t)
 
-	# Gambar tombol
-	if img_path != "" and ResourceLoader.exists(img_path):
-		var tex_rect := TextureRect.new()
-		tex_rect.texture = load(img_path)
-		tex_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		if flip_v:
-			tex_rect.flip_v = true
-		tex_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		container.add_child(tex_rect)
+	if lbl_text != "":
+		var l := Label.new()
+		l.text = lbl_text
+		l.set_anchors_preset(Control.PRESET_FULL_RECT)
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		l.vertical_alignment   = VERTICAL_ALIGNMENT_CENTER
+		l.add_theme_font_size_override("font_size", int(rect.size.x * 0.38))
+		l.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
+		l.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		c.add_child(l)
 
-	# Label opsional (untuk tombol E)
-	if label_text != "":
-		var lbl := Label.new()
-		lbl.text = label_text
-		lbl.set_anchors_preset(Control.PRESET_FULL_RECT)
-		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		lbl.vertical_alignment   = VERTICAL_ALIGNMENT_CENTER
-		lbl.add_theme_font_size_override("font_size", int(rect.size.x * 0.40))
-		lbl.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
-		lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		container.add_child(lbl)
+	_button_visuals[action] = c
 
-	container.modulate.a    = OPACITY_IDLE
-	_button_visuals[action] = container
-
-# ─── Input multitouch ─────────────────────────────────────────────────────────
+# ─── Multitouch input ─────────────────────────────────────────────────────────
 func _input(event: InputEvent):
 	if event is InputEventScreenTouch:
 		if event.pressed:
@@ -137,14 +107,11 @@ func _input(event: InputEvent):
 					break
 		else:
 			_release(event.index)
-
 	elif event is InputEventScreenDrag:
 		if _finger_action.has(event.index):
 			var cur: String = _finger_action[event.index]
-			# Jari keluar dari tombolnya → lepas
 			if not _button_rects[cur].has_point(event.position):
 				_release(event.index)
-				# Pindah ke tombol lain jika ada
 				for action in _button_rects:
 					if _button_rects[action].has_point(event.position):
 						_press(event.index, action)
@@ -152,11 +119,12 @@ func _input(event: InputEvent):
 
 func _press(finger: int, action: String):
 	if _finger_action.get(finger, "") == action:
-		return   # Sudah aktif, tidak perlu dobel
+		return
 	if _finger_action.has(finger):
-		_release(finger)   # Lepas tombol lama dulu
+		_release(finger)
 	_finger_action[finger] = action
 	Input.action_press(action)
+	# Untuk interact: kirim event satu kali (just_pressed)
 	if action == "interact":
 		var ev := InputEventAction.new()
 		ev.action  = "interact"
@@ -170,18 +138,16 @@ func _release(finger: int):
 		return
 	var action: String = _finger_action[finger]
 	_finger_action.erase(finger)
-	# Hanya release jika tidak ada jari lain yang memegang tombol yang sama
-	var masih_dipegang := false
+	var masih_aktif := false
 	for a in _finger_action.values():
 		if a == action:
-			masih_dipegang = true
+			masih_aktif = true
 			break
-	if not masih_dipegang:
+	if not masih_aktif:
 		Input.action_release(action)
 	if _button_visuals.has(action):
 		_button_visuals[action].modulate.a = OPACITY_IDLE
 
-# ─── Cleanup ──────────────────────────────────────────────────────────────────
 func _exit_tree():
 	for action in _button_rects:
 		Input.action_release(action)
