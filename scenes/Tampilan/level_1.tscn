@@ -1146,7 +1146,7 @@ visible = false
 position = Vector2(2464, 5)
 
 [node name="apple2" parent="Item" unique_id=680868859 instance=ExtResource("9_bq8j7")]
-position = Vector2(1512, 360)
+position = Vector2(1536, 584)
 
 [node name="apple3" parent="Item" unique_id=300574820 instance=ExtResource("9_bq8j7")]
 position = Vector2(64, 216)
