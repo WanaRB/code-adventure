@@ -1,0 +1,68 @@
+name: Build Godot Game and Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Export Godot Game & Deploy
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Export game menggunakan Godot 4.4.2
+      - name: Export Godot Game
+        id: export
+        uses: firebelley/godot-export@v7.0.0
+        with:
+          godot_executable_download_url: "https://github.com/godotengine/godot/releases/download/4.4.2-stable/Godot_v4.4.2-stable_linux.x86_64.zip"
+          godot_export_templates_download_url: "https://github.com/godotengine/godot/releases/download/4.4.2-stable/Godot_v4.4.2-stable_export_templates.tpz"
+          relative_project_path: ./
+          export_debug: false
+          cache: true
+
+      # 3. Salin hasil export ke folder builds/web
+      - name: Copy export output to builds/web
+        run: |
+          mkdir -p builds/web
+          cp -r ${{ steps.export.outputs.build_directory }}/Web/. builds/web/
+
+      # 4. Tambahkan vercel.json untuk header CORS (wajib untuk Godot WebAssembly)
+      - name: Create vercel.json
+        run: |
+          cat > builds/web/vercel.json << 'EOF'
+          {
+            "headers": [
+              {
+                "source": "/(.*)",
+                "headers": [
+                  { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" },
+                  { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" }
+                ]
+              }
+            ]
+          }
+          EOF
+
+      # 5. Install Vercel CLI
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      # 6. Pull konfigurasi Vercel
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      # 7. Deploy ke Vercel (langsung dari folder builds/web)
+      - name: Deploy to Vercel
+        run: vercel deploy builds/web --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
