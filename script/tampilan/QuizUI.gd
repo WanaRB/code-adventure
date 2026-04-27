@@ -6,13 +6,13 @@ extends CanvasLayer
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
 ## Lebar total pop-up quiz (pixel). Naikkan jika kode terpotong.
-const CFG_PANEL_WIDTH       := 660.0
+const CFG_PANEL_WIDTH       := 680.0
 ## Ukuran font baris kode di dalam editor. Ubah ini untuk perbesar/perkecil kode.
-const CFG_FONT_SIZE_CODE    := 14
+const CFG_FONT_SIZE_CODE    := 18
 ## Ukuran font teks instruksi dan label. Ubah untuk perbesar/perkecil petunjuk.
-const CFG_FONT_SIZE_HINT    := 13
+const CFG_FONT_SIZE_HINT    := 17
 ## Ukuran font teks pada tombol pilihan jawaban.
-const CFG_FONT_SIZE_OPTIONS := 14
+const CFG_FONT_SIZE_OPTIONS := 18
 ## Tinggi setiap baris kode (pixel). Perbesar jika baris terasa terlalu rapat.
 const CFG_LINE_HEIGHT       := 32
 ## Lebar kolom nomor baris di kiri kode (pixel).
