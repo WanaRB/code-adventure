@@ -1164,7 +1164,7 @@ data_kuis = ExtResource("10_wls72")
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("5_036b0")]
-position = Vector2(712.00006, 64)
+position = Vector2(664.00006, 64)
 script = ExtResource("6_dwbse")
 metadata/_edit_group_ = true
 
