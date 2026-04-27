@@ -1,185 +1,189 @@
 extends CanvasLayer
 
 # ╔══════════════════════════════════════════════════════════════════════════════╗
-# ║                    KONFIGURASI MOBILE CONTROLS                             ║
+# ║              KONFIGURASI UKURAN & POSISI TOMBOL MOBILE                     ║
+# ║                                                                            ║
+# ║  Semua angka dalam pixel. Koordinat (0,0) = pojok kiri atas layar.         ║
+# ║                                                                            ║
+# ║  Cara mengatur posisi tombol:                                              ║
+# ║    PAD_LEFT   → geser tombol KIRI/KANAN menjauhi tepi kiri                 ║
+# ║    PAD_RIGHT  → geser tombol LOMPAT/E menjauhi tepi kanan                  ║
+# ║    PAD_BOTTOM → naikkan semua tombol dari tepi bawah (angka lebih besar   ║
+# ║                 = tombol lebih tinggi dari bawah layar)                    ║
+# ║    GAP_DIR    → jarak antara tombol KIRI dan KANAN                         ║
+# ║    GAP_ACTION → jarak antara tombol E dan LOMPAT                           ║
+# ║                                                                            ║
+# ║  Cara mengatur ukuran tombol:                                              ║
+# ║    BTN_DIR_SIZE    → ukuran tombol ◄ dan ► (lebih besar = lebih mudah tap) ║
+# ║    BTN_JUMP_SIZE   → ukuran tombol LOMPAT (sedikit lebih besar dari arah)  ║
+# ║    BTN_E_SIZE      → ukuran tombol INTERAKSI (E)                           ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
-## Tampilkan kontrol di PC juga (untuk testing di editor). Set false saat publish.
-const SELALU_TAMPIL      := false
+# ─── Ukuran tombol ────────────────────────────────────────────────────────────
+const BTN_DIR_SIZE    := 200.0   ## Ukuran tombol kiri & kanan (pixel)
+const BTN_JUMP_SIZE   := 200.0  ## Ukuran tombol lompat (pixel)
+const BTN_E_SIZE      := 200.0   ## Ukuran tombol interaksi E (pixel)
 
-## Ukuran tombol kiri/kanan (pixel)
-const BTN_DIR_SIZE       := 75.0
-## Ukuran tombol lompat (pixel)
-const BTN_JUMP_SIZE      := 90.0
-## Ukuran tombol interaksi E (pixel)
-const BTN_E_SIZE         := 65.0
+# ─── Posisi (jarak dari tepi layar) ──────────────────────────────────────────
+const PAD_LEFT        := 200.0   ## Jarak tombol kiri dari tepi kiri layar
+const PAD_RIGHT       := 200.0   ## Jarak tombol lompat dari tepi kanan layar
+const PAD_BOTTOM      := 200.0   ## Jarak semua tombol dari tepi bawah layar
+const GAP_DIR         := 200.0   ## Jarak antara tombol kiri dan kanan
+const GAP_ACTION      := 100.0   ## Jarak antara tombol E dan Lompat
 
-## Opacity tombol idle
-const OPACITY_IDLE       := 0.45
-## Opacity tombol saat ditekan
-const OPACITY_PRESSED    := 0.90
+# ─── Tampilan ─────────────────────────────────────────────────────────────────
+const OPACITY_IDLE    := 0.70   ## Transparansi tombol saat tidak ditekan (0.0–1.0)
+const OPACITY_PRESSED := 0.95   ## Transparansi tombol saat ditekan
 
-## Jarak dari tepi kiri layar (pixel)
-const PAD_LEFT           := 20.0
-## Jarak dari tepi kanan layar (pixel)
-const PAD_RIGHT          := 20.0
-## Jarak dari tepi bawah layar (pixel)
-const PAD_BOTTOM         := 28.0
-## Jarak antar tombol kiri-kanan (pixel)
-const GAP_DIR            := 10.0
-
-## Warna tombol arah
-const C_DIR              := Color("#89b4fa")
-## Warna tombol lompat
-const C_JUMP             := Color("#a6e3a1")
-## Warna tombol interaksi
-const C_INTERACT         := Color("#f9e2af")
+# ─── Path gambar tombol ───────────────────────────────────────────────────────
+# Tombol kiri  → dpad_element_west.png
+# Tombol kanan → dpad_element_east.png
+# Tombol lompat → dpad_element_south.png  (dibalik vertikal agar panah ke atas)
+# Tombol E     → button_circle.png + label "E"
+const IMG_KIRI   := "res://assets/image/MobileUI/dpad_element_east.png"
+const IMG_KANAN  := "res://assets/image/MobileUI/dpad_element_west.png"
+const IMG_LOMPAT := "res://assets/image/MobileUI/dpad_element_south.png"
+const IMG_E      := "res://assets/image/MobileUI/button_circle.png"
 
 # ─── State internal ────────────────────────────────────────────────────────────
-# Map: finger_index → action name yang sedang ditekan oleh jari itu
-var _finger_action: Dictionary = {}
+var _finger_action : Dictionary = {}   # finger_index → action string
+var _button_rects  : Dictionary = {}   # action string → Rect2
+var _button_visuals: Dictionary = {}   # action string → Control node
 
-# Referensi rect setiap tombol (Rect2 dalam koordinat layar)
-# Format: { "action_name": Rect2 }
-var _button_rects: Dictionary = {}
-
-# Referensi visual node setiap tombol
-var _button_visuals: Dictionary = {}
-
-# ─── Setup ────────────────────────────────────────────────────────────────────
+# ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
-	if not DisplayServer.is_touchscreen_available() and not SELALU_TAMPIL:
+	# Deteksi mobile: cek fitur platform Godot (reliable di HTML5)
+	var is_mobile_web := OS.has_feature("web_android") or OS.has_feature("web_ios")
+	var is_touch      := DisplayServer.is_touchscreen_available()
+
+	if not is_mobile_web and not is_touch:
 		queue_free()
 		return
 
-	layer = 10
-	# KRITIS: process harus ALWAYS agar bisa terima input saat game di-pause (quiz, dll.)
-	process_mode = Node.PROCESS_MODE_ALWAYS
-
+	layer        = 10
+	process_mode = Node.PROCESS_MODE_ALWAYS   # Tetap aktif saat game di-pause
 	_build_ui()
 
 # ─── Build UI ─────────────────────────────────────────────────────────────────
 func _build_ui():
-	var vp := get_viewport()
-	var W: float = vp.get_visible_rect().size.x
-	var H: float = vp.get_visible_rect().size.y
+	var W := float(get_viewport().get_visible_rect().size.x)
+	var H := float(get_viewport().get_visible_rect().size.y)
 
-	# ── Kiri: tombol ← ──
-	var r_kiri := Rect2(
-		PAD_LEFT,
-		H - PAD_BOTTOM - BTN_DIR_SIZE,
-		BTN_DIR_SIZE, BTN_DIR_SIZE
-	)
-	_tambah_tombol("kiri", r_kiri, "◀", C_DIR)
+	# ── Tombol KIRI ──
+	_tambah_gambar("kiri",
+		Rect2(PAD_LEFT, H - PAD_BOTTOM - BTN_DIR_SIZE, BTN_DIR_SIZE, BTN_DIR_SIZE),
+		IMG_KIRI, "", false)
 
-	# ── Kanan: tombol → ──
-	var r_kanan := Rect2(
-		PAD_LEFT + BTN_DIR_SIZE + GAP_DIR,
-		H - PAD_BOTTOM - BTN_DIR_SIZE,
-		BTN_DIR_SIZE, BTN_DIR_SIZE
-	)
-	_tambah_tombol("kanan", r_kanan, "▶", C_DIR)
+	# ── Tombol KANAN ──
+	_tambah_gambar("kanan",
+		Rect2(PAD_LEFT + BTN_DIR_SIZE + GAP_DIR, H - PAD_BOTTOM - BTN_DIR_SIZE,
+			BTN_DIR_SIZE, BTN_DIR_SIZE),
+		IMG_KANAN, "", false)
 
-	# ── Lompat: tombol ↑ (kanan bawah) ──
-	var r_lompat := Rect2(
-		W - PAD_RIGHT - BTN_JUMP_SIZE,
-		H - PAD_BOTTOM - BTN_JUMP_SIZE,
-		BTN_JUMP_SIZE, BTN_JUMP_SIZE
-	)
-	_tambah_tombol("lompat", r_lompat, "▲", C_JUMP)
+	# ── Tombol LOMPAT (kanan bawah) — gambar dibalik agar panah ke atas ──
+	_tambah_gambar("lompat",
+		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE, H - PAD_BOTTOM - BTN_JUMP_SIZE,
+			BTN_JUMP_SIZE, BTN_JUMP_SIZE),
+		IMG_LOMPAT, "", false)   # flip = true
 
-	# ── Interact: tombol E (kiri dari lompat) ──
-	var r_e := Rect2(
-		W - PAD_RIGHT - BTN_JUMP_SIZE - BTN_E_SIZE - GAP_DIR,
-		H - PAD_BOTTOM - BTN_E_SIZE,
-		BTN_E_SIZE, BTN_E_SIZE
-	)
-	_tambah_tombol("interact", r_e, "E", C_INTERACT)
+	# ── Tombol E / INTERACT (kiri dari lompat) ──
+	_tambah_gambar("interact",
+		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE - GAP_ACTION - BTN_E_SIZE,
+			H - PAD_BOTTOM - BTN_E_SIZE, BTN_E_SIZE, BTN_E_SIZE),
+		IMG_E, "E", false)
 
-func _tambah_tombol(action: String, rect: Rect2, label: String, warna: Color):
+func _tambah_gambar(action: String, rect: Rect2,
+		img_path: String, label_text: String, flip_v: bool):
 	_button_rects[action] = rect
 
-	# Visual: ColorRect bulat sebagai background
-	var bg := ColorRect.new()
-	bg.position = rect.position
-	bg.size      = rect.size
-	bg.color     = Color(warna.r, warna.g, warna.b, 0.18)
-	bg.modulate.a = OPACITY_IDLE
+	# Container agar gambar + label bisa ditumpuk
+	var container := Control.new()
+	container.position = rect.position
+	container.size     = rect.size
+	container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(container)
 
-	# Sudut bulat via shader tidak tersedia di compatibility renderer —
-	# pakai Label di atas sebagai tanda visual
-	add_child(bg)
+	# Gambar tombol
+	if img_path != "" and ResourceLoader.exists(img_path):
+		var tex_rect := TextureRect.new()
+		tex_rect.texture = load(img_path)
+		tex_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		if flip_v:
+			tex_rect.flip_v = true
+		tex_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		container.add_child(tex_rect)
 
-	var lbl := Label.new()
-	lbl.text = label
-	lbl.position = rect.position
-	lbl.size = rect.size
-	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	lbl.vertical_alignment   = VERTICAL_ALIGNMENT_CENTER
-	lbl.add_theme_font_size_override("font_size", int(rect.size.x * 0.45))
-	lbl.add_theme_color_override("font_color", warna)
-	add_child(lbl)
+	# Label opsional (untuk tombol E)
+	if label_text != "":
+		var lbl := Label.new()
+		lbl.text = label_text
+		lbl.set_anchors_preset(Control.PRESET_FULL_RECT)
+		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		lbl.vertical_alignment   = VERTICAL_ALIGNMENT_CENTER
+		lbl.add_theme_font_size_override("font_size", int(rect.size.x * 0.40))
+		lbl.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
+		lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		container.add_child(lbl)
 
-	_button_visuals[action] = bg
+	container.modulate.a    = OPACITY_IDLE
+	_button_visuals[action] = container
 
-# ─── Input Handling (multitouch) ──────────────────────────────────────────────
+# ─── Input multitouch ─────────────────────────────────────────────────────────
 func _input(event: InputEvent):
 	if event is InputEventScreenTouch:
-		_handle_touch(event.index, event.position, event.pressed)
+		if event.pressed:
+			for action in _button_rects:
+				if _button_rects[action].has_point(event.position):
+					_press(event.index, action)
+					break
+		else:
+			_release(event.index)
+
 	elif event is InputEventScreenDrag:
-		_handle_drag(event.index, event.position)
-
-func _handle_touch(finger: int, pos: Vector2, pressed: bool):
-	if pressed:
-		# Jari baru menyentuh layar — cek apakah mengenai tombol
-		for action in _button_rects:
-			if _button_rects[action].has_point(pos):
-				_press(finger, action)
-				return
-	else:
-		# Jari diangkat — lepaskan tombol yang dipegangnya
-		if _finger_action.has(finger):
-			_release(finger)
-
-func _handle_drag(finger: int, pos: Vector2):
-	# Jika jari bergeser keluar dari tombolnya, lepaskan tombol itu
-	if _finger_action.has(finger):
-		var current_action: String = _finger_action[finger]
-		if not _button_rects[current_action].has_point(pos):
-			_release(finger)
-
-		# Cek apakah jari bergeser ke tombol lain
-		for action in _button_rects:
-			if action != current_action and _button_rects[action].has_point(pos):
-				_release(finger)
-				_press(finger, action)
-				return
+		if _finger_action.has(event.index):
+			var cur: String = _finger_action[event.index]
+			# Jari keluar dari tombolnya → lepas
+			if not _button_rects[cur].has_point(event.position):
+				_release(event.index)
+				# Pindah ke tombol lain jika ada
+				for action in _button_rects:
+					if _button_rects[action].has_point(event.position):
+						_press(event.index, action)
+						break
 
 func _press(finger: int, action: String):
+	if _finger_action.get(finger, "") == action:
+		return   # Sudah aktif, tidak perlu dobel
+	if _finger_action.has(finger):
+		_release(finger)   # Lepas tombol lama dulu
 	_finger_action[finger] = action
-	# Inject langsung ke sistem Input Godot — works dengan multitouch
 	Input.action_press(action)
-	# Visual feedback
-	if _button_visuals.has(action):
-		_button_visuals[action].modulate.a = OPACITY_PRESSED
-	# Untuk "interact": inject event sekali (bukan hold)
 	if action == "interact":
 		var ev := InputEventAction.new()
 		ev.action  = "interact"
 		ev.pressed = true
 		Input.parse_input_event(ev)
+	if _button_visuals.has(action):
+		_button_visuals[action].modulate.a = OPACITY_PRESSED
 
 func _release(finger: int):
 	if not _finger_action.has(finger):
 		return
 	var action: String = _finger_action[finger]
 	_finger_action.erase(finger)
-	Input.action_release(action)
+	# Hanya release jika tidak ada jari lain yang memegang tombol yang sama
+	var masih_dipegang := false
+	for a in _finger_action.values():
+		if a == action:
+			masih_dipegang = true
+			break
+	if not masih_dipegang:
+		Input.action_release(action)
 	if _button_visuals.has(action):
 		_button_visuals[action].modulate.a = OPACITY_IDLE
 
-# ─── Cleanup saat scene ganti ─────────────────────────────────────────────────
+# ─── Cleanup ──────────────────────────────────────────────────────────────────
 func _exit_tree():
-	# Pastikan tidak ada action yang tersangkut saat scene di-reload
 	for action in _button_rects:
 		Input.action_release(action)
