@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Export game menggunakan Godot 4.4.2
+      # 2. Export game
       - name: Export Godot Game
         id: export
         uses: firebelley/godot-export@v7.0.0
@@ -26,13 +26,35 @@ jobs:
           export_debug: false
           cache: true
 
-      # 3. Salin hasil export ke folder builds/web
+      # 3. Debug: cek output export
+      - name: Debug export output
+        run: |
+          echo "=== build_directory output ==="
+          echo "${{ steps.export.outputs.build_directory }}"
+          echo "=== isi build_directory ==="
+          ls -la "${{ steps.export.outputs.build_directory }}" || echo "FOLDER TIDAK DITEMUKAN"
+          echo "=== subfolder Web di build_directory ==="
+          ls -la "${{ steps.export.outputs.build_directory }}/Web" || echo "SUBFOLDER Web TIDAK ADA"
+
+      # 4. Salin hasil export ke builds/web
       - name: Copy export output to builds/web
         run: |
           mkdir -p builds/web
-          cp -r ${{ steps.export.outputs.build_directory }}/Web/. builds/web/
+          cp -r "${{ steps.export.outputs.build_directory }}/Web/." builds/web/
 
-      # 4. Tambahkan vercel.json untuk header CORS (wajib untuk Godot WebAssembly)
+      # 5. Debug: cek isi builds/web setelah copy
+      - name: Debug builds/web after copy
+        run: |
+          echo "=== pwd saat ini ==="
+          pwd
+          echo "=== isi repo root ==="
+          ls -la
+          echo "=== isi builds/ ==="
+          ls -la builds || echo "builds TIDAK ADA"
+          echo "=== isi builds/web ==="
+          ls -la builds/web || echo "builds/web TIDAK ADA"
+
+      # 6. Buat vercel.json di builds/web
       - name: Create vercel.json
         run: |
           cat > builds/web/vercel.json << 'EOF'
@@ -48,27 +70,33 @@ jobs:
             ]
           }
           EOF
+          echo "=== vercel.json berhasil dibuat ==="
+          cat builds/web/vercel.json
 
-      # 5. Install Vercel CLI
+      # 7. Install Vercel CLI
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      # 6. Pull konfigurasi Vercel
+      # 8. Pull konfigurasi Vercel
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      - name: Deploy to Vercel
-        run: cd builds/web && vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: Check exported files
+      # 9. Debug: cek .vercel yang dibuat oleh vercel pull
+      - name: Debug .vercel files
         run: |
-          echo "=== build_directory ==="
-          echo "${{ steps.export.outputs.build_directory }}"
-          echo "=== builds/web contents ==="
-          ls -la builds/web
+          echo "=== .vercel di repo root ==="
+          ls -la .vercel || echo ".vercel TIDAK ADA di root"
+          echo "=== isi .vercel/project.json ==="
+          cat .vercel/project.json || echo "project.json TIDAK ADA"
+          echo "=== .vercel di dalam builds/web ==="
+          ls -la builds/web/.vercel || echo ".vercel TIDAK ADA di builds/web"
+          echo "=== isi vercel.json di builds/web ==="
+          cat builds/web/vercel.json || echo "vercel.json TIDAK ADA"
+
+      # 10. Deploy ke Vercel - DINONAKTIFKAN DULU untuk debug
+      - name: Deploy to Vercel
+        if: false
+        run: echo "skip deploy untuk debugging"
