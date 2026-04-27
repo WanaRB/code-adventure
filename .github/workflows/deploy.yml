@@ -65,3 +65,10 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Check exported files
+        run: |
+          echo "=== build_directory ==="
+          echo "${{ steps.export.outputs.build_directory }}"
+          echo "=== builds/web contents ==="
+          ls -la builds/web
