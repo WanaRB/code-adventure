@@ -1132,7 +1132,7 @@ position = Vector2(2502.0002, 325)
 scale = Vector2(3.020833, 3)
 
 [node name="Laptop" parent="Map/Platform" unique_id=994781868 instance=ExtResource("12_4crhs")]
-position = Vector2(1160, 584)
+position = Vector2(576, 600)
 data_kuis = ExtResource("7_idnlo")
 
 [node name="PintuMenang" parent="Map" unique_id=1498396234 instance=ExtResource("14_db8ju")]
