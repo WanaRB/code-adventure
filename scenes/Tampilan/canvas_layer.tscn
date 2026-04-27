@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://7v7helod5jl0"]
+
+[ext_resource type="Script" uid="uid://c1vo50plmok7h" path="res://MobileControls.gd.gd" id="1_ui46p"]
+
+[node name="MobileControls" type="CanvasLayer" unique_id=922406915]
+script = ExtResource("1_ui46p")

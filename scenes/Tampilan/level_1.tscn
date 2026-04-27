@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="14_db8ju"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="14_jxlcw"]
 [ext_resource type="PackedScene" uid="uid://d225uwnj07qnl" path="res://scenes/Character/drone_musuh.tscn" id="15_s1sp0"]
+[ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/Tampilan/canvas_layer.tscn" id="22_c6qx1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_036b0")
@@ -1318,6 +1319,8 @@ jarak_patroli = 350.0
 position = Vector2(264, 584)
 kecepatan = 200.0
 jarak_patroli = 500.0
+
+[node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("22_c6qx1")]
 
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]

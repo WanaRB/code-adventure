@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="16_ggxvv"]
 [ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="17_g7j1d"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="18_fmda1"]
+[ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/Tampilan/canvas_layer.tscn" id="20_ror7a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_fmda1")
@@ -1312,6 +1313,8 @@ position = Vector2(704, 616)
 
 [node name="spike11" parent="Jebakan" unique_id=2130662242 instance=ExtResource("18_fmda1")]
 position = Vector2(744, 616)
+
+[node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("20_ror7a")]
 
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]
