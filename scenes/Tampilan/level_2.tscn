@@ -1105,7 +1105,7 @@ position = Vector2(1272, 608)
 position = Vector2(1496, 376)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("9_7ia63")]
-position = Vector2(2120, 608)
+position = Vector2(3280, 600)
 
 [node name="apple3" parent="Item" unique_id=1473572142 instance=ExtResource("8_idsdl")]
 position = Vector2(3432, 392)
@@ -1117,7 +1117,7 @@ target_level_path = "uid://babfsu63orby"
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_wd48c")]
-position = Vector2(1904, 63.999996)
+position = Vector2(-224.00002, -168)
 script = ExtResource("11_k4pb6")
 metadata/_edit_group_ = true
 
