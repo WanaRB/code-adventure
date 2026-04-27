@@ -1,0 +1,37 @@
+name: Godot Web Deploy to Vercel
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Godot Web Export
+        uses: firebelley/godot-export@v5.2.1
+        with:
+          # Pastikan versi ini sesuai dengan versi Godot yang Anda gunakan
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.2.1-stable/Godot_v4.2.1-stable_linux_x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.2.1-stable/Godot_v4.2.1-stable_export_templates.tpz
+          relative_project_path: ./
+          archive_output: false
+          # Nama preset harus sama dengan yang ada di menu Export Godot
+          export_preset_name: Web
+          # Sesuaikan folder output dengan pengaturan Vercel Anda
+          build_directory: builds/web
+
+      - name: Copy Vercel Config
+        run: cp vercel.json builds/web/
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: "--prod"
+          working-directory: ./builds/web
