@@ -2,26 +2,26 @@ extends CanvasLayer
 
 # ─── KONFIGURASI ──────────────────────────────────────────────────────────────
 # Ukuran tombol (pixel) — perbesar jika terlalu kecil di HP kamu
-const BTN_DIR_SIZE    := 110.0   ## Ukuran tombol KIRI dan KANAN
-const BTN_JUMP_SIZE   := 130.0   ## Ukuran tombol LOMPAT
-const BTN_E_SIZE      := 95.0    ## Ukuran tombol INTERAKSI (E)
+const BTN_DIR_SIZE    := 200   ## Ukuran tombol KIRI dan KANAN
+const BTN_JUMP_SIZE   := 200   ## Ukuran tombol LOMPAT
+const BTN_E_SIZE      := 200    ## Ukuran tombol INTERAKSI (E)
 
 # Posisi dari tepi layar (pixel)
 # PAD_BOTTOM → naikkan angka = tombol naik dari bawah
 # PAD_LEFT   → naikkan angka = tombol arah menjauh dari tepi kiri
 # PAD_RIGHT  → naikkan angka = tombol lompat menjauh dari tepi kanan
-const PAD_LEFT        := 40.0
-const PAD_RIGHT       := 40.0
-const PAD_BOTTOM      := 60.0
-const GAP_DIR         := 16.0    ## Jarak antara tombol kiri dan kanan
-const GAP_ACTION      := 16.0    ## Jarak antara tombol E dan lompat
+const PAD_LEFT        := 200
+const PAD_RIGHT       := 200
+const PAD_BOTTOM      := 200
+const GAP_DIR         := 200    ## Jarak antara tombol kiri dan kanan
+const GAP_ACTION      := 150    ## Jarak antara tombol E dan lompat
 
-const OPACITY_IDLE    := 0.55
+const OPACITY_IDLE    := 0.75
 const OPACITY_PRESSED := 0.95
 
 # Path gambar — pastikan file ini ada di project
-const IMG_KIRI   := "res://assets/image/MobileUI/dpad_element_west.png"
-const IMG_KANAN  := "res://assets/image/MobileUI/dpad_element_east.png"
+const IMG_KIRI   := "res://assets/image/MobileUI/dpad_element_east.png"
+const IMG_KANAN  := "res://assets/image/MobileUI/dpad_element_west.png"
 const IMG_LOMPAT := "res://assets/image/MobileUI/dpad_element_south.png"
 const IMG_E      := "res://assets/image/MobileUI/button_circle.png"
 
@@ -33,7 +33,7 @@ var _button_visuals: Dictionary = {}
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
 	# Hanya muncul di web mobile (Android/iOS) — tidak di laptop/PC
-	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios")
+	var is_mobile := true
 	if not is_mobile:
 		queue_free()
 		return
@@ -59,7 +59,7 @@ func _build_ui():
 	_tambah("lompat",
 		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE,
 			H - PAD_BOTTOM - BTN_JUMP_SIZE, BTN_JUMP_SIZE, BTN_JUMP_SIZE),
-		IMG_LOMPAT, "", true)
+		IMG_LOMPAT, "", false)
 
 	_tambah("interact",
 		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE - GAP_ACTION - BTN_E_SIZE,

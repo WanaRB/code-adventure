@@ -12,10 +12,10 @@ extends Camera2D
 @export var limit_kiri: int   = 0
 
 ## Batas kanan kamera (pixel). Ukur lebar map di editor lalu isi di sini.
-@export var limit_kanan: int  = 3840
+@export var limit_kanan: int  = 3512
 
 ## Batas atas kamera (pixel). Set ke 0 atau nilai negatif jika map tinggi.
-@export var limit_atas: int   = -200
+@export var limit_atas: int   = -32
 
 ## Batas bawah kamera (pixel). Ukur tinggi map di editor lalu isi di sini.
 @export var limit_bawah: int  = 1080
