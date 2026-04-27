@@ -273,28 +273,24 @@ collision_mask = 5
 [node name="MobileControls" type="CanvasLayer" parent="." unique_id=1450826108]
 
 [node name="BtnKiri" type="TouchScreenButton" parent="MobileControls" unique_id=1268030630]
-visible = false
 position = Vector2(66, 470)
 texture_normal = ExtResource("6_eh1jv")
 action = "kiri"
 visibility_mode = 1
 
 [node name="BtnKanan" type="TouchScreenButton" parent="MobileControls" unique_id=1319505188]
-visible = false
 position = Vector2(553, 470)
 texture_normal = ExtResource("7_uiv56")
 action = "kanan"
 visibility_mode = 1
 
 [node name="BtnLompat" type="TouchScreenButton" parent="MobileControls" unique_id=965462740]
-visible = false
 position = Vector2(803, 383)
 texture_normal = ExtResource("8_1vdee")
 action = "lompat"
 visibility_mode = 1
 
 [node name="BtnInteraksi" type="TouchScreenButton" parent="MobileControls" unique_id=31845895]
-visible = false
 position = Vector2(980, 253)
 texture_normal = ExtResource("9_gmvnx")
 action = "interact"
