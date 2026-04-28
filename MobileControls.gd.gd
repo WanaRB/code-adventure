@@ -2,19 +2,19 @@ extends CanvasLayer
 
 # ─── KONFIGURASI ──────────────────────────────────────────────────────────────
 # Ukuran tombol (pixel) — perbesar jika terlalu kecil di HP kamu
-const BTN_DIR_SIZE    := 200   ## Ukuran tombol KIRI dan KANAN
-const BTN_JUMP_SIZE   := 200   ## Ukuran tombol LOMPAT
-const BTN_E_SIZE      := 200    ## Ukuran tombol INTERAKSI (E)
+const BTN_DIR_SIZE    := 400   ## Ukuran tombol KIRI dan KANAN
+const BTN_JUMP_SIZE   := 400   ## Ukuran tombol LOMPAT
+const BTN_E_SIZE      := 400    ## Ukuran tombol INTERAKSI (E)
 
 # Posisi dari tepi layar (pixel)
 # PAD_BOTTOM → naikkan angka = tombol naik dari bawah
 # PAD_LEFT   → naikkan angka = tombol arah menjauh dari tepi kiri
 # PAD_RIGHT  → naikkan angka = tombol lompat menjauh dari tepi kanan
-const PAD_LEFT        := 200
-const PAD_RIGHT       := 200
-const PAD_BOTTOM      := 200
-const GAP_DIR         := 200    ## Jarak antara tombol kiri dan kanan
-const GAP_ACTION      := 150    ## Jarak antara tombol E dan lompat
+const PAD_LEFT        := 500
+const PAD_RIGHT       := 500
+const PAD_BOTTOM      := 300
+const GAP_DIR         := 500    ## Jarak antara tombol kiri dan kanan
+const GAP_ACTION      := 400    ## Jarak antara tombol E dan lompat
 
 const OPACITY_IDLE    := 0.75
 const OPACITY_PRESSED := 0.95
@@ -33,7 +33,8 @@ var _button_visuals: Dictionary = {}
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
 	# Hanya muncul di web mobile (Android/iOS) — tidak di laptop/PC
-	var is_mobile := true
+	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios")
+	#= (debug control) OS.has_feature("web_android") or OS.has_feature("web_ios")
 	if not is_mobile:
 		queue_free()
 		return

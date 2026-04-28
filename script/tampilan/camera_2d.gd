@@ -1,32 +1,31 @@
 extends Camera2D
 
-# ─── KONFIGURASI KAMERA ───────────────────────────────────────────────────────
+# ─── KONFIGURASI KAMERA ────────────────────────────────────────────────────────
 
-## Zoom kamera. Angka LEBIH BESAR = lebih dekat ke player.
-## 1.0 = normal, 1.5 = 50% lebih dekat, 2.0 = 2x lebih dekat.
-## Ubah nilai ini untuk mengatur seberapa dekat kamera ke player.
-@export var zoom_level: float = 1.6
+## Zoom di Laptop/PC (angka lebih besar = lebih dekat ke player)
+@export var zoom_desktop: float = 1.6
 
-## Batas kiri kamera (pixel). Player tidak akan melihat area di kiri nilai ini.
-## Set ke 0 untuk batas kiri map.
-@export var limit_kiri: int   = 0
+## Zoom di Mobile (HP/tablet). Dibuat lebih besar dari desktop
+## karena layar HP lebih kecil sehingga game terlihat lebih jauh.
+@export var zoom_mobile:  float = 2.2
 
-## Batas kanan kamera (pixel). Ukur lebar map di editor lalu isi di sini.
-@export var limit_kanan: int  = 3512
-
-## Batas atas kamera (pixel). Set ke 0 atau nilai negatif jika map tinggi.
-@export var limit_atas: int   = -32
-
-## Batas bawah kamera (pixel). Ukur tinggi map di editor lalu isi di sini.
-@export var limit_bawah: int  = 1080
+## Batas kiri kamera — set ke 0 untuk tepi kiri map
+@export var limit_kiri:   int   = 0
+## Batas kanan kamera — ukur lebar map (pixel) di editor
+@export var limit_kanan:  int   = 3512
+## Batas atas kamera
+@export var limit_atas:   int   = -300
+## Batas bawah kamera — ukur tinggi map (pixel) di editor
+@export var limit_bawah:  int   = 1080
 
 func _ready() -> void:
 	CameraDirector.register_camera(self)
 
-	# Terapkan zoom
-	zoom = Vector2(zoom_level, zoom_level)
+	# Pilih zoom berdasarkan platform
+	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios")
+	var z := zoom_mobile if is_mobile else zoom_desktop
+	zoom = Vector2(z, z)
 
-	# Terapkan limit agar kamera tidak keluar melewati batas map
 	limit_left   = limit_kiri
 	limit_right  = limit_kanan
 	limit_top    = limit_atas
