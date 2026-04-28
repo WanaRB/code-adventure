@@ -6,7 +6,7 @@ Kamu bermain sebagai Jikri, seorang karakter yang terjebak di dunia permainan da
 ## Deskripsi
 
 Lompati platform, hindari spike dan drone musuh, gunakan objek seperti laptop dan platform bergerak, lalu cari jalan menuju pintu keluar.  
-Di beberapa titik, kamu akan menemui kuis yang menguji pemahamanmu terhadap permainan dan logika sederhana. Jawaban yang tepat akan membantumu membuka jalan atau mengubah kondisi level, sementara kesalahan bisa membuat perjalananmu semakin sulit.
+Di beberapa titik, kamu akan menemui kuis yang menguji pemahamanmu terhadap permainan dan logika sederhana. Jawaban yang tepat akan membantumu membuka jalan atau mengubah kondisi level, sementara kesalahan bisa mengurangi darah.
 
 Code Adventure dirancang untuk dimainkan langsung di browser (build web), dengan kontrol yang mendukung permainan di desktop dan sedang dikembangkan untuk pengalaman yang nyaman di perangkat mobile.
 
