@@ -1125,11 +1125,7 @@ process_mode = 3
 stream = ExtResource("6_sawe4")
 
 [node name="Platform1_png4" parent="Map/Platform" unique_id=196900045 instance=ExtResource("5_gbfbk")]
-position = Vector2(2502.0002, 325)
-scale = Vector2(3.020833, 3)
-
-[node name="Platform1_png5" parent="Map/Platform" unique_id=495716353 instance=ExtResource("5_gbfbk")]
-position = Vector2(2502.0002, 325)
+position = Vector2(2519.9998, 400)
 scale = Vector2(3.020833, 3)
 
 [node name="Laptop" parent="Map/Platform" unique_id=994781868 instance=ExtResource("12_4crhs")]
@@ -1156,7 +1152,7 @@ position = Vector2(64, 216)
 position = Vector2(3440, 600)
 
 [node name="apple6" parent="Item" unique_id=492602000 instance=ExtResource("9_bq8j7")]
-position = Vector2(2496, 272)
+position = Vector2(2520, 360)
 
 [node name="Laptop" parent="Item" unique_id=1688558783 instance=ExtResource("12_4crhs")]
 position = Vector2(2544, 600)

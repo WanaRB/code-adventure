@@ -32,6 +32,67 @@ jobs:
           mkdir -p builds/web
           cp -r "${{ steps.export.outputs.build_directory }}/Web/." builds/web/
 
+      # 3b. Inject mobile fullscreen support into HTML
+      - name: Inject mobile fullscreen support
+        run: |
+          python3 - << 'PYEOF'
+          import re
+
+          with open("builds/web/index.html", "r", encoding="utf-8") as f:
+              html = f.read()
+
+          fullscreen_meta = '''
+          \t\t<meta name="mobile-web-app-capable" content="yes">
+          \t\t<meta name="apple-mobile-web-app-capable" content="yes">
+          \t\t<meta name="apple-mobile-web-app-status-bar-style" content="black-fullscreen">
+          \t\t<meta name="theme-color" content="#000000">'''
+
+          fullscreen_js = '''
+          \t\t<script>
+          \t\t// Auto-request fullscreen on first touch (mobile fullscreen)
+          \t\t(function() {
+          \t\t\tvar _fsRequested = false;
+          \t\t\tfunction _requestFullscreen() {
+          \t\t\t\tif (_fsRequested) return;
+          \t\t\t\t_fsRequested = true;
+          \t\t\t\tvar el = document.documentElement;
+          \t\t\t\tvar req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+          \t\t\t\tif (req) req.call(el).catch(function(){});
+          \t\t\t\t// Scroll to hide browser address bar
+          \t\t\t\twindow.scrollTo(0, 1);
+          \t\t\t}
+          \t\t\tdocument.addEventListener("touchstart", _requestFullscreen, {once: true, passive: true});
+          \t\t\tdocument.addEventListener("click", _requestFullscreen, {once: true});
+          \t\t})();
+          \t\t</script>'''
+
+          # Fix viewport meta to include viewport-fit=cover for notch support
+          html = re.sub(
+              r'(<meta name="viewport"[^>]*content=")[^"]*(")',
+              r'\1width=device-width, user-scalable=no, initial-scale=1.0, viewport-fit=cover\2',
+              html
+          )
+
+          # Inject before </head>
+          html = html.replace("</head>", fullscreen_meta + "\n" + fullscreen_js + "\n\t</head>", 1)
+
+          # Add safe-area-inset CSS for notch phones
+          body_style = """
+          body {
+          \tpadding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+          }
+          #canvas {
+          \twidth: 100vw !important;
+          \theight: 100vh !important;
+          }"""
+          html = html.replace("</style>", body_style + "\n\t</style>", 1)
+
+          with open("builds/web/index.html", "w", encoding="utf-8") as f:
+              f.write(html)
+
+          print("Mobile fullscreen injected successfully")
+          PYEOF
+
       # 4. Tambahkan vercel.json untuk header CORS (wajib untuk Godot WebAssembly)
       - name: Create vercel.json
         run: |

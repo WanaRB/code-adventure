@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://c4tbjowar47oi"]
+
+[ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_bg"]
+[ext_resource type="Script" uid="uid://dkfg5mr5p3m8k" path="res://scenes/Tampilan/credits.gd" id="1_pa2yl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel"]
+texture = ExtResource("1_bg")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa2yl"]
+bg_color = Color(0, 0, 0, 0.85882354)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.137)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
+bg_color = Color(0.67, 0.67, 0.67, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.87, 0.87, 0.87, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[node name="Credits" type="Control" unique_id=100001]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pa2yl")
+
+[node name="BG" type="Panel" parent="." unique_id=100002]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_panel")
+
+[node name="Panel" type="Panel" parent="." unique_id=1272808665]
+custom_minimum_size = Vector2(700, 800)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pa2yl")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=100003]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -350.0
+offset_right = 340.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=100004]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
+
+[node name="LabelJudul" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100005]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 42
+text = "Code Adventure"
+horizontal_alignment = 1
+
+[node name="LabelSub" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100006]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 22
+text = "Game Edukasi Pemrograman"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100007]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LabelSeksi1" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100008]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 26
+text = "Tim Pembuat"
+horizontal_alignment = 1
+
+[node name="LabelDev" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100009]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Game Design & Development
+Jikri — Lead Developer
+
+Art & Assets
+City Tileset oleh GandalfHardcore (itch.io)
+Character Sprites — Public Domain
+
+Music & Sound
+Ambatukam Harmony
+Roblox Ouch SFX"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100010]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LabelSeksi2" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100011]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 26
+text = "Teknologi"
+horizontal_alignment = 1
+
+[node name="LabelTech" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100012]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Dibuat dengan Godot Engine 4
+Font: JetBrains Mono (JetBrains)
+Deploy: Vercel + GitHub Actions"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100013]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LabelTerima" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100014]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 1, 0.8, 1)
+theme_override_font_sizes/font_size = 22
+text = "Terima kasih sudah bermain! 🎮"
+horizontal_alignment = 1
+
+[node name="Spacer4" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100015]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="button_back" type="Button" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100016]
+custom_minimum_size = Vector2(200, 55)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "← Kembali"
+
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/button_back" to="." method="_on_button_back_pressed"]
