@@ -33,7 +33,7 @@ var _button_visuals: Dictionary = {}
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
 	# Hanya muncul di web mobile (Android/iOS) — tidak di laptop/PC
-	var is_mobile := true
+	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios")
 	#= (debug control) OS.has_feature("web_android") or OS.has_feature("web_ios")
 	if not is_mobile:
 		queue_free()
