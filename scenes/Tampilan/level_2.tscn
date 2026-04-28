@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dkwhp1x7q50mt" path="res://scenes/Character/drone_musuh_Vertical.tscn" id="7_65m6i"]
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="7_bbmdg"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="8_idsdl"]
+[ext_resource type="Resource" uid="uid://vex6q0kjifm7" path="res://resource/Kuis_Level2_platform.tres" id="9_3jjit"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="9_7ia63"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_wd48c"]
 [ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/character/jikri.gd" id="11_k4pb6"]
@@ -1031,21 +1032,21 @@ texture = ExtResource("4_ror7a")
 [sub_resource type="TileSet" id="TileSet_2o6r5"]
 sources/0 = SubResource("TileSetAtlasSource_k3n1d")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6u07p"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jjit"]
 bg_color = Color(0.1721153, 0.17211533, 0.1721152, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1ne5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1we1t"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4crhs"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbmdg"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -1089,12 +1090,27 @@ texture_filter = 1
 scale = Vector2(2.5, 2.5)
 tile_set = SubResource("TileSet_2o6r5")
 format = 2
-layer_0/tile_data = PackedInt32Array(655395, 786432, 2, 720931, 786432, 3, 655396, 851968, 2)
+layer_0/tile_data = PackedInt32Array(720931, 786432, 3, 655396, 851968, 2, 655399, 786432, 2, 720935, 786432, 3, 655400, 851968, 2, 720936, 851968, 3, 786472, 851968, 4, 852008, 851968, 5, 917544, 851968, 6, 983080, 851968, 7)
 
 [node name="Platform" type="Node" parent="Map" unique_id=1670196326]
 
 [node name="Platform1_png" parent="Map/Platform" unique_id=416016548 instance=ExtResource("5_3jjit")]
-position = Vector2(1432, 445)
+position = Vector2(1432, 480.00003)
+scale = Vector2(4, 3.6666667)
+platform_id = 2
+direction = 3
+jarak = 500.0
+
+[node name="Platform1_png2" parent="Map/Platform" unique_id=1076731607 instance=ExtResource("5_3jjit")]
+position = Vector2(1728, 40.000004)
+scale = Vector2(4, 3.6666667)
+
+[node name="Platform1_png3" parent="Map/Platform" unique_id=1185532852 instance=ExtResource("5_3jjit")]
+position = Vector2(1920, 40)
+scale = Vector2(4, 3.6666667)
+
+[node name="Platform1_png4" parent="Map/Platform" unique_id=739132816 instance=ExtResource("5_3jjit")]
+position = Vector2(2112, 40)
 scale = Vector2(4, 3.6666667)
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
@@ -1103,10 +1119,10 @@ scale = Vector2(4, 3.6666667)
 position = Vector2(1272, 608)
 
 [node name="apple2" parent="Item" unique_id=1139145556 instance=ExtResource("8_idsdl")]
-position = Vector2(1496, 376)
+position = Vector2(1496, 432)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("9_7ia63")]
-position = Vector2(3280, 600)
+position = Vector2(2120, -24)
 
 [node name="apple3" parent="Item" unique_id=1473572142 instance=ExtResource("8_idsdl")]
 position = Vector2(3432, 392)
@@ -1115,10 +1131,14 @@ position = Vector2(3432, 392)
 position = Vector2(1920, 560)
 target_level_path = "uid://babfsu63orby"
 
+[node name="Laptop2" parent="Item" unique_id=583794567 instance=ExtResource("9_7ia63")]
+position = Vector2(1696, 528)
+data_kuis = ExtResource("9_3jjit")
+
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_wd48c")]
-position = Vector2(-224.00002, -168)
+position = Vector2(-191.99988, -183.99998)
 script = ExtResource("11_k4pb6")
 metadata/_edit_group_ = true
 
@@ -1136,131 +1156,6 @@ script = ExtResource("13_f074n")
 unique_name_in_owner = true
 stream = ExtResource("14_wb70b")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=446060044]
-script = ExtResource("15_l1ylq")
-
-[node name="point" type="Panel" parent="UI" unique_id=478292088]
-texture_filter = 1
-offset_left = 40.0
-offset_top = 28.0
-offset_right = 216.0
-offset_bottom = 98.0
-
-[node name="Point_Label" type="Label" parent="UI/point" unique_id=21390896]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 12.0
-offset_right = -11.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-text = "Points = 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="darah" type="Panel" parent="UI" unique_id=763605018]
-unique_name_in_owner = true
-offset_left = 39.0
-offset_top = 112.0
-offset_right = 215.0
-offset_bottom = 177.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/darah" unique_id=1496721897]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 176.0
-offset_bottom = 60.0
-alignment = 1
-
-[node name="darah" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=2007656572]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("16_ggxvv")
-expand_mode = 2
-
-[node name="darah2" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=602193384]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("16_ggxvv")
-expand_mode = 2
-
-[node name="darah3" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=895814521]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("16_ggxvv")
-expand_mode = 2
-
-[node name="pause" type="Node" parent="UI" unique_id=1755196272]
-script = ExtResource("17_g7j1d")
-
-[node name="pause_panel" type="Panel" parent="UI/pause" unique_id=37173988]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/pause/pause_panel" unique_id=1757377958]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -188.0
-offset_right = 140.0
-offset_bottom = -133.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "GAME PAUSED"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/pause/pause_panel" unique_id=1326228284]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -20.0
-offset_right = 104.0
-offset_bottom = 84.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-
-[node name="Resume" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=1745347127]
-process_mode = 3
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_6u07p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_h1ne5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4crhs")
-text = "RESUME	"
-
-[node name="main_menu" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=345632533]
-process_mode = 3
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_6u07p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_h1ne5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4crhs")
-text = "Go to Main Menu"
-
 [node name="Musuh" type="Node" parent="." unique_id=745022729]
 
 [node name="DroneMusuh" parent="Musuh" unique_id=1779015776 instance=ExtResource("5_f0dxm")]
@@ -1268,7 +1163,7 @@ position = Vector2(1144, 584)
 collision_layer = 0
 collision_mask = 2
 kecepatan = 200.0
-jarak_patroli = 400.0
+jarak_patroli = 500.0
 
 [node name="DroneMusuhV" parent="Musuh" unique_id=824156789 instance=ExtResource("7_65m6i")]
 position = Vector2(2736, 288)
@@ -1315,6 +1210,131 @@ position = Vector2(704, 616)
 position = Vector2(744, 616)
 
 [node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("20_ror7a")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1000199111]
+script = ExtResource("15_l1ylq")
+
+[node name="point" type="Panel" parent="UI" unique_id=357329448]
+texture_filter = 1
+offset_left = 40.0
+offset_top = 28.0
+offset_right = 320.0
+offset_bottom = 136.0
+
+[node name="Point_Label" type="Label" parent="UI/point" unique_id=1612631531]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = -11.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Points = 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="darah" type="Panel" parent="UI" unique_id=796674627]
+unique_name_in_owner = true
+offset_left = 40.0
+offset_top = 144.0
+offset_right = 320.0
+offset_bottom = 248.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/darah" unique_id=1204975893]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 284.0
+offset_bottom = 96.0
+alignment = 1
+
+[node name="darah" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=1614568659]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("16_ggxvv")
+expand_mode = 2
+
+[node name="darah2" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=1226792981]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("16_ggxvv")
+expand_mode = 2
+
+[node name="darah3" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=1442323339]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("16_ggxvv")
+expand_mode = 2
+
+[node name="pause" type="Node" parent="UI" unique_id=1452956292]
+script = ExtResource("17_g7j1d")
+
+[node name="pause_panel" type="Panel" parent="UI/pause" unique_id=1221926999]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/pause/pause_panel" unique_id=2046110968]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -188.0
+offset_right = 140.0
+offset_bottom = -133.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "GAME PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/pause/pause_panel" unique_id=1780755145]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -20.0
+offset_right = 104.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Resume" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=1437839985]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
+text = "RESUME	"
+
+[node name="main_menu" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=1658864018]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
+text = "Go to Main Menu"
 
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]

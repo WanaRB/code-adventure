@@ -1034,21 +1034,21 @@ texture = ExtResource("4_pyv1r")
 [sub_resource type="TileSet" id="TileSet_2o6r5"]
 sources/0 = SubResource("TileSetAtlasSource_k3n1d")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6u07p"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlura"]
 bg_color = Color(0.1721153, 0.17211533, 0.1721152, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1ne5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3juyh"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4crhs"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mj8xx"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -1085,7 +1085,7 @@ position = Vector2(-0.99999994, 0)
 scale = Vector2(2.5, 2.5)
 tile_set = SubResource("TileSet_ic0uy")
 format = 2
-layer_0/tile_data = PackedInt32Array(73, 524288, 5, 65609, 524288, 6, 131145, 524288, 7, 196681, 524288, 4, 262217, 524288, 5, 327753, 524288, 6, 393289, 524288, 7, 458825, 524288, 4, 524361, 524288, 5, 589897, 524288, 6, 655433, 524288, 7, 74, 589824, 5, 65610, 589824, 6, 131146, 589824, 7, 196682, 589824, 4, 262218, 589824, 5, 327754, 589824, 6, 393290, 589824, 7, 458826, 589824, 4, 524362, 589824, 5, 589898, 589824, 6, 655434, 589824, 7, 75, 524288, 5, 65611, 524288, 6, 131147, 524288, 7, 196683, 524288, 4, 262219, 524288, 5, 327755, 524288, 6, 393291, 524288, 7, 458827, 524288, 4, 524363, 524288, 5, 589899, 524288, 6, 655435, 524288, 7, 76, 589824, 5, 65612, 589824, 6, 131148, 589824, 7, 196684, 589824, 4, 262220, 589824, 5, 327756, 589824, 6, 393292, 589824, 7, 458828, 589824, 4, 524364, 589824, 5, 589900, 589824, 6, 655436, 589824, 7, 77, 524288, 5, 65613, 524288, 6, 131149, 524288, 7, 196685, 524288, 4, 262221, 524288, 5, 327757, 524288, 6, 393293, 524288, 7, 458829, 524288, 4, 524365, 524288, 5, 589901, 524288, 6, 655437, 524288, 7, 78, 589824, 5, 65614, 589824, 6, 131150, 589824, 7, 196686, 589824, 4, 262222, 589824, 5, 327758, 589824, 6, 393294, 589824, 7, 458830, 589824, 4, 524366, 589824, 5, 589902, 589824, 6, 655438, 589824, 7, 79, 524288, 5, 65615, 524288, 6, 131151, 524288, 7, 196687, 524288, 4, 262223, 524288, 5, 327759, 524288, 6, 393295, 524288, 7, 458831, 524288, 4, 524367, 524288, 5, 589903, 524288, 6, 655439, 524288, 7, 80, 589824, 5, 65616, 589824, 6, 131152, 589824, 7, 196688, 589824, 4, 262224, 589824, 5, 327760, 589824, 6, 393296, 589824, 7, 458832, 589824, 4, 524368, 589824, 5, 589904, 589824, 6, 655440, 589824, 7, 81, 524288, 5, 65617, 524288, 6, 131153, 524288, 7, 196689, 524288, 4, 262225, 524288, 5, 327761, 524288, 6, 393297, 524288, 7, 458833, 524288, 4, 524369, 524288, 5, 589905, 524288, 6, 655441, 524288, 7, 82, 589824, 5, 65618, 589824, 6, 131154, 589824, 7, 196690, 589824, 4, 262226, 589824, 5, 327762, 589824, 6, 393298, 589824, 7, 458834, 589824, 4, 524370, 589824, 5, 589906, 589824, 6, 655442, 589824, 7, 83, 524288, 5, 65619, 524288, 6, 131155, 524288, 7, 196691, 524288, 4, 262227, 524288, 5, 327763, 524288, 6, 393299, 524288, 7, 458835, 524288, 4, 524371, 524288, 5, 589907, 524288, 6, 655443, 524288, 7, 84, 589824, 5, 65620, 589824, 6, 131156, 589824, 7, 196692, 589824, 4, 262228, 589824, 5, 327764, 589824, 6, 393300, 589824, 7, 458836, 589824, 4, 524372, 589824, 5, 589908, 589824, 6, 655444, 589824, 7, 85, 524288, 5, 65621, 524288, 6, 131157, 524288, 7, 196693, 524288, 4, 262229, 524288, 5, 327765, 524288, 6, 393301, 524288, 7, 458837, 524288, 4, 524373, 524288, 5, 589909, 524288, 6, 655445, 524288, 7, 86, 589824, 5, 65622, 589824, 6, 131158, 589824, 7, 196694, 589824, 4, 262230, 589824, 5, 327766, 589824, 6, 393302, 589824, 7, 458838, 589824, 4, 524374, 589824, 5, 589910, 589824, 6, 655446, 589824, 7)
+layer_0/tile_data = PackedInt32Array(73, 524288, 5, 65609, 524288, 6, 131145, 524288, 7, 196681, 524288, 4, 262217, 524288, 5, 327753, 524288, 6, 393289, 524288, 7, 458825, 524288, 4, 524361, 524288, 5, 589897, 524288, 6, 655433, 524288, 7, 74, 589824, 5, 65610, 589824, 6, 131146, 589824, 7, 196682, 589824, 4, 262218, 589824, 5, 327754, 589824, 6, 393290, 589824, 7, 458826, 589824, 4, 524362, 589824, 5, 589898, 589824, 6, 655434, 589824, 7, 75, 524288, 5, 65611, 524288, 6, 131147, 524288, 7, 196683, 524288, 4, 262219, 524288, 5, 327755, 524288, 6, 393291, 524288, 7, 458827, 524288, 4, 524363, 524288, 5, 589899, 524288, 6, 655435, 524288, 7, 76, 589824, 5, 65612, 589824, 6, 131148, 589824, 7, 196684, 589824, 4, 262220, 589824, 5, 327756, 589824, 6, 393292, 589824, 7, 458828, 589824, 4, 524364, 589824, 5, 589900, 589824, 6, 655436, 589824, 7, 77, 524288, 5, 65613, 524288, 6, 131149, 524288, 7, 196685, 524288, 4, 262221, 524288, 5, 327757, 524288, 6, 393293, 524288, 7, 458829, 524288, 4, 524365, 524288, 5, 589901, 524288, 6, 655437, 524288, 7, 78, 589824, 5, 65614, 589824, 6, 131150, 589824, 7, 196686, 589824, 4, 262222, 589824, 5, 327758, 589824, 6, 393294, 589824, 7, 458830, 589824, 4, 524366, 589824, 5, 589902, 589824, 6, 655438, 589824, 7, 79, 524288, 5, 65615, 524288, 6, 131151, 524288, 7, 196687, 524288, 4, 262223, 524288, 5, 327759, 524288, 6, 393295, 524288, 7, 458831, 524288, 4, 524367, 524288, 5, 589903, 524288, 6, 655439, 524288, 7, 80, 589824, 5, 65616, 589824, 6, 131152, 589824, 7, 196688, 589824, 4, 262224, 589824, 5, 327760, 589824, 6, 393296, 589824, 7, 458832, 589824, 4, 524368, 589824, 5, 589904, 589824, 6, 655440, 589824, 7, 81, 524288, 5, 65617, 524288, 6, 131153, 524288, 7, 196689, 524288, 4, 262225, 524288, 5, 327761, 524288, 6, 393297, 524288, 7, 458833, 524288, 4, 524369, 524288, 5, 589905, 524288, 6, 655441, 524288, 7, 82, 589824, 5, 65618, 589824, 6, 131154, 589824, 7, 196690, 589824, 4, 262226, 589824, 5, 327762, 589824, 6, 393298, 589824, 7, 458834, 589824, 4, 524370, 589824, 5, 589906, 589824, 6, 655442, 589824, 7, 83, 524288, 5, 65619, 524288, 6, 131155, 524288, 7, 196691, 524288, 4, 262227, 524288, 5, 327763, 524288, 6, 393299, 524288, 7, 458835, 524288, 4, 524371, 524288, 5, 589907, 524288, 6, 655443, 524288, 7, 84, 589824, 5, 65620, 589824, 6, 131156, 589824, 7, 196692, 589824, 4, 262228, 589824, 5, 327764, 589824, 6, 393300, 589824, 7, 458836, 589824, 4, 524372, 589824, 5, 589908, 589824, 6, 655444, 589824, 7, 85, 524288, 5, 65621, 524288, 6, 131157, 524288, 7, 196693, 524288, 4, 262229, 524288, 5, 327765, 524288, 6, 393301, 524288, 7, 458837, 524288, 4, 524373, 524288, 5, 589909, 524288, 6, 655445, 524288, 7, 86, 589824, 5, 65622, 589824, 6, 131158, 589824, 7, 196694, 589824, 4, 262230, 589824, 5, 327766, 589824, 6, 393302, 589824, 7, 458838, 589824, 4, 524374, 589824, 5, 589910, 589824, 6, 655446, 589824, 7, -786359, 524288, 5, -720823, 524288, 6, -655287, 524288, 7, -786358, 589824, 5, -720822, 589824, 6, -655286, 589824, 7, -589751, 524288, 4, -524215, 524288, 5, -458679, 524288, 6, -393143, 524288, 7, -589750, 589824, 4, -524214, 589824, 5, -458678, 589824, 6, -393142, 589824, 7, -327607, 524288, 4, -262071, 524288, 5, -196535, 524288, 6, -130999, 524288, 7, -327606, 589824, 4, -262070, 589824, 5, -196534, 589824, 6, -130998, 589824, 7, -65463, 524288, 4, -65462, 589824, 4, -786357, 524288, 5, -720821, 524288, 6, -655285, 524288, 7, -786356, 589824, 5, -720820, 589824, 6, -655284, 589824, 7, -589749, 524288, 4, -524213, 524288, 5, -458677, 524288, 6, -393141, 524288, 7, -589748, 589824, 4, -524212, 589824, 5, -458676, 589824, 6, -393140, 589824, 7, -327605, 524288, 4, -262069, 524288, 5, -196533, 524288, 6, -130997, 524288, 7, -327604, 589824, 4, -262068, 589824, 5, -196532, 589824, 6, -130996, 589824, 7, -65461, 524288, 4, -65460, 589824, 4, -786355, 524288, 5, -720819, 524288, 6, -655283, 524288, 7, -786354, 589824, 5, -720818, 589824, 6, -655282, 589824, 7, -589747, 524288, 4, -524211, 524288, 5, -458675, 524288, 6, -393139, 524288, 7, -589746, 589824, 4, -524210, 589824, 5, -458674, 589824, 6, -393138, 589824, 7, -327603, 524288, 4, -262067, 524288, 5, -196531, 524288, 6, -130995, 524288, 7, -327602, 589824, 4, -262066, 589824, 5, -196530, 589824, 6, -130994, 589824, 7, -65459, 524288, 4, -65458, 589824, 4, -786353, 524288, 5, -720817, 524288, 6, -655281, 524288, 7, -786352, 589824, 5, -720816, 589824, 6, -655280, 589824, 7, -589745, 524288, 4, -524209, 524288, 5, -458673, 524288, 6, -393137, 524288, 7, -589744, 589824, 4, -524208, 589824, 5, -458672, 589824, 6, -393136, 589824, 7, -327601, 524288, 4, -262065, 524288, 5, -196529, 524288, 6, -130993, 524288, 7, -327600, 589824, 4, -262064, 589824, 5, -196528, 589824, 6, -130992, 589824, 7, -65457, 524288, 4, -65456, 589824, 4, -786351, 524288, 5, -720815, 524288, 6, -655279, 524288, 7, -786350, 589824, 5, -720814, 589824, 6, -655278, 589824, 7, -589743, 524288, 4, -524207, 524288, 5, -458671, 524288, 6, -393135, 524288, 7, -589742, 589824, 4, -524206, 589824, 5, -458670, 589824, 6, -393134, 589824, 7, -327599, 524288, 4, -262063, 524288, 5, -196527, 524288, 6, -130991, 524288, 7, -327598, 589824, 4, -262062, 589824, 5, -196526, 589824, 6, -130990, 589824, 7, -65455, 524288, 4, -65454, 589824, 4, -786349, 524288, 5, -720813, 524288, 6, -655277, 524288, 7, -786348, 589824, 5, -720812, 589824, 6, -655276, 589824, 7, -589741, 524288, 4, -524205, 524288, 5, -458669, 524288, 6, -393133, 524288, 7, -589740, 589824, 4, -524204, 589824, 5, -458668, 589824, 6, -393132, 589824, 7, -327597, 524288, 4, -262061, 524288, 5, -196525, 524288, 6, -130989, 524288, 7, -327596, 589824, 4, -262060, 589824, 5, -196524, 589824, 6, -130988, 589824, 7, -65453, 524288, 4, -65452, 589824, 4, -786347, 524288, 5, -720811, 524288, 6, -655275, 524288, 7, -786346, 589824, 5, -720810, 589824, 6, -655274, 589824, 7, -589739, 524288, 4, -524203, 524288, 5, -458667, 524288, 6, -393131, 524288, 7, -589738, 589824, 4, -524202, 589824, 5, -458666, 589824, 6, -393130, 589824, 7, -327595, 524288, 4, -262059, 524288, 5, -196523, 524288, 6, -130987, 524288, 7, -327594, 589824, 4, -262058, 589824, 5, -196522, 589824, 6, -130986, 589824, 7, -65451, 524288, 4, -65450, 589824, 4, -851895, 524288, 4, -851894, 589824, 4, -851893, 524288, 4, -851892, 589824, 4, -851891, 524288, 4, -851890, 589824, 4, -851889, 524288, 4, -851888, 589824, 4, -851887, 524288, 4, -851886, 589824, 4, -851885, 524288, 4, -851884, 589824, 4, -851883, 524288, 4, -851882, 589824, 4)
 
 [node name="dekor" type="TileMap" parent="Map" unique_id=101720670]
 texture_filter = 1
@@ -1139,131 +1139,6 @@ script = ExtResource("12_kt0sy")
 [node name="HitSfx" type="AudioStreamPlayer" parent="game_manager" unique_id=2119095532]
 unique_name_in_owner = true
 stream = ExtResource("13_cqggq")
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=446060044]
-script = ExtResource("14_1cfia")
-
-[node name="point" type="Panel" parent="UI" unique_id=478292088]
-texture_filter = 1
-offset_left = 40.0
-offset_top = 28.0
-offset_right = 216.0
-offset_bottom = 98.0
-
-[node name="Point_Label" type="Label" parent="UI/point" unique_id=21390896]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 12.0
-offset_right = -11.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 30
-text = "Points = 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="darah" type="Panel" parent="UI" unique_id=763605018]
-unique_name_in_owner = true
-offset_left = 39.0
-offset_top = 112.0
-offset_right = 215.0
-offset_bottom = 177.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/darah" unique_id=1496721897]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 176.0
-offset_bottom = 60.0
-alignment = 1
-
-[node name="darah" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=2007656572]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("15_vltpx")
-expand_mode = 2
-
-[node name="darah2" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=602193384]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("15_vltpx")
-expand_mode = 2
-
-[node name="darah3" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=895814521]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("15_vltpx")
-expand_mode = 2
-
-[node name="pause" type="Node" parent="UI" unique_id=1755196272]
-script = ExtResource("16_4vggx")
-
-[node name="pause_panel" type="Panel" parent="UI/pause" unique_id=37173988]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/pause/pause_panel" unique_id=1757377958]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -188.0
-offset_right = 140.0
-offset_bottom = -133.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "GAME PAUSED"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/pause/pause_panel" unique_id=1326228284]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -20.0
-offset_right = 104.0
-offset_bottom = 84.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-
-[node name="Resume" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=1745347127]
-process_mode = 3
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_6u07p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_h1ne5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4crhs")
-text = "RESUME	"
-
-[node name="main_menu" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=345632533]
-process_mode = 3
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_6u07p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_h1ne5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4crhs")
-text = "Go to Main Menu"
 
 [node name="Jebakan" type="Node" parent="." unique_id=1374830505]
 
@@ -1423,6 +1298,131 @@ process_mode = 3
 stream = ExtResource("22_ciivf")
 
 [node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("23_wlura")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=2033243224]
+script = ExtResource("14_1cfia")
+
+[node name="point" type="Panel" parent="UI" unique_id=1996893107]
+texture_filter = 1
+offset_left = 40.0
+offset_top = 28.0
+offset_right = 320.0
+offset_bottom = 136.0
+
+[node name="Point_Label" type="Label" parent="UI/point" unique_id=1064904543]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = -11.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Points = 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="darah" type="Panel" parent="UI" unique_id=1360590049]
+unique_name_in_owner = true
+offset_left = 40.0
+offset_top = 144.0
+offset_right = 320.0
+offset_bottom = 248.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/darah" unique_id=136595492]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 284.0
+offset_bottom = 96.0
+alignment = 1
+
+[node name="darah" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=614650568]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("15_vltpx")
+expand_mode = 2
+
+[node name="darah2" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=5400601]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("15_vltpx")
+expand_mode = 2
+
+[node name="darah3" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=1861361067]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("15_vltpx")
+expand_mode = 2
+
+[node name="pause" type="Node" parent="UI" unique_id=1900590892]
+script = ExtResource("16_4vggx")
+
+[node name="pause_panel" type="Panel" parent="UI/pause" unique_id=1215306460]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/pause/pause_panel" unique_id=1531616040]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -188.0
+offset_right = 140.0
+offset_bottom = -133.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "GAME PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/pause/pause_panel" unique_id=236108389]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -20.0
+offset_right = 104.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Resume" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=29114387]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_wlura")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3juyh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mj8xx")
+text = "RESUME	"
+
+[node name="main_menu" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=807282294]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_wlura")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3juyh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mj8xx")
+text = "Go to Main Menu"
 
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]

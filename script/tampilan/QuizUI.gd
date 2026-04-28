@@ -6,22 +6,22 @@ extends CanvasLayer
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
 ## Lebar total pop-up quiz (pixel). Naikkan jika kode terpotong.
-const CFG_PANEL_WIDTH       := 680.0
+const CFG_PANEL_WIDTH       := 1000.0
 ## Ukuran font baris kode di dalam editor. Ubah ini untuk perbesar/perkecil kode.
-const CFG_FONT_SIZE_CODE    := 18
+const CFG_FONT_SIZE_CODE    := 30
 ## Ukuran font teks instruksi dan label. Ubah untuk perbesar/perkecil petunjuk.
-const CFG_FONT_SIZE_HINT    := 17
+const CFG_FONT_SIZE_HINT    := 30
 ## Ukuran font teks pada tombol pilihan jawaban.
-const CFG_FONT_SIZE_OPTIONS := 18
+const CFG_FONT_SIZE_OPTIONS := 30
 ## Tinggi setiap baris kode (pixel). Perbesar jika baris terasa terlalu rapat.
-const CFG_LINE_HEIGHT       := 32
+const CFG_LINE_HEIGHT       := 45
 ## Lebar kolom nomor baris di kiri kode (pixel).
 const CFG_LINE_NUMBER_WIDTH := 50
 ## Tinggi tombol pilihan jawaban (pixel).
-const CFG_OPTION_BTN_HEIGHT := 44
+const CFG_OPTION_BTN_HEIGHT := 60
 ## Margin kiri dan kanan konten di dalam panel (pixel).
 ## Naikkan untuk geser konten ke dalam (menjauhi tepi kiri/kanan).
-const CFG_MARGIN_H          := 18
+const CFG_MARGIN_H          := 15
 ## Jarak vertikal antar bagian UI (pixel).
 ## Naikkan untuk memberi lebih banyak ruang atas/bawah antar bagian.
 const CFG_SECTION_GAP       := 12
@@ -121,7 +121,7 @@ func _build_ui():
 
 	# Panel utama
 	var panel := Panel.new()
-	panel.custom_minimum_size = Vector2(CFG_PANEL_WIDTH, 400)
+	panel.custom_minimum_size = Vector2(CFG_PANEL_WIDTH, 500)
 	var ps := StyleBoxFlat.new()
 	ps.bg_color = C_BG
 	ps.set_corner_radius_all(CFG_PANEL_CORNER)
@@ -202,16 +202,16 @@ func _make_title_bar(mono_font: Font) -> Control:
 	# Background: C_BG (hitam kebiru-biruan), teks "✕" putih
 	# Hover & pressed: merah, "✕" tetap putih
 	var close_btn := Button.new()
-	close_btn.text = "✕"
+	close_btn.text = "x"
 	close_btn.flat = false
 	close_btn.focus_mode = Control.FOCUS_NONE
 	close_btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	close_btn.add_theme_font_override("font", mono_font)
-	close_btn.add_theme_font_size_override("font_size", 15)
+	close_btn.add_theme_font_size_override("font_size", 30)
 	close_btn.add_theme_color_override("font_color", Color(1, 1, 1, 1))
 	close_btn.add_theme_color_override("font_hover_color", Color(1, 1, 1, 1))
 	close_btn.add_theme_color_override("font_pressed_color", Color(1, 1, 1, 1))
-	close_btn.custom_minimum_size = Vector2(32, 28)
+	close_btn.custom_minimum_size = Vector2(45, 40)
 	close_btn.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 
 	var s_normal := StyleBoxFlat.new()

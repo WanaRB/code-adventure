@@ -1190,8 +1190,8 @@ script = ExtResource("10_yqhaf")
 texture_filter = 1
 offset_left = 40.0
 offset_top = 28.0
-offset_right = 216.0
-offset_bottom = 98.0
+offset_right = 320.0
+offset_bottom = 136.0
 
 [node name="Point_Label" type="Label" parent="UI/point" unique_id=21390896]
 unique_name_in_owner = true
@@ -1205,25 +1205,25 @@ offset_right = -11.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 text = "Points = 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="darah" type="Panel" parent="UI" unique_id=763605018]
 unique_name_in_owner = true
-offset_left = 39.0
-offset_top = 112.0
-offset_right = 215.0
-offset_bottom = 177.0
+offset_left = 40.0
+offset_top = 144.0
+offset_right = 320.0
+offset_bottom = 248.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/darah" unique_id=1496721897]
 layout_mode = 0
 offset_top = 4.0
-offset_right = 176.0
-offset_bottom = 60.0
+offset_right = 284.0
+offset_bottom = 96.0
 alignment = 1
 
 [node name="darah" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=2007656572]
