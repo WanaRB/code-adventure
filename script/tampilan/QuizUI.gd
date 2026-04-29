@@ -54,8 +54,7 @@ var _current_door_id: int = 1          # Tidak lagi dipakai langsung, tapi disim
 var _highlight_buttons: Array[Button] = []
 var _highlight_correct: Array[bool] = []
 var _current_hl_idx: int = -1
-var _hl_start_times: Array[float] = []
-var _hl_timer_on: Array[bool] = []
+var _quiz_open_time: float = 0.0
 var _session_correct := 0
 var _session_bonus   := 0
 var _session_wrong   := 0
@@ -81,11 +80,7 @@ func setup_quiz(data: QuizResource):
 	_quiz_data = data
 	_highlight_correct.resize(data.highlights.size())
 	_highlight_correct.fill(false)
-	var _now := Time.get_ticks_msec() / 1000.0
-	_hl_start_times.resize(data.highlights.size())
-	_hl_start_times.fill(_now)
-	_hl_timer_on.resize(data.highlights.size())
-	_hl_timer_on.fill(false)
+	_quiz_open_time = Time.get_ticks_msec() / 1000.0  # catat waktu quiz dibuka
 	_session_correct = 0
 	_session_bonus   = 0
 	_session_wrong   = 0
@@ -546,11 +541,6 @@ func _on_highlight_clicked(hl_idx: int):
 		return  # Sudah benar, abaikan
 	_current_hl_idx = hl_idx
 
-	# Start timer saat pertama kali highlight ini diklik
-	if not _hl_timer_on[hl_idx]:
-		_hl_timer_on[hl_idx] = true
-		_hl_start_times[hl_idx] = Time.get_ticks_msec() / 1000.0
-
 	# Update label konteks
 	var hl := _quiz_data.highlights[hl_idx]
 	_options_context_label.text = "🔧  Memperbaiki   [ %s ]   — pilih pengganti yang benar:" % hl.word
@@ -582,14 +572,14 @@ func _on_option_pressed(option_idx: int):
 		_hide_options()
 
 		# ── Hitung bonus kecepatan ──
-		var elapsed := (Time.get_ticks_msec() / 1000.0) - _hl_start_times[_current_hl_idx]
+		# Elapsed dihitung dari saat quiz pertama dibuka, bukan dari klik highlight
+		var elapsed := (Time.get_ticks_msec() / 1000.0) - _quiz_open_time
 		var bonus := 0
 		if elapsed <= 5.0:
 			bonus = 50
-		elif elapsed <= 10.0:
+		elif elapsed <= 10.0:   # threshold diubah: 10 detik, bukan 15
 			bonus = 25
-		elif elapsed >= 15.0:
-			bonus = 0
+		# > 10 detik: bonus = 0 (sudah default)
 		_session_correct += 1
 		_session_bonus   += bonus
 		_current_hl_idx   = -1

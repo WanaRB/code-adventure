@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameEvents="*uid://dcs2uec0ne8yi"
 CameraDirector="*uid://bsdufhjk0frfm"
 SaveManager="*uid://delufcox3foul"
+MobileFullscreen="*uid://cqb5fqm8dny25"
 
 [display]
 

@@ -29,6 +29,7 @@ const IMG_E      := "res://assets/image/MobileUI/button_circle.png"
 var _finger_action : Dictionary = {}
 var _button_rects  : Dictionary = {}
 var _button_visuals: Dictionary = {}
+var _pause_node: Node = null
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
@@ -66,6 +67,34 @@ func _build_ui():
 		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE - GAP_ACTION - BTN_E_SIZE,
 			H - PAD_BOTTOM - BTN_E_SIZE, BTN_E_SIZE, BTN_E_SIZE),
 		IMG_E, "E", false)
+		
+	# Tombol PAUSE — tengah atas layar
+	var pause_btn := Button.new()
+	pause_btn.text = "⏸"
+	pause_btn.custom_minimum_size = Vector2(90, 90)
+	pause_btn.focus_mode = Control.FOCUS_NONE
+	pause_btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	pause_btn.add_theme_font_size_override("font_size", 36)
+	pause_btn.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
+
+	var ps := StyleBoxFlat.new()
+	ps.bg_color = Color(0, 0, 0, 0.4)
+	ps.set_corner_radius_all(12)
+	pause_btn.add_theme_stylebox_override("normal", ps)
+	var ps_h := StyleBoxFlat.new()
+	ps_h.bg_color = Color(0, 0, 0, 0.65)
+	ps_h.set_corner_radius_all(12)
+	pause_btn.add_theme_stylebox_override("hover", ps_h)
+	pause_btn.add_theme_stylebox_override("pressed", ps_h)
+
+	# Anchor ke tengah atas
+	pause_btn.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	pause_btn.position = Vector2(-45, 20)  # offset agar pas tengah
+	add_child(pause_btn)
+
+	# Cari pause node di scene aktif
+	_pause_node = get_tree().get_first_node_in_group("pause_controller")
+	pause_btn.pressed.connect(_on_pause_pressed)
 
 func _tambah(action: String, rect: Rect2, img: String, lbl_text: String, flip: bool):
 	_button_rects[action] = rect
@@ -152,3 +181,7 @@ func _release(finger: int):
 func _exit_tree():
 	for action in _button_rects:
 		Input.action_release(action)
+
+func _on_pause_pressed() -> void:
+	if _pause_node != null and _pause_node.has_method("_on_pause_btn_pressed"):
+		_pause_node._on_pause_btn_pressed()
