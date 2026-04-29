@@ -7,7 +7,7 @@ extends Camera2D
 
 ## Zoom di Mobile (HP/tablet). Dibuat lebih besar dari desktop
 ## karena layar HP lebih kecil sehingga game terlihat lebih jauh.
-@export var zoom_mobile:  float = 1.2
+@export var zoom_mobile:  float = 1.5
 
 ## Batas kiri kamera — set ke 0 untuk tepi kiri map
 @export var limit_kiri:   int   = 0
