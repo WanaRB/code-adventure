@@ -109,9 +109,6 @@ func _build_ui():
 	_button_rects["pause"] = pause_rect
 	_button_visuals["pause"] = pause_ctrl
 
-	# Cari pause node
-	_pause_node = get_tree().get_first_node_in_group("pause_controller")
-
 func _tambah(action: String, rect: Rect2, img: String, lbl_text: String, flip: bool):
 	_button_rects[action] = rect
 	var c := Control.new()
@@ -210,5 +207,7 @@ func _exit_tree():
 		Input.action_release(action)
 
 func _on_pause_pressed() -> void:
-	if _pause_node != null and _pause_node.has_method("_on_pause_btn_pressed"):
-		_pause_node._on_pause_btn_pressed()
+	# Fetch saat ditekan, bukan saat build — agar selalu ketemu di semua level
+	var pause_node := get_tree().get_first_node_in_group("pause_controller")
+	if pause_node != null and pause_node.has_method("_on_pause_btn_pressed"):
+		pause_node._on_pause_btn_pressed()

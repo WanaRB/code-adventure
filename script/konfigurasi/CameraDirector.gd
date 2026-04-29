@@ -14,6 +14,10 @@ func _ready():
 
 func register_camera(cam: Camera2D):
 	_camera = cam
+	# Zoom out sedikit di mobile agar map tidak terpotong browser chrome
+	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios")
+	if is_mobile:
+		_camera.zoom = Vector2(0.75, 0.75)  # ubah angka ini: lebih kecil = lebih zoom out
 
 func queue_cinematic(target_position: Vector2, callback_before: Callable, callback_after: Callable = Callable()):
 	_event_queue.append({
