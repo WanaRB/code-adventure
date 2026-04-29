@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="8_40tq3"]
 [ext_resource type="Resource" uid="uid://b54bj4vh2gfn7" path="res://resource/Kuis_Level3.tres" id="9_u2g6n"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_i8c42"]
-[ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/character/jikri.gd" id="11_fp03n"]
 [ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="12_c5wfh"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://script/konfigurasi/hud_manager.gd" id="13_1pnba"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="14_oq2gq"]
@@ -1123,7 +1122,6 @@ data_kuis = ExtResource("9_u2g6n")
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_i8c42")]
 position = Vector2(1783.9999, -119.999985)
-script = ExtResource("11_fp03n")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]

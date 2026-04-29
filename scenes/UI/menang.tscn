@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://6u8o4m8f2w47"]
 
+[ext_resource type="AudioStream" uid="uid://0k6qc3w31706" path="res://assets/sound/ambatukam-harmony.mp3" id="2_ri610"]
 [ext_resource type="Script" uid="uid://eax1i7bc44pb" path="res://script/tampilan/button_menang.gd" id="3_aubvg"]
 
 [node name="Control" type="Control" unique_id=911284679]
@@ -10,3 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_aubvg")
+
+[node name="BmgMenang" type="AudioStreamPlayer" parent="." unique_id=426950865]
+stream = ExtResource("2_ri610")
+autoplay = true

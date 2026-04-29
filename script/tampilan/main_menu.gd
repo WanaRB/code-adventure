@@ -6,6 +6,7 @@ var _is_showing_confirm := false
 # Referensi node yang perlu diubah warna
 @onready var _panel: Panel = $Panel
 @onready var _vbox: VBoxContainer = $VBoxContainer
+@onready var bgm_menu: AudioStreamPlayer = %BgmMenu
 
 func _ready() -> void:
 	pass

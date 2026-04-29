@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_q3tsx"]
 [ext_resource type="Script" uid="uid://dmt0uib03u6n7" path="res://script/tampilan/main_menu.gd" id="1_u4y5d"]
 [ext_resource type="Texture2D" uid="uid://c0w5b8ruj43xj" path="res://assets/image/map/logo.png" id="2_0m03y"]
+[ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="4_tfcbk"]
+[ext_resource type="PackedScene" uid="uid://ndvagnr4jrg8" path="res://scenes/UI/awan_bergerak.tscn" id="5_e2p27"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3tsx"]
 texture = ExtResource("1_q3tsx")
@@ -57,6 +59,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_q3tsx")
 
+[node name="AwanBergerak" parent="." unique_id=770557397 instance=ExtResource("5_e2p27")]
+jumlah_awan = 15
+
+[node name="Logo" type="TextureRect" parent="." unique_id=1705019265]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -507.0
+offset_top = 65.0
+offset_right = 507.0
+offset_bottom = 179.0
+grow_horizontal = 2
+texture = ExtResource("2_0m03y")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=632943988]
 layout_mode = 1
 anchors_preset = 8
@@ -67,7 +84,7 @@ anchor_bottom = 0.5
 offset_left = -164.875
 offset_top = -175.20193
 offset_right = 164.875
-offset_bottom = 175.20193
+offset_bottom = 175.2019
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -129,17 +146,12 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Exit"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1705019265]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -507.0
-offset_top = 65.0
-offset_right = 507.0
-offset_bottom = 179.0
-grow_horizontal = 2
-texture = ExtResource("2_0m03y")
+[node name="BgmMenu" type="AudioStreamPlayer" parent="." unique_id=2022316957]
+unique_name_in_owner = true
+stream = ExtResource("4_tfcbk")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/button_start" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_level" to="." method="_on_button_level_pressed"]

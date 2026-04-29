@@ -1,4 +1,5 @@
 extends Control
+@onready var bgm_kalah: AudioStreamPlayer = %BgmKalah
 
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║                   KONFIGURASI TAMPILAN LOSE SCREEN                         ║

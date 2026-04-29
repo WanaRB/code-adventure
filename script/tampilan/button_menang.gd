@@ -1,4 +1,5 @@
 extends Node
+@onready var bmg_menang: AudioStreamPlayer = %BmgMenang
 
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║                    KONFIGURASI TAMPILAN WIN SCREEN                         ║

@@ -7,7 +7,8 @@ const JUMP_VELOCITY = -500.0
 
 # Referensi Node
 @onready var sprite = $AnimatedSprite2D
-@onready var sfx_langkah: AudioStreamPlayer = %AudioStreamPlayer
+@onready var sfx_lompat: AudioStreamPlayer = %lompat
+@onready var sfx_langkah: AudioStreamPlayer = %lari
 const LANGKAH_INTERVAL := 0.35
 var _langkah_timer: float = 0.0
 var _bisa_double_jump := false
@@ -34,10 +35,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handle_movement():
+	
 	if is_on_floor():
 		_bisa_double_jump = true  # reset saat menyentuh tanah
 
 	if Input.is_action_just_pressed("lompat"):
+		if sfx_lompat != null:
+			sfx_lompat.play()
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
 		elif _bisa_double_jump:
