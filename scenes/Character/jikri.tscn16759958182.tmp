@@ -1,37 +1,51 @@
 [gd_scene format=3 uid="uid://c8cp71tu2bx71"]
 
 [ext_resource type="Texture2D" uid="uid://c44kjppnu2wy5" path="res://assets/image/character/Fall (32x32).png" id="1_e3p5j"]
-[ext_resource type="Script" uid="uid://c4joa3dm0u6pv" path="res://script/character/jikri.gd" id="1_rl1r2"]
 [ext_resource type="Texture2D" uid="uid://dpv6n1co6aoj3" path="res://assets/image/character/Idle (32x32).png" id="1_veuii"]
 [ext_resource type="Texture2D" uid="uid://cxlc7emcroxk7" path="res://assets/image/character/Jump (32x32).png" id="2_jyl2t"]
 [ext_resource type="Texture2D" uid="uid://cu4r8a5qhdgs4" path="res://assets/image/character/Hit (32x32).png" id="2_rdh0b"]
-[ext_resource type="Texture2D" uid="uid://gnw556h34d0e" path="res://assets/image/character/Double Jump (32x32).png" id="2_ubqp2"]
 [ext_resource type="Texture2D" uid="uid://dlpefspkuwa8j" path="res://assets/image/character/Run (32x32).png" id="3_e3p5j"]
 [ext_resource type="AudioStream" uid="uid://bqcdmbq3or3ey" path="res://assets/sound/lari.mp3" id="6_rdh0b"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jl3lv"]
-atlas = ExtResource("2_ubqp2")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="GDScript" id="GDScript_rdh0b"]
+script/source = "extends CharacterBody2D
+@onready var sfx_langkah: AudioStreamPlayer = %AudioStreamPlayer
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tj2mm"]
-atlas = ExtResource("2_ubqp2")
-region = Rect2(32, 0, 32, 32)
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+const LANGKAH_INTERVAL := 0.35 #ubah angka ini: lebih kecil = langkah lebih cepat
+var _langkah_timer: float = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s5rek"]
-atlas = ExtResource("2_ubqp2")
-region = Rect2(64, 0, 32, 32)
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	# ── Suara langkah kaki ui_left
+	var sedang_jalan := is_on_floor() and (Input.is_action_pressed(\"ui_left\") or Input.is_action_pressed(\"ui_right\"))
+	if sedang_jalan:
+		_langkah_timer -= delta
+		if _langkah_timer <= 0.0:
+			_langkah_timer = LANGKAH_INTERVAL
+			if sfx_langkah != null:
+				sfx_langkah.play()
+	else:
+		_langkah_timer = 0.0  # reset agar langkah pertama langsung bunyi
+		
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_waajb"]
-atlas = ExtResource("2_ubqp2")
-region = Rect2(96, 0, 32, 32)
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nhabs"]
-atlas = ExtResource("2_ubqp2")
-region = Rect2(128, 0, 32, 32)
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sndp5"]
-atlas = ExtResource("2_ubqp2")
-region = Rect2(160, 0, 32, 32)
+	move_and_slide()
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ae58k"]
 atlas = ExtResource("1_e3p5j")
@@ -165,29 +179,6 @@ region = Rect2(352, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jl3lv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tj2mm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s5rek")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_waajb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nhabs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sndp5")
-}],
-"loop": true,
-"name": &"double_jump",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ae58k")
 }],
 "loop": true,
@@ -305,7 +296,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 7.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gexk"]
@@ -315,19 +306,17 @@ size = Vector2(25.999979, 38.800083)
 scale = Vector2(2.5, 2.5)
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_rl1r2")
+script = SubResource("GDScript_rdh0b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1561838179]
 texture_filter = 1
 position = Vector2(123.60001, 201.20001)
 scale = Vector2(1.6, 1.6)
 sprite_frames = SubResource("SpriteFrames_4qumu")
-animation = &"double_jump"
-frame_progress = 0.5938234
+animation = &"walk"
 speed_scale = 2.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=570798218]
-visible = false
 texture_filter = 1
 position = Vector2(123.39997, 204.19992)
 scale = Vector2(0.99999976, 0.99999976)
@@ -337,4 +326,3 @@ shape = SubResource("RectangleShape2D_2gexk")
 unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("6_rdh0b")
-volume_db = -17.0

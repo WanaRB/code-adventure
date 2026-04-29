@@ -87,7 +87,7 @@ script = ExtResource("1_fkipo")
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_qnp2r")
-animation = &"walk_evil"
+animation = &"walk_friendly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1704032727]
 position = Vector2(0, 4)

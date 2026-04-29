@@ -87,7 +87,7 @@ script = ExtResource("1_y8y3m")
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_qnp2r")
-animation = &"walk_evil"
+animation = &"walk_friendly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1972322571]
 shape = SubResource("RectangleShape2D_rkjs5")

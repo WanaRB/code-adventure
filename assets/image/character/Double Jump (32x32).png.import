@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkt1ksxpfs3pa"
-path="res://.godot/imported/drone_Scan.png-74af66165ae91be8952b5671b04c8a14.ctex"
+uid="uid://gnw556h34d0e"
+path="res://.godot/imported/Double Jump (32x32).png-a7d24cb27f92796e4feff97db3a51b72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/image/character/drone_Scan.png"
-dest_files=["res://.godot/imported/drone_Scan.png-74af66165ae91be8952b5671b04c8a14.ctex"]
+source_file="res://assets/image/character/Double Jump (32x32).png"
+dest_files=["res://.godot/imported/Double Jump (32x32).png-a7d24cb27f92796e4feff97db3a51b72.ctex"]
 
 [params]
 
