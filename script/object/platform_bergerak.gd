@@ -42,7 +42,7 @@ enum Direction {
 @export var kecepatan: float = 80.0
 
 ## AudioStreamPlayer2D untuk suara platform mulai bergerak.
-@export var sfx_aktif: AudioStreamPlayer2D
+@export var sfx_aktif: AudioStreamPlayer
 
 # ─── State ────────────────────────────────────────────────────────────────────
 var _bergerak      := false

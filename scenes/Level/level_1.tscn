@@ -1313,7 +1313,7 @@ jarak_patroli = 350.0
 
 [node name="DroneMusuh" parent="Musuh" unique_id=227089108 instance=ExtResource("15_s1sp0")]
 position = Vector2(264, 584)
-kecepatan = 200.0
+kecepatan = 150.0
 jarak_patroli = 600.0
 
 [node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("22_c6qx1")]

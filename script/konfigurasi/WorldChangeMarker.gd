@@ -22,7 +22,7 @@ extends Node2D
 @export var marker_platform_id: int = 1
 
 ## AudioStreamPlayer2D untuk suara saat kamera tiba di marker.
-@export var sfx_player: AudioStreamPlayer2D
+@export var sfx_player: AudioStreamPlayer
 
 func _ready():
 	visible = false

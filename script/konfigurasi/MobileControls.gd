@@ -69,32 +69,48 @@ func _build_ui():
 		IMG_E, "E", false)
 		
 	# Tombol PAUSE — tengah atas layar
-	var pause_btn := Button.new()
-	pause_btn.text = "⏸"
-	pause_btn.custom_minimum_size = Vector2(90, 90)
-	pause_btn.focus_mode = Control.FOCUS_NONE
-	pause_btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	pause_btn.add_theme_font_size_override("font_size", 36)
-	pause_btn.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
+# Tombol PAUSE — tengah atas layar, pakai gambar button_circle.png
+	const IMG_PAUSE := "res://assets/image/MobileUI/button_circle.png"
+	const PAUSE_SIZE := 120
 
-	var ps := StyleBoxFlat.new()
-	ps.bg_color = Color(0, 0, 0, 0.4)
-	ps.set_corner_radius_all(12)
-	pause_btn.add_theme_stylebox_override("normal", ps)
-	var ps_h := StyleBoxFlat.new()
-	ps_h.bg_color = Color(0, 0, 0, 0.65)
-	ps_h.set_corner_radius_all(12)
-	pause_btn.add_theme_stylebox_override("hover", ps_h)
-	pause_btn.add_theme_stylebox_override("pressed", ps_h)
+	var pause_ctrl := Control.new()
+	pause_ctrl.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	pause_ctrl.position = Vector2(-PAUSE_SIZE / 2.0, 20)
+	pause_ctrl.custom_minimum_size = Vector2(PAUSE_SIZE, PAUSE_SIZE)
+	pause_ctrl.size = Vector2(PAUSE_SIZE, PAUSE_SIZE)
+	pause_ctrl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	pause_ctrl.modulate.a = OPACITY_IDLE
+	add_child(pause_ctrl)
 
-	# Anchor ke tengah atas
-	pause_btn.set_anchors_preset(Control.PRESET_CENTER_TOP)
-	pause_btn.position = Vector2(-45, 20)  # offset agar pas tengah
-	add_child(pause_btn)
+	if ResourceLoader.exists(IMG_PAUSE):
+		var tex := TextureRect.new()
+		tex.texture = load(IMG_PAUSE)
+		tex.set_anchors_preset(Control.PRESET_FULL_RECT)
+		tex.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		tex.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		pause_ctrl.add_child(tex)
 
-	# Cari pause node di scene aktif
+	var lbl_pause := Label.new()
+	lbl_pause.text = "II"
+	lbl_pause.set_anchors_preset(Control.PRESET_FULL_RECT)
+	lbl_pause.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl_pause.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	lbl_pause.add_theme_font_size_override("font_size", 28)
+	lbl_pause.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
+	lbl_pause.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	pause_ctrl.add_child(lbl_pause)
+
+	# Deteksi tap pada area pause
+	var pause_rect := Rect2(
+		pause_ctrl.get_anchors_preset_rect().position if false else
+		Vector2(get_viewport().get_visible_rect().size.x / 2.0 - PAUSE_SIZE / 2.0, 20),
+		Vector2(PAUSE_SIZE, PAUSE_SIZE)
+	)
+	_button_rects["pause"] = pause_rect
+	_button_visuals["pause"] = pause_ctrl
+
+	# Cari pause node
 	_pause_node = get_tree().get_first_node_in_group("pause_controller")
-	pause_btn.pressed.connect(_on_pause_pressed)
 
 func _tambah(action: String, rect: Rect2, img: String, lbl_text: String, flip: bool):
 	_button_rects[action] = rect
@@ -153,6 +169,13 @@ func _press(finger: int, action: String):
 	if _finger_action.has(finger):
 		_release(finger)
 	_finger_action[finger] = action
+	_finger_action[finger] = action
+	# Pause bukan input action Godot — handle langsung, jangan lewat Input
+	if action == "pause":
+		if _button_visuals.has("pause"):
+			_button_visuals["pause"].modulate.a = OPACITY_PRESSED
+		_on_pause_pressed()
+		return
 	Input.action_press(action)
 	# Untuk interact: kirim event satu kali (just_pressed)
 	if action == "interact":
@@ -168,6 +191,10 @@ func _release(finger: int):
 		return
 	var action: String = _finger_action[finger]
 	_finger_action.erase(finger)
+	if action == "pause":
+		if _button_visuals.has("pause"):
+			_button_visuals["pause"].modulate.a = OPACITY_IDLE
+		return
 	var masih_aktif := false
 	for a in _finger_action.values():
 		if a == action:
