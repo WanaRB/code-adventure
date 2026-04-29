@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4tbjowar47oi"]
 
 [ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_bg"]
-[ext_resource type="Script" uid="uid://dkfg5mr5p3m8k" path="res://scenes/Tampilan/credits.gd" id="1_pa2yl"]
+[ext_resource type="Script" uid="uid://dkfg5mr5p3m8k" path="res://script/tampilan/credits.gd" id="1_pa2yl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel"]
 texture = ExtResource("1_bg")

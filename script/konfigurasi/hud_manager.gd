@@ -45,10 +45,12 @@ func _on_player_hit(amount: int):
 	if hit_sfx: hit_sfx.play()
 	update_ui()
 	if health <= 0:
-		# FIX: simpan poin sesi ke GameEvents sebelum pindah scene
-		# agar lose_screen bisa membacanya
 		GameEvents.last_session_net = get_session_net()
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/Tampilan/LoseScreen.tscn")
+		# Unpause dulu agar scene baru (LoseScreen) bisa berjalan normal
+		get_tree().paused = false
+		# Beri tahu QuizUI (jika terbuka) untuk menutup dirinya
+		GameEvents.game_over.emit()
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/UI/LoseScreen.tscn")
 
 func get_session_net() -> int:   # FIX: session_item_pts ikut dihitung
 	return max(0,

@@ -143,16 +143,16 @@ func _build_ui():
 
 # ─── Navigasi ─────────────────────────────────────────────────────────────────
 func _ke_menu():
-	get_tree().change_scene_to_file("res://scenes/Tampilan/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
 
 func _ulangi():
 	var path: String = GameEvents.last_level_path
-	get_tree().change_scene_to_file(path if path != "" else "res://scenes/Tampilan/level_1.tscn")
+	get_tree().change_scene_to_file(path if path != "" else "res://scenes/Level/level_1.tscn")
 
 func _ke_level_selanjutnya():
 	match _get_level():
-		1: get_tree().change_scene_to_file("res://scenes/Tampilan/level_2.tscn")
-		2: get_tree().change_scene_to_file("res://scenes/Tampilan/level_3.tscn")
+		1: get_tree().change_scene_to_file("res://scenes/Level/level_2.tscn")
+		2: get_tree().change_scene_to_file("res://scenes/Level/level_3.tscn")
 
 func _get_level() -> int:
 	var path: String = GameEvents.last_level_path

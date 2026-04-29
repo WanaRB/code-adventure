@@ -50,7 +50,6 @@ const C_WRONG       := Color("#f38ba8")
 # ─── State ────────────────────────────────────────────────────────────────────
 var _quiz_data: QuizResource = null
 var _current_door_id: int = 1          # Tidak lagi dipakai langsung, tapi disimpan
-var _action_to_trigger: String = ""    # Tidak lagi dipakai langsung
 
 var _highlight_buttons: Array[Button] = []
 var _highlight_correct: Array[bool] = []
@@ -97,6 +96,7 @@ func _ready():
 	# Bersihkan node warisan dari scene template agar tidak konflik
 	for child in get_children():
 		child.queue_free()
+	GameEvents.game_over.connect(_force_close)
 
 # ─── Builder Utama ────────────────────────────────────────────────────────────
 func _build_ui():
@@ -119,22 +119,25 @@ func _build_ui():
 	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(center)
 
-	# Panel utama
-	var panel := Panel.new()
-	panel.custom_minimum_size = Vector2(CFG_PANEL_WIDTH, 500)
+	# Panel utama — pakai PanelContainer agar tinggi otomatis mengikuti konten
+	var panel := PanelContainer.new()
+	panel.custom_minimum_size = Vector2(CFG_PANEL_WIDTH, 0)  # hanya min-width, height auto
 	var ps := StyleBoxFlat.new()
 	ps.bg_color = C_BG
 	ps.set_corner_radius_all(CFG_PANEL_CORNER)
 	ps.shadow_color = Color(0, 0, 0, 0.6)
 	ps.shadow_size = CFG_SHADOW_SIZE
+	# Content margin 0 agar VBox yang urus padding sendiri
+	ps.content_margin_left   = 0
+	ps.content_margin_right  = 0
+	ps.content_margin_top    = 0
+	ps.content_margin_bottom = 0
 	panel.add_theme_stylebox_override("panel", ps)
 	center.add_child(panel)
 
-	# Root VBox
+	# Root VBox — tidak pakai PRESET_FULL_RECT, biar PanelContainer yang auto-size
 	var root_vbox := VBoxContainer.new()
-	root_vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 	root_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	root_vbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	root_vbox.add_theme_constant_override("separation", CFG_SECTION_GAP)
 	panel.add_child(root_vbox)
 
@@ -144,8 +147,8 @@ func _build_ui():
 	root_vbox.add_child(_make_separator())
 
 	_options_container = _make_options_section(mono_font)
-	_options_container.visible = false
 	root_vbox.add_child(_options_container)
+	_hide_options()  # sembunyikan dengan modulate, bukan visible, agar ruang tetap terisi
 
 	var pad := Control.new()
 	pad.custom_minimum_size = Vector2(0, CFG_SECTION_GAP)
@@ -450,6 +453,22 @@ func _make_separator() -> Control:
 	sep.color = C_SEPARATOR
 	return sep
 
+# ─── Tampil / Sembunyikan Pilihan Jawaban ─────────────────────────────────────
+## Sembunyikan pilihan jawaban secara visual tanpa menghapus ruang layout-nya.
+## Ini mencegah panel berubah ukuran (dan kode bergeser) saat opsi muncul/hilang.
+func _hide_options() -> void:
+	_options_container.modulate = Color(1, 1, 1, 0)           # transparan
+	_options_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for btn: Button in _option_buttons:
+		btn.disabled = true
+
+## Tampilkan kembali pilihan jawaban.
+func _show_options() -> void:
+	_options_container.modulate = Color(1, 1, 1, 1)           # kembali opaque
+	_options_container.mouse_filter = Control.MOUSE_FILTER_STOP
+	for btn: Button in _option_buttons:
+		btn.disabled = false
+		
 # ─── Seksi Pilihan Jawaban ────────────────────────────────────────────────────
 func _make_options_section(mono_font: Font) -> Control:
 	var m := MarginContainer.new()
@@ -512,8 +531,7 @@ func _make_options_section(mono_font: Font) -> Control:
 # ─── Helper Font ──────────────────────────────────────────────────────────────
 func _load_mono_font() -> Font:
 	const PATHS := [
-		"res://assets/PeaberryBase.ttf",
-		"res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf",
+		"res://assets/fonts/JetBrainsMono-VariableFont_wght"
 	]
 	for p: String in PATHS:
 		if ResourceLoader.exists(p):
@@ -544,8 +562,9 @@ func _on_highlight_clicked(hl_idx: int):
 			_option_buttons[i].visible = true
 		else:
 			_option_buttons[i].visible = false
+			_option_buttons[i].disabled = true  # pastikan tombol kosong tidak bisa diklik
 
-	_options_container.visible = true
+	_show_options()
 
 func _on_option_pressed(option_idx: int):
 	if _current_hl_idx == -1:
@@ -560,15 +579,17 @@ func _on_option_pressed(option_idx: int):
 		btn.text = hl.options[option_idx]
 		btn.disabled = true
 		btn.add_theme_color_override("font_disabled_color", C_SUCCESS)
-		_options_container.visible = false
+		_hide_options()
 
 		# ── Hitung bonus kecepatan ──
 		var elapsed := (Time.get_ticks_msec() / 1000.0) - _hl_start_times[_current_hl_idx]
 		var bonus := 0
 		if elapsed <= 5.0:
 			bonus = 50
-		elif elapsed <= 15.0:
+		elif elapsed <= 10.0:
 			bonus = 25
+		elif elapsed >= 15.0:
+			bonus = 0
 		_session_correct += 1
 		_session_bonus   += bonus
 		_current_hl_idx   = -1
@@ -591,6 +612,7 @@ func _on_option_pressed(option_idx: int):
 			GameEvents.quiz_points_earned.emit(_session_correct, _session_bonus, _session_wrong)
 			GameEvents.quiz_answered_correct.emit(_quiz_data.world_changes)
 			_tutup_kuis()
+		
 	else:
 		# ── SALAH ──
 		_session_wrong += 1          # Kurangi poin (-10 per kesalahan)
@@ -605,6 +627,9 @@ func _on_option_pressed(option_idx: int):
 			# Reset tombol highlight ke kata semula
 			btn.text = hl.word
 			btn.add_theme_color_override("font_color", C_HL_WORD)
+
+func _force_close():
+	queue_free()
 
 func _on_close_pressed():
 	_tutup_kuis()

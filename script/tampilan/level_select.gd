@@ -23,15 +23,15 @@ func _terapkan_kunci(btn: Button, level: int):
 		btn.text = btn.text.substr(3)
 
 func _on_button_level_1_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Tampilan/level_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/Level/level_1.tscn")
 
 func _on_button_level_2_pressed() -> void:
 	if SaveManager.is_level_unlocked(2):
-		get_tree().change_scene_to_file("res://scenes/Tampilan/level_2.tscn")
+		get_tree().change_scene_to_file("res://scenes/Level/level_2.tscn")
 
 func _on_button_level_3_pressed() -> void:
 	if SaveManager.is_level_unlocked(3):
-		get_tree().change_scene_to_file("res://scenes/Tampilan/level_3.tscn")
+		get_tree().change_scene_to_file("res://scenes/Level/level_3.tscn")
 
 func _on_button_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Tampilan/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")

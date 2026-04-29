@@ -59,7 +59,7 @@ func _pindah_level():
 	# FIX: Jika pakai_winscreen = true (default), SELALU ke menang.tscn
 	# Ini mengatasi masalah target_level_path yang masih menunjuk ke level berikutnya
 	if pakai_winscreen:
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/Tampilan/menang.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/UI/menang.tscn")
 	elif target_level_path != "":
 		get_tree().call_deferred("change_scene_to_file", target_level_path)
 

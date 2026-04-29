@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5oipsur4fh7u"]
 
 [ext_resource type="Script" uid="uid://bloqjmnfc6hvh" path="res://script/tampilan/QuizUI.gd" id="1_e8cok"]
-[ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot (mp3cut.net).mp3" id="2_1ukt7"]
+[ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="2_1ukt7"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="3_ciwco"]
 
 [node name="QuizUI" type="CanvasLayer" unique_id=1969209755 node_paths=PackedStringArray("sfx_benar", "sfx_salah")]

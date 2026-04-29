@@ -111,11 +111,11 @@ func _build_ui():
 
 # ─── Navigasi ─────────────────────────────────────────────────────────────────
 func _ke_menu():
-	get_tree().change_scene_to_file("res://scenes/Tampilan/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
 
 func _retry():
 	var path: String = GameEvents.last_level_path
-	get_tree().change_scene_to_file(path if path != "" else "res://scenes/Tampilan/level_1.tscn")
+	get_tree().change_scene_to_file(path if path != "" else "res://scenes/Level/level_1.tscn")
 
 # ─── Helper UI ────────────────────────────────────────────────────────────────
 func _lbl(parent: Node, text: String, size: int, color: Color):
