@@ -1075,8 +1075,6 @@ texture = ExtResource("1_dll1m")
 skala_min = 0.5
 skala_max = 1.5
 opacity = 0.7
-y_min = -100.0
-y_max = -50.0
 
 [node name="lantai" type="TileMap" parent="Map" unique_id=1840433433]
 texture_filter = 1

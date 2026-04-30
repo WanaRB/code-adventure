@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_bg"]
 [ext_resource type="Script" uid="uid://dkfg5mr5p3m8k" path="res://script/tampilan/credits.gd" id="1_pa2yl"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel"]
-texture = ExtResource("1_bg")
+[ext_resource type="Texture2D" uid="uid://dsgjucy37om26" path="res://assets/image/UI/sound_on.png" id="2_g3j2f"]
+[ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="3_21wcu"]
+[ext_resource type="Texture2D" uid="uid://by7vjjgwhv0bx" path="res://assets/image/UI/sound_off.png" id="3_jq8gn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa2yl"]
 bg_color = Color(0, 0, 0, 0.85882354)
@@ -35,6 +35,9 @@ corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel"]
+texture = ExtResource("1_bg")
+
 [node name="Credits" type="Control" unique_id=100001]
 layout_mode = 3
 anchors_preset = 15
@@ -43,15 +46,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pa2yl")
-
-[node name="BG" type="Panel" parent="." unique_id=100002]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_panel")
+ikon_suara_hidup = ExtResource("2_g3j2f")
+ikon_suara_mati = ExtResource("3_jq8gn")
 
 [node name="Panel" type="Panel" parent="." unique_id=1272808665]
 custom_minimum_size = Vector2(700, 800)
@@ -173,5 +169,22 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "← Kembali"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1267837992]
+layer = -1
+
+[node name="BG" type="Panel" parent="CanvasLayer" unique_id=100002]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_panel")
+
+[node name="BgmMenu" type="AudioStreamPlayer" parent="." unique_id=1832551801]
+unique_name_in_owner = true
+stream = ExtResource("3_21wcu")
+volume_db = -15.0
+parameters/looping = true
 
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/button_back" to="." method="_on_button_back_pressed"]

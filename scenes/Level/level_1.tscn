@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://tnhxql7dkasa" path="res://assets/image/map/GandalfHardcore city tiles 32x32.png" id="2_036b0"]
-[ext_resource type="PackedScene" uid="uid://ndvagnr4jrg8" path="res://scenes/UI/awan_bergerak.tscn" id="2_l8a0l"]
 [ext_resource type="Texture2D" uid="uid://cpwj4apon4fl" path="res://assets/image/map/Building Tiles 32x32.png" id="3_dwbse"]
 [ext_resource type="Texture2D" uid="uid://dugb26t4mw5v" path="res://assets/image/map/Decoration 32x32.png" id="4_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="5_036b0"]
@@ -1070,10 +1069,6 @@ offset_bottom = -416.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_aqk2v")
-
-[node name="AwanBergerak" parent="Map" unique_id=251289810 instance=ExtResource("2_l8a0l")]
-y_min = -200.0
-y_max = -50.0
 
 [node name="lantai" type="TileMap" parent="Map" unique_id=1840433433]
 texture_filter = 1

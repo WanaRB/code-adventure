@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b6jctalht86lb"]
 
 [ext_resource type="Script" uid="uid://dcvb86fugjn2h" path="res://script/tampilan/level_select.gd" id="1_yus8d"]
+[ext_resource type="Texture2D" uid="uid://dsgjucy37om26" path="res://assets/image/UI/sound_on.png" id="2_0ra34"]
 [ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="2_piteb"]
 [ext_resource type="Texture2D" uid="uid://c0w5b8ruj43xj" path="res://assets/image/map/logo.png" id="3_m0u3y"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3tsx"]
-texture = ExtResource("2_piteb")
+[ext_resource type="Texture2D" uid="uid://by7vjjgwhv0bx" path="res://assets/image/UI/sound_off.png" id="3_ty08u"]
+[ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="4_0i6e4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m03y"]
 bg_color = Color(1, 1, 1, 1)
@@ -39,6 +39,9 @@ shadow_offset = Vector2(0, 3.5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m03y"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3tsx"]
+texture = ExtResource("2_piteb")
+
 [node name="MainMenu" type="Control" unique_id=425800775]
 layout_mode = 3
 anchors_preset = 15
@@ -47,15 +50,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yus8d")
+ikon_suara_hidup = ExtResource("2_0ra34")
+ikon_suara_mati = ExtResource("3_ty08u")
 
-[node name="Panel" type="Panel" parent="." unique_id=1794435827]
+[node name="logo" type="TextureRect" parent="." unique_id=1705019265]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -507.0
+offset_top = 65.0
+offset_right = 507.0
+offset_bottom = 179.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_q3tsx")
+texture = ExtResource("3_m0u3y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=632943988]
 layout_mode = 1
@@ -130,17 +138,22 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Back"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1705019265]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -507.0
-offset_top = 65.0
-offset_right = 507.0
-offset_bottom = 179.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=546412063]
+layer = -1
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1794435827]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-texture = ExtResource("3_m0u3y")
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_q3tsx")
+
+[node name="BgmMenu" type="AudioStreamPlayer" parent="." unique_id=447173524]
+unique_name_in_owner = true
+stream = ExtResource("4_0i6e4")
+volume_db = -15.0
+parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/button_level1" to="." method="_on_button_level_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_level2" to="." method="_on_button_level_2_pressed"]

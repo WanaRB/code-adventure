@@ -8,6 +8,8 @@ signal item_collected(points: int)
 signal player_hit(damage_amount: int)
 signal level_won
 signal game_over
+## State suara menu — true = hidup, false = mati. Dibaca semua scene menu.
+var musik_menu_hidup: bool = true
 
 
 var last_level_path: String = ""

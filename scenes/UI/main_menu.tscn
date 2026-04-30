@@ -3,11 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_q3tsx"]
 [ext_resource type="Script" uid="uid://dmt0uib03u6n7" path="res://script/tampilan/main_menu.gd" id="1_u4y5d"]
 [ext_resource type="Texture2D" uid="uid://c0w5b8ruj43xj" path="res://assets/image/map/logo.png" id="2_0m03y"]
+[ext_resource type="Texture2D" uid="uid://dsgjucy37om26" path="res://assets/image/UI/sound_on.png" id="2_mf7fl"]
+[ext_resource type="Texture2D" uid="uid://by7vjjgwhv0bx" path="res://assets/image/UI/sound_off.png" id="3_d6l81"]
+[ext_resource type="Texture2D" uid="uid://dv64mhaq7n67t" path="res://assets/image/backround/Cloud-2.png" id="4_5d4ag"]
 [ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="4_tfcbk"]
 [ext_resource type="PackedScene" uid="uid://ndvagnr4jrg8" path="res://scenes/UI/awan_bergerak.tscn" id="5_e2p27"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3tsx"]
-texture = ExtResource("1_q3tsx")
+[ext_resource type="Texture2D" uid="uid://bnyvka2mc8gga" path="res://assets/image/backround/Cloud-7.png" id="5_um6dh"]
+[ext_resource type="Texture2D" uid="uid://532skyl3c6jr" path="res://assets/image/backround/Cloud-43.png" id="6_mf7fl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m03y"]
 bg_color = Color(1, 1, 1, 1)
@@ -49,30 +51,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u4y5d")
-
-[node name="Panel" type="Panel" parent="." unique_id=1794435827]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_q3tsx")
-
-[node name="AwanBergerak" parent="." unique_id=770557397 instance=ExtResource("5_e2p27")]
-jumlah_awan = 15
-
-[node name="Logo" type="TextureRect" parent="." unique_id=1705019265]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -507.0
-offset_top = 65.0
-offset_right = 507.0
-offset_bottom = 179.0
-grow_horizontal = 2
-texture = ExtResource("2_0m03y")
+ikon_suara_hidup = ExtResource("2_mf7fl")
+ikon_suara_mati = ExtResource("3_d6l81")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=632943988]
 layout_mode = 1
@@ -146,12 +126,45 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Exit"
 
+[node name="Logo" type="TextureRect" parent="." unique_id=1705019265]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -507.0
+offset_top = 65.0
+offset_right = 507.0
+offset_bottom = 179.0
+grow_horizontal = 2
+texture = ExtResource("2_0m03y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=985701240]
+layer = -2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=218923510]
+process_mode = 3
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_q3tsx")
+
 [node name="BgmMenu" type="AudioStreamPlayer" parent="." unique_id=2022316957]
 unique_name_in_owner = true
 stream = ExtResource("4_tfcbk")
 volume_db = -15.0
 autoplay = true
 parameters/looping = true
+
+[node name="AwanBergerak" parent="." unique_id=770557397 instance=ExtResource("5_e2p27")]
+layer = -1
+tekstur_awan = Array[Texture2D]([ExtResource("4_5d4ag"), ExtResource("5_um6dh"), ExtResource("6_mf7fl")])
+jumlah_awan = 3
+kecepatan = 15.0
+skala_min = 3.0
+skala_max = 3.0
 
 [connection signal="pressed" from="VBoxContainer/button_start" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_level" to="." method="_on_button_level_pressed"]

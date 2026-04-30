@@ -2,16 +2,71 @@ extends Control
 
 var _confirm_dialog: Panel = null
 var _is_showing_confirm := false
-
-# Referensi node yang perlu diubah warna
-@onready var _panel: Panel = $Panel
-@onready var _vbox: VBoxContainer = $VBoxContainer
-@onready var bgm_menu: AudioStreamPlayer = %BgmMenu
+@onready var bgm_menu: AudioStreamPlayer = $BgmMenu
+@export var ikon_suara_hidup: Texture2D
+@export var ikon_suara_mati: Texture2D
 
 func _ready() -> void:
-	pass
+	_setup_bgm()
+	_tambah_tombol_suara()
+	
+func _setup_bgm() -> void:
+	var existing := get_tree().root.get_node_or_null("BgmMenu")
+	if existing == null:
+		var bgm := AudioStreamPlayer.new()
+		bgm.name = "BgmMenu"
+		bgm.stream = $BgmMenu.stream
+		bgm.volume_db = $BgmMenu.volume_db
+		bgm.autoplay = true   # ← autoplay saat node masuk tree
+		$BgmMenu.queue_free()
+		# Deferred karena root sedang busy saat _ready()
+		get_tree().root.call_deferred("add_child", bgm)
+	else:
+		if has_node("BgmMenu"):
+			$BgmMenu.queue_free()
+		if GameEvents.musik_menu_hidup and not existing.playing:
+			existing.play()
+		elif not GameEvents.musik_menu_hidup:
+			existing.stop()
+			
+func _tambah_tombol_suara() -> void:
+	var btn := TextureButton.new()
+	btn.name = "TombolSuara"
+# Sesuaikan ikon dengan state saat ini (mungkin sudah diubah di scene lain)
+	var ikon := ikon_suara_hidup if GameEvents.musik_menu_hidup else ikon_suara_mati
+	btn.texture_normal  = ikon
+	btn.texture_pressed = ikon
+	btn.texture_hover   = ikon
+	btn.ignore_texture_size = true
+	btn.custom_minimum_size = Vector2(80, 80)
+	btn.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+	btn.focus_mode = Control.FOCUS_NONE
+	btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
+	# Anchor ke pojok kanan bawah
+	btn.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	btn.offset_left  = -120.0
+	btn.offset_top   = -150.0
+	btn.offset_right = -40.0
+	btn.offset_bottom = -70.0
 
+	btn.pressed.connect(func(): _toggle_suara(btn))
+	add_child(btn)
+
+func _toggle_suara(btn: TextureButton) -> void:
+	GameEvents.musik_menu_hidup = not GameEvents.musik_menu_hidup
+	var bgm := get_tree().root.get_node_or_null("BgmMenu")
+	if GameEvents.musik_menu_hidup:
+		if bgm: bgm.play()
+		btn.texture_normal  = ikon_suara_hidup
+		btn.texture_pressed = ikon_suara_hidup
+		btn.texture_hover   = ikon_suara_hidup
+	else:
+		if bgm: bgm.stop()
+		btn.texture_normal  = ikon_suara_mati
+		btn.texture_pressed = ikon_suara_mati
+		btn.texture_hover   = ikon_suara_mati
+		
 func _on_button_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Level/level_1.tscn")
 
