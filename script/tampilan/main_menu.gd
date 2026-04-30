@@ -67,7 +67,12 @@ func _toggle_suara(btn: TextureButton) -> void:
 		btn.texture_pressed = ikon_suara_mati
 		btn.texture_hover   = ikon_suara_mati
 		
+func _stop_bgm() -> void:
+	var bgm := get_tree().root.get_node_or_null("BgmMenu")
+	if bgm: bgm.stop()
+	
 func _on_button_start_pressed() -> void:
+	_stop_bgm()
 	get_tree().change_scene_to_file("res://scenes/Level/level_1.tscn")
 
 func _on_button_level_pressed() -> void:

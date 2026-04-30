@@ -41,6 +41,10 @@ func _toggle_suara(btn: TextureButton) -> void:
 		btn.texture_pressed = ikon_suara_mati
 		btn.texture_hover   = ikon_suara_mati
 
+func _stop_bgm() -> void:
+	var bgm := get_tree().root.get_node_or_null("BgmMenu")
+	if bgm: bgm.stop()
+	
 func _update_kunci():
 	# Temukan tombol berdasarkan nama fungsi sinyal pressed-nya
 	for btn in find_children("*", "Button", true, false):
@@ -61,13 +65,16 @@ func _terapkan_kunci(btn: Button, level: int):
 		btn.text = btn.text.substr(3)
 
 func _on_button_level_1_pressed() -> void:
+	_stop_bgm()
 	get_tree().change_scene_to_file("res://scenes/Level/level_1.tscn")
 
 func _on_button_level_2_pressed() -> void:
+	_stop_bgm()
 	if SaveManager.is_level_unlocked(2):
 		get_tree().change_scene_to_file("res://scenes/Level/level_2.tscn")
 
 func _on_button_level_3_pressed() -> void:
+	_stop_bgm()
 	if SaveManager.is_level_unlocked(3):
 		get_tree().change_scene_to_file("res://scenes/Level/level_3.tscn")
 

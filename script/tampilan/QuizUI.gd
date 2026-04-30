@@ -49,7 +49,7 @@ const C_WRONG       := Color("#f38ba8")
 
 # ─── State ────────────────────────────────────────────────────────────────────
 var _quiz_data: QuizResource = null
-var _current_door_id: int = 1          # Tidak lagi dipakai langsung, tapi disimpan
+var _current_door_id: int = 1        
 
 var _highlight_buttons: Array[Button] = []
 var _highlight_correct: Array[bool] = []

@@ -70,7 +70,6 @@ func _init_awan() -> void:
 	_mulai_spawn()
 
 func _mulai_spawn() -> void:
-	add_to_group("awan_bergerak")  # ← tambah ini jika masuk sini langsung tanpa reparent
 	if _sudah_init:
 		return
 	_sudah_init = true
@@ -82,6 +81,7 @@ func _mulai_spawn() -> void:
 		ketinggian_bawah = ketinggian_atas + 100.0
 
 	_spawn_semua()
+	get_tree().tree_changed.connect(_update_visibility)
 
 func _spawn_semua() -> void:
 	for i in jumlah_awan:
@@ -141,3 +141,17 @@ func _cari_y_tidak_menggumpal(skip_index: int) -> float:
 			return y
 	# Kalau tetap tidak ketemu, kembalikan Y acak biasa
 	return randf_range(ketinggian_atas, ketinggian_bawah)
+
+## Sembunyikan awan jika scene aktif bukan scene menu.
+## Awan hanya tampil di main_menu, level_select, dan credits.
+func _update_visibility() -> void:
+	var scene := get_tree().current_scene
+	if scene == null:
+		return
+	var path := scene.scene_file_path
+	var adalah_menu := (
+		"main_menu" in path or
+		"level_select" in path or
+		"credits" in path
+	)
+	visible = adalah_menu

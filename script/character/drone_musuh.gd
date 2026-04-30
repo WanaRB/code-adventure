@@ -56,6 +56,7 @@ func _on_quiz_solved(world_changes: Array):
 			# Total delay ≈ DURATION_PAN_TO + DELAY_BEFORE_EFFECT dari CameraDirector
 			var delay := CameraDirector.DURATION_PAN_TO + CameraDirector.DELAY_BEFORE_EFFECT
 			await get_tree().create_timer(delay).timeout
+			if not is_inside_tree(): return
 			_become_friendly()
 
 func _become_friendly():

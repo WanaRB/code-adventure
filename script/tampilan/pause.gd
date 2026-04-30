@@ -8,9 +8,8 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var esc_pressed = Input.is_action_just_pressed("pause")
-	if (esc_pressed == true):
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
 		get_tree().paused = true
 		pause_panel.show()
 

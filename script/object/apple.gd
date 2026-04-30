@@ -3,7 +3,7 @@ extends Area2D
 @onready var sfx: AudioStreamPlayer = $AudioStreamPlayer
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "jikri":
+	if body.is_in_group("player"):
 		# Emit sinyal item_collected dengan nilai 10 poin
 		GameEvents.item_collected.emit(10)
 		sfx.play()

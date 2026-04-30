@@ -40,14 +40,14 @@ func handle_movement():
 		_bisa_double_jump = true  # reset saat menyentuh tanah
 
 	if Input.is_action_just_pressed("lompat"):
-		if sfx_lompat != null:
-			sfx_lompat.play()
 		if is_on_floor():
+			sfx_lompat.play()   # ← pindah ke sini
 			velocity.y = JUMP_VELOCITY
 		elif _bisa_double_jump:
+			sfx_lompat.play()   # ← dan ke sini
 			velocity.y = JUMP_VELOCITY
 			_bisa_double_jump = false
-			sprite.play("double_jump")  # ganti nama sesuai animasi di AnimatedSprite2D kamu
+			sprite.play("double_jump")
 
 	var direction := Input.get_axis("kiri", "kanan")
 	if direction:

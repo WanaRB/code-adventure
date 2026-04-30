@@ -47,8 +47,6 @@ const C_BTN_LANJUT:= Color("#a6e3a1")              ## Warna border tombol Level 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	var scene_path := get_tree().current_scene.scene_file_path
-	if "menang" not in scene_path:
-		return   # Script ini ada di LoseScreen juga — keluar jika bukan winscreen
 
 	_build_ui()
 
