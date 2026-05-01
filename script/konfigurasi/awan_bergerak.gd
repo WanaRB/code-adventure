@@ -145,6 +145,8 @@ func _cari_y_tidak_menggumpal(skip_index: int) -> float:
 ## Sembunyikan awan jika scene aktif bukan scene menu.
 ## Awan hanya tampil di main_menu, level_select, dan credits.
 func _update_visibility() -> void:
+	if not is_inside_tree():  # ← tambah ini
+		return
 	var scene := get_tree().current_scene
 	if scene == null:
 		return
@@ -155,3 +157,7 @@ func _update_visibility() -> void:
 		"credits" in path
 	)
 	visible = adalah_menu
+
+func _exit_tree() -> void:
+	if get_tree().tree_changed.is_connected(_update_visibility):
+		get_tree().tree_changed.disconnect(_update_visibility)
