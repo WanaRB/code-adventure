@@ -169,3 +169,4 @@ skala_max = 3.0
 [connection signal="pressed" from="VBoxContainer/button_start" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_level" to="." method="_on_button_level_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_credit" to="." method="_on_button_credit_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_exit" to="." method="_on_button_exit_pressed"]

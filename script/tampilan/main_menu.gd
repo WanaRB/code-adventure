@@ -153,7 +153,7 @@ func _show_exit_confirm() -> void:
 		if OS.has_feature("web"):
 		# window.close() hanya works jika tab dibuka via script atau user klik link
 		# Fallback: redirect ke blank jika close gagal
-			JavaScriptBridge.eval("window.close(); setTimeout(function(){ window.location.href='about:blank'; }, 300);")
+			JavaScriptBridge.eval("window.location.href = 'https://code-adventure-gamma.vercel.app';")
 		else:
 			get_tree().quit()
 	)
