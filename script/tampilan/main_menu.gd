@@ -151,7 +151,9 @@ func _show_exit_confirm() -> void:
 		dim.queue_free()
 		_is_showing_confirm = false
 		if OS.has_feature("web"):
-			JavaScriptBridge.eval("window.location.href = 'about:blank';")
+		# window.close() hanya works jika tab dibuka via script atau user klik link
+		# Fallback: redirect ke blank jika close gagal
+			JavaScriptBridge.eval("window.close(); setTimeout(function(){ window.location.href='about:blank'; }, 300);")
 		else:
 			get_tree().quit()
 	)
