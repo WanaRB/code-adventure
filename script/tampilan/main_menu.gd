@@ -153,7 +153,7 @@ func _show_exit_confirm() -> void:
 		if OS.has_feature("web"):
 		# window.close() hanya works jika tab dibuka via script atau user klik link
 		# Fallback: redirect ke blank jika close gagal
-			JavaScriptBridge.eval("window.location.reload();")
+			JavaScriptBridge.eval("document.body.innerHTML = '<div style=\"display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:24px;color:#555\">Terima kasih sudah bermain! Kamu bisa menutup tab ini.</div>';")
 		else:
 			get_tree().quit()
 	)
