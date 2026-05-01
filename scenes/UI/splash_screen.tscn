@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://yss112lmvwwt"]
+
+[ext_resource type="Script" uid="uid://crco5fgehaj6d" path="res://splash_screen.gd" id="1_mcudr"]
+
+[node name="SplashScreen" type="Control" unique_id=1168833042]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mcudr")

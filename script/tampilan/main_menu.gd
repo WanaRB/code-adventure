@@ -17,10 +17,10 @@ func _setup_bgm() -> void:
 		bgm.name = "BgmMenu"
 		bgm.stream = $BgmMenu.stream
 		bgm.volume_db = $BgmMenu.volume_db
-		bgm.autoplay = true   # ← autoplay saat node masuk tree
 		$BgmMenu.queue_free()
-		# Deferred karena root sedang busy saat _ready()
 		get_tree().root.call_deferred("add_child", bgm)
+		# Play setelah masuk tree — aman karena interaksi sudah terjadi di splash screen
+		bgm.call_deferred("play")
 	else:
 		if has_node("BgmMenu"):
 			$BgmMenu.queue_free()
