@@ -1,5 +1,7 @@
 extends Node
 
+var sudah_lewat_splash: bool = false
+
 signal quiz_opened
 signal quiz_closed
 signal quiz_answered_correct(world_changes: Array)
