@@ -13,12 +13,14 @@ extends Control
 # ─── State Internal ───────────────────────────────────────────────────────────
 var _sudah_klik := false       # true setelah user klik splash screen
 var _label_klik: Label = null  # referensi label "Klik to Play"
+var _tween_kedip: Tween = null
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	_setup_bgm()
 	_tambah_tombol_suara()
 	_setup_splash()
+	SaveManager.reset()  # ← tambah sementara, hapus setelah test
 
 # ─── BGM ──────────────────────────────────────────────────────────────────────
 ## Buat node BgmMenu persistent di root agar musik tidak restart saat ganti scene.
@@ -100,23 +102,9 @@ func _setup_splash() -> void:
 	# Sembunyikan tombol ke bawah layar
 	vbox.modulate.a = 0.0
 	vbox.position.y += 600.0
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE  # ← nonaktifkan klik saat splash
 
-	# Label "Klik to Play" berkedip di tengah
-	_label_klik = Label.new()
-	_label_klik.text = "Tekan untuk Bermain"
-	_label_klik.add_theme_font_size_override("font_size", 60)
-	_label_klik.add_theme_color_override("font_color", Color(1, 1, 1, 1))
-	_label_klik.set_anchors_preset(Control.PRESET_CENTER)
-	_label_klik.custom_minimum_size = Vector2(600, 60)  # lebar cukup agar teks tidak terpotong
-	_label_klik.offset_left = -300.0  # setengah dari lebar agar benar-benar tengah
-	_label_klik.offset_top  = -40.0    # geser ke bawah dari tengah — ubah angka ini untuk naik/turun
-	_label_klik.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER # geser ke bawah logo — sesuaikan jika perlu
-	add_child(_label_klik)
-
-	# Animasi kedip
-	var tween := create_tween().set_loops()
-	tween.tween_property(_label_klik, "modulate:a", 0.1, 1)
-	tween.tween_property(_label_klik, "modulate:a", 1.0, 1)
+	_munculkan_label_splash()
 
 ## Deteksi klik pertama untuk memulai animasi masuk tombol.
 func _input(event: InputEvent) -> void:
@@ -136,10 +124,12 @@ func _input(event: InputEvent) -> void:
 ## Animasi tombol naik dari bawah ke posisi normal setelah splash diklik.
 func _animasi_masuk() -> void:
 	GameEvents.sudah_lewat_splash = true
-
+	if _tween_kedip:
+		_tween_kedip.kill()
+		_tween_kedip = null
 	# Hilangkan label "Klik to Play"
 	var tw_label := create_tween()
-	tw_label.tween_property(_label_klik, "modulate:a", 0.0, 0.3)
+	tw_label.tween_property(_label_klik, "modulate:a", 0.0, 0.1)
 	tw_label.tween_callback(_label_klik.queue_free)
 
 	# Tombol naik dari bawah ke posisi asli
@@ -147,8 +137,9 @@ func _animasi_masuk() -> void:
 	var tw_vbox := create_tween()
 	tw_vbox.set_ease(Tween.EASE_OUT)
 	tw_vbox.set_trans(Tween.TRANS_BACK)  # efek bouncy saat tiba
-	tw_vbox.tween_property(vbox, "modulate:a", 1.0, 0.4)           # 0.4 = kecepatan fade in
-	tw_vbox.parallel().tween_property(vbox, "position:y", vbox.position.y - 600.0, 0.5)  # 0.5 = kecepatan naik
+	tw_vbox.tween_property(vbox, "modulate:a", 1.0, 0.5)           # 0.4 = kecepatan fade in
+	tw_vbox.parallel().tween_property(vbox, "position:y", vbox.position.y - 600.0, 0.7)  # 0.5 = kecepatan naik
+	tw_vbox.tween_callback(func(): vbox.mouse_filter = Control.MOUSE_FILTER_STOP)  # ← tambah ini
 
 # ─── Navigasi Tombol ──────────────────────────────────────────────────────────
 func _on_button_start_pressed() -> void:
@@ -172,19 +163,21 @@ func _on_button_exit_pressed() -> void:
 	tw.set_trans(Tween.TRANS_BACK)
 	tw.tween_property(vbox, "modulate:a", 0.0, 0.3)
 	tw.parallel().tween_property(vbox, "position:y", vbox.position.y + 600.0, 0.4)
+	# Tunggu animasi turun selesai, baru munculkan label
+	tw.tween_callback(_munculkan_label_splash)
 
-	# Munculkan kembali label "Klik to Play"
+func _munculkan_label_splash() -> void:
 	_label_klik = Label.new()
 	_label_klik.text = "Tekan untuk Bermain"
 	_label_klik.add_theme_font_size_override("font_size", 60)
 	_label_klik.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
 	_label_klik.set_anchors_preset(Control.PRESET_CENTER)
-	_label_klik.custom_minimum_size = Vector2(600, 60)  # lebar cukup agar teks tidak terpotong
-	_label_klik.offset_left = -300.0  # setengah dari lebar agar benar-benar tengah
-	_label_klik.offset_top  = -40.0    # geser ke bawah dari tengah — ubah angka ini untuk naik/turun
+	_label_klik.custom_minimum_size = Vector2(600, 60)
+	_label_klik.offset_left = -300.0
+	_label_klik.offset_top  = -40.0
 	_label_klik.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add_child(_label_klik)
 
-	var tw_label := create_tween().set_loops()
-	tw_label.tween_property(_label_klik, "modulate:a", 0.1, 0.8)
-	tw_label.tween_property(_label_klik, "modulate:a", 1.0, 0.8)
+	_tween_kedip = create_tween().set_loops()
+	_tween_kedip.tween_property(_label_klik, "modulate:a", 0.1, 0.8)
+	_tween_kedip.tween_property(_label_klik, "modulate:a", 1.0, 0.8)

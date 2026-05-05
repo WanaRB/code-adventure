@@ -13,5 +13,6 @@ class_name HighlightQuestion
 # 3 pilihan jawaban yang muncul saat kata diklik
 @export var options: Array[String] = ["", "", ""]
 
-# Index jawaban benar (0, 1, atau 2)
+## CATATAN: Field ini tidak dipakai sistem varian baru (QuizVariant).
+## Boleh diisi bebas atau dikosongkan. Tidak berpengaruh ke gameplay.
 @export var correct_index: int = 0

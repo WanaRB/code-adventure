@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cupijubbntjt2"]
+
+[ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://script/konfigurasi/hud_manager.gd" id="1_lve2x"]
+[ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="2_n3ifr"]
+
+[node name="game_manager" type="Node" unique_id=62453360]
+script = ExtResource("1_lve2x")
+
+[node name="HitSfx" type="AudioStreamPlayer" parent="." unique_id=557932139]
+unique_name_in_owner = true
+stream = ExtResource("2_n3ifr")

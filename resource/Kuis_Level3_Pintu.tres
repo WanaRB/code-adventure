@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://clhvd0lbuveym"]
+
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_yqfw1"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_jibhq"]
+[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_tdvhn"]
+
+[sub_resource type="Resource" id="Resource_cvjqn"]
+script = ExtResource("1_yqfw1")
+line = 3
+word = "manual"
+options = Array[String](["auto", "remote", "manual"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_3xgih"]
+script = ExtResource("1_yqfw1")
+line = 4
+word = "True"
+options = Array[String](["False", "None", "True"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[resource]
+script = ExtResource("2_jibhq")
+code_lines = Array[String](["# Ambil alih navigasi drone!", "# Nonaktifkan sistem keamanan:", "", "drone.mode = \"manual\"", "drone.security_enabled = True"])
+highlights = Array[ExtResource("1_yqfw1")]([SubResource("Resource_cvjqn"), SubResource("Resource_3xgih")])
+metadata/_custom_type_script = "uid://xogopct8jm5a"

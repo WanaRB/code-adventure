@@ -27,7 +27,7 @@ func _ready():
 func _on_quiz_solved(world_changes: Array):
 	for entry: WorldChangeEntry in world_changes:
 		if entry.action == WorldChangeEntry.ActionType.OPEN_DOOR and entry.door_id == door_id:
-			CameraDirector.queue_cinematic(global_position, _buka_pintu, Callable())
+			CameraDirector.queue_cinematic(global_position, _buka_pintu, Callable(), 0.6)
 			break
 
 func _buka_pintu():
@@ -67,4 +67,6 @@ func _nomor_level_dari_path(path: String) -> int:
 	if "level_1" in path: return 1
 	if "level_2" in path: return 2
 	if "level_3" in path: return 3
+	if "level_4" in path: return 4  
+	if "level_5" in path: return 5 
 	return 0

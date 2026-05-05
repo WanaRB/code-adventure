@@ -72,10 +72,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -167.09375
-offset_top = -177.55966
-offset_right = 165.0
-offset_bottom = 175.33484
+offset_left = -166.04688
+offset_top = -234.77983
+offset_right = 166.04688
+offset_bottom = 234.77983
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -124,6 +124,36 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Level 3
 "
 
+[node name="button_level4" type="Button" parent="VBoxContainer" unique_id=1738678051]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Level 4
+"
+
+[node name="button_level5" type="Button" parent="VBoxContainer" unique_id=2060802950]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Level 5
+"
+
 [node name="button_back" type="Button" parent="VBoxContainer" unique_id=309902070]
 texture_filter = 1
 layout_mode = 2
@@ -158,4 +188,6 @@ parameters/looping = true
 [connection signal="pressed" from="VBoxContainer/button_level1" to="." method="_on_button_level_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_level2" to="." method="_on_button_level_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_level3" to="." method="_on_button_level_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_level4" to="." method="_on_button_level_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_level5" to="." method="_on_button_level_5_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_back" to="." method="_on_button_back_pressed"]

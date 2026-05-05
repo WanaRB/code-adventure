@@ -1,5 +1,5 @@
 extends Node
-@onready var bmg_menang: AudioStreamPlayer = %BmgMenang
+@onready var bgm_menang: AudioStreamPlayer = %BgmMenang
 
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║                    KONFIGURASI TAMPILAN WIN SCREEN                         ║
@@ -46,8 +46,6 @@ const C_BTN_LANJUT:= Color("#a6e3a1")              ## Warna border tombol Level 
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready() -> void:
-	var scene_path := get_tree().current_scene.scene_file_path
-
 	_build_ui()
 
 func _build_ui():
@@ -135,7 +133,7 @@ func _build_ui():
 	btn_ulangi.pressed.connect(_ulangi)
 	btn_row.add_child(btn_ulangi)
 
-	if level < 3:
+	if level < 5:
 		var btn_lanjut := _btn("▶  Lanjut", C_BTN_LANJUT)
 		btn_lanjut.pressed.connect(_ke_level_selanjutnya)
 		btn_row.add_child(btn_lanjut)
@@ -152,9 +150,14 @@ func _ke_level_selanjutnya():
 	match _get_level():
 		1: get_tree().change_scene_to_file("res://scenes/Level/level_2.tscn")
 		2: get_tree().change_scene_to_file("res://scenes/Level/level_3.tscn")
+		3: get_tree().change_scene_to_file("res://scenes/Level/level_4.tscn")
+		4: get_tree().change_scene_to_file("res://scenes/Level/level_5.tscn")
+		
 
 func _get_level() -> int:
 	var path: String = GameEvents.last_level_path
+	if "level_5" in path: return 5
+	if "level_4" in path: return 4
 	if "level_3" in path: return 3
 	if "level_2" in path: return 2
 	return 1

@@ -78,5 +78,15 @@ func _on_button_level_3_pressed() -> void:
 	if SaveManager.is_level_unlocked(3):
 		get_tree().change_scene_to_file("res://scenes/Level/level_3.tscn")
 
+func _on_button_level_4_pressed() -> void:
+	_stop_bgm()
+	if SaveManager.is_level_unlocked(4):
+		get_tree().change_scene_to_file("res://scenes/Level/level_4.tscn")
+
+func _on_button_level_5_pressed() -> void:
+	_stop_bgm()
+	if SaveManager.is_level_unlocked(5):
+		get_tree().change_scene_to_file("res://scenes/Level/level_5.tscn")
+		
 func _on_button_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")

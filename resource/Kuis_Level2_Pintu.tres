@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://3gvkrps24iiu"]
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://b36c7pnjwot2f"]
 
 [ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_2msv3"]
 [ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="1_asyvg"]
@@ -8,29 +8,29 @@
 
 [sub_resource type="Resource" id="Resource_dmg7l"]
 script = ExtResource("1_2msv3")
-line = 2
-word = "true"
-options = Array[String](["\"true\"", "false", "null"])
+line = 4
+word = "false"
+options = Array[String](["true", "\"false\"", "null"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
-[sub_resource type="Resource" id="Resource_rgh7d"]
+[sub_resource type="Resource" id="Resource_1e1j3"]
 script = ExtResource("4_dmg7l")
-teks = "false"
+teks = "true"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
-[sub_resource type="Resource" id="Resource_bvstn"]
+[sub_resource type="Resource" id="Resource_d54hl"]
 script = ExtResource("5_ta4ex")
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
-[sub_resource type="Resource" id="Resource_v6vwi"]
+[sub_resource type="Resource" id="Resource_7iclq"]
 script = ExtResource("3_2msv3")
-required_answers = Array[ExtResource("4_dmg7l")]([SubResource("Resource_rgh7d")])
-world_changes = Array[ExtResource("5_ta4ex")]([SubResource("Resource_bvstn")])
+required_answers = Array[ExtResource("4_dmg7l")]([SubResource("Resource_1e1j3")])
+world_changes = Array[ExtResource("5_ta4ex")]([SubResource("Resource_d54hl")])
 metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("1_asyvg")
-code_lines = Array[String](["# Sistem keamanan gedung", "def cek_akses(kartu_id):", "       pintu_terkunci = true", "      if kartu_id == \"ADMIN\":", "            pintu_terkunci = False", "      return pintu_terkunci"])
+code_lines = Array[String](["# Modul autentikasi", "def is_authorized(level_akses):", "     batas_minimum = 5", "     if level_akses >= batas_minimum:", "          return false", "     return True"])
 highlights = Array[ExtResource("1_2msv3")]([SubResource("Resource_dmg7l")])
-variants = Array[ExtResource("3_2msv3")]([SubResource("Resource_v6vwi")])
+variants = Array[ExtResource("3_2msv3")]([SubResource("Resource_7iclq")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

@@ -1,65 +1,65 @@
-[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://b6nsdt3jidwur"]
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://dwgswhh1684s0"]
 
-[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_e5g2f"]
-[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_bqg3y"]
-[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="3_bqb84"]
-[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_bqg3y"]
-[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_bqb84"]
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_lfm1x"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_ogi0v"]
+[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_k2uv4"]
+[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_gpbct"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_6urst"]
 
 [sub_resource type="Resource" id="Resource_dmg7l"]
-script = ExtResource("1_e5g2f")
+script = ExtResource("1_lfm1x")
 line = 2
 word = "false"
 options = Array[String](["true", "\"false\"", "null"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_bqg3y"]
-script = ExtResource("1_e5g2f")
+script = ExtResource("1_lfm1x")
 line = 3
 word = "\"vertikal\""
 options = Array[String](["horizontal", "vertikal", "\"vertikal\""])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_bqb84"]
-script = ExtResource("4_bqb84")
+script = ExtResource("4_gpbct")
 teks = "true"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_lsale"]
-script = ExtResource("4_bqb84")
+script = ExtResource("4_gpbct")
 highlight_index = 1
 teks = "horizontal"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_jg361"]
-script = ExtResource("3_bqb84")
-platform_jarak = 200.0
+script = ExtResource("5_6urst")
+platform_jarak = 500.0
 platform_kecepatan = 100.0
 action = 2
 platform_id = 2
-platform_direction = 2
+platform_direction = 3
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [sub_resource type="Resource" id="Resource_h7uqh"]
-script = ExtResource("3_bqg3y")
-required_answers = Array[ExtResource("4_bqb84")]([SubResource("Resource_bqb84"), SubResource("Resource_lsale")])
-world_changes = Array[ExtResource("3_bqb84")]([SubResource("Resource_jg361")])
+script = ExtResource("3_k2uv4")
+required_answers = Array[ExtResource("4_gpbct")]([SubResource("Resource_bqb84"), SubResource("Resource_lsale")])
+world_changes = Array[ExtResource("5_6urst")]([SubResource("Resource_jg361")])
 metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [sub_resource type="Resource" id="Resource_d0ykb"]
-script = ExtResource("4_bqb84")
+script = ExtResource("4_gpbct")
 teks = "true"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_i3q3w"]
-script = ExtResource("4_bqb84")
+script = ExtResource("4_gpbct")
 highlight_index = 1
 teks = "vertikal"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_bw5q7"]
-script = ExtResource("3_bqb84")
-platform_jarak = 150.0
+script = ExtResource("5_6urst")
+platform_jarak = 650.0
 platform_kecepatan = 100.0
 action = 2
 platform_id = 2
@@ -67,14 +67,14 @@ platform_direction = 1
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [sub_resource type="Resource" id="Resource_y8dm0"]
-script = ExtResource("3_bqg3y")
-required_answers = Array[ExtResource("4_bqb84")]([SubResource("Resource_d0ykb"), SubResource("Resource_i3q3w")])
-world_changes = Array[ExtResource("3_bqb84")]([SubResource("Resource_bw5q7")])
+script = ExtResource("3_k2uv4")
+required_answers = Array[ExtResource("4_gpbct")]([SubResource("Resource_d0ykb"), SubResource("Resource_i3q3w")])
+world_changes = Array[ExtResource("5_6urst")]([SubResource("Resource_bw5q7")])
 metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
-script = ExtResource("2_bqg3y")
+script = ExtResource("2_ogi0v")
 code_lines = Array[String](["# Sistem kontrol platform", "def inisialisasi_platform(platform_id):", "     aktif = false", "     arah = \"vertikal\"", "     kecepatan = 100", "     platform_id.mulai(aktif, arah, kecepatan)"])
-highlights = Array[ExtResource("1_e5g2f")]([SubResource("Resource_dmg7l"), SubResource("Resource_bqg3y")])
-variants = Array[ExtResource("3_bqg3y")]([SubResource("Resource_h7uqh"), SubResource("Resource_y8dm0")])
+highlights = Array[ExtResource("1_lfm1x")]([SubResource("Resource_dmg7l"), SubResource("Resource_bqg3y")])
+variants = Array[ExtResource("3_k2uv4")]([SubResource("Resource_h7uqh"), SubResource("Resource_y8dm0")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

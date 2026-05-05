@@ -3,7 +3,7 @@ extends Node
 const DURATION_PAN_TO     := 0.55
 const DURATION_PAN_BACK   := 0.65
 const DELAY_BEFORE_EFFECT := 0.3
-const DELAY_AFTER_EFFECT  := 0.5
+const DELAY_AFTER_EFFECT  := 2
 
 var _camera: Camera2D = null
 var _is_busy := false
@@ -15,11 +15,12 @@ func _ready():
 func register_camera(cam: Camera2D):
 	_camera = cam
 
-func queue_cinematic(target_position: Vector2, callback_before: Callable, callback_after: Callable = Callable()):
+func queue_cinematic(target_position: Vector2, callback_before: Callable, callback_after: Callable = Callable(), delay_after: float = DELAY_AFTER_EFFECT):
 	_event_queue.append({
-		"target": target_position,
-		"before": callback_before,
-		"after": callback_after,
+		"target":  target_position,
+		"before":  callback_before,
+		"after":   callback_after,
+		"delay_after": delay_after,  # ← tambah
 	})
 	if not _is_busy:
 		_process_next()
@@ -30,9 +31,9 @@ func _process_next():
 		return
 	_is_busy = true
 	var event: Dictionary = _event_queue.pop_front()
-	_run_cinematic(event["target"], event["before"], event["after"])
+	_run_cinematic(event["target"], event["before"], event["after"], event["delay_after"])
 
-func _run_cinematic(target_pos: Vector2, cb_before: Callable, cb_after: Callable):
+func _run_cinematic(target_pos: Vector2, cb_before: Callable, cb_after: Callable, delay_after: float):
 	if _camera == null:
 		if cb_before.is_valid(): cb_before.call()
 		if cb_after.is_valid():  cb_after.call()
@@ -73,7 +74,7 @@ func _run_cinematic(target_pos: Vector2, cb_before: Callable, cb_after: Callable
 	if cb_before.is_valid():
 		cb_before.call()
 
-	await get_tree().create_timer(DELAY_AFTER_EFFECT, true).timeout
+	await get_tree().create_timer(delay_after, true).timeout
 
 	var tween_back := create_tween()
 	tween_back.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)

@@ -81,7 +81,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
-text = "Start"
+text = "New Game"
 
 [node name="button_level" type="Button" parent="VBoxContainer" unique_id=64181867]
 texture_filter = 1
@@ -95,7 +95,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
-text = "Level"
+text = "Level Select"
 
 [node name="button_credit" type="Button" parent="VBoxContainer" unique_id=155398629]
 texture_filter = 1

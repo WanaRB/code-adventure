@@ -22,12 +22,11 @@ class_name QuizResource
 ##      options (3 pilihan jawaban), correct_index (0/1/2)
 @export var highlights: Array[HighlightQuestion] = []
 
-# ─── Perubahan Dunia ──────────────────────────────────────────────────────────
-## Aksi yang dijalankan ketika SEMUA highlight dijawab benar.
+# ─── Variasi Jawaban ──────────────────────────────────────────────────────────
+## Tiap variant = 1 kombinasi jawaban + perubahan dunia yang dipicu.
 ## Cara isi di Inspector:
-##   1. Klik tanda [+] pada array "World Changes"
-##   2. Pilih "New WorldChangeEntry"
-##   3. Pilih "Action" dari dropdown (OPEN_DOOR, CONVERT_DRONES, dll)
-##   4. Isi parameter tambahan jika perlu (misal Door Id untuk OPEN_DOOR)
-##   5. Tambah lebih dari 1 entry untuk efek berganda
-@export var world_changes: Array[WorldChangeEntry] = []
+##   1. Klik [+] pada array "Variants"
+##   2. Pilih "New QuizVariant"
+##   3. Isi required_answers: key = index highlight (angka), value = teks jawaban
+##   4. Isi world_changes seperti biasa
+@export var variants: Array[QuizVariant] = []

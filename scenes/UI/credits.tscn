@@ -91,7 +91,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_font_sizes/font_size = 22
-text = "Game Edukasi Pemrograman"
+text = "2D puzzle-platformer"
 horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100007]
@@ -110,7 +110,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "Game Design & Development
-Jikri — Lead Developer
+Dewana Ruby Bismika — Lead Developer
+g
 
 Art & Assets
 City Tileset oleh GandalfHardcore (itch.io)

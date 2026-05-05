@@ -26,6 +26,12 @@ enum ActionType {
 	# ── Tambah aksi baru di sini ──────────────────────────────────────────────
 }
 
+## [MOVE_PLATFORM] Jarak pergerakan (pixel). 0 = pakai nilai default di Inspector platform.
+@export var platform_jarak: float = 0.0
+
+## [MOVE_PLATFORM] Kecepatan pergerakan (pixel/detik). 0 = pakai nilai default di Inspector platform.
+@export var platform_kecepatan: float = 0.0
+
 ## Pilih aksi yang akan terjadi ketika soal dijawab benar.
 @export var action: ActionType = ActionType.OPEN_DOOR
 
@@ -35,3 +41,7 @@ enum ActionType {
 
 ## [MOVE_PLATFORM] ID platform yang akan digerakkan. Cocokkan dengan 'platform_id'.
 @export var platform_id: int = 1
+
+## [MOVE_PLATFORM] Arah gerakan platform.
+## 0 = Kiri-Kanan, 1 = Kanan-Kiri, 2 = Bawah-Atas, 3 = Atas-Bawah
+@export var platform_direction: int = 0

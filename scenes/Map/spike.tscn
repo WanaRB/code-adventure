@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bjnclj2trf24u" path="res://script/object/spike.gd" id="1_se7t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ol6w"]
-size = Vector2(40, 48)
+size = Vector2(220, 40)
 
 [node name="spike" type="Area2D" unique_id=811342459]
 collision_layer = 0
@@ -13,12 +13,75 @@ script = ExtResource("1_se7t7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1553840373]
 texture_filter = 1
+position = Vector2(-100, -27.999998)
 scale = Vector2(7, 7)
 texture = ExtResource("1_1ol6w")
 region_enabled = true
 region_rect = Rect2(7.353245, 8, 8.646755, 8)
 region_filter_clip_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=971841765]
+texture_filter = 1
+position = Vector2(-100, -27.999998)
+scale = Vector2(7, 7)
+texture = ExtResource("1_1ol6w")
+region_enabled = true
+region_rect = Rect2(7.353245, 8, 8.646755, 8)
+region_filter_clip_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=321208366]
+texture_filter = 1
+position = Vector2(-60, -27.999998)
+scale = Vector2(7, 7)
+texture = ExtResource("1_1ol6w")
+region_enabled = true
+region_rect = Rect2(7.353245, 8, 8.646755, 8)
+region_filter_clip_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1887428742]
+texture_filter = 1
+position = Vector2(-20, -27.999998)
+scale = Vector2(7, 7)
+texture = ExtResource("1_1ol6w")
+region_enabled = true
+region_rect = Rect2(7.353245, 8, 8.646755, 8)
+region_filter_clip_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=1853554923]
+texture_filter = 1
+position = Vector2(20, -27.999998)
+scale = Vector2(7, 7)
+texture = ExtResource("1_1ol6w")
+region_enabled = true
+region_rect = Rect2(7.353245, 8, 8.646755, 8)
+region_filter_clip_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=119914438]
+texture_filter = 1
+position = Vector2(60, -27.999998)
+scale = Vector2(7, 7)
+texture = ExtResource("1_1ol6w")
+region_enabled = true
+region_rect = Rect2(7.353245, 8, 8.646755, 8)
+region_filter_clip_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=649925506]
+texture_filter = 1
+position = Vector2(100, -27.999998)
+scale = Vector2(7, 7)
+texture = ExtResource("1_1ol6w")
+region_enabled = true
+region_rect = Rect2(7.353245, 8, 8.646755, 8)
+region_filter_clip_enabled = true
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=760404475]
-position = Vector2(-4, 8)
+position = Vector2(-2.0000076, -20)
 shape = SubResource("RectangleShape2D_1ol6w")
+metadata/_edit_group_ = true

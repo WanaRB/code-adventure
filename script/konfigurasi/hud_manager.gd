@@ -1,8 +1,8 @@
 extends Node
 
-@onready var point_label: Label = %Point_Label
-@onready var h_box_darah          = %darah.get_node("HBoxContainer")
-@onready var hit_sfx: AudioStreamPlayer = %HitSfx
+@onready var point_label: Label = get_node("/root/%s/UI/point/Point_Label" % get_tree().current_scene.name)
+@onready var h_box_darah = get_node("/root/%s/UI/darah/HBoxContainer" % get_tree().current_scene.name)
+@onready var hit_sfx: AudioStreamPlayer = $HitSfx
 
 var health := 3
 var session_correct  := 0
@@ -22,6 +22,8 @@ func _ready():
 
 func _detect_level() -> int:
 	var path := GameEvents.last_level_path
+	if "level_5" in path: return 5 
+	if "level_4" in path: return 4  
 	if "level_3" in path: return 3
 	if "level_2" in path: return 2
 	return 1

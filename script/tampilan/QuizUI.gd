@@ -49,15 +49,20 @@ const C_WRONG       := Color("#f38ba8")
 
 # ─── State ────────────────────────────────────────────────────────────────────
 var _quiz_data: QuizResource = null
-var _current_door_id: int = 1        
 
 var _highlight_buttons: Array[Button] = []
-var _highlight_correct: Array[bool] = []
 var _current_hl_idx: int = -1
 var _quiz_open_time: float = 0.0
 var _session_correct := 0
 var _session_bonus   := 0
 var _session_wrong   := 0
+var _selected_option_idx: int = -1   # opsi yang dipilih tapi belum di-submit
+# Jawaban player saat ini per highlight (hl_idx → teks yang dipilih)
+var _current_answers: Dictionary = {}
+
+# Variant yang sedang aktif (world_changes-nya sudah dipicu)
+var _active_variant_idx: int = -1
+var _initial_display: Array[String] = []
 
 # Referensi UI yang perlu diakses setelah build
 var _options_container: Control = null
@@ -72,18 +77,22 @@ var _option_buttons: Array[Button] = []
 ## AudioStreamPlayer untuk suara jawaban SALAH.
 @export var sfx_salah: AudioStreamPlayer
 
-# ─── Setup API (dipanggil dari Laptop.gd) ─────────────────────────────────────
-func set_door_id(id: int):
-	_current_door_id = id
-
-func setup_quiz(data: QuizResource):
+## initial_display: teks tiap highlight dari sesi sebelumnya (kosong = pakai kata asli)
+## world_triggered: true jika world changes sudah dipicu sebelumnya
+func setup_quiz(data: QuizResource, initial_display: Array[String] = []):
 	_quiz_data = data
-	_highlight_correct.resize(data.highlights.size())
-	_highlight_correct.fill(false)
-	_quiz_open_time = Time.get_ticks_msec() / 1000.0  # catat waktu quiz dibuka
+	_quiz_open_time = Time.get_ticks_msec() / 1000.0
 	_session_correct = 0
 	_session_bonus   = 0
 	_session_wrong   = 0
+	_current_answers.clear()
+	_active_variant_idx = -1
+	# Restore jawaban dari sesi sebelumnya
+	for i in initial_display.size():
+		if initial_display[i] != "":
+			_current_answers[i] = initial_display[i]
+	# Simpan display awal — akan dipakai _make_highlight_line untuk restore teks
+	_initial_display = initial_display.duplicate()
 	_build_ui()
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
@@ -423,6 +432,9 @@ func _make_highlight_line(text: String, hw: String, hl_idx: int, mono_font: Font
 	var captured_idx := hl_idx
 	btn.pressed.connect(func(): _on_highlight_clicked(captured_idx))
 	_highlight_buttons[hl_idx] = btn
+	# Restore teks dari sesi sebelumnya jika ada
+	if hl_idx < _initial_display.size() and _initial_display[hl_idx] != "":
+		btn.text = _initial_display[hl_idx]
 	hbox.add_child(btn)
 
 	# Teks setelah kata
@@ -520,6 +532,35 @@ func _make_options_section(mono_font: Font) -> Control:
 		opt_btn.pressed.connect(func(): _on_option_pressed(captured_i))
 		_option_buttons.append(opt_btn)
 		btn_hbox.add_child(opt_btn)
+# Tombol Submit (Enter) — kirim jawaban yang dipilih ke sistem
+	var submit_btn := Button.new()
+	submit_btn.text = "▶  Enter"
+	submit_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	submit_btn.custom_minimum_size = Vector2(0, CFG_OPTION_BTN_HEIGHT)
+	submit_btn.focus_mode = Control.FOCUS_NONE
+	submit_btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	submit_btn.add_theme_font_override("font", mono_font)
+	submit_btn.add_theme_font_size_override("font_size", CFG_FONT_SIZE_OPTIONS)
+	submit_btn.add_theme_color_override("font_color", C_CODE)
+	submit_btn.add_theme_color_override("font_hover_color", Color(1, 1, 1, 1))
+
+	var s_submit_normal := StyleBoxFlat.new()
+	s_submit_normal.bg_color = Color("#1e3a2f")
+	s_submit_normal.border_color = C_SUCCESS
+	s_submit_normal.set_border_width_all(1)
+	s_submit_normal.set_corner_radius_all(6)
+	submit_btn.add_theme_stylebox_override("normal", s_submit_normal)
+
+	var s_submit_hover := StyleBoxFlat.new()
+	s_submit_hover.bg_color = Color("#2d5a40")
+	s_submit_hover.border_color = C_SUCCESS
+	s_submit_hover.set_border_width_all(1)
+	s_submit_hover.set_corner_radius_all(6)
+	submit_btn.add_theme_stylebox_override("hover", s_submit_hover)
+	submit_btn.add_theme_stylebox_override("pressed", s_submit_hover)
+
+	submit_btn.pressed.connect(_on_submit_pressed)
+	vbox.add_child(submit_btn)  # di bawah btn_hbox, bukan di dalam btn_hbox
 
 	return m
 
@@ -537,8 +578,6 @@ func _load_mono_font() -> Font:
 
 # ─── Callbacks ────────────────────────────────────────────────────────────────
 func _on_highlight_clicked(hl_idx: int):
-	if _highlight_correct[hl_idx]:
-		return  # Sudah benar, abaikan
 	_current_hl_idx = hl_idx
 
 	# Update label konteks
@@ -556,68 +595,130 @@ func _on_highlight_clicked(hl_idx: int):
 
 	_show_options()
 
+## Klik opsi hanya PREVIEW — teks highlight berubah tapi belum diperiksa.
+## Pemeriksaan terjadi saat player tekan tombol Submit.
 func _on_option_pressed(option_idx: int):
 	if _current_hl_idx == -1:
 		return
 
+	_selected_option_idx = option_idx
 	var hl := _quiz_data.highlights[_current_hl_idx]
 	var btn := _highlight_buttons[_current_hl_idx]
 
-	if option_idx == hl.correct_index:
-		# ── BENAR ──
-		_highlight_correct[_current_hl_idx] = true
-		btn.text = hl.options[option_idx]
-		btn.disabled = true
-		btn.add_theme_color_override("font_disabled_color", C_SUCCESS)
-		_hide_options()
+	# Preview: ubah teks highlight ke pilihan yang dipilih
+	btn.text = hl.options[option_idx]
+	btn.add_theme_color_override("font_color", C_HL_WORD)  # warna netral saat preview
 
-		# ── Hitung bonus kecepatan ──
-		# Elapsed dihitung dari saat quiz pertama dibuka, bukan dari klik highlight
-		var elapsed := (Time.get_ticks_msec() / 1000.0) - _quiz_open_time
-		var bonus := 0
-		if elapsed <= 5.0:
-			bonus = 50
-		elif elapsed <= 10.0:   # threshold diubah: 10 detik, bukan 15
-			bonus = 25
-		# > 10 detik: bonus = 0 (sudah default)
-		_session_correct += 1
-		_session_bonus   += bonus
-		_current_hl_idx   = -1
+	# Highlight tombol opsi yang dipilih
+	for i in _option_buttons.size():
+		var s := StyleBoxFlat.new()
+		s.bg_color = C_BTN_HVR if i == option_idx else C_BTN_BG
+		s.border_color = C_HINT if i == option_idx else C_BTN_BD
+		s.set_border_width_all(1)
+		s.set_corner_radius_all(6)
+		_option_buttons[i].add_theme_stylebox_override("normal", s)
 
-		# Mainkan suara benar
+## Periksa jawaban yang dipilih saat tombol Submit ditekan.
+func _on_submit_pressed() -> void:
+	if _current_hl_idx == -1 or _selected_option_idx == -1:
+		return
+
+	var hl   := _quiz_data.highlights[_current_hl_idx]
+	var btn  := _highlight_buttons[_current_hl_idx]
+	var teks := hl.options[_selected_option_idx]
+
+	# Simpan jawaban player untuk highlight ini
+	_current_answers[_current_hl_idx] = teks
+	GameEvents.quiz_highlight_updated.emit(_current_hl_idx, teks)
+
+	# Tampilkan jawaban sebagai netral (kuning) — belum tahu benar/salah
+	btn.text = teks
+	btn.add_theme_color_override("font_color", C_HL_WORD)
+	_hide_options()
+	_selected_option_idx = -1
+	_current_hl_idx = -1
+
+	# Cek apakah semua highlight sudah dijawab
+	# Isi highlight yang belum pernah dijawab player dengan teks yang sedang tampil
+	for i in _quiz_data.highlights.size():
+		if not _current_answers.has(i):
+			# Ambil teks dari tombol highlight (mungkin sudah di-restore dari sesi lalu)
+			_current_answers[i] = _highlight_buttons[i].text
+
+	# Semua sudah dijawab — cek cocok dengan variant mana
+	var matched_idx := _cari_variant_cocok()
+
+	if matched_idx != -1:
+		# ── COCOK dengan variant ──
+		var variant := _quiz_data.variants[matched_idx]
+
+		# Warnai semua highlight sesuai variant
+		for i in _quiz_data.highlights.size():
+			var req := _cari_jawaban_variant(variant, i)
+			var warna := C_SUCCESS if req == "" or _current_answers.get(i, "") == req else C_WRONG
+			_highlight_buttons[i].add_theme_color_override("font_color", warna)
+
 		if sfx_benar != null:
 			sfx_benar.play()
 
-		# Cek apakah SEMUA highlight sudah dijawab benar
-		var semua_benar := true
-		for c: bool in _highlight_correct:
-			if not c:
-				semua_benar = false
-				break
+		# Hitung bonus
+		var elapsed := (Time.get_ticks_msec() / 1000.0) - _quiz_open_time
+		var bonus := 0
+		if elapsed <= 5.0:    bonus = 50
+		elif elapsed <= 10.0: bonus = 25
+		_session_correct += 1
+		_session_bonus   += bonus
 
-		if semua_benar:
+		# Picu world_changes hanya jika variant berbeda dari sebelumnya
+		if matched_idx != _active_variant_idx:
+			_active_variant_idx = matched_idx
 			await get_tree().create_timer(0.35).timeout
-			if not is_inside_tree():
-				return
+			if not is_inside_tree(): return
 			GameEvents.quiz_points_earned.emit(_session_correct, _session_bonus, _session_wrong)
-			GameEvents.quiz_answered_correct.emit(_quiz_data.world_changes)
+			GameEvents.quiz_answered_correct.emit(variant.world_changes)
 			_tutup_kuis()
-		
 	else:
-		# ── SALAH ──
-		_session_wrong += 1          # Kurangi poin (-10 per kesalahan)
-		GameEvents.player_hit.emit(1) # FIX: kurangi nyawa juga
-		btn.text = hl.options[option_idx]
-		btn.add_theme_color_override("font_color", C_WRONG)
+		# ── TIDAK COCOK dengan variant apapun ──
+		_session_wrong += 1
+		GameEvents.player_hit.emit(1)
+
 		if sfx_salah != null:
 			sfx_salah.play()
 
-		await get_tree().create_timer(0.4).timeout
-		if is_inside_tree():
-			# Reset tombol highlight ke kata semula
-			btn.text = hl.word
-			btn.add_theme_color_override("font_color", C_HL_WORD)
+		# Warnai semua highlight merah sebagai feedback
+		for i in _highlight_buttons.size():
+			_highlight_buttons[i].add_theme_color_override("font_color", C_WRONG)
 
+		await get_tree().create_timer(0.5).timeout
+		if not is_inside_tree(): return
+
+		# Reset warna kembali ke netral
+		for i in _highlight_buttons.size():
+			_highlight_buttons[i].add_theme_color_override("font_color", C_HL_WORD)
+
+## Cek apakah jawaban player saat ini cocok dengan salah satu variant.
+## Return index variant yang cocok, atau -1 jika tidak ada.
+func _cari_variant_cocok() -> int:
+	for vi in _quiz_data.variants.size():
+		var variant := _quiz_data.variants[vi]
+		var cocok := true
+		for answer: QuizAnswer in variant.required_answers:
+			var dijawab: String = _current_answers.get(answer.highlight_index, "")
+			if dijawab != answer.teks:
+				cocok = false
+				break
+		if cocok:
+			return vi
+	return -1
+
+## Cari teks jawaban yang diharapkan untuk highlight tertentu dalam sebuah variant.
+## Return "" jika highlight itu tidak ada di required_answers (berarti bebas).
+func _cari_jawaban_variant(variant: QuizVariant, hl_idx: int) -> String:
+	for answer: QuizAnswer in variant.required_answers:
+		if answer.highlight_index == hl_idx:
+			return answer.teks
+	return ""
+	
 func _force_close():
 	queue_free()
 
