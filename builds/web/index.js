@@ -9250,9 +9250,6 @@ var Godot = (() => {
           break;
       }
       GodotDisplayScreen.updateSize();
-      if (p_fullscreen) {
-        GodotDisplayScreen.requestFullscreen();
-      }
     }
     function _godot_js_display_size_update() {
       const updated = GodotDisplayScreen.updateSize();
