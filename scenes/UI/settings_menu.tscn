@@ -1,0 +1,240 @@
+[gd_scene format=3 uid="uid://dn3qulaxh8cd0"]
+
+[ext_resource type="FontFile" uid="uid://dcnlcos4su3la" path="res://assets/Fonts/PeaberryBase.ttf" id="2_uxg4l"]
+[ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="3_6jt7n"]
+[ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="4_878o3"]
+[ext_resource type="PackedScene" uid="uid://ndvagnr4jrg8" path="res://scenes/UI/awan_bergerak.tscn" id="5_3i1ia"]
+[ext_resource type="Texture2D" uid="uid://dv64mhaq7n67t" path="res://assets/image/backround/Cloud-2.png" id="6_jl7gk"]
+[ext_resource type="Texture2D" uid="uid://bnyvka2mc8gga" path="res://assets/image/backround/Cloud-7.png" id="7_ecjli"]
+[ext_resource type="Texture2D" uid="uid://532skyl3c6jr" path="res://assets/image/backround/Cloud-43.png" id="8_jfsmy"]
+
+[sub_resource type="GDScript" id="GDScript_c5o1q"]
+script/source = "extends Control
+
+@onready var vbox: VBoxContainer = $VBoxContainer
+@onready var button_fullscreen: Button = $VBoxContainer/button_fullscreen
+@onready var slider_musik: HSlider = $VBoxContainer/slider_musik
+
+@export var ikon_suara_hidup: Texture2D
+@export var ikon_suara_mati: Texture2D
+
+var _is_fullscreen := false
+
+func _ready() -> void:
+	_tambah_tombol_suara()
+	_setup_bgm()
+	_animasi_masuk()
+	# Sync slider dengan volume bgm saat ini
+	var bgm := get_tree().root.get_node_or_null(\"BgmMenu\")
+	if bgm:
+		slider_musik.value = db_to_linear(bgm.volume_db)
+	slider_musik.value_changed.connect(_on_slider_musik_changed)
+
+func _animasi_masuk() -> void:
+	vbox.modulate.a = 0.0
+	vbox.position.y += 600.0
+	var tw := create_tween()
+	tw.set_ease(Tween.EASE_OUT)
+	tw.set_trans(Tween.TRANS_BACK)
+	tw.tween_interval(0.1)
+	tw.tween_property(vbox, \"modulate:a\", 1.0, 0.4)
+	tw.parallel().tween_property(vbox, \"position:y\", vbox.position.y - 600.0, 0.5)
+	tw.tween_callback(func(): vbox.mouse_filter = Control.MOUSE_FILTER_STOP)
+
+func _animasi_keluar(target_scene: String) -> void:
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var tw := create_tween()
+	tw.set_ease(Tween.EASE_IN)
+	tw.set_trans(Tween.TRANS_BACK)
+	tw.tween_property(vbox, \"modulate:a\", 0.0, 0.3)
+	tw.parallel().tween_property(vbox, \"position:y\", vbox.position.y + 600.0, 0.4)
+	tw.tween_callback(func(): get_tree().change_scene_to_file(target_scene))
+
+func _on_button_fullscreen_pressed() -> void:
+	_is_fullscreen = not _is_fullscreen
+	if OS.has_feature(\"web\"):
+		if _is_fullscreen:
+			JavaScriptBridge.eval(\"var el=document.documentElement;if(el.requestFullscreen)el.requestFullscreen();\")
+		else:
+			JavaScriptBridge.eval(\"if(document.exitFullscreen)document.exitFullscreen();\")
+	else:
+		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if _is_fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
+		DisplayServer.window_set_mode(mode)
+	button_fullscreen.text = \"Fullscreen: Hidup\" if _is_fullscreen else \"Fullscreen: Mati\"
+
+func _on_slider_musik_changed(value: float) -> void:
+	var bgm := get_tree().root.get_node_or_null(\"BgmMenu\")
+	if bgm:
+		bgm.volume_db = linear_to_db(value) if value > 0.0 else -80.0
+
+func _on_button_back_pressed() -> void:
+	_animasi_keluar(\"res://scenes/UI/main_menu.tscn\")
+
+func _tambah_tombol_suara() -> void:
+	var btn := TextureButton.new()
+	btn.name = \"TombolSuara\"
+	var ikon := ikon_suara_hidup if GameEvents.musik_menu_hidup else ikon_suara_mati
+	btn.texture_normal  = ikon
+	btn.texture_pressed = ikon
+	btn.texture_hover   = ikon
+	btn.ignore_texture_size = true
+	btn.custom_minimum_size = Vector2(80, 80)
+	btn.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+	btn.focus_mode = Control.FOCUS_NONE
+	btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	btn.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	btn.offset_left   = -120.0
+	btn.offset_top    = -150.0
+	btn.offset_right  = -40.0
+	btn.offset_bottom = -70.0
+	btn.pressed.connect(func(): _toggle_suara(btn))
+	add_child(btn)
+
+func _toggle_suara(btn: TextureButton) -> void:
+	GameEvents.musik_menu_hidup = not GameEvents.musik_menu_hidup
+	var bgm := get_tree().root.get_node_or_null(\"BgmMenu\")
+	if GameEvents.musik_menu_hidup:
+		if bgm: bgm.play()
+		btn.texture_normal  = ikon_suara_hidup
+		btn.texture_pressed = ikon_suara_hidup
+		btn.texture_hover   = ikon_suara_hidup
+	else:
+		if bgm: bgm.stop()
+		btn.texture_normal  = ikon_suara_mati
+		btn.texture_pressed = ikon_suara_mati
+		btn.texture_hover   = ikon_suara_mati
+		
+func _setup_bgm() -> void:
+	var existing := get_tree().root.get_node_or_null(\"BgmMenu\")
+	if existing == null:
+		return
+	if has_node(\"BgmMenu\"):
+		$BgmMenu.queue_free()
+	if GameEvents.musik_menu_hidup and not existing.playing:
+		existing.play()
+	elif not GameEvents.musik_menu_hidup:
+		existing.stop()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m03y"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.13725491)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4y5d"]
+bg_color = Color(0.6682161, 0.6682166, 0.66821635, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.13725491)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es16l"]
+bg_color = Color(0.86726063, 0.8672607, 0.86726034, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.13725491)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m03y"]
+
+[node name="SettingsMenu" type="Control" unique_id=425800775]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_c5o1q")
+
+[node name="Panel" type="Panel" parent="." unique_id=328880754]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -428.5
+offset_top = -471.34998
+offset_right = 428.5
+offset_bottom = 471.34998
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pengaturan" type="Label" parent="Panel" unique_id=1007990442]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.032
+offset_left = -191.5
+offset_top = 50.0
+offset_right = 191.5
+offset_bottom = 79.8336
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_uxg4l")
+theme_override_font_sizes/font_size = 60
+text = "PENGATURAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=985701240]
+layer = -2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=218923510]
+process_mode = 3
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_6jt7n")
+
+[node name="BgmMenu" type="AudioStreamPlayer" parent="." unique_id=2022316957]
+unique_name_in_owner = true
+stream = ExtResource("4_878o3")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
+[node name="AwanBergerak" parent="." unique_id=770557397 instance=ExtResource("5_3i1ia")]
+layer = -1
+tekstur_awan = Array[Texture2D]([ExtResource("6_jl7gk"), ExtResource("7_ecjli"), ExtResource("8_jfsmy")])
+jumlah_awan = 3
+kecepatan = 15.0
+skala_min = 3.0
+skala_max = 3.0
+
+[node name="button_back" type="Button" parent="." unique_id=1704747442]
+texture_filter = 1
+layout_mode = 0
+offset_left = 795.125
+offset_top = 888.0
+offset_right = 1124.125
+offset_bottom = 950.0
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Kembali"
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]

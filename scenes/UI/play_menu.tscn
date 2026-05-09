@@ -1,11 +1,13 @@
-[gd_scene format=3 uid="uid://b6jctalht86lb"]
+[gd_scene format=3 uid="uid://dl77kx0d2etyo"]
 
-[ext_resource type="Script" uid="uid://dcvb86fugjn2h" path="res://script/tampilan/level_select.gd" id="1_yus8d"]
-[ext_resource type="Texture2D" uid="uid://dsgjucy37om26" path="res://assets/image/UI/sound_on.png" id="2_0ra34"]
-[ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="2_piteb"]
-[ext_resource type="Texture2D" uid="uid://c0w5b8ruj43xj" path="res://assets/image/map/logo.png" id="3_m0u3y"]
-[ext_resource type="Texture2D" uid="uid://by7vjjgwhv0bx" path="res://assets/image/UI/sound_off.png" id="3_ty08u"]
-[ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="4_0i6e4"]
+[ext_resource type="Script" uid="uid://co8qcfnf6phq5" path="res://script/tampilan/play_menu.gd" id="1_ub450"]
+[ext_resource type="Texture2D" uid="uid://c0w5b8ruj43xj" path="res://assets/image/map/logo.png" id="4_djddb"]
+[ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="5_3ybr2"]
+[ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="6_wyock"]
+[ext_resource type="PackedScene" uid="uid://ndvagnr4jrg8" path="res://scenes/UI/awan_bergerak.tscn" id="7_i60kj"]
+[ext_resource type="Texture2D" uid="uid://dv64mhaq7n67t" path="res://assets/image/backround/Cloud-2.png" id="8_t1h4o"]
+[ext_resource type="Texture2D" uid="uid://bnyvka2mc8gga" path="res://assets/image/backround/Cloud-7.png" id="9_fw55q"]
+[ext_resource type="Texture2D" uid="uid://532skyl3c6jr" path="res://assets/image/backround/Cloud-43.png" id="10_tea8k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m03y"]
 bg_color = Color(1, 1, 1, 1)
@@ -39,31 +41,14 @@ shadow_offset = Vector2(0, 3.5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m03y"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3tsx"]
-texture = ExtResource("2_piteb")
-
-[node name="MainMenu" type="Control" unique_id=425800775]
+[node name="PlayMenu" type="Control" unique_id=425800775]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yus8d")
-ikon_suara_hidup = ExtResource("2_0ra34")
-ikon_suara_mati = ExtResource("3_ty08u")
-
-[node name="logo" type="TextureRect" parent="." unique_id=1705019265]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -507.0
-offset_top = 65.0
-offset_right = 507.0
-offset_bottom = 179.0
-grow_horizontal = 2
-texture = ExtResource("3_m0u3y")
+script = ExtResource("1_ub450")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=632943988]
 layout_mode = 1
@@ -72,15 +57,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -166.04688
-offset_top = -234.77983
-offset_right = 166.04688
-offset_bottom = 234.77983
+offset_left = -164.875
+offset_top = -175.20193
+offset_right = 164.875
+offset_bottom = 175.2019
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="button_level1" type="Button" parent="VBoxContainer" unique_id=297542021]
+[node name="button_new_game" type="Button" parent="VBoxContainer" unique_id=297542021]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -92,10 +77,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
-text = "Level 1
-"
+text = "Permainan Baru"
 
-[node name="button_level2" type="Button" parent="VBoxContainer" unique_id=64181867]
+[node name="button_continue" type="Button" parent="VBoxContainer" unique_id=64181867]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -107,9 +91,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
-text = "Level 2"
+text = "Lanjutkan"
 
-[node name="button_level3" type="Button" parent="VBoxContainer" unique_id=155398629]
+[node name="button_level_select" type="Button" parent="VBoxContainer" unique_id=155398629]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -121,38 +105,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
-text = "Level 3
-"
-
-[node name="button_level4" type="Button" parent="VBoxContainer" unique_id=1738678051]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
-text = "Level 4
-"
-
-[node name="button_level5" type="Button" parent="VBoxContainer" unique_id=2060802950]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
-text = "Level 5
-"
+text = "Pilih Level"
 
 [node name="button_back" type="Button" parent="VBoxContainer" unique_id=309902070]
 texture_filter = 1
@@ -168,26 +121,47 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Kembali"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=546412063]
-layer = -1
+[node name="Logo" type="TextureRect" parent="." unique_id=1705019265]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -507.0
+offset_top = 65.0
+offset_right = 507.0
+offset_bottom = 179.0
+grow_horizontal = 2
+texture = ExtResource("4_djddb")
 
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1794435827]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=985701240]
+layer = -2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=218923510]
+process_mode = 3
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_q3tsx")
+texture = ExtResource("5_3ybr2")
 
-[node name="BgmMenu" type="AudioStreamPlayer" parent="." unique_id=447173524]
+[node name="BgmMenu" type="AudioStreamPlayer" parent="." unique_id=2022316957]
 unique_name_in_owner = true
-stream = ExtResource("4_0i6e4")
+stream = ExtResource("6_wyock")
 volume_db = -15.0
+autoplay = true
 parameters/looping = true
 
-[connection signal="pressed" from="VBoxContainer/button_level1" to="." method="_on_button_level_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/button_level2" to="." method="_on_button_level_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/button_level3" to="." method="_on_button_level_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/button_level4" to="." method="_on_button_level_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/button_level5" to="." method="_on_button_level_5_pressed"]
+[node name="AwanBergerak" parent="." unique_id=770557397 instance=ExtResource("7_i60kj")]
+layer = -1
+tekstur_awan = Array[Texture2D]([ExtResource("8_t1h4o"), ExtResource("9_fw55q"), ExtResource("10_tea8k")])
+jumlah_awan = 3
+kecepatan = 15.0
+skala_min = 3.0
+skala_max = 3.0
+
+[connection signal="pressed" from="VBoxContainer/button_new_game" to="." method="_on_button_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_continue" to="." method="_on_button_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_level_select" to="." method="_on_button_level_select_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_back" to="." method="_on_button_back_pressed"]

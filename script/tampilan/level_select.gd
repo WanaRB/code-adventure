@@ -2,51 +2,17 @@ extends Control
 
 @export var ikon_suara_hidup: Texture2D
 @export var ikon_suara_mati: Texture2D
+@onready var vbox: VBoxContainer = $VBoxContainer
 
 func _ready() -> void:
+	_animasi_masuk()
 	_update_kunci()
-	_tambah_tombol_suara()
-
-func _tambah_tombol_suara() -> void:
-	var btn := TextureButton.new()
-	btn.name = "TombolSuara"
-	var ikon := ikon_suara_hidup if GameEvents.musik_menu_hidup else ikon_suara_mati
-	btn.texture_normal  = ikon
-	btn.texture_pressed = ikon
-	btn.texture_hover   = ikon
-	btn.ignore_texture_size = true
-	btn.custom_minimum_size = Vector2(80, 80)
-	btn.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
-	btn.focus_mode = Control.FOCUS_NONE
-	btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	btn.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
-	btn.offset_left   = -100.0
-	btn.offset_top    = -160.0
-	btn.offset_right  = -20.0
-	btn.offset_bottom = -80.0
-	btn.pressed.connect(func(): _toggle_suara(btn))
-	add_child(btn)
-
-func _toggle_suara(btn: TextureButton) -> void:
-	GameEvents.musik_menu_hidup = not GameEvents.musik_menu_hidup
-	var bgm := get_tree().root.get_node_or_null("BgmMenu")
-	if GameEvents.musik_menu_hidup:
-		if bgm: bgm.play()
-		btn.texture_normal  = ikon_suara_hidup
-		btn.texture_pressed = ikon_suara_hidup
-		btn.texture_hover   = ikon_suara_hidup
-	else:
-		if bgm: bgm.stop()
-		btn.texture_normal  = ikon_suara_mati
-		btn.texture_pressed = ikon_suara_mati
-		btn.texture_hover   = ikon_suara_mati
 
 func _stop_bgm() -> void:
 	var bgm := get_tree().root.get_node_or_null("BgmMenu")
 	if bgm: bgm.stop()
 	
 func _update_kunci():
-	# Temukan tombol berdasarkan nama fungsi sinyal pressed-nya
 	for btn in find_children("*", "Button", true, false):
 		if not btn is Button: continue
 		for conn in btn.get_signal_connection_list("pressed"):
@@ -55,6 +21,10 @@ func _update_kunci():
 				_terapkan_kunci(btn, 2)
 			elif "level_3" in method:
 				_terapkan_kunci(btn, 3)
+			elif "level_4" in method:
+				_terapkan_kunci(btn, 4)
+			elif "level_5" in method:
+				_terapkan_kunci(btn, 5)
 
 func _terapkan_kunci(btn: Button, level: int):
 	var terbuka := SaveManager.is_level_unlocked(level)
@@ -66,27 +36,48 @@ func _terapkan_kunci(btn: Button, level: int):
 
 func _on_button_level_1_pressed() -> void:
 	_stop_bgm()
-	get_tree().change_scene_to_file("res://scenes/Level/level_1.tscn")
+	_animasi_keluar("res://scenes/Level/level_1.tscn")
 
 func _on_button_level_2_pressed() -> void:
-	_stop_bgm()
 	if SaveManager.is_level_unlocked(2):
-		get_tree().change_scene_to_file("res://scenes/Level/level_2.tscn")
+		_stop_bgm()
+		_animasi_keluar("res://scenes/Level/level_2.tscn")
 
 func _on_button_level_3_pressed() -> void:
-	_stop_bgm()
 	if SaveManager.is_level_unlocked(3):
-		get_tree().change_scene_to_file("res://scenes/Level/level_3.tscn")
+		_stop_bgm()
+		_animasi_keluar("res://scenes/Level/level_3.tscn")
 
 func _on_button_level_4_pressed() -> void:
-	_stop_bgm()
 	if SaveManager.is_level_unlocked(4):
-		get_tree().change_scene_to_file("res://scenes/Level/level_4.tscn")
+		_stop_bgm()
+		_animasi_keluar("res://scenes/Level/level_4.tscn")
 
 func _on_button_level_5_pressed() -> void:
-	_stop_bgm()
 	if SaveManager.is_level_unlocked(5):
-		get_tree().change_scene_to_file("res://scenes/Level/level_5.tscn")
-		
+		_stop_bgm()
+		_animasi_keluar("res://scenes/Level/level_5.tscn")
+
 func _on_button_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
+	_animasi_keluar("res://scenes/UI/play_menu.tscn")
+
+func _animasi_masuk() -> void:
+	vbox.modulate.a = 0.0
+	vbox.position.y += 600.0
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var tw := create_tween()
+	tw.set_ease(Tween.EASE_OUT)
+	tw.set_trans(Tween.TRANS_BACK)
+	tw.tween_interval(0.1)
+	tw.tween_property(vbox, "modulate:a", 1.0, 0.5)
+	tw.parallel().tween_property(vbox, "position:y", vbox.position.y - 600.0, 0.7)
+	tw.tween_callback(func(): vbox.mouse_filter = Control.MOUSE_FILTER_STOP)
+
+func _animasi_keluar(target_scene: String) -> void:
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var tw := create_tween()
+	tw.set_ease(Tween.EASE_IN)
+	tw.set_trans(Tween.TRANS_BACK)
+	tw.tween_property(vbox, "modulate:a", 0.0, 0.3)
+	tw.parallel().tween_property(vbox, "position:y", vbox.position.y + 600.0, 0.4)
+	tw.tween_callback(func(): get_tree().change_scene_to_file(target_scene))

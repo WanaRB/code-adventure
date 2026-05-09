@@ -18,6 +18,7 @@ var _level_results := {
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	## Load otomatis saat game dibuka
+	#reset() #Sementara (untuk reset data)
 	load_from_file()
 
 # ─── API Publik (tidak berubah dari versi sebelumnya) ─────────────────────────

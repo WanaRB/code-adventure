@@ -153,6 +153,8 @@ func _update_visibility() -> void:
 	var path := scene.scene_file_path
 	var adalah_menu := (
 		"main_menu" in path or
+		"play_menu" in path or
+		"settings_menu" in path or
 		"level_select" in path or
 		"credits" in path
 	)

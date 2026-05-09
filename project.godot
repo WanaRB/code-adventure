@@ -15,6 +15,10 @@ run/main_scene="uid://cn31x40n7mqu8"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cl0r8qvp1fj8f"
+
 [autoload]
 
 GameEvents="*uid://dcs2uec0ne8yi"
@@ -25,6 +29,7 @@ SaveManager="*uid://delufcox3foul"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=1
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 

@@ -50,7 +50,7 @@ func _pindah_level():
 	var current: int = _nomor_level_dari_path(GameEvents.last_level_path)
 
 	# Unlock level berikutnya
-	if current > 0 and current < 3:
+	if current > 0 and current < 5:
 		SaveManager.unlock_level(current + 1)
 
 	# Simpan stats sebelum pindah scene

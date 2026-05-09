@@ -9,6 +9,9 @@ extends Control
 # ─── Referensi Node ───────────────────────────────────────────────────────────
 @onready var vbox: VBoxContainer = $VBoxContainer
 @onready var logo: Node = $Logo
+@onready var panel_options: Panel = $PanelOptions
+@onready var slider_musik: HSlider = $PanelOptions/VBoxContainer2/HBoxContainer/SliderMusik
+@onready var check_fullscreen: CheckButton = $PanelOptions/VBoxContainer2/HBoxContainer2/CheckFullscreen
 
 # ─── State Internal ───────────────────────────────────────────────────────────
 var _sudah_klik := false       # true setelah user klik splash screen
@@ -18,10 +21,10 @@ var _tween_kedip: Tween = null
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	_setup_bgm()
-	_tambah_tombol_suara()
 	_setup_splash()
-	SaveManager.reset()  # ← tambah sementara, hapus setelah test
-
+	#SaveManager.reset()  # ← tambah sementara, hapus setelah test
+	panel_options.visible = false
+	
 # ─── BGM ──────────────────────────────────────────────────────────────────────
 ## Buat node BgmMenu persistent di root agar musik tidak restart saat ganti scene.
 func _setup_bgm() -> void:
@@ -32,6 +35,7 @@ func _setup_bgm() -> void:
 		bgm.name = "BgmMenu"
 		bgm.stream = $BgmMenu.stream
 		bgm.volume_db = $BgmMenu.volume_db
+		bgm.bus = $BgmMenu.bus  # ← salin bus "Music" dari node scene
 		$BgmMenu.queue_free()
 		get_tree().root.call_deferred("add_child", bgm)
 		bgm.call_deferred("play")
@@ -52,51 +56,13 @@ func _stop_bgm() -> void:
 
 # ─── Tombol Suara ─────────────────────────────────────────────────────────────
 ## Tambahkan tombol mute/unmute di pojok kanan bawah.
-func _tambah_tombol_suara() -> void:
-	var btn := TextureButton.new()
-	btn.name = "TombolSuara"
-
-	# Sesuaikan ikon dengan state saat ini
-	var ikon := ikon_suara_hidup if GameEvents.musik_menu_hidup else ikon_suara_mati
-	btn.texture_normal  = ikon
-	btn.texture_pressed = ikon
-	btn.texture_hover   = ikon
-	btn.ignore_texture_size = true
-	btn.custom_minimum_size = Vector2(80, 80)
-	btn.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
-	btn.focus_mode = Control.FOCUS_NONE
-	btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-
-	# Posisi pojok kanan bawah — sesuaikan offset jika perlu
-	btn.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
-	btn.offset_left   = -120.0
-	btn.offset_top    = -150.0
-	btn.offset_right  = -40.0
-	btn.offset_bottom = -70.0
-
-	btn.pressed.connect(func(): _toggle_suara(btn))
-	add_child(btn)
-
-## Toggle musik hidup/mati dan update ikon tombol.
-func _toggle_suara(btn: TextureButton) -> void:
-	GameEvents.musik_menu_hidup = not GameEvents.musik_menu_hidup
-	var bgm := get_tree().root.get_node_or_null("BgmMenu")
-	if GameEvents.musik_menu_hidup:
-		if bgm: bgm.play()
-		btn.texture_normal  = ikon_suara_hidup
-		btn.texture_pressed = ikon_suara_hidup
-		btn.texture_hover   = ikon_suara_hidup
-	else:
-		if bgm: bgm.stop()
-		btn.texture_normal  = ikon_suara_mati
-		btn.texture_pressed = ikon_suara_mati
-		btn.texture_hover   = ikon_suara_mati
 
 # ─── Splash Screen ────────────────────────────────────────────────────────────
 ## Setup tampilan splash "Klik to Play" saat pertama kali buka game.
 ## Jika sudah pernah klik (misal balik dari credit/level select), langsung tampil tombol.
 func _setup_splash() -> void:
 	if GameEvents.sudah_lewat_splash:
+		_animasi_masuk_dari_submenu()
 		return
 
 	# Sembunyikan tombol ke bawah layar
@@ -142,16 +108,33 @@ func _animasi_masuk() -> void:
 	tw_vbox.tween_callback(func(): vbox.mouse_filter = Control.MOUSE_FILTER_STOP)  # ← tambah ini
 
 # ─── Navigasi Tombol ──────────────────────────────────────────────────────────
-func _on_button_start_pressed() -> void:
-	_stop_bgm()
-	get_tree().change_scene_to_file("res://scenes/Level/level_1.tscn")
+func _on_button_main_pressed() -> void:
+	_animasi_keluar("res://scenes/UI/play_menu.tscn")
 
-func _on_button_level_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/UI/level_select.tscn")
-
+func _on_button_settings_pressed() -> void:
+	vbox.visible = false
+	panel_options.visible = true
+	
 func _on_button_credit_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/UI/credits.tscn")
 
+func _on_button_back_options_pressed() -> void:
+	panel_options.visible = false
+	vbox.visible = true
+
+func _on_slider_musik_changed(value: float) -> void:
+	var bus_idx := AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(bus_idx, linear_to_db(value) if value > 0.0 else -80.0)
+
+func _on_fullscreen_toggled(toggled_on: bool) -> void:
+	if OS.has_feature("web"):
+		if toggled_on:
+			JavaScriptBridge.eval("var el=document.documentElement;if(el.requestFullscreen)el.requestFullscreen();")
+		else:
+			JavaScriptBridge.eval("if(document.exitFullscreen)document.exitFullscreen();")
+	else:
+		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if toggled_on else DisplayServer.WINDOW_MODE_WINDOWED
+		DisplayServer.window_set_mode(mode)
 ## Tombol exit: kembali ke splash screen dengan animasi tombol turun.
 func _on_button_exit_pressed() -> void:
 	GameEvents.sudah_lewat_splash = false
@@ -181,3 +164,24 @@ func _munculkan_label_splash() -> void:
 	_tween_kedip = create_tween().set_loops()
 	_tween_kedip.tween_property(_label_klik, "modulate:a", 0.1, 0.8)
 	_tween_kedip.tween_property(_label_klik, "modulate:a", 1.0, 0.8)
+
+func _animasi_keluar(target_scene: String) -> void:
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var tw := create_tween()
+	tw.set_ease(Tween.EASE_IN)
+	tw.set_trans(Tween.TRANS_BACK)
+	tw.tween_property(vbox, "modulate:a", 0.0, 0.3)
+	tw.parallel().tween_property(vbox, "position:y", vbox.position.y + 600.0, 0.4)
+	tw.tween_callback(func(): get_tree().change_scene_to_file(target_scene))
+
+func _animasi_masuk_dari_submenu() -> void:
+	vbox.modulate.a = 0.0
+	vbox.position.y += 600.0
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var tw := create_tween()
+	tw.set_ease(Tween.EASE_OUT)
+	tw.set_trans(Tween.TRANS_BACK)
+	tw.tween_interval(0.1)
+	tw.tween_property(vbox, "modulate:a", 1.0, 0.5)
+	tw.parallel().tween_property(vbox, "position:y", vbox.position.y - 600.0, 0.7)
+	tw.tween_callback(func(): vbox.mouse_filter = Control.MOUSE_FILTER_STOP)
