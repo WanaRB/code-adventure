@@ -6,36 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c0w5b8ruj43xj" path="res://assets/image/map/logo.png" id="3_m0u3y"]
 [ext_resource type="Texture2D" uid="uid://by7vjjgwhv0bx" path="res://assets/image/UI/sound_off.png" id="3_ty08u"]
 [ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="4_0i6e4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m03y"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.13725491)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4y5d"]
-bg_color = Color(0.6682161, 0.6682166, 0.66821635, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.13725491)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es16l"]
-bg_color = Color(0.86726063, 0.8672607, 0.86726034, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.13725491)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
+[ext_resource type="FontFile" uid="uid://cskyf86c0n4ku" path="res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="5_qli5c"]
+[ext_resource type="StyleBox" uid="uid://chnnbmypfpao3" path="res://resource/button_normal.tres" id="6_l65nk"]
+[ext_resource type="StyleBox" uid="uid://bb7qcqmaxlv48" path="res://resource/button_pressed.tres" id="7_f431m"]
+[ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="8_1ep74"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m03y"]
 
@@ -84,13 +58,13 @@ theme_override_constants/separation = 10
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Level 1
 "
@@ -99,13 +73,13 @@ text = "Level 1
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Level 2"
 
@@ -113,13 +87,13 @@ text = "Level 2"
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Level 3
 "
@@ -128,13 +102,13 @@ text = "Level 3
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Level 4
 "
@@ -143,13 +117,13 @@ text = "Level 4
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Level 5
 "
@@ -158,13 +132,13 @@ text = "Level 5
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
 text = "Kembali"
 

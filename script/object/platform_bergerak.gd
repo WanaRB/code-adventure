@@ -146,7 +146,8 @@ func _on_quiz_solved(world_changes: Array) -> void:
 			global_position,
 			func(): _mulai_bergerak(tujuan_baru, k),
 			Callable(),
-			delay_kamera  # ← pass delay dinamis
+			delay_kamera,
+			self  # ← tambah: kamera mengikuti platform ini
 		)
 		break
 

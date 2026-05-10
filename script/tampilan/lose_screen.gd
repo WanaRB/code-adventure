@@ -87,7 +87,7 @@ func _build_ui():
 	# ── Konten ──
 	var net: int = GameEvents.last_session_net
 
-	_lbl(vbox, "✖  GAME OVER  ✖", CFG_SIZE_JUDUL, C_JUDUL)
+	_lbl(vbox, "  GAME OVER  ", CFG_SIZE_JUDUL, C_JUDUL)
 	_sep(vbox)
 	_lbl(vbox, "%d poin" % net, CFG_SIZE_POIN, C_POIN)
 	_sep(vbox)
@@ -106,7 +106,7 @@ func _build_ui():
 	btn_menu.pressed.connect(_ke_menu)
 	btn_row.add_child(btn_menu)
 
-	var btn_retry := _btn("↺  Coba Lagi", C_BTN_RETRY)
+	var btn_retry := _btn("Coba Lagi", C_BTN_RETRY)
 	btn_retry.pressed.connect(_retry)
 	btn_row.add_child(btn_retry)
 

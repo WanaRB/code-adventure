@@ -5,33 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://dsgjucy37om26" path="res://assets/image/UI/sound_on.png" id="2_g3j2f"]
 [ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="3_21wcu"]
 [ext_resource type="Texture2D" uid="uid://by7vjjgwhv0bx" path="res://assets/image/UI/sound_off.png" id="3_jq8gn"]
+[ext_resource type="FontFile" uid="uid://cskyf86c0n4ku" path="res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="4_83fsw"]
+[ext_resource type="StyleBox" uid="uid://chnnbmypfpao3" path="res://resource/button_normal.tres" id="4_q4wsr"]
+[ext_resource type="StyleBox" uid="uid://bb7qcqmaxlv48" path="res://resource/button_pressed.tres" id="5_83fsw"]
+[ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="6_54wri"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa2yl"]
 bg_color = Color(0, 0, 0, 0.85882354)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.137)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
-bg_color = Color(0.67, 0.67, 0.67, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
-bg_color = Color(0.87, 0.87, 0.87, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
@@ -161,15 +141,15 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 55)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
-theme_override_styles/normal = SubResource("StyleBoxFlat_bg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_83fsw")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("4_q4wsr")
+theme_override_styles/pressed = ExtResource("5_83fsw")
+theme_override_styles/hover = ExtResource("6_54wri")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-text = "← Kembali"
+text = "Kembali"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1267837992]
 layer = -1

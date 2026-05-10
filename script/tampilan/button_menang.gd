@@ -104,7 +104,7 @@ func _build_ui():
 	var penalty:  int = wrong * 10
 	var total:    int = max(0, correct * 100 + bonus + item_pts - penalty)
 
-	_lbl(vbox, "✦  SELAMAT!  ✦",          CFG_SIZE_JUDUL,    C_JUDUL,    true)
+	_lbl(vbox, "  SELAMAT !  ",          CFG_SIZE_JUDUL,    C_JUDUL,    true)
 	_lbl(vbox, "Hasil Level %d" % level,   CFG_SIZE_SUBJUDUL, C_SUBJUDUL, false)
 	_sep(vbox)
 	_row(vbox, "Soal benar  (%d × 100)" % correct, "+%d" % (correct * 100), C_POSITIF)
@@ -129,12 +129,12 @@ func _build_ui():
 	btn_menu.pressed.connect(_ke_menu)
 	btn_row.add_child(btn_menu)
 
-	var btn_ulangi := _btn("↺  Ulangi", C_BTN_ULANGI)
+	var btn_ulangi := _btn("Ulangi", C_BTN_ULANGI)
 	btn_ulangi.pressed.connect(_ulangi)
 	btn_row.add_child(btn_ulangi)
 
 	if level < 5:
-		var btn_lanjut := _btn("▶  Lanjut", C_BTN_LANJUT)
+		var btn_lanjut := _btn("Lanjut", C_BTN_LANJUT)
 		btn_lanjut.pressed.connect(_ke_level_selanjutnya)
 		btn_row.add_child(btn_lanjut)
 

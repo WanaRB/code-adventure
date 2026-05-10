@@ -29,10 +29,6 @@ func _update_kunci():
 func _terapkan_kunci(btn: Button, level: int):
 	var terbuka := SaveManager.is_level_unlocked(level)
 	btn.disabled = not terbuka
-	if not terbuka and not btn.text.begins_with("🔒"):
-		btn.text = "🔒 " + btn.text
-	elif terbuka and btn.text.begins_with("🔒 "):
-		btn.text = btn.text.substr(3)
 
 func _on_button_level_1_pressed() -> void:
 	_stop_bgm()

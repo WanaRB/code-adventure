@@ -112,8 +112,12 @@ func _on_button_main_pressed() -> void:
 	_animasi_keluar("res://scenes/UI/play_menu.tscn")
 
 func _on_button_settings_pressed() -> void:
+	# Restore state dari GameEvents sebelum panel ditampilkan
+	slider_musik.value = GameEvents.volume_musik
+	check_fullscreen.button_pressed = GameEvents.is_fullscreen
 	vbox.visible = false
-	panel_options.visible = true
+	panel_options.show()
+	panel_options.mouse_filter = Control.MOUSE_FILTER_STOP
 	
 func _on_button_credit_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/UI/credits.tscn")
@@ -123,10 +127,12 @@ func _on_button_back_options_pressed() -> void:
 	vbox.visible = true
 
 func _on_slider_musik_changed(value: float) -> void:
+	GameEvents.volume_musik = value  # ← tambah ini
 	var bus_idx := AudioServer.get_bus_index("Music")
 	AudioServer.set_bus_volume_db(bus_idx, linear_to_db(value) if value > 0.0 else -80.0)
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
+	GameEvents.is_fullscreen = toggled_on 	
 	if OS.has_feature("web"):
 		if toggled_on:
 			JavaScriptBridge.eval("var el=document.documentElement;if(el.requestFullscreen)el.requestFullscreen();")

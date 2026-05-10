@@ -6,13 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://dsgjucy37om26" path="res://assets/image/UI/sound_on.png" id="2_mf7fl"]
 [ext_resource type="Texture2D" uid="uid://by7vjjgwhv0bx" path="res://assets/image/UI/sound_off.png" id="3_d6l81"]
 [ext_resource type="Texture2D" uid="uid://dv64mhaq7n67t" path="res://assets/image/backround/Cloud-2.png" id="4_5d4ag"]
+[ext_resource type="FontFile" uid="uid://cskyf86c0n4ku" path="res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="4_d6l81"]
 [ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="4_tfcbk"]
 [ext_resource type="PackedScene" uid="uid://ndvagnr4jrg8" path="res://scenes/UI/awan_bergerak.tscn" id="5_e2p27"]
+[ext_resource type="StyleBox" uid="uid://chnnbmypfpao3" path="res://resource/button_normal.tres" id="5_sfthw"]
 [ext_resource type="Texture2D" uid="uid://bnyvka2mc8gga" path="res://assets/image/backround/Cloud-7.png" id="5_um6dh"]
 [ext_resource type="Texture2D" uid="uid://532skyl3c6jr" path="res://assets/image/backround/Cloud-43.png" id="6_mf7fl"]
+[ext_resource type="StyleBox" uid="uid://bb7qcqmaxlv48" path="res://resource/button_pressed.tres" id="6_n3ahy"]
+[ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="7_scr1a"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m03y"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfthw"]
+bg_color = Color(0.38431373, 0.47843137, 0.6392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -21,8 +30,13 @@ shadow_color = Color(0, 0, 0, 0.13725491)
 shadow_size = 5
 shadow_offset = Vector2(0, 3.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4y5d"]
-bg_color = Color(0.6682161, 0.6682166, 0.66821635, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sh0sw"]
+bg_color = Color(0.38431373, 0.47843137, 0.6392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -30,18 +44,6 @@ corner_radius_bottom_left = 16
 shadow_color = Color(0, 0, 0, 0.13725491)
 shadow_size = 5
 shadow_offset = Vector2(0, 3.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es16l"]
-bg_color = Color(0.86726063, 0.8672607, 0.86726034, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.13725491)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m03y"]
 
 [node name="MainMenu" type="Control" unique_id=425800775]
 layout_mode = 3
@@ -73,56 +75,56 @@ theme_override_constants/separation = 10
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_d6l81")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+theme_override_styles/normal = ExtResource("5_sfthw")
+theme_override_styles/pressed = ExtResource("6_n3ahy")
+theme_override_styles/hover = ExtResource("7_scr1a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sfthw")
 text = "Main"
 
 [node name="button_settings" type="Button" parent="VBoxContainer" unique_id=64181867]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_d6l81")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+theme_override_styles/normal = ExtResource("5_sfthw")
+theme_override_styles/pressed = ExtResource("6_n3ahy")
+theme_override_styles/hover = ExtResource("7_scr1a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sfthw")
 text = "Pengaturan"
 
 [node name="button_credit" type="Button" parent="VBoxContainer" unique_id=155398629]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_d6l81")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+theme_override_styles/normal = ExtResource("5_sfthw")
+theme_override_styles/pressed = ExtResource("6_n3ahy")
+theme_override_styles/hover = ExtResource("7_scr1a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sfthw")
 text = "Kredit"
 
 [node name="button_exit" type="Button" parent="VBoxContainer" unique_id=309902070]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_d6l81")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+theme_override_styles/normal = ExtResource("5_sfthw")
+theme_override_styles/pressed = ExtResource("6_n3ahy")
+theme_override_styles/hover = ExtResource("7_scr1a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sfthw")
 text = "Keluar"
 
 [node name="Logo" type="TextureRect" parent="." unique_id=1705019265]
@@ -167,6 +169,7 @@ skala_min = 3.0
 skala_max = 3.0
 
 [node name="PanelOptions" type="Panel" parent="." unique_id=385203321]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -211,14 +214,14 @@ offset_bottom = 268.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_d6l81")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0m03y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4y5d")
-theme_override_styles/hover = SubResource("StyleBoxFlat_es16l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+theme_override_styles/normal = ExtResource("5_sfthw")
+theme_override_styles/pressed = ExtResource("6_n3ahy")
+theme_override_styles/hover = ExtResource("7_scr1a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sh0sw")
 text = "Kembali"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelOptions" unique_id=1249490162]

@@ -21,3 +21,6 @@ var last_level_path: String = ""
 
 ## Poin sesi terakhir — diisi game_manager, dibaca lose_screen
 var last_session_net: int = 0
+
+var volume_musik: float = 0.5
+var is_fullscreen: bool = false

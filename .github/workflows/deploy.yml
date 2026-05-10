@@ -49,7 +49,7 @@ jobs:
 
           fullscreen_js = '''
           \t\t<script>
-          \t\t// Auto-request fullscreen on first touch (mobile fullscreen)
+          \t\t// Auto-request fullscreen on first TOUCH only (mobile) - desktop tidak auto fullscreen
           \t\t(function() {
           \t\t\tvar _fsRequested = false;
           \t\t\tfunction _requestFullscreen() {
@@ -62,7 +62,6 @@ jobs:
           \t\t\t\twindow.scrollTo(0, 1);
           \t\t\t}
           \t\t\tdocument.addEventListener("touchstart", _requestFullscreen, {once: true, passive: true});
-          \t\t\tdocument.addEventListener("click", _requestFullscreen, {once: true});
           \t\t})();
           \t\t</script>'''
 
