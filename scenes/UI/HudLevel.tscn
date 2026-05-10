@@ -91,7 +91,7 @@ script = ExtResource("3_lt22e")
 
 [node name="pause_panel" type="Panel" parent="pause" unique_id=67484120]
 unique_name_in_owner = true
-visible = false
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -128,7 +128,7 @@ offset_right = 104.0
 offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="Resume" type="Button" parent="pause/pause_panel/VBoxContainer" unique_id=229945028]
 process_mode = 3
@@ -150,5 +150,17 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
 text = "Go to Main Menu"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="pause/pause_panel/VBoxContainer" unique_id=1387892995]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CheckFullscreen" type="CheckButton" parent="pause/pause_panel/VBoxContainer/HBoxContainer2" unique_id=1347251005]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "FullScreen"
+
 [connection signal="pressed" from="pause/pause_panel/VBoxContainer/Resume" to="pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="pause/pause_panel/VBoxContainer/main_menu" to="pause" method="_on_main_menu_pressed"]
+[connection signal="toggled" from="pause/pause_panel/VBoxContainer/HBoxContainer2/CheckFullscreen" to="pause" method="_on_check_fullscreen_toggled"]

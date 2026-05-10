@@ -19,9 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="15_unxme"]
 [ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="19_hyrjk"]
 [ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="20_atgtq"]
-[ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://script/tampilan/hud_controller.gd" id="20_fxef3"]
-[ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="21_k7svj"]
-[ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="22_jkm0u"]
+[ext_resource type="PackedScene" uid="uid://cpv2mt1dwe8g" path="res://scenes/UI/HudLevel.tscn" id="20_txae8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_7q5vj")
@@ -1053,27 +1051,6 @@ code_lines = Array[String](["# Protokol pintu darurat", "def buka_pintu_darurat(
 highlights = Array[ExtResource("11_q3pri")]([SubResource("Resource_cvjqn"), SubResource("Resource_3xgih")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jjit"]
-bg_color = Color(0.1721153, 0.17211533, 0.1721152, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1we1t"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbmdg"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [node name="level3" type="Node" unique_id=771745439]
 
 [node name="Map" type="Node" parent="." unique_id=1398429459]
@@ -1189,131 +1166,4 @@ position = Vector2(1248, 640)
 
 [node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("20_atgtq")]
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1000199111]
-visible = false
-script = ExtResource("20_fxef3")
-
-[node name="point" type="Panel" parent="UI" unique_id=357329448]
-texture_filter = 1
-offset_left = 40.0
-offset_top = 28.0
-offset_right = 320.0
-offset_bottom = 136.0
-
-[node name="Point_Label" type="Label" parent="UI/point" unique_id=1612631531]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 12.0
-offset_right = -11.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Points = 0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="darah" type="Panel" parent="UI" unique_id=796674627]
-unique_name_in_owner = true
-offset_left = 40.0
-offset_top = 144.0
-offset_right = 320.0
-offset_bottom = 248.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/darah" unique_id=1204975893]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 284.0
-offset_bottom = 96.0
-alignment = 1
-
-[node name="darah" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=1614568659]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("21_k7svj")
-expand_mode = 2
-
-[node name="darah2" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=1226792981]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("21_k7svj")
-expand_mode = 2
-
-[node name="darah3" type="TextureRect" parent="UI/darah/HBoxContainer" unique_id=1442323339]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("21_k7svj")
-expand_mode = 2
-
-[node name="pause" type="Node" parent="UI" unique_id=1452956292]
-script = ExtResource("22_jkm0u")
-
-[node name="pause_panel" type="Panel" parent="UI/pause" unique_id=1221926999]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/pause/pause_panel" unique_id=2046110968]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -188.0
-offset_right = 140.0
-offset_bottom = -133.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "GAME PAUSED"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/pause/pause_panel" unique_id=1780755145]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -20.0
-offset_right = 104.0
-offset_bottom = 84.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-
-[node name="Resume" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=1437839985]
-process_mode = 3
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
-text = "RESUME	"
-
-[node name="main_menu" type="Button" parent="UI/pause/pause_panel/VBoxContainer" unique_id=1658864018]
-process_mode = 3
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
-text = "Go to Main Menu"
-
-[connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/Resume" to="UI/pause" method="_on_resume_pressed"]
-[connection signal="pressed" from="UI/pause/pause_panel/VBoxContainer/main_menu" to="UI/pause" method="_on_main_menu_pressed"]
+[node name="UI" parent="." unique_id=1872990787 instance=ExtResource("20_txae8")]
