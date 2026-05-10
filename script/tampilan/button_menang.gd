@@ -1,27 +1,28 @@
 extends Node
-@onready var bgm_menang: AudioStreamPlayer = %BgmMenang
-
+@onready var bgm_menang: AudioStreamPlayer = %bgm_menang
+const FONT_PATH := "res://assets/fonts/JetBrainsMono-VariableFont_wght.ttf"
+var _font: FontFile
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║                    KONFIGURASI TAMPILAN WIN SCREEN                         ║
 # ║  Ubah nilai di sini untuk atur posisi, warna, dan ukuran font              ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
 ## Lebar panel utama (pixel)
-const CFG_PANEL_W       := 560.0
+const CFG_PANEL_W       := 620.0
 ## Tinggi panel utama (pixel). Naikkan jika konten terpotong.
-const CFG_PANEL_H       := 440.0
+const CFG_PANEL_H       := 500.0
 ## Jarak antar baris di dalam panel
 const CFG_ROW_GAP       := 10
 ## Ukuran font judul (SELAMAT!)
-const CFG_SIZE_JUDUL    := 32
+const CFG_SIZE_JUDUL    := 40
 ## Ukuran font subjudul (Hasil Level X)
-const CFG_SIZE_SUBJUDUL := 18
+const CFG_SIZE_SUBJUDUL := 26
 ## Ukuran font baris detail poin
-const CFG_SIZE_DETAIL   := 20
+const CFG_SIZE_DETAIL   := 28
 ## Ukuran font baris total poin
-const CFG_SIZE_TOTAL    := 22
+const CFG_SIZE_TOTAL    := 30
 ## Ukuran font tombol
-const CFG_SIZE_BTN      := 16
+const CFG_SIZE_BTN      := 24
 ## Tinggi tombol (pixel)
 const CFG_BTN_H         := 46.0
 ## Margin kiri & kanan isi panel (pixel)
@@ -31,12 +32,12 @@ const CFG_MARGIN_TOP    := 32.0
 
 # ─── Warna — ganti string hex sesuai selera ───────────────────────────────────
 const C_BG_DIM    := Color(0, 0, 0, 0.75)         ## Warna layar gelap di belakang panel
-const C_PANEL     := Color("#1e1e2e")              ## Warna latar panel
+const C_PANEL     := Color("#141b2e")              ## Warna latar panel
 const C_BORDER    := Color("#f9e2af")              ## Warna border panel
 const C_JUDUL     := Color("#f9e2af")              ## Warna teks SELAMAT!
-const C_SUBJUDUL  := Color("#89b4fa")              ## Warna teks "Hasil Level X"
+const C_SUBJUDUL  := Color("#e3f9ff")              ## Warna teks "Hasil Level X"
 const C_POSITIF   := Color("#a6e3a1")              ## Warna poin positif (benar, bonus, item)
-const C_NEGATIF   := Color("#f38ba8")              ## Warna poin negatif (kesalahan)
+const C_NEGATIF   := Color("#7a2c2c")              ## Warna poin negatif (kesalahan)
 const C_NETRAL    := Color("#585b70")              ## Warna kesalahan = 0
 const C_TOTAL     := Color("#f9e2af")              ## Warna baris Total
 const C_SEP       := Color("#313244")              ## Warna garis pemisah
@@ -50,6 +51,7 @@ func _ready() -> void:
 
 func _build_ui():
 	var root := get_tree().current_scene
+	_font = load(FONT_PATH)
 
 	# ── Latar belakang gelap ──
 	var dim := ColorRect.new()
@@ -104,7 +106,7 @@ func _build_ui():
 	var penalty:  int = wrong * 10
 	var total:    int = max(0, correct * 100 + bonus + item_pts - penalty)
 
-	_lbl(vbox, "  SELAMAT !  ",          CFG_SIZE_JUDUL,    C_JUDUL,    true)
+	_lbl(vbox, "  Kamu Menang  ",          CFG_SIZE_JUDUL,    C_JUDUL,    true)
 	_lbl(vbox, "Hasil Level %d" % level,   CFG_SIZE_SUBJUDUL, C_SUBJUDUL, false)
 	_sep(vbox)
 	_row(vbox, "Soal benar  (%d × 100)" % correct, "+%d" % (correct * 100), C_POSITIF)
@@ -165,6 +167,7 @@ func _get_level() -> int:
 # ─── Helper UI ────────────────────────────────────────────────────────────────
 func _lbl(parent: Node, text: String, size: int, color: Color, center: bool = false):
 	var l := Label.new()
+	if _font: l.add_theme_font_override("font", _font)
 	l.text = text
 	l.add_theme_font_size_override("font_size", size)
 	l.add_theme_color_override("font_color", color)
@@ -179,12 +182,14 @@ func _row(parent: Node, left: String, right: String,
 	hbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	parent.add_child(hbox)
 	var ll := Label.new()
+	if _font: ll.add_theme_font_override("font", _font)
 	ll.text = left
 	ll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	ll.add_theme_font_size_override("font_size", CFG_SIZE_DETAIL)
 	ll.add_theme_color_override("font_color", Color("#cdd6f4"))
 	hbox.add_child(ll)
 	var rl := Label.new()
+	if _font: rl.add_theme_font_override("font", _font)
 	rl.text = right
 	rl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	rl.add_theme_font_size_override("font_size", right_size)
@@ -200,6 +205,7 @@ func _sep(parent: Node):
 
 func _btn(text: String, border: Color) -> Button:
 	var btn := Button.new()
+	if _font: btn.add_theme_font_override("font", _font)
 	btn.text = text
 	btn.custom_minimum_size = Vector2(0, CFG_BTN_H)
 	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL

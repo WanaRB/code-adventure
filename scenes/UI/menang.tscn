@@ -13,5 +13,6 @@ grow_vertical = 2
 script = ExtResource("3_aubvg")
 
 [node name="bgm_menang" type="AudioStreamPlayer" parent="." unique_id=426950865]
+unique_name_in_owner = true
 stream = ExtResource("2_ri610")
 autoplay = true

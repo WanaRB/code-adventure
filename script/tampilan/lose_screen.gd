@@ -1,5 +1,7 @@
 extends Control
 @onready var bgm_kalah: AudioStreamPlayer = %BgmKalah
+const FONT_PATH := "res://assets/fonts/JetBrainsMono-VariableFont_wght.ttf"
+var _font: FontFile
 
 # ╔══════════════════════════════════════════════════════════════════════════════╗
 # ║                   KONFIGURASI TAMPILAN LOSE SCREEN                         ║
@@ -7,21 +9,21 @@ extends Control
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
 ## Lebar panel (pixel)
-const CFG_PANEL_W     := 460.0
+const CFG_PANEL_W     := 620.0
 ## Tinggi panel (pixel). Naikkan jika konten terpotong.
 const CFG_PANEL_H     := 320.0
 ## Jarak antar baris
 const CFG_ROW_GAP     := 12
 ## Ukuran font judul (GAME OVER)
-const CFG_SIZE_JUDUL  := 32
+const CFG_SIZE_JUDUL  := 40
 ## Ukuran font poin
-const CFG_SIZE_POIN   := 24
+const CFG_SIZE_POIN   := 30
 ## Ukuran font sub-keterangan
 const CFG_SIZE_HINT   := 13
 ## Ukuran font tombol
-const CFG_SIZE_BTN    := 18
+const CFG_SIZE_BTN    := 26
 ## Tinggi tombol (pixel)
-const CFG_BTN_H       := 44.0
+const CFG_BTN_H       := 52.0
 ## Margin kiri & kanan isi panel
 const CFG_MARGIN_H    := 36.0
 ## Margin atas isi panel
@@ -29,7 +31,7 @@ const CFG_MARGIN_TOP  := 28.0
 
 # ─── Warna ────────────────────────────────────────────────────────────────────
 const C_BG_DIM   := Color(0, 0, 0, 0.75)   ## Warna latar gelap
-const C_PANEL    := Color("#1e1e2e")        ## Warna panel
+const C_PANEL    := Color("#141b2e")        ## Warna panel
 const C_BORDER   := Color("#f38ba8")        ## Warna border panel (merah muda)
 const C_JUDUL    := Color("#f38ba8")        ## Warna teks GAME OVER
 const C_POIN     := Color("#f9e2af")        ## Warna angka poin
@@ -43,6 +45,7 @@ func _ready() -> void:
 	_build_ui()
 
 func _build_ui():
+	_font = load(FONT_PATH)
 	# ── Latar gelap ──
 	var dim := ColorRect.new()
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -121,6 +124,7 @@ func _retry():
 # ─── Helper UI ────────────────────────────────────────────────────────────────
 func _lbl(parent: Node, text: String, size: int, color: Color):
 	var l := Label.new()
+	if _font: l.add_theme_font_override("font", _font)
 	l.text = text
 	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -137,6 +141,7 @@ func _sep(parent: Node):
 
 func _btn(text: String, border: Color) -> Button:
 	var btn := Button.new()
+	if _font: btn.add_theme_font_override("font", _font)
 	btn.text = text
 	btn.custom_minimum_size = Vector2(0, CFG_BTN_H)
 	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
