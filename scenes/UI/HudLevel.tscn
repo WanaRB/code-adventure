@@ -107,6 +107,7 @@ texture = ExtResource("3_b1dk8")
 expand_mode = 1
 
 [node name="pause" type="Node" parent="." unique_id=1226961882]
+process_mode = 3
 script = ExtResource("3_lt22e")
 
 [node name="pause_panel" type="Panel" parent="pause" unique_id=67484120]
