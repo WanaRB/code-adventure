@@ -29,6 +29,7 @@ func _on_pause_btn_pressed() -> void:
 	pause_panel.show()
 
 func _on_fullscreen_item_selected(index: int) -> void:
+	
 	var toggled_on := index == 1
 	GameEvents.is_fullscreen = toggled_on
 	if OS.has_feature("web"):
@@ -39,3 +40,7 @@ func _on_fullscreen_item_selected(index: int) -> void:
 	else:
 		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if toggled_on else DisplayServer.WINDOW_MODE_WINDOWED
 		DisplayServer.window_set_mode(mode)
+
+
+func _on_check_fullscreen_item_selected(index: int) -> void:
+	pass # Replace with function body.

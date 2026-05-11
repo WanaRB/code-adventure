@@ -183,7 +183,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
-text = "RESUME	"
+text = "Resume"
 
 [node name="main_menu" type="Button" parent="pause/pause_panel/VBoxContainer" unique_id=141486948]
 process_mode = 3
@@ -214,4 +214,4 @@ popup/item_1/id = 1
 
 [connection signal="pressed" from="pause/pause_panel/VBoxContainer/Resume" to="pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="pause/pause_panel/VBoxContainer/main_menu" to="pause" method="_on_main_menu_pressed"]
-[connection signal="item_selected" from="pause/pause_panel/VBoxContainer/HBoxContainer2/CheckFullscreen" to="." method="_on_fullscreen_item_selected"]
+[connection signal="item_selected" from="pause/pause_panel/VBoxContainer/HBoxContainer2/CheckFullscreen" to="pause" method="_on_check_fullscreen_item_selected"]
