@@ -12,7 +12,7 @@ const BTN_E_SIZE      := 200    ## Ukuran tombol INTERAKSI (E)
 # PAD_RIGHT  → naikkan angka = tombol lompat menjauh dari tepi kanan
 const PAD_LEFT        := 200
 const PAD_RIGHT       := 200
-const PAD_BOTTOM      := 200
+const PAD_BOTTOM      := 150
 const GAP_DIR         := 200    ## Jarak antara tombol kiri dan kanan
 const GAP_ACTION      := 200    ## Jarak antara tombol E dan lompat
 
