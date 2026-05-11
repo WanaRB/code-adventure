@@ -45,6 +45,34 @@ shadow_color = Color(0, 0, 0, 0.13725491)
 shadow_size = 5
 shadow_offset = Vector2(0, 3.5)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sfthw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3ahy"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0t0a"]
+bg_color = Color(0.19607843, 0.25490198, 0.3882353, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scr1a"]
+bg_color = Color(0.19607843, 0.25490198, 0.3882353, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
 [node name="MainMenu" type="Control" unique_id=425800775]
 layout_mode = 3
 anchors_preset = 15
@@ -169,17 +197,10 @@ skala_min = 3.0
 skala_max = 3.0
 
 [node name="PanelOptions" type="Panel" parent="." unique_id=385203321]
-visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -300.0
-offset_right = 300.0
-offset_bottom = 300.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -232,9 +253,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -244.4375
-offset_top = -27.0
+offset_top = -46.0
 offset_right = 244.4375
-offset_bottom = 27.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
@@ -256,8 +277,12 @@ vertical_alignment = 1
 [node name="SliderMusik" type="HSlider" parent="PanelOptions/VBoxContainer2/HBoxContainer" unique_id=1805701899]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_icons/grabber = SubResource("PlaceholderTexture2D_sfthw")
+theme_override_styles/slider = SubResource("StyleBoxFlat_n3ahy")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_d0t0a")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_scr1a")
 max_value = 1.0
 step = 0.01
 value = 0.5
@@ -267,11 +292,15 @@ tick_count = 2
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="CheckFullscreen" type="CheckButton" parent="PanelOptions/VBoxContainer2/HBoxContainer2" unique_id=679008087]
-custom_minimum_size = Vector2(400, 0)
+[node name="CheckFullscreen" type="OptionButton" parent="PanelOptions/VBoxContainer2/HBoxContainer2" unique_id=1581460866]
+custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "FullScreen"
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "FullScreen"
+popup/item_1/id = 1
 
 [connection signal="pressed" from="VBoxContainer/button_main" to="." method="_on_button_main_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_settings" to="." method="_on_button_settings_pressed"]
@@ -279,4 +308,4 @@ text = "FullScreen"
 [connection signal="pressed" from="VBoxContainer/button_exit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="PanelOptions/button_back_options" to="." method="_on_button_back_options_pressed"]
 [connection signal="value_changed" from="PanelOptions/VBoxContainer2/HBoxContainer/SliderMusik" to="." method="_on_slider_musik_changed"]
-[connection signal="toggled" from="PanelOptions/VBoxContainer2/HBoxContainer2/CheckFullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="item_selected" from="PanelOptions/VBoxContainer2/HBoxContainer2/CheckFullscreen" to="." method="_on_fullscreen_item_selected"]

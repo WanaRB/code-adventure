@@ -6,13 +6,13 @@ extends Control
 ## Gambar ikon suara mati (megaphone off)
 @export var ikon_suara_mati: Texture2D
 
+
 # ─── Referensi Node ───────────────────────────────────────────────────────────
 @onready var vbox: VBoxContainer = $VBoxContainer
 @onready var logo: Node = $Logo
 @onready var panel_options: Panel = $PanelOptions
+@onready var check_fullscreen: OptionButton = $PanelOptions/VBoxContainer2/HBoxContainer2/CheckFullscreen
 @onready var slider_musik: HSlider = $PanelOptions/VBoxContainer2/HBoxContainer/SliderMusik
-@onready var check_fullscreen: CheckButton = $PanelOptions/VBoxContainer2/HBoxContainer2/CheckFullscreen
-
 # ─── State Internal ───────────────────────────────────────────────────────────
 var _sudah_klik := false       # true setelah user klik splash screen
 var _label_klik: Label = null  # referensi label "Klik to Play"
@@ -20,6 +20,10 @@ var _tween_kedip: Tween = null
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready() -> void:
+	var grabber := _buat_grabber(12, Color("#89b4fa"))
+	slider_musik.add_theme_icon_override("grabber", grabber)
+	slider_musik.add_theme_icon_override("grabber_highlight", _buat_grabber(13, Color("#cdd6f4")))
+	slider_musik.custom_minimum_size.y = 30
 	_setup_bgm()
 	_setup_splash()
 	#SaveManager.reset()  # ← tambah sementara, hapus setelah test
@@ -114,7 +118,9 @@ func _on_button_main_pressed() -> void:
 func _on_button_settings_pressed() -> void:
 	# Restore state dari GameEvents sebelum panel ditampilkan
 	slider_musik.value = GameEvents.volume_musik
-	check_fullscreen.button_pressed = GameEvents.is_fullscreen
+	check_fullscreen.set_block_signals(true)
+	check_fullscreen.selected = 1 if GameEvents.is_fullscreen else 0
+	check_fullscreen.set_block_signals(false)
 	vbox.visible = false
 	panel_options.show()
 	panel_options.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -131,8 +137,10 @@ func _on_slider_musik_changed(value: float) -> void:
 	var bus_idx := AudioServer.get_bus_index("Music")
 	AudioServer.set_bus_volume_db(bus_idx, linear_to_db(value) if value > 0.0 else -80.0)
 
-func _on_fullscreen_toggled(toggled_on: bool) -> void:
-	GameEvents.is_fullscreen = toggled_on 	
+func _on_fullscreen_item_selected(index: int) -> void:
+	print("fullscreen index: ", index)
+	var toggled_on := index == 1
+	GameEvents.is_fullscreen = toggled_on
 	if OS.has_feature("web"):
 		if toggled_on:
 			JavaScriptBridge.eval("var el=document.documentElement;if(el.requestFullscreen)el.requestFullscreen();")
@@ -141,6 +149,7 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	else:
 		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if toggled_on else DisplayServer.WINDOW_MODE_WINDOWED
 		DisplayServer.window_set_mode(mode)
+		
 ## Tombol exit: kembali ke splash screen dengan animasi tombol turun.
 func _on_button_exit_pressed() -> void:
 	GameEvents.sudah_lewat_splash = false
@@ -191,3 +200,13 @@ func _animasi_masuk_dari_submenu() -> void:
 	tw.tween_property(vbox, "modulate:a", 1.0, 0.5)
 	tw.parallel().tween_property(vbox, "position:y", vbox.position.y - 600.0, 0.7)
 	tw.tween_callback(func(): vbox.mouse_filter = Control.MOUSE_FILTER_STOP)
+
+func _buat_grabber(radius: int, color: Color) -> ImageTexture:
+	var size := radius * 2
+	var img := Image.create(size, size, false, Image.FORMAT_RGBA8)
+	var center := Vector2(radius, radius)
+	for x in size:
+		for y in size:
+			if Vector2(x, y).distance_to(center) <= radius:
+				img.set_pixel(x, y, color)
+	return ImageTexture.create_from_image(img)
