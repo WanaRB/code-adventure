@@ -11,3 +11,7 @@ func _on_quiz_opened():
 
 func _on_quiz_closed():
 	self.visible = true
+
+
+func _on_fullscreen_item_selected(index: int) -> void:
+	pass # Replace with function body.

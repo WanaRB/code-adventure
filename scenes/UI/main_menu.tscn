@@ -197,10 +197,13 @@ skala_min = 3.0
 skala_max = 3.0
 
 [node name="PanelOptions" type="Panel" parent="." unique_id=385203321]
+custom_minimum_size = Vector2(600, 600)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -215,6 +218,7 @@ offset_top = 30.0
 offset_right = 141.0
 offset_bottom = 99.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_d6l81")
 theme_override_font_sizes/font_size = 50
 text = "Pengaturan"
 horizontal_alignment = 1
@@ -269,6 +273,7 @@ theme_override_constants/separation = 50
 [node name="Label" type="Label" parent="PanelOptions/VBoxContainer2/HBoxContainer" unique_id=813040607]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_d6l81")
 theme_override_font_sizes/font_size = 30
 text = "Musik"
 horizontal_alignment = 1
@@ -295,6 +300,7 @@ size_flags_horizontal = 4
 [node name="CheckFullscreen" type="OptionButton" parent="PanelOptions/VBoxContainer2/HBoxContainer2" unique_id=1581460866]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d6l81")
 theme_override_font_sizes/font_size = 30
 item_count = 2
 popup/item_0/text = "Windowed"

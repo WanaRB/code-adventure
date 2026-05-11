@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://script/tampilan/hud_controller.gd" id="1_nlktw"]
 [ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="2_b1dk8"]
 [ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="3_lt22e"]
+[ext_resource type="FontFile" uid="uid://cskyf86c0n4ku" path="res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="4_b1dk8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jjit"]
 bg_color = Color(0.1721153, 0.17211533, 0.1721152, 1)
@@ -52,35 +53,35 @@ text = "Points = 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="darah" type="Panel" parent="." unique_id=558110487]
+[node name="darah" type="Panel" parent="point" unique_id=558110487]
 unique_name_in_owner = true
-offset_left = 40.0
-offset_top = 144.0
-offset_right = 320.0
-offset_bottom = 248.0
+layout_mode = 0
+offset_top = 116.0
+offset_right = 280.0
+offset_bottom = 220.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="darah" unique_id=1418818483]
+[node name="HBoxContainer" type="HBoxContainer" parent="point/darah" unique_id=1418818483]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 284.0
 offset_bottom = 96.0
 alignment = 1
 
-[node name="darah" type="TextureRect" parent="darah/HBoxContainer" unique_id=1091174913]
+[node name="darah" type="TextureRect" parent="point/darah/HBoxContainer" unique_id=1091174913]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("2_b1dk8")
 expand_mode = 2
 
-[node name="darah2" type="TextureRect" parent="darah/HBoxContainer" unique_id=290049234]
+[node name="darah2" type="TextureRect" parent="point/darah/HBoxContainer" unique_id=290049234]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("2_b1dk8")
 expand_mode = 2
 
-[node name="darah3" type="TextureRect" parent="darah/HBoxContainer" unique_id=1548336017]
+[node name="darah3" type="TextureRect" parent="point/darah/HBoxContainer" unique_id=1548336017]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("2_b1dk8")
@@ -92,9 +93,12 @@ script = ExtResource("3_lt22e")
 [node name="pause_panel" type="Panel" parent="pause" unique_id=67484120]
 unique_name_in_owner = true
 process_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+custom_minimum_size = Vector2(600, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -116,6 +120,7 @@ theme_override_font_sizes/font_size = 40
 text = "GAME PAUSED"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="pause/pause_panel" unique_id=1780883657]
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -148,19 +153,24 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
-text = "Go to Main Menu"
+text = "Main Menu"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="pause/pause_panel/VBoxContainer" unique_id=1387892995]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="CheckFullscreen" type="CheckButton" parent="pause/pause_panel/VBoxContainer/HBoxContainer2" unique_id=1347251005]
+[node name="CheckFullscreen" type="OptionButton" parent="pause/pause_panel/VBoxContainer/HBoxContainer2" unique_id=433513261]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b1dk8")
 theme_override_font_sizes/font_size = 30
-text = "FullScreen"
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "FullScreen"
+popup/item_1/id = 1
 
 [connection signal="pressed" from="pause/pause_panel/VBoxContainer/Resume" to="pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="pause/pause_panel/VBoxContainer/main_menu" to="pause" method="_on_main_menu_pressed"]
-[connection signal="toggled" from="pause/pause_panel/VBoxContainer/HBoxContainer2/CheckFullscreen" to="pause" method="_on_check_fullscreen_toggled"]
+[connection signal="item_selected" from="pause/pause_panel/VBoxContainer/HBoxContainer2/CheckFullscreen" to="." method="_on_fullscreen_item_selected"]

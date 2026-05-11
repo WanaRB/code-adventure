@@ -1,6 +1,6 @@
 extends Node
 @onready var pause_panel: Panel = %pause_panel
-@onready var check_fullscreen: CheckButton = %CheckFullscreen
+@onready var check_fullscreen: OptionButton = %CheckFullscreen
 
 func _ready() -> void:
 	pause_panel.hide()
@@ -20,11 +20,16 @@ func _on_main_menu_pressed() -> void:
 
 func _on_pause_btn_pressed() -> void:
 	# Sync state sebelum tampil
-	check_fullscreen.button_pressed = GameEvents.is_fullscreen
+	var is_fs := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+	GameEvents.is_fullscreen = is_fs
+	check_fullscreen.set_block_signals(true)
+	check_fullscreen.selected = 1 if is_fs else 0
+	check_fullscreen.set_block_signals(false)
 	get_tree().paused = true
 	pause_panel.show()
 
-func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
+func _on_fullscreen_item_selected(index: int) -> void:
+	var toggled_on := index == 1
 	GameEvents.is_fullscreen = toggled_on
 	if OS.has_feature("web"):
 		if toggled_on:
