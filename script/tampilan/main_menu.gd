@@ -118,10 +118,8 @@ func _on_button_main_pressed() -> void:
 func _on_button_settings_pressed() -> void:
 	# Restore state dari GameEvents sebelum panel ditampilkan
 	slider_musik.value = GameEvents.volume_musik
-	var is_fs := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
-	GameEvents.is_fullscreen = is_fs
 	check_fullscreen.set_block_signals(true)
-	check_fullscreen.selected = 1 if is_fs else 0
+	check_fullscreen.selected = 1 if GameEvents.is_fullscreen else 0
 	check_fullscreen.set_block_signals(false)
 	vbox.visible = false
 	panel_options.show()
