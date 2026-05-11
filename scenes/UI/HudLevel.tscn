@@ -202,6 +202,7 @@ size_flags_horizontal = 4
 
 [node name="CheckFullscreen" type="OptionButton" parent="pause/pause_panel/VBoxContainer/HBoxContainer2" unique_id=433513261]
 unique_name_in_owner = true
+process_mode = 3
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_b1dk8")
