@@ -10,8 +10,8 @@
 [ext_resource type="StyleBox" uid="uid://bb7qcqmaxlv48" path="res://resource/button_pressed.tres" id="5_83fsw"]
 [ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="6_54wri"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa2yl"]
-bg_color = Color(0, 0, 0, 0.85882354)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83fsw"]
+bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
@@ -39,7 +39,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pa2yl")
+theme_override_styles/panel = SubResource("StyleBoxFlat_83fsw")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=100003]
 layout_mode = 1
@@ -63,6 +63,7 @@ theme_override_constants/separation = 18
 [node name="LabelJudul" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100005]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 42
 text = "Code Adventure"
 horizontal_alignment = 1
@@ -70,6 +71,7 @@ horizontal_alignment = 1
 [node name="LabelSub" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100006]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 22
 text = "2D puzzle-platformer"
 horizontal_alignment = 1
@@ -81,6 +83,7 @@ layout_mode = 2
 [node name="LabelSeksi1" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100008]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 26
 text = "Tim Pembuat"
 horizontal_alignment = 1
@@ -88,6 +91,7 @@ horizontal_alignment = 1
 [node name="LabelDev" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100009]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 20
 text = "Game Design & Development
 Dewana Ruby Bismika — Lead Developer
@@ -109,6 +113,7 @@ layout_mode = 2
 [node name="LabelSeksi2" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100011]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 26
 text = "Teknologi"
 horizontal_alignment = 1
@@ -116,6 +121,7 @@ horizontal_alignment = 1
 [node name="LabelTech" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100012]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 20
 text = "Dibuat dengan Godot Engine 4
 Font: JetBrains Mono (JetBrains)
@@ -129,6 +135,7 @@ layout_mode = 2
 [node name="LabelTerima" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100014]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 1, 0.8, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 22
 text = "Terima kasih sudah bermain! 🎮"
 horizontal_alignment = 1

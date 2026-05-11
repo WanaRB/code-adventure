@@ -20,8 +20,7 @@ func _on_main_menu_pressed() -> void:
 
 func _on_pause_btn_pressed() -> void:
 	# Sync state sebelum tampil
-	var is_fs := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
-	GameEvents.is_fullscreen = is_fs
+	var is_fs := GameEvents.is_fullscreen
 	check_fullscreen.set_block_signals(true)
 	check_fullscreen.selected = 1 if is_fs else 0
 	check_fullscreen.set_block_signals(false)
