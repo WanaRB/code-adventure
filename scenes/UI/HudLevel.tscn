@@ -1,9 +1,34 @@
 [gd_scene format=3 uid="uid://cpv2mt1dwe8g"]
 
 [ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://script/tampilan/hud_controller.gd" id="1_nlktw"]
-[ext_resource type="Texture2D" uid="uid://flcuw3s8ka6s" path="res://assets/image/character/character.png" id="2_b1dk8"]
+[ext_resource type="Texture2D" uid="uid://bhd3gc3fip67x" path="res://assets/image/item/heart.png" id="3_b1dk8"]
 [ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="3_lt22e"]
 [ext_resource type="FontFile" uid="uid://cskyf86c0n4ku" path="res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="4_b1dk8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1dk8"]
+bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lt22e"]
+bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
+border_blend = true
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijbct"]
+bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jjit"]
 bg_color = Color(0.1721153, 0.17211533, 0.1721152, 1)
@@ -31,10 +56,11 @@ script = ExtResource("1_nlktw")
 
 [node name="point" type="Panel" parent="." unique_id=777321681]
 texture_filter = 1
-offset_left = 40.0
-offset_top = 28.0
-offset_right = 320.0
-offset_bottom = 136.0
+offset_left = 80.0
+offset_top = 60.0
+offset_right = 392.0
+offset_bottom = 168.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b1dk8")
 
 [node name="Point_Label" type="Label" parent="point" unique_id=649468251]
 unique_name_in_owner = true
@@ -43,49 +69,60 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
-offset_top = 12.0
+offset_top = 4.0
 offset_right = -11.0
-offset_bottom = -16.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 40
 text = "Points = 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="darah" type="Panel" parent="point" unique_id=558110487]
+[node name="darah" type="Panel" parent="." unique_id=558110487]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 116.0
-offset_right = 280.0
-offset_bottom = 220.0
+offset_left = 80.0
+offset_top = 168.0
+offset_right = 392.0
+offset_bottom = 208.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_lt22e")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="point/darah" unique_id=1418818483]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 284.0
-offset_bottom = 96.0
+[node name="HBoxContainer" type="HBoxContainer" parent="darah" unique_id=1418818483]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -52.0
+offset_right = 120.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="darah" type="TextureRect" parent="point/darah/HBoxContainer" unique_id=1091174913]
-texture_filter = 1
+[node name="darah" type="TextureRect" parent="darah/HBoxContainer" unique_id=1171417734]
+custom_minimum_size = Vector2(70, 1)
 layout_mode = 2
-texture = ExtResource("2_b1dk8")
-expand_mode = 2
+texture = ExtResource("3_b1dk8")
+expand_mode = 1
 
-[node name="darah2" type="TextureRect" parent="point/darah/HBoxContainer" unique_id=290049234]
-texture_filter = 1
+[node name="darah2" type="TextureRect" parent="darah/HBoxContainer" unique_id=1912097434]
+custom_minimum_size = Vector2(70, 1)
 layout_mode = 2
-texture = ExtResource("2_b1dk8")
-expand_mode = 2
+texture = ExtResource("3_b1dk8")
+expand_mode = 1
 
-[node name="darah3" type="TextureRect" parent="point/darah/HBoxContainer" unique_id=1548336017]
-texture_filter = 1
+[node name="darah3" type="TextureRect" parent="darah/HBoxContainer" unique_id=1372983910]
+custom_minimum_size = Vector2(70, 1)
 layout_mode = 2
-texture = ExtResource("2_b1dk8")
-expand_mode = 2
+texture = ExtResource("3_b1dk8")
+expand_mode = 1
 
 [node name="pause" type="Node" parent="." unique_id=1226961882]
 script = ExtResource("3_lt22e")
@@ -101,6 +138,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ijbct")
 
 [node name="Label" type="Label" parent="pause/pause_panel" unique_id=1288665660]
 texture_filter = 1
@@ -116,6 +154,7 @@ offset_right = 140.0
 offset_bottom = -133.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_b1dk8")
 theme_override_font_sizes/font_size = 40
 text = "GAME PAUSED"
 
@@ -139,6 +178,7 @@ theme_override_constants/separation = 20
 process_mode = 3
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_b1dk8")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
@@ -149,6 +189,7 @@ text = "RESUME	"
 process_mode = 3
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_b1dk8")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
