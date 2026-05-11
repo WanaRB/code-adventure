@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bhd3gc3fip67x" path="res://assets/image/item/heart.png" id="3_b1dk8"]
 [ext_resource type="Script" uid="uid://d17ovpbsp3arx" path="res://script/tampilan/pause.gd" id="3_lt22e"]
 [ext_resource type="FontFile" uid="uid://cskyf86c0n4ku" path="res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="4_b1dk8"]
+[ext_resource type="StyleBox" uid="uid://chnnbmypfpao3" path="res://resource/button_normal.tres" id="5_xq6u3"]
+[ext_resource type="StyleBox" uid="uid://bb7qcqmaxlv48" path="res://resource/button_pressed.tres" id="6_esp13"]
+[ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="7_me7jb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1dk8"]
 bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
@@ -29,27 +32,6 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijbct"]
 bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jjit"]
-bg_color = Color(0.1721153, 0.17211533, 0.1721152, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1we1t"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbmdg"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="UI" type="CanvasLayer" unique_id=1872990787]
 script = ExtResource("1_nlktw")
@@ -130,12 +112,10 @@ script = ExtResource("3_lt22e")
 [node name="pause_panel" type="Panel" parent="pause" unique_id=67484120]
 unique_name_in_owner = true
 process_mode = 3
-custom_minimum_size = Vector2(600, 400)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+custom_minimum_size = Vector2(1000, 600)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ijbct")
@@ -180,9 +160,9 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("4_b1dk8")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
+theme_override_styles/normal = ExtResource("5_xq6u3")
+theme_override_styles/pressed = ExtResource("6_esp13")
+theme_override_styles/hover = ExtResource("7_me7jb")
 text = "Resume"
 
 [node name="main_menu" type="Button" parent="pause/pause_panel/VBoxContainer" unique_id=141486948]
@@ -191,9 +171,9 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("4_b1dk8")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_3jjit")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1we1t")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bbmdg")
+theme_override_styles/normal = ExtResource("5_xq6u3")
+theme_override_styles/pressed = ExtResource("6_esp13")
+theme_override_styles/hover = ExtResource("7_me7jb")
 text = "Main Menu"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="pause/pause_panel/VBoxContainer" unique_id=1387892995]
