@@ -157,6 +157,9 @@ func _build_ui():
 	var pad := Control.new()
 	pad.custom_minimum_size = Vector2(0, CFG_SECTION_GAP)
 	root_vbox.add_child(pad)
+	
+	var mc := _get_mobile_controls()
+	if mc: mc.visible = false
 
 # ─── Title Bar ────────────────────────────────────────────────────────────────
 func _make_title_bar(mono_font: Font) -> Control:
@@ -729,4 +732,9 @@ func _tutup_kuis():
 	GameEvents.quiz_closed.emit()
 	if not CameraDirector._is_busy:
 		get_tree().paused = false
+	var mc := _get_mobile_controls()
+	if mc: mc.visible = true
 	queue_free()
+
+func _get_mobile_controls() -> Node:
+	return get_tree().get_first_node_in_group("mobile_controls")

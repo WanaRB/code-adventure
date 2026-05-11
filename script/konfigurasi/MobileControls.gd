@@ -43,6 +43,7 @@ func _ready():
 	layer        = 10
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_ui()
+	add_to_group("mobile_controls")
 
 # ─── Build UI ─────────────────────────────────────────────────────────────────
 func _build_ui():
