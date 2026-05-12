@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="8_y17vk"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="9_7r2lc"]
 [ext_resource type="Resource" uid="uid://cvcx1n4t4a8kh" path="res://resource/Kuis_Level4_drone.tres" id="9_n8y82"]
-[ext_resource type="Resource" uid="uid://c003ksljy7gk" path="res://resource/Kuis_Level4_pintu.tres" id="10_424j3"]
+[ext_resource type="Resource" uid="uid://bkcf6xv5jkswm" path="res://resource/Kuis_Level5_platform.tres" id="10_n8y82"]
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="10_usxyp"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="12_7agcs"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="13_ka1hd"]
@@ -1093,6 +1093,7 @@ position = Vector2(1136, 96)
 
 [node name="Platform1_png2" parent="Map/Platform" unique_id=437616027 instance=ExtResource("6_w76c7")]
 position = Vector2(904, 416)
+platform_id = 2
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
@@ -1108,7 +1109,7 @@ data_kuis = ExtResource("9_n8y82")
 
 [node name="Laptop2" parent="Item" unique_id=1677301486 instance=ExtResource("9_7r2lc")]
 position = Vector2(1152, 8)
-data_kuis = ExtResource("10_424j3")
+data_kuis = ExtResource("10_n8y82")
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
