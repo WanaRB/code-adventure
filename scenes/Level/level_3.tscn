@@ -1089,10 +1089,10 @@ stream = ExtResource("19_hyrjk")
 position = Vector2(2672, 416)
 
 [node name="apple2" parent="Item" unique_id=1139145556 instance=ExtResource("7_p2jt4")]
-position = Vector2(72, -48)
+position = Vector2(48, -144)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("8_40tq3")]
-position = Vector2(768, 472)
+position = Vector2(728, 472)
 data_kuis = ExtResource("9_828s4")
 
 [node name="PintuMenang" parent="Item" unique_id=1498396234 instance=ExtResource("6_jkm0u")]
@@ -1106,7 +1106,7 @@ data_kuis = ExtResource("11_mytxk")
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_i8c42")]
-position = Vector2(392.00012, -47.999992)
+position = Vector2(-223.99994, 71.999985)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]

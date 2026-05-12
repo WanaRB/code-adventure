@@ -6,31 +6,108 @@
 [ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_ahn8f"]
 [ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_1okl7"]
 
-[sub_resource type="Resource" id="Resource_dmg7l"]
+[sub_resource type="Resource" id="Resource_6lgru"]
 script = ExtResource("1_6lgru")
-line = 1
-word = "true"
-options = Array[String](["\"true\"", "false", "null"])
+line = 5
+word = "False"
+options = Array[String](["True", "False"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
-[sub_resource type="Resource" id="Resource_rgh7d"]
+[sub_resource type="Resource" id="Resource_qeh6r"]
+script = ExtResource("1_6lgru")
+line = 6
+word = "AGGRESSIVE"
+options = Array[String](["PASSIVE", "AGGRESSIVE"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_8hjpn"]
+script = ExtResource("1_6lgru")
+line = 8
+word = "AGGRESSIVE"
+options = Array[String](["PASSIVE", "AGGRESSIVE"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_ahn8f"]
 script = ExtResource("4_ahn8f")
-teks = "false"
+teks = "False"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
-[sub_resource type="Resource" id="Resource_bvstn"]
+[sub_resource type="Resource" id="Resource_1okl7"]
+script = ExtResource("4_ahn8f")
+teks = "PASSIVE"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_5usoe"]
+script = ExtResource("4_ahn8f")
+teks = "AGGRESSIVE"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_k78h6"]
 script = ExtResource("5_1okl7")
+action = 1
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
-[sub_resource type="Resource" id="Resource_v6vwi"]
+[sub_resource type="Resource" id="Resource_75e1r"]
 script = ExtResource("3_8hjpn")
-required_answers = Array[ExtResource("4_ahn8f")]([SubResource("Resource_rgh7d")])
-world_changes = Array[ExtResource("5_1okl7")]([SubResource("Resource_bvstn")])
+required_answers = Array[ExtResource("4_ahn8f")]([SubResource("Resource_ahn8f"), SubResource("Resource_1okl7"), SubResource("Resource_5usoe")])
+world_changes = Array[ExtResource("5_1okl7")]([SubResource("Resource_k78h6")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[sub_resource type="Resource" id="Resource_daj3g"]
+script = ExtResource("4_ahn8f")
+teks = "True"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_ifq25"]
+script = ExtResource("4_ahn8f")
+teks = "AGGRESSIVE"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_qeycb"]
+script = ExtResource("4_ahn8f")
+teks = "PASSIVE"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_vtpdb"]
+script = ExtResource("5_1okl7")
+action = 1
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_gx53h"]
+script = ExtResource("3_8hjpn")
+required_answers = Array[ExtResource("4_ahn8f")]([SubResource("Resource_daj3g"), SubResource("Resource_ifq25"), SubResource("Resource_qeycb")])
+world_changes = Array[ExtResource("5_1okl7")]([SubResource("Resource_vtpdb")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[sub_resource type="Resource" id="Resource_pfiji"]
+script = ExtResource("4_ahn8f")
+teks = "True"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_608cx"]
+script = ExtResource("4_ahn8f")
+teks = "PASSIVE"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_op325"]
+script = ExtResource("4_ahn8f")
+teks = "AGGRESSIVE"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_87rts"]
+script = ExtResource("5_1okl7")
+action = 1
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_5ikds"]
+script = ExtResource("3_8hjpn")
+required_answers = Array[ExtResource("4_ahn8f")]([SubResource("Resource_pfiji"), SubResource("Resource_608cx"), SubResource("Resource_op325")])
+world_changes = Array[ExtResource("5_1okl7")]([SubResource("Resource_87rts")])
 metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("2_qeh6r")
-code_lines = Array[String](["# Sistem keamanan pintu", "platform_bergerak = false", "gerak = \"horizontal\"", ""])
-highlights = Array[ExtResource("1_6lgru")]([SubResource("Resource_dmg7l")])
-variants = Array[ExtResource("3_8hjpn")]([SubResource("Resource_v6vwi")])
+code_lines = Array[String](["# Sistem keamanan drone", "func update_drone_logic(player):", "     var current_state = \"AGGRESSIVE\"", "     var target_lock = player", "", "     if player.is_admin == False:", "          current_state = AGGRESSIVE", "     else:", "          current_state = AGGRESSIVE", "     return current_state"])
+highlights = Array[ExtResource("1_6lgru")]([SubResource("Resource_6lgru"), SubResource("Resource_qeh6r"), SubResource("Resource_8hjpn")])
+variants = Array[ExtResource("3_8hjpn")]([SubResource("Resource_75e1r"), SubResource("Resource_gx53h"), SubResource("Resource_5ikds")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

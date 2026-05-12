@@ -1,54 +1,72 @@
-[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://cvcx1n4t4a8kh"]
+[gd_resource type="QuizResource" load_steps=16 version=4.4]
 
-[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_lksqx"]
-[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_8mjuj"]
-[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_3d4ho"]
-[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_eur7k"]
-[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_g1inr"]
-
-[sub_resource type="Resource" id="Resource_lksqx"]
-script = ExtResource("1_lksqx")
+[sub_resource type="HighlightQuestion" id="HighlightQuestion_1"]
 line = 5
 word = "False"
-options = Array[String](["true", "null", "True"])
-metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+options = PackedStringArray("False", "True", "None")
+correct_index = 0
 
-[sub_resource type="Resource" id="Resource_8mjuj"]
-script = ExtResource("1_lksqx")
+[sub_resource type="HighlightQuestion" id="HighlightQuestion_2"]
 line = 6
-word = "\"AGGRESSIVE\""
-options = Array[String](["\"PASSIVE\"", "\"AGGRESSIVE\""])
-metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+word = "AGGRESSIVE"
+options = PackedStringArray("AGGRESSIVE", "PASSIVE", "NEUTRAL")
+correct_index = 0
 
-[sub_resource type="Resource" id="Resource_3d4ho"]
-script = ExtResource("1_lksqx")
+[sub_resource type="HighlightQuestion" id="HighlightQuestion_3"]
 line = 8
-word = "\"AGGRESSIVE\""
-options = Array[String](["\"AGGRESSIVE\"", "\"PASSIVE\"", ""])
-metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+word = "AGGRESSIVE"
+options = PackedStringArray("AGGRESSIVE", "PASSIVE", "NEUTRAL")
+correct_index = 0
 
-[sub_resource type="Resource" id="Resource_rgh7d"]
-script = ExtResource("4_eur7k")
-teks = "false"
-metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+[sub_resource type="QuizAnswer" id="QuizAnswer_1"]
+highlight_index = 0
+teks = "False"
 
-[sub_resource type="Resource" id="Resource_eur7k"]
-script = ExtResource("4_eur7k")
-metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+[sub_resource type="QuizAnswer" id="QuizAnswer_2"]
+highlight_index = 1
+teks = "PASSIVE"
 
-[sub_resource type="Resource" id="Resource_bvstn"]
-script = ExtResource("5_g1inr")
-metadata/_custom_type_script = "uid://cc7st7sddsu03"
+[sub_resource type="QuizAnswer" id="QuizAnswer_3"]
+highlight_index = 2
+teks = "AGGRESSIVE"
 
-[sub_resource type="Resource" id="Resource_v6vwi"]
-script = ExtResource("3_3d4ho")
-required_answers = Array[ExtResource("4_eur7k")]([SubResource("Resource_rgh7d"), SubResource("Resource_eur7k")])
-world_changes = Array[ExtResource("5_g1inr")]([SubResource("Resource_bvstn")])
-metadata/_custom_type_script = "uid://by327ln5olo0j"
+[sub_resource type="QuizVariant" id="QuizVariant_1"]
+required_answers = Array[QuizAnswer]([SubResource("QuizAnswer_1"), SubResource("QuizAnswer_2"), SubResource("QuizAnswer_3")])
+world_changes = Array[WorldChangeEntry]([])
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_4"]
+highlight_index = 0
+teks = "True"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_5"]
+highlight_index = 1
+teks = "AGGRESSIVE"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_6"]
+highlight_index = 2
+teks = "PASSIVE"
+
+[sub_resource type="QuizVariant" id="QuizVariant_2"]
+required_answers = Array[QuizAnswer]([SubResource("QuizAnswer_4"), SubResource("QuizAnswer_5"), SubResource("QuizAnswer_6")])
+world_changes = Array[WorldChangeEntry]([])
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_7"]
+highlight_index = 0
+teks = "True"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_8"]
+highlight_index = 1
+teks = "PASSIVE"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_9"]
+highlight_index = 2
+teks = "PASSIVE"
+
+[sub_resource type="QuizVariant" id="QuizVariant_3"]
+required_answers = Array[QuizAnswer]([SubResource("QuizAnswer_7"), SubResource("QuizAnswer_8"), SubResource("QuizAnswer_9")])
+world_changes = Array[WorldChangeEntry]([])
 
 [resource]
-script = ExtResource("2_8mjuj")
-code_lines = Array[String](["# Sistem keamanan drone", "func update_drone_logic(player):", "     var current_state = \"AGGRESSIVE\"", "     var target_lock = player", "", "     if player.is_admin == False:", "          current_state = \"AGGRESSIVE\"", "     else:", "          current_state = \"AGGRESSIVE\"", "     return current_state"])
-highlights = Array[ExtResource("1_lksqx")]([SubResource("Resource_lksqx"), SubResource("Resource_8mjuj"), SubResource("Resource_3d4ho")])
-variants = Array[ExtResource("3_3d4ho")]([SubResource("Resource_v6vwi"), null])
-metadata/_custom_type_script = "uid://xogopct8jm5a"
+code_lines = PackedStringArray("# Sistem keamanan drone", "func update_drone_logic(player):", "    var current_state = \"AGGRESSIVE\"", "    var target_lock = player", "", "    if player.is_admin == False:", "        current_state = \"AGGRESSIVE\"", "    else:", "        current_state = \"AGGRESSIVE\"", "    return current_state")
+highlights = Array[HighlightQuestion]([SubResource("HighlightQuestion_1"), SubResource("HighlightQuestion_2"), SubResource("HighlightQuestion_3")])
+variants = Array[QuizVariant]([SubResource("QuizVariant_1"), SubResource("QuizVariant_2"), SubResource("QuizVariant_3")])

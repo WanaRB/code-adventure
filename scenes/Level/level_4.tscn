@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="7_xmlk6"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="8_mnrer"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="9_6jopb"]
-[ext_resource type="Resource" uid="uid://cvcx1n4t4a8kh" path="res://resource/Kuis_Level4_drone.tres" id="9_wnojr"]
 [ext_resource type="Resource" uid="uid://c003ksljy7gk" path="res://resource/Kuis_Level4_pintu.tres" id="10_8voaq"]
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="10_n1kyh"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="12_urjwm"]
@@ -1092,7 +1091,7 @@ position = Vector2(2744, -448)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("9_6jopb")]
 position = Vector2(2120, 424)
-data_kuis = ExtResource("9_wnojr")
+data_kuis = ExtResource("10_8voaq")
 
 [node name="Laptop2" parent="Item" unique_id=1677301486 instance=ExtResource("9_6jopb")]
 position = Vector2(2552, -224)
@@ -1101,7 +1100,7 @@ data_kuis = ExtResource("10_8voaq")
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_urjwm")]
-position = Vector2(1823.9999, -111.99999)
+position = Vector2(1808, -200)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]

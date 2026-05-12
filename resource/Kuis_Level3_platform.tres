@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 [sub_resource type="Resource" id="Resource_bqg3y"]
 script = ExtResource("1_lfm1x")
 line = 3
-word = "\"VERTIKAL\""
+word = "\"vertikal\""
 options = Array[String](["HORIZONTAL", "VERTIKAL", "\"HORIZONTAL\""])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_jg361"]
 script = ExtResource("5_6urst")
-platform_jarak = 500.0
+platform_jarak = 700.0
 platform_kecepatan = 100.0
 action = 2
 platform_id = 2
@@ -59,7 +59,7 @@ metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_bw5q7"]
 script = ExtResource("5_6urst")
-platform_jarak = 650.0
+platform_jarak = 500.0
 platform_kecepatan = 100.0
 action = 2
 platform_id = 2
