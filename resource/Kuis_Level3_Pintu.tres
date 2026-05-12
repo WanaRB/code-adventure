@@ -1,25 +1,40 @@
 [gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://clhvd0lbuveym"]
 
-[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_yqfw1"]
-[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_jibhq"]
-[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_tdvhn"]
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_stmi1"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_f445g"]
+[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_7u5a1"]
+[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_vkite"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_m8c4l"]
 
-[sub_resource type="Resource" id="Resource_cvjqn"]
-script = ExtResource("1_yqfw1")
+[sub_resource type="Resource" id="Resource_dmg7l"]
+script = ExtResource("1_stmi1")
 line = 3
-word = "manual"
-options = Array[String](["auto", "remote", "manual"])
+word = "or"
+options = Array[String](["and", "while", "not"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
-[sub_resource type="Resource" id="Resource_3xgih"]
-script = ExtResource("1_yqfw1")
-line = 4
-word = "True"
-options = Array[String](["False", "None", "True"])
-metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+[sub_resource type="Resource" id="Resource_bqb84"]
+script = ExtResource("4_vkite")
+teks = "and"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_jg361"]
+script = ExtResource("5_m8c4l")
+platform_jarak = 500.0
+platform_kecepatan = 100.0
+platform_id = 2
+platform_direction = 3
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_h7uqh"]
+script = ExtResource("3_7u5a1")
+required_answers = Array[ExtResource("4_vkite")]([SubResource("Resource_bqb84")])
+world_changes = Array[ExtResource("5_m8c4l")]([SubResource("Resource_jg361")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
-script = ExtResource("2_jibhq")
-code_lines = Array[String](["# Ambil alih navigasi drone!", "# Nonaktifkan sistem keamanan:", "", "drone.mode = \"manual\"", "drone.security_enabled = True"])
-highlights = Array[ExtResource("1_yqfw1")]([SubResource("Resource_cvjqn"), SubResource("Resource_3xgih")])
+script = ExtResource("2_f445g")
+code_lines = Array[String](["# Pintu seharusnya hanya terbuka jika", "# semua soal selesai DAN nyawa masih ada.", "func cek_pintu(soal_selesai, nyawa):", "     if soal_selesai or nyawa > 0:", "          return \"terbuka\"", "     return \"terkunci\""])
+highlights = Array[ExtResource("1_stmi1")]([SubResource("Resource_dmg7l")])
+variants = Array[ExtResource("3_7u5a1")]([SubResource("Resource_h7uqh")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

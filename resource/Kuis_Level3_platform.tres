@@ -6,29 +6,29 @@
 [ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_gpbct"]
 [ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_6urst"]
 
-[sub_resource type="Resource" id="Resource_dmg7l"]
+[sub_resource type="Resource" id="Resource_lfm1x"]
 script = ExtResource("1_lfm1x")
 line = 2
 word = "false"
-options = Array[String](["true", "\"false\"", "null"])
+options = Array[String](["True", "False", "null"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_bqg3y"]
 script = ExtResource("1_lfm1x")
 line = 3
-word = "\"vertikal\""
-options = Array[String](["horizontal", "vertikal", "\"vertikal\""])
+word = "\"VERTIKAL\""
+options = Array[String](["HORIZONTAL", "VERTIKAL", "\"HORIZONTAL\""])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_bqb84"]
 script = ExtResource("4_gpbct")
-teks = "true"
+teks = "True"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_lsale"]
 script = ExtResource("4_gpbct")
 highlight_index = 1
-teks = "horizontal"
+teks = "HORIZONTAL"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_jg361"]
@@ -37,7 +37,7 @@ platform_jarak = 500.0
 platform_kecepatan = 100.0
 action = 2
 platform_id = 2
-platform_direction = 3
+platform_direction = 1
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [sub_resource type="Resource" id="Resource_h7uqh"]
@@ -48,13 +48,13 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [sub_resource type="Resource" id="Resource_d0ykb"]
 script = ExtResource("4_gpbct")
-teks = "true"
+teks = "True"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_i3q3w"]
 script = ExtResource("4_gpbct")
 highlight_index = 1
-teks = "vertikal"
+teks = "VERTIKAL"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_bw5q7"]
@@ -63,7 +63,7 @@ platform_jarak = 650.0
 platform_kecepatan = 100.0
 action = 2
 platform_id = 2
-platform_direction = 1
+platform_direction = 3
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [sub_resource type="Resource" id="Resource_y8dm0"]
@@ -74,7 +74,7 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("2_ogi0v")
-code_lines = Array[String](["# Sistem kontrol platform", "def inisialisasi_platform(platform_id):", "     aktif = false", "     arah = \"vertikal\"", "     kecepatan = 100", "     platform_id.mulai(aktif, arah, kecepatan)"])
-highlights = Array[ExtResource("1_lfm1x")]([SubResource("Resource_dmg7l"), SubResource("Resource_bqg3y")])
+code_lines = Array[String](["# Sistem kontrol platform", "def inisialisasi_platform(platform_id):", "     aktif = false", "     arah = \"VERTIKAL\"", "     kecepatan = 100", "     platform_id.mulai(aktif, arah, kecepatan)"])
+highlights = Array[ExtResource("1_lfm1x")]([SubResource("Resource_lfm1x"), SubResource("Resource_bqg3y")])
 variants = Array[ExtResource("3_k2uv4")]([SubResource("Resource_h7uqh"), SubResource("Resource_y8dm0")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

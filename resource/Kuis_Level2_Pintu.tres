@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("1_asyvg")
-code_lines = Array[String](["# Modul autentikasi", "def is_authorized(level_akses):", "     batas_minimum = 5", "     if level_akses >= batas_minimum:", "          return false", "     return True"])
+code_lines = Array[String](["# Modul autentikasi", "func is_authorized(level_akses):", "     batas_minimum = 5", "     if level_akses >= batas_minimum:", "          return false", "     return True"])
 highlights = Array[ExtResource("1_2msv3")]([SubResource("Resource_dmg7l")])
 variants = Array[ExtResource("3_2msv3")]([SubResource("Resource_7iclq")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

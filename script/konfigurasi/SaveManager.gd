@@ -67,6 +67,9 @@ func reset() -> void:
 	_max_level_unlocked = 1
 	for k in ["1", "2", "3", "4", "5"]:
 		_level_results[k] = { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false }
+	var data := _load_raw()
+	data.erase("laptops")
+	_save_raw(data)
 	save_to_file()  # simpan state reset ke file
 
 # ─── File Save / Load ─────────────────────────────────────────────────────────
@@ -110,3 +113,63 @@ func load_from_file() -> void:
 	for k in ["1", "2", "3", "4", "5"]:
 		if saved_results.has(k):
 			_level_results[k] = saved_results[k]
+
+func simpan_highlight(laptop_name: String, display: Array) -> void:
+	var data := _load_raw()
+	if not data.has("laptops"):
+		data["laptops"] = {}
+	if not data["laptops"].has(laptop_name):
+		data["laptops"][laptop_name] = {}
+	data["laptops"][laptop_name]["display"] = display
+	_save_raw(data)
+
+func muat_highlight(laptop_name: String) -> Array:
+	var data := _load_raw()
+	return data.get("laptops", {}).get(laptop_name, {}).get("display", [])
+
+func muat_sudah_benar(laptop_name: String) -> bool:
+	var data := _load_raw()
+	return data.get("laptops", {}).get(laptop_name, {}).get("benar", false)
+
+func simpan_sudah_benar(laptop_name: String) -> void:
+	var data := _load_raw()
+	if not data.has("laptops"):
+		data["laptops"] = {}
+	if not data["laptops"].has(laptop_name):
+		data["laptops"][laptop_name] = {}
+	data["laptops"][laptop_name]["benar"] = true
+	_save_raw(data)
+
+func _load_raw() -> Dictionary:
+	if not FileAccess.file_exists(SAVE_PATH):
+		return {}
+	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if file == null:
+		return {}
+	var raw := file.get_as_text()
+	file.close()
+	var parsed: Variant = JSON.parse_string(raw)
+	if parsed == null or not parsed is Dictionary:
+		return {}
+	return parsed
+
+func _save_raw(data: Dictionary) -> void:
+	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file == null:
+		push_error("SaveManager: gagal menulis file")
+		return
+	file.store_string(JSON.stringify(data))
+	file.close()
+
+func simpan_variant_benar(laptop_name: String, variants: Array) -> void:
+	var data := _load_raw()
+	if not data.has("laptops"):
+		data["laptops"] = {}
+	if not data["laptops"].has(laptop_name):
+		data["laptops"][laptop_name] = {}
+	data["laptops"][laptop_name]["variants_benar"] = variants
+	_save_raw(data)
+
+func muat_variant_benar(laptop_name: String) -> Array:
+	var data := _load_raw()
+	return data.get("laptops", {}).get(laptop_name, {}).get("variants_benar", [])

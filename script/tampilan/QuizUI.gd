@@ -59,6 +59,7 @@ var _session_wrong   := 0
 var _selected_option_idx: int = -1   # opsi yang dipilih tapi belum di-submit
 # Jawaban player saat ini per highlight (hl_idx → teks yang dipilih)
 var _current_answers: Dictionary = {}
+var _variant_sudah_benar: Array[int] = []
 
 # Variant yang sedang aktif (world_changes-nya sudah dipicu)
 var _active_variant_idx: int = -1
@@ -79,7 +80,8 @@ var _option_buttons: Array[Button] = []
 
 ## initial_display: teks tiap highlight dari sesi sebelumnya (kosong = pakai kata asli)
 ## world_triggered: true jika world changes sudah dipicu sebelumnya
-func setup_quiz(data: QuizResource, initial_display: Array[String] = []):
+func setup_quiz(data: QuizResource, initial_display: Array[String] = [], variant_sudah_benar: Array[int] = []):
+	_variant_sudah_benar = variant_sudah_benar.duplicate()
 	_quiz_data = data
 	_quiz_open_time = Time.get_ticks_msec() / 1000.0
 	_session_correct = 0
@@ -650,6 +652,7 @@ func _on_submit_pressed() -> void:
 
 	# Semua sudah dijawab — cek cocok dengan variant mana
 	var matched_idx := _cari_variant_cocok()
+	print("matched_idx: ", matched_idx, " | variant_sudah_benar: ", _variant_sudah_benar)
 
 	if matched_idx != -1:
 		# ── COCOK dengan variant ──
@@ -669,16 +672,19 @@ func _on_submit_pressed() -> void:
 		var bonus := 0
 		if elapsed <= 5.0:    bonus = 50
 		elif elapsed <= 10.0: bonus = 25
-		_session_correct += 1
-		_session_bonus   += bonus
+		if matched_idx not in _variant_sudah_benar:
+			_session_correct += 1
+			_session_bonus   += bonus
 
 		# Picu world_changes hanya jika variant berbeda dari sebelumnya
 		if matched_idx != _active_variant_idx:
 			_active_variant_idx = matched_idx
 			await get_tree().create_timer(0.35).timeout
 			if not is_inside_tree(): return
+			for i in _highlight_buttons.size():
+				GameEvents.quiz_highlight_updated.emit(i, _highlight_buttons[i].text)
 			GameEvents.quiz_points_earned.emit(_session_correct, _session_bonus, _session_wrong)
-			GameEvents.quiz_answered_correct.emit(variant.world_changes)
+			GameEvents.quiz_answered_correct.emit(matched_idx, variant.world_changes)
 			_tutup_kuis()
 	else:
 		# ── TIDAK COCOK dengan variant apapun ──
@@ -693,7 +699,6 @@ func _on_submit_pressed() -> void:
 			_highlight_buttons[i].add_theme_color_override("font_color", C_WRONG)
 
 		await get_tree().create_timer(0.5).timeout
-		if not is_inside_tree(): return
 
 		# Reset warna kembali ke netral
 		for i in _highlight_buttons.size():

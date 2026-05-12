@@ -1068,7 +1068,7 @@ layer_0/tile_data = PackedInt32Array(720931, 786432, 3, 720935, 786432, 3, 65576
 
 [node name="Platform1_png" parent="Map/Platform" unique_id=416016548 node_paths=PackedStringArray("sfx_aktif") instance=ExtResource("5_g7hk0")]
 process_mode = 3
-position = Vector2(1208, 456.00003)
+position = Vector2(1328, 432)
 scale = Vector2(4, 3.6666667)
 platform_id = 2
 direction = 3
@@ -1102,7 +1102,7 @@ stream = ExtResource("6_x81lr")
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
 [node name="apple2" parent="Item" unique_id=1139145556 instance=ExtResource("6_kmxud")]
-position = Vector2(1208, 408)
+position = Vector2(1344, 200)
 
 [node name="apple3" parent="Item" unique_id=666788976 instance=ExtResource("6_kmxud")]
 position = Vector2(2680, 576)
@@ -1117,7 +1117,7 @@ target_level_path = "uid://babfsu63orby"
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_25s6s")]
-position = Vector2(-47.999878, 80)
+position = Vector2(-191.99994, 55.999985)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]

@@ -24,7 +24,7 @@ func _ready():
 	else:
 		sprite.frame = 1
 
-func _on_quiz_solved(world_changes: Array):
+func _on_quiz_solved(_variant_idx: int, world_changes: Array):
 	for entry: WorldChangeEntry in world_changes:
 		if entry.action == WorldChangeEntry.ActionType.OPEN_DOOR and entry.door_id == door_id:
 			CameraDirector.queue_cinematic(global_position, _buka_pintu, Callable(), 0.6)

@@ -1127,7 +1127,7 @@ data_kuis = ExtResource("8_dll1m")
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_25s6s")]
-position = Vector2(848, 64)
+position = Vector2(416.00003, -295.99997)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]

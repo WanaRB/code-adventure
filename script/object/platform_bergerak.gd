@@ -111,7 +111,7 @@ func _physics_process(delta: float) -> void:
 	move_and_collide(target_pos - global_position)
 
 # ─── World Change Handler ─────────────────────────────────────────────────────
-func _on_quiz_solved(world_changes: Array) -> void:
+func _on_quiz_solved(_variant_idx: int, world_changes: Array) -> void:
 	for entry: WorldChangeEntry in world_changes:
 		if entry.action != WorldChangeEntry.ActionType.MOVE_PLATFORM:
 			continue

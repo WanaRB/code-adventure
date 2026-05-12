@@ -4,7 +4,7 @@ var sudah_lewat_splash: bool = false
 
 signal quiz_opened
 signal quiz_closed
-signal quiz_answered_correct(world_changes: Array)
+signal quiz_answered_correct(variant_idx: int, world_changes)
 signal quiz_points_earned(correct_count: int, speed_bonus: int, wrong_count: int)
 signal item_collected(points: int)
 signal player_hit(damage_amount: int)

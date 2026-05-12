@@ -6,16 +6,34 @@
 [ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_eur7k"]
 [ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_g1inr"]
 
-[sub_resource type="Resource" id="Resource_dmg7l"]
+[sub_resource type="Resource" id="Resource_lksqx"]
 script = ExtResource("1_lksqx")
-line = 1
-word = "true"
-options = Array[String](["\"true\"", "false", "null"])
+line = 5
+word = "False"
+options = Array[String](["true", "null", "True"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_8mjuj"]
+script = ExtResource("1_lksqx")
+line = 6
+word = "\"AGGRESSIVE\""
+options = Array[String](["\"PASSIVE\"", "\"AGGRESSIVE\""])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_3d4ho"]
+script = ExtResource("1_lksqx")
+line = 8
+word = "\"AGGRESSIVE\""
+options = Array[String](["\"AGGRESSIVE\"", "\"PASSIVE\"", ""])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_rgh7d"]
 script = ExtResource("4_eur7k")
 teks = "false"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_eur7k"]
+script = ExtResource("4_eur7k")
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_bvstn"]
@@ -24,13 +42,13 @@ metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [sub_resource type="Resource" id="Resource_v6vwi"]
 script = ExtResource("3_3d4ho")
-required_answers = Array[ExtResource("4_eur7k")]([SubResource("Resource_rgh7d")])
+required_answers = Array[ExtResource("4_eur7k")]([SubResource("Resource_rgh7d"), SubResource("Resource_eur7k")])
 world_changes = Array[ExtResource("5_g1inr")]([SubResource("Resource_bvstn")])
 metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("2_8mjuj")
-code_lines = Array[String](["# Sistem keamanan pintu", "platform_bergerak = false", "gerak = \"horizontal\"", ""])
-highlights = Array[ExtResource("1_lksqx")]([SubResource("Resource_dmg7l")])
-variants = Array[ExtResource("3_3d4ho")]([SubResource("Resource_v6vwi")])
+code_lines = Array[String](["# Sistem keamanan drone", "func update_drone_logic(player):", "     var current_state = \"AGGRESSIVE\"", "     var target_lock = player", "", "     if player.is_admin == False:", "          current_state = \"AGGRESSIVE\"", "     else:", "          current_state = \"AGGRESSIVE\"", "     return current_state"])
+highlights = Array[ExtResource("1_lksqx")]([SubResource("Resource_lksqx"), SubResource("Resource_8mjuj"), SubResource("Resource_3d4ho")])
+variants = Array[ExtResource("3_3d4ho")]([SubResource("Resource_v6vwi"), null])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

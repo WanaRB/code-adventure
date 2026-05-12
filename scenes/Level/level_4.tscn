@@ -1085,7 +1085,7 @@ position = Vector2(2544, -168)
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
 [node name="apple" parent="Item" unique_id=666788976 instance=ExtResource("8_mnrer")]
-position = Vector2(880, 448)
+position = Vector2(744, 328)
 
 [node name="apple2" parent="Item" unique_id=837634900 instance=ExtResource("8_mnrer")]
 position = Vector2(2744, -448)
@@ -1101,7 +1101,7 @@ data_kuis = ExtResource("10_8voaq")
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_urjwm")]
-position = Vector2(1800, -184.00002)
+position = Vector2(1823.9999, -111.99999)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
@@ -1155,9 +1155,9 @@ mulai_ke_atas = true
 [node name="H" type="Node" parent="Musuh" unique_id=1625600553]
 
 [node name="DroneMusuh" parent="Musuh/H" unique_id=342791994 instance=ExtResource("16_7ut0w")]
-position = Vector2(928, 584)
+position = Vector2(416, 576)
 kecepatan = 200.0
-jarak_patroli = 350.0
+jarak_patroli = 400.0
 
 [node name="DroneMusuh3" parent="Musuh/H" unique_id=1230716661 instance=ExtResource("16_7ut0w")]
 position = Vector2(2072, 168)
