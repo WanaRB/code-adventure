@@ -97,7 +97,7 @@ metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 [sub_resource type="Resource" id="Resource_op325"]
 script = ExtResource("4_ahn8f")
 highlight_index = 2
-teks = "AGGRESSIVE"
+teks = "PASSIVE"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_87rts"]
