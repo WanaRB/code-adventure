@@ -9,13 +9,13 @@
 [sub_resource type="Resource" id="Resource_dmg7l"]
 script = ExtResource("1_2msv3")
 line = 4
-word = "false"
-options = Array[String](["true", "\"false\"", "null"])
+word = "False"
+options = Array[String](["True", "\"false\"", "null"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_1e1j3"]
 script = ExtResource("4_dmg7l")
-teks = "true"
+teks = "True"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_d54hl"]
@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("1_asyvg")
-code_lines = Array[String](["# Modul autentikasi", "func is_authorized(level_akses):", "     batas_minimum = 5", "     if level_akses >= batas_minimum:", "          return false", "     return True"])
+code_lines = Array[String](["# Modul autentikasi", "func is_authorized(level_akses):", "     batas_minimum = 5", "     if level_akses >= batas_minimum:", "          return False", "     return True"])
 highlights = Array[ExtResource("1_2msv3")]([SubResource("Resource_dmg7l")])
 variants = Array[ExtResource("3_2msv3")]([SubResource("Resource_7iclq")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"
