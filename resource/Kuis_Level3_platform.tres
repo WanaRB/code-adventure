@@ -74,7 +74,7 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("2_ogi0v")
-code_lines = Array[String](["# Sistem kontrol platform", "def inisialisasi_platform(platform_id):", "     aktif = false", "     arah = \"VERTIKAL\"", "     kecepatan = 100", "     platform_id.mulai(aktif, arah, kecepatan)"])
+code_lines = Array[String](["# Sistem kontrol platform", "def inisialisasi_platform(platform_id):", "     aktif = false", "     arah = \"vertikal\"", "     kecepatan = 100", "     platform_id.mulai(aktif, arah, kecepatan)"])
 highlights = Array[ExtResource("1_lfm1x")]([SubResource("Resource_lfm1x"), SubResource("Resource_bqg3y")])
 variants = Array[ExtResource("3_k2uv4")]([SubResource("Resource_h7uqh"), SubResource("Resource_y8dm0")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

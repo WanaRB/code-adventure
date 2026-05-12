@@ -9,9 +9,6 @@ var _highlight_display: Array[String] = []
 var _variant_sudah_benar: Array[int] = []
 
 func _ready():
-	var loaded_v := SaveManager.muat_variant_benar(name)
-	for v in loaded_v:
-		_variant_sudah_benar.append(int(v))
 	GameEvents.quiz_answered_correct.connect(_on_quiz_answered_correct)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)

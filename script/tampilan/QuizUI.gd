@@ -90,9 +90,6 @@ func setup_quiz(data: QuizResource, initial_display: Array[String] = [], variant
 	_current_answers.clear()
 	_active_variant_idx = -1
 	# Restore jawaban dari sesi sebelumnya
-	for i in initial_display.size():
-		if initial_display[i] != "":
-			_current_answers[i] = initial_display[i]
 	# Simpan display awal — akan dipakai _make_highlight_line untuk restore teks
 	_initial_display = initial_display.duplicate()
 	_build_ui()
@@ -689,6 +686,7 @@ func _on_submit_pressed() -> void:
 	else:
 		# ── TIDAK COCOK dengan variant apapun ──
 		_session_wrong += 1
+		GameEvents.quiz_points_earned.emit(0, 0, 1)
 		GameEvents.player_hit.emit(1)
 
 		if sfx_salah != null:
