@@ -48,7 +48,7 @@ func _ready():
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(2, false)
 
-func _on_quiz_solved(world_changes: Array):
+func _on_quiz_solved(_variant_idx: int, world_changes: Array):
 	for entry: WorldChangeEntry in world_changes:
 		if entry.action == WorldChangeEntry.ActionType.CONVERT_DRONES and bisa_jadi_baik:
 			# Drone tidak urus kamera. WorldChangeMarker di scene yang urus sorot area.

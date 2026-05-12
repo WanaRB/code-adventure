@@ -28,7 +28,7 @@ func _ready():
 	visible = false
 	GameEvents.quiz_answered_correct.connect(_on_quiz_solved)
 
-func _on_quiz_solved(world_changes: Array):
+func _on_quiz_solved(_variant_idx: int, world_changes: Array):
 	for entry: WorldChangeEntry in world_changes:
 		if entry.action != marker_action:
 			continue

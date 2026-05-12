@@ -1,0 +1,72 @@
+[gd_resource type="QuizResource" load_steps=16 version=4.4]
+
+[sub_resource type="HighlightQuestion" id="HighlightQuestion_1"]
+line = 5
+word = "False"
+options = PackedStringArray("False", "True", "None")
+correct_index = 0
+
+[sub_resource type="HighlightQuestion" id="HighlightQuestion_2"]
+line = 6
+word = "AGGRESSIVE"
+options = PackedStringArray("AGGRESSIVE", "PASSIVE", "NEUTRAL")
+correct_index = 0
+
+[sub_resource type="HighlightQuestion" id="HighlightQuestion_3"]
+line = 8
+word = "AGGRESSIVE"
+options = PackedStringArray("AGGRESSIVE", "PASSIVE", "NEUTRAL")
+correct_index = 0
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_1"]
+highlight_index = 0
+teks = "False"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_2"]
+highlight_index = 1
+teks = "PASSIVE"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_3"]
+highlight_index = 2
+teks = "AGGRESSIVE"
+
+[sub_resource type="QuizVariant" id="QuizVariant_1"]
+required_answers = Array[QuizAnswer]([SubResource("QuizAnswer_1"), SubResource("QuizAnswer_2"), SubResource("QuizAnswer_3")])
+world_changes = Array[WorldChangeEntry]([])
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_4"]
+highlight_index = 0
+teks = "True"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_5"]
+highlight_index = 1
+teks = "AGGRESSIVE"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_6"]
+highlight_index = 2
+teks = "PASSIVE"
+
+[sub_resource type="QuizVariant" id="QuizVariant_2"]
+required_answers = Array[QuizAnswer]([SubResource("QuizAnswer_4"), SubResource("QuizAnswer_5"), SubResource("QuizAnswer_6")])
+world_changes = Array[WorldChangeEntry]([])
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_7"]
+highlight_index = 0
+teks = "True"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_8"]
+highlight_index = 1
+teks = "PASSIVE"
+
+[sub_resource type="QuizAnswer" id="QuizAnswer_9"]
+highlight_index = 2
+teks = "PASSIVE"
+
+[sub_resource type="QuizVariant" id="QuizVariant_3"]
+required_answers = Array[QuizAnswer]([SubResource("QuizAnswer_7"), SubResource("QuizAnswer_8"), SubResource("QuizAnswer_9")])
+world_changes = Array[WorldChangeEntry]([])
+
+[resource]
+code_lines = PackedStringArray("# Sistem keamanan drone", "func update_drone_logic(player):", "    var current_state = \"AGGRESSIVE\"", "    var target_lock = player", "", "    if player.is_admin == False:", "        current_state = \"AGGRESSIVE\"", "    else:", "        current_state = \"AGGRESSIVE\"", "    return current_state")
+highlights = Array[HighlightQuestion]([SubResource("HighlightQuestion_1"), SubResource("HighlightQuestion_2"), SubResource("HighlightQuestion_3")])
+variants = Array[QuizVariant]([SubResource("QuizVariant_1"), SubResource("QuizVariant_2"), SubResource("QuizVariant_3")])

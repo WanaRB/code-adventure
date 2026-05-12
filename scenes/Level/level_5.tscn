@@ -8,12 +8,16 @@
 [ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="7_uf7as"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="8_y17vk"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="9_7r2lc"]
-[ext_resource type="Resource" uid="uid://cvcx1n4t4a8kh" path="res://resource/Kuis_Level4_drone.tres" id="9_n8y82"]
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="9_w76c7"]
 [ext_resource type="Resource" uid="uid://bkcf6xv5jkswm" path="res://resource/Kuis_Level5_platform.tres" id="10_n8y82"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="10_uf7as"]
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="10_usxyp"]
+[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="11_y17vk"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="12_7agcs"]
+[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="12_7r2lc"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="13_ka1hd"]
 [ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="13_mi4e6"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="13_usxyp"]
 [ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="14_7hdty"]
 [ext_resource type="PackedScene" uid="uid://dkwhp1x7q50mt" path="res://scenes/Character/drone_musuh_Vertical.tscn" id="14_xjnsc"]
 [ext_resource type="PackedScene" uid="uid://d225uwnj07qnl" path="res://scenes/Character/drone_musuh.tscn" id="15_w76c7"]
@@ -1031,6 +1035,53 @@ texture = ExtResource("5_xjnsc")
 [sub_resource type="TileSet" id="TileSet_2o6r5"]
 sources/0 = SubResource("TileSetAtlasSource_k3n1d")
 
+[sub_resource type="Resource" id="Resource_lksqx"]
+script = ExtResource("9_w76c7")
+line = 5
+word = "False"
+options = Array[String](["true", "null", "True"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_8mjuj"]
+script = ExtResource("9_w76c7")
+line = 6
+word = "\"AGGRESSIVE\""
+options = Array[String](["\"PASSIVE\"", "\"AGGRESSIVE\""])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_3d4ho"]
+script = ExtResource("9_w76c7")
+line = 8
+word = "\"AGGRESSIVE\""
+options = Array[String](["\"AGGRESSIVE\"", "\"PASSIVE\"", ""])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_rgh7d"]
+script = ExtResource("12_7r2lc")
+teks = "false"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_eur7k"]
+script = ExtResource("12_7r2lc")
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_bvstn"]
+script = ExtResource("13_usxyp")
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_v6vwi"]
+script = ExtResource("11_y17vk")
+required_answers = Array[ExtResource("12_7r2lc")]([SubResource("Resource_rgh7d"), SubResource("Resource_eur7k")])
+world_changes = Array[ExtResource("13_usxyp")]([SubResource("Resource_bvstn")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[sub_resource type="Resource" id="Resource_mnrer"]
+script = ExtResource("10_uf7as")
+code_lines = Array[String](["# Sistem keamanan drone", "func update_drone_logic(player):", "     var current_state = \"AGGRESSIVE\"", "     var target_lock = player", "", "     if player.is_admin == False:", "          current_state = \"AGGRESSIVE\"", "     else:", "          current_state = \"AGGRESSIVE\"", "     return current_state"])
+highlights = Array[ExtResource("9_w76c7")]([SubResource("Resource_lksqx"), SubResource("Resource_8mjuj"), SubResource("Resource_3d4ho")])
+variants = Array[ExtResource("11_y17vk")]([SubResource("Resource_v6vwi"), null])
+metadata/_custom_type_script = "uid://xogopct8jm5a"
+
 [node name="level4" type="Node" unique_id=771745439]
 
 [node name="Map" type="Node" parent="." unique_id=1398429459]
@@ -1105,7 +1156,7 @@ position = Vector2(2744, -448)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("9_7r2lc")]
 position = Vector2(2120, 424)
-data_kuis = ExtResource("9_n8y82")
+data_kuis = SubResource("Resource_mnrer")
 
 [node name="Laptop2" parent="Item" unique_id=1677301486 instance=ExtResource("9_7r2lc")]
 position = Vector2(1152, 8)
