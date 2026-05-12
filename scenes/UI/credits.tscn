@@ -93,17 +93,20 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 20
-text = "Game Design & Development
-Dewana Ruby Bismika — Lead Developer
-g
+text = "Lead Developer
+Dewana Ruby Bismika
 
-Art & Assets
-City Tileset oleh GandalfHardcore (itch.io)
-Character Sprites — Public Domain
+Gameplay Programmer
+Muhammad Ziqri Syauqi
 
-Music & Sound
-Ambatukam Harmony
-Roblox Ouch SFX"
+UI/UX Designer 
+Salman Dhya
+
+Audio Engineer & QA Tester
+Fatih Mula Choirie
+Raihan Naufal
+
+"
 horizontal_alignment = 1
 
 [node name="Spacer2" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100010]
@@ -115,7 +118,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
 theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 26
-text = "Teknologi"
+text = "Art & Assets"
 horizontal_alignment = 1
 
 [node name="LabelTech" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100012]
@@ -123,12 +126,71 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 20
-text = "Dibuat dengan Godot Engine 4
-Font: JetBrains Mono (JetBrains)
-Deploy: Vercel + GitHub Actions"
+text = "Environment & Tilesets
+GandalfHardcore (itch.io)
+
+Characters & Platforms
+Pixel Frog Assets (itch.io)
+
+Props & Interior Assets
+Karsiori & Kashdan Music
+
+UI & VFX Assets
+Gamertose, XxAshuraxX & Jan Elijo"
 horizontal_alignment = 1
 
 [node name="Spacer3" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100013]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LabelSeksi3" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1658589184]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
+theme_override_font_sizes/font_size = 26
+text = "Music & Sound"
+horizontal_alignment = 1
+
+[node name="LabelTech2" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1642397699]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
+theme_override_font_sizes/font_size = 20
+text = "Soundtrack
+Swarajthegreat (Lofi-soundtrack)
+
+Sound Effects
+JD Sherbert & Lumora Studios (Pixabay)
+
+Additional Audio
+Myinstants (Meme Sounds)"
+horizontal_alignment = 1
+
+[node name="Spacer6" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1602170967]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="LabelSeksi4" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1067934567]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
+theme_override_font_sizes/font_size = 26
+text = "Teknologi"
+horizontal_alignment = 1
+
+[node name="LabelTech3" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=2127027434]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_83fsw")
+theme_override_font_sizes/font_size = 20
+text = "Game Engine
+Godot Engine 4.6.2 stable version
+
+Deployment
+GitHub Actions & Vercel"
+horizontal_alignment = 1
+
+[node name="Spacer7" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1805916752]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
