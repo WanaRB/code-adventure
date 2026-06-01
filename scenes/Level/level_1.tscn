@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="12_a0ek4"]
 [ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="14_rklir"]
 [ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="18_ypbuo"]
-[ext_resource type="PackedScene" path="res://scenes/UI/HudLevel.tscn" id="19_71hnv"]
+[ext_resource type="PackedScene" uid="uid://omjcngkshg7c" path="res://scenes/UI/HudLevel.tscn" id="19_71hnv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_x81lr")
@@ -1109,6 +1109,7 @@ position = Vector2(2680, 576)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("7_l5rbr")]
 position = Vector2(184, 576)
+bisa_jawab_ulang = false
 
 [node name="PintuMenang" parent="Item" unique_id=1498396234 instance=ExtResource("8_fpj3m")]
 position = Vector2(1920, 560)

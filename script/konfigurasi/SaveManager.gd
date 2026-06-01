@@ -67,6 +67,7 @@ func reset() -> void:
 	_max_level_unlocked = 1
 	for k in ["1", "2", "3", "4", "5"]:
 		_level_results[k] = { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false }
+	GameEvents.sudah_lihat_howtoplay = false
 	var data := _load_raw()
 	data.erase("laptops")
 	_save_raw(data)
@@ -76,17 +77,11 @@ func reset() -> void:
 ## Simpan progress ke file JSON.
 ## Dipanggil otomatis saat unlock_level, save_level_result, dan reset.
 func save_to_file() -> void:
-	var data := {
-		"max_level_unlocked": _max_level_unlocked,
-		"level_results":      _level_results,
-		"sudah_lihat_howtoplay": GameEvents.sudah_lihat_howtoplay,
-	}
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	if file == null:
-		push_error("SaveManager: gagal membuka file untuk ditulis — %s" % SAVE_PATH)
-		return
-	file.store_string(JSON.stringify(data))
-	file.close()
+	var data := _load_raw()
+	data["max_level_unlocked"] = _max_level_unlocked
+	data["level_results"] = _level_results
+	data["sudah_lihat_howtoplay"] = GameEvents.sudah_lihat_howtoplay
+	_save_raw(data)
 
 ## Load progress dari file JSON.
 ## Dipanggil otomatis saat game dibuka (_ready).
@@ -178,3 +173,16 @@ func simpan_variant_benar(laptop_name: String, variants: Array) -> void:
 func muat_variant_benar(laptop_name: String) -> Array:
 	var data := _load_raw()
 	return data.get("laptops", {}).get(laptop_name, {}).get("variants_benar", [])
+
+func simpan_sudah_selesai(laptop_name: String) -> void:
+	var data := _load_raw()
+	if not data.has("laptops"):
+		data["laptops"] = {}
+	if not data["laptops"].has(laptop_name):
+		data["laptops"][laptop_name] = {}
+	data["laptops"][laptop_name]["selesai"] = true
+	_save_raw(data)
+
+func muat_sudah_selesai(laptop_name: String) -> bool:
+	var data := _load_raw()
+	return data.get("laptops", {}).get(laptop_name, {}).get("selesai", false)
