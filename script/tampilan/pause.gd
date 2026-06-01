@@ -43,3 +43,10 @@ func _on_fullscreen_item_selected(index: int) -> void:
 
 func _on_check_fullscreen_item_selected(index: int) -> void:
 	pass # Replace with function body.
+
+func _on_howtoplay_pressed() -> void:
+	pause_panel.hide()
+	get_tree().paused = false
+	var htp := get_tree().get_first_node_in_group("howtoplay_ingame")
+	if htp:
+		htp._tampilkan(true)  

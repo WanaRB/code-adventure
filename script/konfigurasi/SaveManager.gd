@@ -79,6 +79,7 @@ func save_to_file() -> void:
 	var data := {
 		"max_level_unlocked": _max_level_unlocked,
 		"level_results":      _level_results,
+		"sudah_lihat_howtoplay": GameEvents.sudah_lihat_howtoplay,
 	}
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
@@ -91,8 +92,10 @@ func save_to_file() -> void:
 ## Dipanggil otomatis saat game dibuka (_ready).
 ## Jika file tidak ada atau rusak, mulai dari awal tanpa error.
 func load_from_file() -> void:
+	
 	if not FileAccess.file_exists(SAVE_PATH):
 		return  # belum pernah main, mulai dari awal
+		
 
 	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if file == null:
@@ -113,6 +116,8 @@ func load_from_file() -> void:
 	for k in ["1", "2", "3", "4", "5"]:
 		if saved_results.has(k):
 			_level_results[k] = saved_results[k]
+	
+	GameEvents.sudah_lihat_howtoplay = bool(parsed.get("sudah_lihat_howtoplay", false))
 
 func simpan_highlight(laptop_name: String, display: Array) -> void:
 	var data := _load_raw()

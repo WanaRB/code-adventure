@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cpv2mt1dwe8g"]
+[gd_scene format=3 uid="uid://omjcngkshg7c"]
 
 [ext_resource type="Script" uid="uid://r6toxsjm6kcq" path="res://script/tampilan/hud_controller.gd" id="1_nlktw"]
 [ext_resource type="Texture2D" uid="uid://bhd3gc3fip67x" path="res://assets/image/item/heart.png" id="3_b1dk8"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://chnnbmypfpao3" path="res://resource/button_normal.tres" id="5_xq6u3"]
 [ext_resource type="StyleBox" uid="uid://bb7qcqmaxlv48" path="res://resource/button_pressed.tres" id="6_esp13"]
 [ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="7_me7jb"]
+[ext_resource type="Script" uid="uid://2ujf8doujn5d" path="res://script/tampilan/howtoplay_ingame.gd" id="8_htp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1dk8"]
 bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
@@ -32,6 +33,13 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijbct"]
 bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htp"]
+bg_color = Color(0.05, 0.07, 0.13, 0.88)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="UI" type="CanvasLayer" unique_id=1872990787]
 script = ExtResource("1_nlktw")
@@ -130,9 +138,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -140.0
-offset_top = -188.0
+offset_top = -228.0
 offset_right = 140.0
-offset_bottom = -133.0
+offset_bottom = -173.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_b1dk8")
@@ -147,10 +155,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -20.0
-offset_right = 104.0
-offset_bottom = 84.0
+offset_left = -200.0
+offset_top = -131.75
+offset_right = 200.0
+offset_bottom = 131.75
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -165,6 +173,17 @@ theme_override_styles/normal = ExtResource("5_xq6u3")
 theme_override_styles/pressed = ExtResource("6_esp13")
 theme_override_styles/hover = ExtResource("7_me7jb")
 text = "Resume"
+
+[node name="How to play" type="Button" parent="pause/pause_panel/VBoxContainer" unique_id=2105870404]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("5_xq6u3")
+theme_override_styles/pressed = ExtResource("6_esp13")
+theme_override_styles/hover = ExtResource("7_me7jb")
+text = "How to play"
 
 [node name="main_menu" type="Button" parent="pause/pause_panel/VBoxContainer" unique_id=141486948]
 process_mode = 3
@@ -194,6 +213,178 @@ popup/item_0/id = 0
 popup/item_1/text = "FullScreen"
 popup/item_1/id = 1
 
+[node name="howtoplay" type="Node" parent="." unique_id=17337456]
+process_mode = 3
+script = ExtResource("8_htp")
+
+[node name="howtoplay_panel" type="Panel" parent="howtoplay" unique_id=1821033210]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(760, 580)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_htp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="howtoplay/howtoplay_panel" unique_id=395238919]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="LabelJudul" type="Label" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=1698258042]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.976471, 0.886275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 32
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="HTPCounter" type="Label" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=1339330899]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 0.705882, 0.980392, 1)
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 13
+text = "1 / 3"
+horizontal_alignment = 1
+
+[node name="Sep1" type="ColorRect" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=1590443876]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.192157, 0.196078, 0.258824, 1)
+
+[node name="HTPImgKartu" type="TextureRect" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=1666316684]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HTPJudulKartu" type="Label" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=284833385]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.976471, 0.886275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 20
+text = "Kontrol Karakter"
+horizontal_alignment = 1
+
+[node name="HTPDeskripsi" type="Label" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=1261614277]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.803922, 0.839216, 0.956863, 1)
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 14
+text = "..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sep2" type="ColorRect" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=971296995]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.192157, 0.196078, 0.258824, 1)
+
+[node name="Spacer" type="Control" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=920986067]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="Footer" type="HBoxContainer" parent="howtoplay/howtoplay_panel/VBoxContainer" unique_id=1571307413]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="kembali" type="Button" parent="howtoplay/howtoplay_panel/VBoxContainer/Footer" unique_id=653892964]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(110, 44)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = ExtResource("5_xq6u3")
+theme_override_styles/pressed = ExtResource("6_esp13")
+theme_override_styles/hover = ExtResource("7_me7jb")
+text = "Kembali"
+
+[node name="previous" type="Button" parent="howtoplay/howtoplay_panel/VBoxContainer/Footer" unique_id=1426194772]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(110, 44)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = ExtResource("5_xq6u3")
+theme_override_styles/pressed = ExtResource("6_esp13")
+theme_override_styles/hover = ExtResource("7_me7jb")
+text = "← Prev"
+
+[node name="Dots" type="HBoxContainer" parent="howtoplay/howtoplay_panel/VBoxContainer/Footer" unique_id=674942685]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HTPDot1" type="ColorRect" parent="howtoplay/howtoplay_panel/VBoxContainer/Footer/Dots" unique_id=639879082]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.976471, 0.886275, 0.686275, 1)
+
+[node name="HTPDot2" type="ColorRect" parent="howtoplay/howtoplay_panel/VBoxContainer/Footer/Dots" unique_id=14304724]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.270588, 0.278431, 0.313726, 1)
+
+[node name="HTPDot3" type="ColorRect" parent="howtoplay/howtoplay_panel/VBoxContainer/Footer/Dots" unique_id=645096810]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.270588, 0.278431, 0.313726, 1)
+
+[node name="next" type="Button" parent="howtoplay/howtoplay_panel/VBoxContainer/Footer" unique_id=1693676521]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(110, 44)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_b1dk8")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = ExtResource("5_xq6u3")
+theme_override_styles/pressed = ExtResource("6_esp13")
+theme_override_styles/hover = ExtResource("7_me7jb")
+text = "Next →"
+
 [connection signal="pressed" from="pause/pause_panel/VBoxContainer/Resume" to="pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="pause/pause_panel/VBoxContainer/How to play" to="pause" method="_on_howtoplay_pressed"]
 [connection signal="pressed" from="pause/pause_panel/VBoxContainer/main_menu" to="pause" method="_on_main_menu_pressed"]
 [connection signal="item_selected" from="pause/pause_panel/VBoxContainer/HBoxContainer2/CheckFullscreen" to="pause" method="_on_fullscreen_item_selected"]
+[connection signal="pressed" from="howtoplay/howtoplay_panel/VBoxContainer/Footer/previous" to="howtoplay" method="_on_btn_prev_pressed"]
+[connection signal="pressed" from="howtoplay/howtoplay_panel/VBoxContainer/Footer/next" to="howtoplay" method="_on_btn_next_pressed"]

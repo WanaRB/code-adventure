@@ -48,7 +48,8 @@ func _update_kartu() -> void:
 	dot2.color = C_DOT_AKT if _kartu_idx == 1 else C_DOT_IDLE
 	dot3.color = C_DOT_AKT if _kartu_idx == 2 else C_DOT_IDLE
 	btn_prev.visible = _kartu_idx > 0
-	btn_next.text = "Selesai ✓" if _kartu_idx == _kartu_data.size() - 1 else "Next →"
+	btn_next.text = "Next →"
+	btn_next.visible = _kartu_idx < _kartu_data.size() - 1
 
 func _on_btn_prev_pressed() -> void:
 	if _kartu_idx > 0:

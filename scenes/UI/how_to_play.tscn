@@ -146,38 +146,10 @@ theme_override_styles/normal = ExtResource("3_normal")
 theme_override_styles/pressed = ExtResource("4_pressed")
 theme_override_styles/hover = ExtResource("5_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-text = "← Kembali"
-
-[node name="Dots" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/Footer" unique_id=1571128080]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Dot1" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=1635901472]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_vertical = 4
-color = Color(0.976471, 0.886275, 0.686275, 1)
-
-[node name="Dot2" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=1436696448]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_vertical = 4
-color = Color(0.270588, 0.278431, 0.313726, 1)
-
-[node name="Dot3" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=282808335]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_vertical = 4
-color = Color(0.270588, 0.278431, 0.313726, 1)
+text = "Kembali"
 
 [node name="BtnPrev" type="Button" parent="Panel/ScrollContainer/VBoxContainer/Footer" unique_id=2041848718]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(110, 46)
 layout_mode = 2
 focus_mode = 0
@@ -189,6 +161,36 @@ theme_override_styles/pressed = ExtResource("4_pressed")
 theme_override_styles/hover = ExtResource("5_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "← Prev"
+
+[node name="Dots" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/Footer" unique_id=1571128080]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Dot1" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=1635901472]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.976471, 0.886275, 0.686275, 1)
+
+[node name="Dot2" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=1436696448]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.270588, 0.278431, 0.313726, 1)
+
+[node name="Dot3" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=282808335]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.270588, 0.278431, 0.313726, 1)
 
 [node name="BtnNext" type="Button" parent="Panel/ScrollContainer/VBoxContainer/Footer" unique_id=222318366]
 unique_name_in_owner = true
