@@ -128,6 +128,9 @@ func _on_button_settings_pressed() -> void:
 func _on_button_credit_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/UI/credits.tscn")
 
+func _on_button_howtoplay_pressed() -> void:
+	_animasi_keluar("res://scenes/UI/how_to_play.tscn")
+	
 func _on_button_back_options_pressed() -> void:
 	panel_options.visible = false
 	vbox.visible = true

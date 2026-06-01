@@ -142,6 +142,20 @@ theme_override_styles/hover = ExtResource("7_scr1a")
 theme_override_styles/focus = SubResource("StyleBoxFlat_sfthw")
 text = "Pengaturan"
 
+[node name="button_howtoplay" type="Button" parent="VBoxContainer" unique_id=1869568140]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_d6l81")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_sfthw")
+theme_override_styles/pressed = ExtResource("6_n3ahy")
+theme_override_styles/hover = ExtResource("7_scr1a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sfthw")
+text = "How to Play"
+
 [node name="button_credit" type="Button" parent="VBoxContainer" unique_id=155398629]
 texture_filter = 1
 layout_mode = 2
@@ -200,6 +214,7 @@ skala_min = 3.0
 skala_max = 3.0
 
 [node name="PanelOptions" type="Panel" parent="." unique_id=385203321]
+visible = false
 custom_minimum_size = Vector2(600, 600)
 layout_mode = 1
 anchors_preset = 8
@@ -314,6 +329,7 @@ popup/item_1/id = 1
 
 [connection signal="pressed" from="VBoxContainer/button_main" to="." method="_on_button_main_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_howtoplay" to="." method="_on_button_howtoplay_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_credit" to="." method="_on_button_credit_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_exit" to="." method="_on_button_exit_pressed"]
 [connection signal="pressed" from="PanelOptions/button_back_options" to="." method="_on_button_back_options_pressed"]

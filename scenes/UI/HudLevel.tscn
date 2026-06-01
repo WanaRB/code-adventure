@@ -113,7 +113,6 @@ script = ExtResource("3_lt22e")
 [node name="pause_panel" type="Panel" parent="pause" unique_id=67484120]
 unique_name_in_owner = true
 process_mode = 3
-visible = false
 custom_minimum_size = Vector2(1000, 600)
 anchors_preset = 15
 anchor_right = 1.0

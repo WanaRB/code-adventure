@@ -7,6 +7,7 @@ var player_didalam_area = false
 var _kuis_sedang_terbuka := false
 var _highlight_display: Array[String] = []
 var _variant_sudah_benar: Array[int] = []
+var _label_interaksi: Node2D = null
 
 func _ready():
 	GameEvents.quiz_answered_correct.connect(_on_quiz_answered_correct)
@@ -14,14 +15,17 @@ func _ready():
 	body_exited.connect(_on_body_exited)
 	GameEvents.quiz_closed.connect(func(): _kuis_sedang_terbuka = false)
 	GameEvents.quiz_highlight_updated.connect(_on_highlight_updated)
+	_buat_label_interaksi()
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		player_didalam_area = true
+		if _label_interaksi: _label_interaksi.visible = true
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
 		player_didalam_area = false
+		if _label_interaksi: _label_interaksi.visible = false
 
 func _input(event):
 	if event.is_action_pressed("interact") and player_didalam_area:
@@ -49,3 +53,19 @@ func _on_quiz_answered_correct(variant_idx: int, _world_changes) -> void:
 	if variant_idx not in _variant_sudah_benar:
 		_variant_sudah_benar.append(variant_idx)
 		SaveManager.simpan_variant_benar(name, _variant_sudah_benar)
+
+func _buat_label_interaksi() -> void:
+	var container := Node2D.new()
+	container.position = Vector2(0, -90)
+	container.visible = false
+	add_child(container)
+	_label_interaksi = container
+
+	var label := Label.new()
+	label.text = "Tekan [E] untuk interaksi"
+	label.add_theme_font_size_override("font_size", 25)
+	label.add_theme_color_override("font_color", Color("ffffffff"))
+	label.add_theme_color_override("font_outline_color", Color("000000ff"))
+	label.add_theme_constant_override("outline_size", 4)
+	label.position = Vector2(-130, -10)
+	container.add_child(label)

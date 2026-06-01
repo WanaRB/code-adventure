@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://bmkp5uv0o8s5k"]
+
+[ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_bg"]
+[ext_resource type="FontFile" uid="uid://cskyf86c0n4ku" path="res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="2_font"]
+[ext_resource type="StyleBox" uid="uid://chnnbmypfpao3" path="res://resource/button_normal.tres" id="3_normal"]
+[ext_resource type="StyleBox" uid="uid://bb7qcqmaxlv48" path="res://resource/button_pressed.tres" id="4_pressed"]
+[ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="5_hover"]
+[ext_resource type="Script" uid="uid://dliotkcgbhx8l" path="res://script/tampilan/how_to_play.gd" id="6_script"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bg"]
+texture = ExtResource("1_bg")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0, 0, 0, 0.858824)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[node name="HowToPlay" type="Control" unique_id=972242686]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_script")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=745363972]
+layer = -1
+
+[node name="BG" type="Panel" parent="CanvasLayer" unique_id=158299695]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bg")
+
+[node name="Panel" type="Panel" parent="." unique_id=233598072]
+custom_minimum_size = Vector2(700, 660)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=2064875372]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -315.0
+offset_right = 340.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=25770746]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="LabelJudul" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=947709329]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.976471, 0.886275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="Counter" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=2074712348]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 0.705882, 0.980392, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 14
+text = "1 / 3"
+horizontal_alignment = 1
+
+[node name="Sep1" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1335795494]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.192157, 0.196078, 0.258824, 1)
+
+[node name="ImgKartu" type="TextureRect" parent="Panel/ScrollContainer/VBoxContainer" unique_id=309328381]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="JudulKartu" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1384312980]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.976471, 0.886275, 0.686275, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "Kontrol Karakter"
+horizontal_alignment = 1
+
+[node name="Deskripsi" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=303060351]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.803922, 0.839216, 0.956863, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+text = "Gunakan [←] [→] untuk bergerak ke kiri dan kanan.
+Tekan [Space] atau [↑] untuk melompat.
+Di HP, gunakan tombol kontrol yang muncul di layar."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sep2" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1515810657]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.192157, 0.196078, 0.258824, 1)
+
+[node name="Spacer" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=211019273]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="Footer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1203133421]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="BtnKembali" type="Button" parent="Panel/ScrollContainer/VBoxContainer/Footer" unique_id=1998392398]
+custom_minimum_size = Vector2(130, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = ExtResource("3_normal")
+theme_override_styles/pressed = ExtResource("4_pressed")
+theme_override_styles/hover = ExtResource("5_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "← Kembali"
+
+[node name="Dots" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/Footer" unique_id=1571128080]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Dot1" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=1635901472]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.976471, 0.886275, 0.686275, 1)
+
+[node name="Dot2" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=1436696448]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.270588, 0.278431, 0.313726, 1)
+
+[node name="Dot3" type="ColorRect" parent="Panel/ScrollContainer/VBoxContainer/Footer/Dots" unique_id=282808335]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.270588, 0.278431, 0.313726, 1)
+
+[node name="BtnPrev" type="Button" parent="Panel/ScrollContainer/VBoxContainer/Footer" unique_id=2041848718]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(110, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = ExtResource("3_normal")
+theme_override_styles/pressed = ExtResource("4_pressed")
+theme_override_styles/hover = ExtResource("5_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "← Prev"
+
+[node name="BtnNext" type="Button" parent="Panel/ScrollContainer/VBoxContainer/Footer" unique_id=222318366]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = ExtResource("3_normal")
+theme_override_styles/pressed = ExtResource("4_pressed")
+theme_override_styles/hover = ExtResource("5_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "Next →"
+
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/Footer/BtnKembali" to="." method="_on_btn_kembali_pressed"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/Footer/BtnPrev" to="." method="_on_btn_prev_pressed"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/Footer/BtnNext" to="." method="_on_btn_next_pressed"]

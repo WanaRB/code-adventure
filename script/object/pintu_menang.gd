@@ -13,6 +13,7 @@ extends Area2D
 
 var is_open := false
 var player_di_dekat_pintu := false
+var _label_interaksi: Node2D = null
 
 func _ready():
 	GameEvents.quiz_answered_correct.connect(_on_quiz_solved)
@@ -23,6 +24,7 @@ func _ready():
 		sprite.frame = 0
 	else:
 		sprite.frame = 1
+	_buat_label_interaksi()
 
 func _on_quiz_solved(_variant_idx: int, world_changes: Array):
 	for entry: WorldChangeEntry in world_changes:
@@ -35,13 +37,21 @@ func _buka_pintu():
 	is_open = true
 	sprite.frame = 0
 	if sfx_buka != null: sfx_buka.play()
+	if _label_interaksi and player_di_dekat_pintu:
+		_label_interaksi.visible = true
 
 func _on_body_entered(body):
-	if body.is_in_group("player"): player_di_dekat_pintu = true
+	if body.is_in_group("player"):
+		player_di_dekat_pintu = true
+		if _label_interaksi and is_open:
+			_label_interaksi.visible = true
 
 func _on_body_exited(body):
-	if body.is_in_group("player"): player_di_dekat_pintu = false
-
+	if body.is_in_group("player"):
+		player_di_dekat_pintu = false
+		if _label_interaksi:
+			_label_interaksi.visible = false
+			
 func _input(event):
 	if event.is_action_pressed("interact") and player_di_dekat_pintu and is_open:
 		_pindah_level()
@@ -70,3 +80,19 @@ func _nomor_level_dari_path(path: String) -> int:
 	if "level_4" in path: return 4  
 	if "level_5" in path: return 5 
 	return 0
+
+func _buat_label_interaksi() -> void:
+	var container := Node2D.new()
+	container.position = Vector2(0, -90)
+	container.visible = false
+	add_child(container)
+	_label_interaksi = container
+
+	var label := Label.new()
+	label.text = "Tekan [E] untuk interaksi"
+	label.add_theme_font_size_override("font_size", 25)
+	label.add_theme_color_override("font_color", Color("ffffffff"))
+	label.add_theme_color_override("font_outline_color", Color("000000ff"))
+	label.add_theme_constant_override("outline_size", 4)
+	label.position = Vector2(-130, -10)
+	container.add_child(label)

@@ -252,9 +252,9 @@ func _make_instruction_bar(mono_font: Font) -> Control:
 	m.add_theme_constant_override("margin_bottom", CFG_SECTION_GAP / 2)
 
 	var count := _quiz_data.highlights.size()
-	var hint_text := "💡  Klik bagian kode yang di-highlight untuk memperbaikinya"
-	if count > 1:
-		hint_text = "💡  Ada %d bagian kode yang perlu diperbaiki — klik satu per satu" % count
+	var hint_text := "💡  Klik bagian kode yang di-highlight untuk mengubahnya"
+	#if count > 1:
+		#hint_text = "💡  Ada %d bagian kode yang perlu diperbaiki — klik satu per satu" % count
 
 	var lbl := Label.new()
 	lbl.text = hint_text
@@ -492,7 +492,7 @@ func _make_options_section(mono_font: Font) -> Control:
 
 	# Label konteks: menampilkan kata mana yang sedang diperbaiki
 	_options_context_label = Label.new()
-	_options_context_label.text = "Pilih nilai yang benar:"
+	_options_context_label.text = "🔧 Pilih sintaks pengganti :"
 	_options_context_label.add_theme_color_override("font_color", C_HINT)
 	_options_context_label.add_theme_font_override("font", mono_font)
 	_options_context_label.add_theme_font_size_override("font_size", CFG_FONT_SIZE_HINT)
@@ -584,7 +584,7 @@ func _on_highlight_clicked(hl_idx: int):
 
 	# Update label konteks
 	var hl := _quiz_data.highlights[hl_idx]
-	_options_context_label.text = "🔧  Memperbaiki   [ %s ]   — pilih pengganti yang benar:" % hl.word
+	#_options_context_label.text = "🔧  mengubah   [ %s ]   — pilih pengganti yang benar:" % hl.word
 
 	# Update teks tombol opsi
 	for i: int in range(_option_buttons.size()):
