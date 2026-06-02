@@ -1140,32 +1140,41 @@ position = Vector2(536, -320)
 position = Vector2(720, -320)
 
 [node name="Platform1_png6" parent="Map/Platform" unique_id=1874182821 instance=ExtResource("6_w76c7")]
-position = Vector2(1136, 96)
+position = Vector2(1152, 72)
 
 [node name="Platform1_png2" parent="Map/Platform" unique_id=437616027 instance=ExtResource("6_w76c7")]
-position = Vector2(904, 416)
+position = Vector2(816, 416)
+platform_id = 2
+direction = 3
+
+[node name="Platform1_png7" parent="Map/Platform" unique_id=1526933011 instance=ExtResource("6_w76c7")]
+position = Vector2(1840, 296)
 platform_id = 2
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
 [node name="apple" parent="Item" unique_id=666788976 instance=ExtResource("8_y17vk")]
-position = Vector2(744, 328)
+position = Vector2(824, 336)
 
 [node name="apple2" parent="Item" unique_id=837634900 instance=ExtResource("8_y17vk")]
 position = Vector2(2744, -448)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("9_7r2lc")]
-position = Vector2(2120, 424)
+position = Vector2(3128, 384)
 data_kuis = SubResource("Resource_mnrer")
 
 [node name="Laptop2" parent="Item" unique_id=1677301486 instance=ExtResource("9_7r2lc")]
 position = Vector2(1152, 8)
 data_kuis = ExtResource("10_n8y82")
 
+[node name="Laptop3" parent="Item" unique_id=2008188869 instance=ExtResource("9_7r2lc")]
+position = Vector2(1160, 472)
+data_kuis = ExtResource("10_n8y82")
+
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_7agcs")]
-position = Vector2(800, -504)
+position = Vector2(1440, -336.00003)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
@@ -1205,32 +1214,18 @@ position = Vector2(2720, 640)
 
 [node name="V" type="Node" parent="Musuh" unique_id=2000134448]
 
-[node name="DroneMusuh" parent="Musuh/V" unique_id=1869809422 instance=ExtResource("14_xjnsc")]
-position = Vector2(1728, 440)
-kecepatan = 150.0
-jarak_patroli = 350.0
-bisa_jadi_baik = true
-mulai_ke_atas = true
-
-[node name="DroneMusuh3" parent="Musuh/V" unique_id=631702655 instance=ExtResource("14_xjnsc")]
-position = Vector2(2736, 464)
-kecepatan = 150.0
-jarak_patroli = 720.0
-bisa_jadi_baik = true
-mulai_ke_atas = true
-
 [node name="H" type="Node" parent="Musuh" unique_id=1625600553]
 
-[node name="DroneMusuh" parent="Musuh/H" unique_id=342791994 instance=ExtResource("15_w76c7")]
-position = Vector2(1120, 608)
-kecepatan = 200.0
-jarak_patroli = 400.0
-
-[node name="DroneMusuh3" parent="Musuh/H" unique_id=1230716661 instance=ExtResource("15_w76c7")]
-position = Vector2(936, -224)
-kecepatan = 150.0
+[node name="DroneMusuh" parent="Musuh/H" unique_id=1779015776 instance=ExtResource("15_w76c7")]
+position = Vector2(1488, 448)
 jarak_patroli = 500.0
 bisa_jadi_baik = true
+
+[node name="DroneMusuh2" parent="Musuh/H" unique_id=404381211 instance=ExtResource("15_w76c7")]
+position = Vector2(2616, 440)
+jarak_patroli = 500.0
+bisa_jadi_baik = true
+mulai_ke_kiri = true
 
 [node name="Node" type="Node2D" parent="." unique_id=1917418961 node_paths=PackedStringArray("sfx_player")]
 position = Vector2(2328, 184)
@@ -1247,3 +1242,18 @@ stream = ExtResource("7_uf7as")
 visible = false
 
 [node name="game_manager" parent="." unique_id=62453360 instance=ExtResource("14_7hdty")]
+
+[node name="DroneMusuh" parent="." unique_id=1358606003 instance=ExtResource("14_xjnsc")]
+position = Vector2(1408, 56)
+kecepatan = 150.0
+jarak_patroli = 270.0
+
+[node name="DroneMusuh2" parent="." unique_id=1750496590 instance=ExtResource("14_xjnsc")]
+position = Vector2(2008, 40)
+kecepatan = 150.0
+jarak_patroli = 270.0
+
+[node name="DroneMusuh3" parent="." unique_id=271140478 instance=ExtResource("14_xjnsc")]
+position = Vector2(2736, 56)
+kecepatan = 150.0
+jarak_patroli = 270.0
