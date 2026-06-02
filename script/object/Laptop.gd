@@ -12,10 +12,6 @@ var _label_interaksi: Node2D = null
 var _sudah_selesai := false
 
 func _ready():
-	# load dulu semua data
-	var loaded_variant := SaveManager.muat_variant_benar(name)
-	for v in loaded_variant:
-		_variant_sudah_benar.append(int(v))
 	# buat UI
 	_buat_label_interaksi()
 	# connect signals
@@ -62,7 +58,6 @@ func _on_quiz_answered_correct(variant_idx: int, _world_changes) -> void:
 	if not _kuis_sedang_terbuka: return
 	if variant_idx not in _variant_sudah_benar:
 		_variant_sudah_benar.append(variant_idx)
-		SaveManager.simpan_variant_benar(name, _variant_sudah_benar)
 	if not bisa_jawab_ulang:
 		_sudah_selesai = true
 		if _label_interaksi:
