@@ -1148,7 +1148,15 @@ platform_id = 2
 direction = 3
 
 [node name="Platform1_png7" parent="Map/Platform" unique_id=1526933011 instance=ExtResource("6_w76c7")]
-position = Vector2(1840, 296)
+position = Vector2(1824, 296)
+platform_id = 2
+
+[node name="Platform1_png8" parent="Map/Platform" unique_id=1391567433 instance=ExtResource("6_w76c7")]
+position = Vector2(2024, 421)
+platform_id = 2
+
+[node name="Platform1_png9" parent="Map/Platform" unique_id=1627077977 instance=ExtResource("6_w76c7")]
+position = Vector2(2233, 296)
 platform_id = 2
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
@@ -1168,13 +1176,13 @@ position = Vector2(1152, 8)
 data_kuis = ExtResource("10_n8y82")
 
 [node name="Laptop3" parent="Item" unique_id=2008188869 instance=ExtResource("9_7r2lc")]
-position = Vector2(1160, 472)
+position = Vector2(1136, 480)
 data_kuis = ExtResource("10_n8y82")
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_7agcs")]
-position = Vector2(1440, -336.00003)
+position = Vector2(792.00006, -88.000046)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
@@ -1217,12 +1225,12 @@ position = Vector2(2720, 640)
 [node name="H" type="Node" parent="Musuh" unique_id=1625600553]
 
 [node name="DroneMusuh" parent="Musuh/H" unique_id=1779015776 instance=ExtResource("15_w76c7")]
-position = Vector2(1488, 448)
+position = Vector2(1328, 472)
 jarak_patroli = 500.0
 bisa_jadi_baik = true
 
 [node name="DroneMusuh2" parent="Musuh/H" unique_id=404381211 instance=ExtResource("15_w76c7")]
-position = Vector2(2616, 440)
+position = Vector2(2792, 392)
 jarak_patroli = 500.0
 bisa_jadi_baik = true
 mulai_ke_kiri = true
@@ -1244,16 +1252,28 @@ visible = false
 [node name="game_manager" parent="." unique_id=62453360 instance=ExtResource("14_7hdty")]
 
 [node name="DroneMusuh" parent="." unique_id=1358606003 instance=ExtResource("14_xjnsc")]
-position = Vector2(1408, 56)
+position = Vector2(1528, 48)
 kecepatan = 150.0
-jarak_patroli = 270.0
+jarak_patroli = 300.0
+
+[node name="DroneMusuh4" parent="." unique_id=1792459564 instance=ExtResource("14_xjnsc")]
+position = Vector2(1400, 360)
+kecepatan = 150.0
+jarak_patroli = 300.0
+mulai_ke_atas = true
 
 [node name="DroneMusuh2" parent="." unique_id=1750496590 instance=ExtResource("14_xjnsc")]
-position = Vector2(2008, 40)
+position = Vector2(2029, 80)
 kecepatan = 150.0
 jarak_patroli = 270.0
 
 [node name="DroneMusuh3" parent="." unique_id=271140478 instance=ExtResource("14_xjnsc")]
-position = Vector2(2736, 56)
-kecepatan = 150.0
-jarak_patroli = 270.0
+position = Vector2(2704, 296)
+kecepatan = 140.0
+jarak_patroli = 260.0
+mulai_ke_atas = true
+
+[node name="DroneMusuh5" parent="." unique_id=715340970 instance=ExtResource("14_xjnsc")]
+position = Vector2(2552, 48)
+kecepatan = 140.0
+jarak_patroli = 260.0

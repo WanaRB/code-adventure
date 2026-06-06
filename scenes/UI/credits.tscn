@@ -85,7 +85,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
 theme_override_fonts/font = ExtResource("4_83fsw")
 theme_override_font_sizes/font_size = 26
-text = "Tim Pembuat"
+text = "Tim Developer"
 horizontal_alignment = 1
 
 [node name="LabelDev" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100009]
@@ -190,18 +190,6 @@ horizontal_alignment = 1
 
 [node name="Spacer7" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1805916752]
 custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="LabelTerima" type="Label" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100014]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 1, 0.8, 1)
-theme_override_fonts/font = ExtResource("4_83fsw")
-theme_override_font_sizes/font_size = 22
-text = "Terima kasih sudah bermain! 🎮"
-horizontal_alignment = 1
-
-[node name="Spacer4" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100015]
-custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
 [node name="button_back" type="Button" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100016]

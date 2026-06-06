@@ -43,9 +43,12 @@ func _terapkan_kunci(btn: Button, level: int):
 
 func _hitung_bintang(level: int) -> int:
 	var poin := SaveManager.get_level_net_points(level)
-	if poin >= THRESHOLD_3: return 3
-	if poin >= THRESHOLD_2: return 2
-	if poin >= THRESHOLD_1: return 1
+	var maks := SaveManager.get_max_poin(level)
+	if maks == 0: return 0
+	var persen := float(poin) / float(maks) * 100.0
+	if persen >= 100.0: return 3
+	if persen >= 70.0:  return 2
+	if persen >= 50.0:  return 1
 	return 0
 
 func _update_bintang() -> void:

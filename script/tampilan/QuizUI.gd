@@ -686,7 +686,6 @@ func _on_submit_pressed() -> void:
 	else:
 		# ── TIDAK COCOK dengan variant apapun ──
 		_session_wrong += 1
-		GameEvents.quiz_points_earned.emit(0, 0, 1)
 		GameEvents.player_hit.emit(1)
 
 		if sfx_salah != null:

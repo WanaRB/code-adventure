@@ -16,10 +16,19 @@ var _level_results := {
 	"6": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
 }
 
+# maksimal point tiap level
+var _max_poin_per_level := {
+	"1": 170,
+	"2": 300,
+	"3": 300,
+	"4": 300,
+	"5": 300,
+	"6": 300,
+}
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	## Load otomatis saat game dibuka
-	#reset() #Sementara (untuk reset data)
+	reset() #Sementara (untuk reset data)
 	load_from_file()
 
 # ─── API Publik (tidak berubah dari versi sebelumnya) ─────────────────────────
@@ -187,3 +196,6 @@ func simpan_sudah_selesai(laptop_name: String) -> void:
 func muat_sudah_selesai(laptop_name: String) -> bool:
 	var data := _load_raw()
 	return data.get("laptops", {}).get(laptop_name, {}).get("selesai", false)
+
+func get_max_poin(level: int) -> int:
+	return _max_poin_per_level.get(str(level), 300)
