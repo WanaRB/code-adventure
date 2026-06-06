@@ -58,6 +58,8 @@ func _tampilkan(dari_pause: bool = false) -> void:
 	_update_kartu()
 	howtoplay_panel.show()
 	get_tree().paused = true
+	var mc := get_tree().get_first_node_in_group("mobile_controls")
+	if mc: mc.visible = false
 
 func _tutup() -> void:
 	GameEvents.sudah_lihat_howtoplay = true
@@ -69,6 +71,8 @@ func _tutup() -> void:
 			pause_node._on_pause_btn_pressed()
 	else:
 		get_tree().paused = false
+	var mc := get_tree().get_first_node_in_group("mobile_controls")
+	if mc: mc.visible = true
 
 func _update_kartu() -> void:
 	var data: Dictionary = _kartu_data[_kartu_idx]
