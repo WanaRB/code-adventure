@@ -135,7 +135,7 @@ func _build_ui():
 	btn_ulangi.pressed.connect(_ulangi)
 	btn_row.add_child(btn_ulangi)
 
-	if level < 5:
+	if level < 6:
 		var btn_lanjut := _btn("Lanjut", C_BTN_LANJUT)
 		btn_lanjut.pressed.connect(_ke_level_selanjutnya)
 		btn_row.add_child(btn_lanjut)
@@ -154,10 +154,12 @@ func _ke_level_selanjutnya():
 		2: get_tree().change_scene_to_file("res://scenes/Level/level_3.tscn")
 		3: get_tree().change_scene_to_file("res://scenes/Level/level_4.tscn")
 		4: get_tree().change_scene_to_file("res://scenes/Level/level_5.tscn")
+		5: get_tree().change_scene_to_file("res://scenes/Level/level_6.tscn")
 		
 
 func _get_level() -> int:
 	var path: String = GameEvents.last_level_path
+	if "level_6" in path: return 6
 	if "level_5" in path: return 5
 	if "level_4" in path: return 4
 	if "level_3" in path: return 3

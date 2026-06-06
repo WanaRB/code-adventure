@@ -21,17 +21,27 @@ var _kartu_data := [
 	{
 		"judul": "Kontrol Karakter",
 		"image": "res://assets/image/HowToPlay/kontrol.png",
-		"desc":  "Gunakan [←] [→] untuk bergerak ke kiri dan kanan.\nTekan [Space] atau [↑] untuk melompat.\nDi HP, gunakan tombol kontrol yang muncul di layar."
+		"desc":  "Gunakan [A] [D] atau [←] [→] untuk bergerak ke kiri dan ke kanan.\nTekan [A] atau [↑] untuk lompat.\nDi Mobile, gunakan tombol kontrol yang muncul di layar."
 	},
 	{
-		"judul": "Interaksi & Quiz",
+		"judul": "Laptop",
+		"image": "res://assets/image/HowToPlay/laptop.png",
+		"desc":  "Setiap level memiliki laptop yang tersebar di sekitar.\ninteraksi dengan laptop untuk membuka soal.\n"
+	},
+	{
+		"judul": "Cara menjawab Soal",
 		"image": "res://assets/image/HowToPlay/quiz.png",
-		"desc":  "Dekati laptop → tekan [E] → kuis terbuka.\nKlik highlight → pilih jawaban → tekan [Enter].\nBenar = poin naik. Salah = nyawa berkurang!"
+		"desc":  "Klik kata yang di-highlight pada kode.\nPilih jawaban yang benar dari pilihan yang tersedia.\nTekan [Enter] untuk mengonfirmasi jawaban."
 	},
 	{
-		"judul": "Cara Menang",
+		"judul": "Perubahan Dunia",
+		"image": "res://assets/image/HowToPlay/platform.png",
+		"desc":  "Jawaban yang benar mengubah dunia disekitarmu.\nUbah soal untuk mengubah dunia yang akan membantu kamu menyelesaikan level"
+	},
+	{
+		"judul": "Menangkan Level",
 		"image": "res://assets/image/HowToPlay/menang.png",
-		"desc":  "Jawab semua soal laptop di level.\nPintu terbuka setelah semua selesai.\nDekati pintu → tekan [E] → level selesai!"
+		"desc":  "Masuk ke pintu untuk menyelesaikan level. Terkadang harus menyelesaikan soal dulu untuk membuka pintunya \n"
 	},
 ]
 

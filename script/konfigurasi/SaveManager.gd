@@ -13,6 +13,7 @@ var _level_results := {
 	"3": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
 	"4": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
 	"5": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
+	"6": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
 }
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
@@ -59,7 +60,7 @@ func get_level_net_points(level: int) -> int:
 
 func get_total_points() -> int:
 	var total := 0
-	for k in ["1", "2", "3", "4", "5"]:
+	for k in ["1", "2", "3", "4", "5", "6"]:
 		total += get_level_net_points(int(k))
 	return total
 

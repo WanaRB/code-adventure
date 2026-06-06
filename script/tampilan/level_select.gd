@@ -1,17 +1,26 @@
 extends Control
 
-@export var ikon_suara_hidup: Texture2D
-@export var ikon_suara_mati: Texture2D
 @onready var vbox: VBoxContainer = $VBoxContainer
+
+const STAR_PATHS := [
+	"res://assets/image/UI/empty star.png",
+	"res://assets/image/UI/1 star.png",
+	"res://assets/image/UI/2 star.png",
+	"res://assets/image/UI/3 star.png",
+]
+const THRESHOLD_1 := 100
+const THRESHOLD_2 := 300
+const THRESHOLD_3 := 500
 
 func _ready() -> void:
 	_animasi_masuk()
 	_update_kunci()
+	_update_bintang()
 
 func _stop_bgm() -> void:
 	var bgm := get_tree().root.get_node_or_null("BgmMenu")
 	if bgm: bgm.stop()
-	
+
 func _update_kunci():
 	for btn in find_children("*", "Button", true, false):
 		if not btn is Button: continue
@@ -25,10 +34,59 @@ func _update_kunci():
 				_terapkan_kunci(btn, 4)
 			elif "level_5" in method:
 				_terapkan_kunci(btn, 5)
+			elif "level_6" in method:
+				_terapkan_kunci(btn, 6)
 
 func _terapkan_kunci(btn: Button, level: int):
 	var terbuka := SaveManager.is_level_unlocked(level)
 	btn.disabled = not terbuka
+
+func _hitung_bintang(level: int) -> int:
+	var poin := SaveManager.get_level_net_points(level)
+	if poin >= THRESHOLD_3: return 3
+	if poin >= THRESHOLD_2: return 2
+	if poin >= THRESHOLD_1: return 1
+	return 0
+
+func _update_bintang() -> void:
+	var btn_names := {
+		1: "button_level1",
+		2: "button_level2",
+		3: "button_level3",
+		4: "button_level4",
+		5: "button_level5",
+		6: "button_level6",
+	}
+	for level in btn_names:
+		var btn: Button = vbox.find_child(btn_names[level]) as Button
+		if btn == null: continue
+		var bintang := _hitung_bintang(level)
+		var path: String = STAR_PATHS[bintang]
+		if not ResourceLoader.exists(path): continue
+		var existing := btn.get_node_or_null("BintangLevel")
+		if existing: existing.queue_free()
+		var vb := VBoxContainer.new()
+		vb.name = "BintangLevel"
+		vb.set_anchors_preset(Control.PRESET_FULL_RECT)
+		vb.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vb.alignment = BoxContainer.ALIGNMENT_CENTER
+		vb.add_theme_constant_override("separation", 4)
+		btn.add_child(vb)
+		var lbl := Label.new()
+		lbl.text = btn.text
+		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		lbl.add_theme_font_size_override("font_size", 20)
+		vb.add_child(lbl)
+		btn.text = ""
+		var star := TextureRect.new()
+		star.texture = load(path)
+		star.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		star.custom_minimum_size = Vector2(80, 24)
+		star.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		star.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		star.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vb.add_child(star)
 
 func _on_button_level_1_pressed() -> void:
 	_stop_bgm()
@@ -53,6 +111,11 @@ func _on_button_level_5_pressed() -> void:
 	if SaveManager.is_level_unlocked(5):
 		_stop_bgm()
 		_animasi_keluar("res://scenes/Level/level_5.tscn")
+
+func _on_button_level_6_pressed() -> void:
+	if SaveManager.is_level_unlocked(6):
+		_stop_bgm()
+		_animasi_keluar("res://scenes/Level/level_6.tscn")
 
 func _on_button_back_pressed() -> void:
 	_animasi_keluar("res://scenes/UI/play_menu.tscn")

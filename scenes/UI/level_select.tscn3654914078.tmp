@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://b6jctalht86lb"]
+
+[ext_resource type="Script" uid="uid://dcvb86fugjn2h" path="res://script/tampilan/level_select.gd" id="1_yus8d"]
+[ext_resource type="Texture2D" uid="uid://dsgjucy37om26" path="res://assets/image/UI/sound_on.png" id="2_0ra34"]
+[ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="2_piteb"]
+[ext_resource type="Texture2D" uid="uid://c0w5b8ruj43xj" path="res://assets/image/map/logo.png" id="3_m0u3y"]
+[ext_resource type="Texture2D" uid="uid://by7vjjgwhv0bx" path="res://assets/image/UI/sound_off.png" id="3_ty08u"]
+[ext_resource type="AudioStream" uid="uid://bpgh4wheqb6jf" path="res://assets/sound/Pixel.mp3" id="4_0i6e4"]
+[ext_resource type="FontFile" uid="uid://cskyf86c0n4ku" path="res://assets/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="5_qli5c"]
+[ext_resource type="StyleBox" uid="uid://chnnbmypfpao3" path="res://resource/button_normal.tres" id="6_l65nk"]
+[ext_resource type="StyleBox" uid="uid://bb7qcqmaxlv48" path="res://resource/button_pressed.tres" id="7_f431m"]
+[ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="8_1ep74"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m03y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3tsx"]
+texture = ExtResource("2_piteb")
+
+[node name="MainMenu" type="Control" unique_id=425800775]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yus8d")
+ikon_suara_hidup = ExtResource("2_0ra34")
+ikon_suara_mati = ExtResource("3_ty08u")
+
+[node name="logo" type="TextureRect" parent="." unique_id=1705019265]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -507.0
+offset_top = 65.0
+offset_right = 507.0
+offset_bottom = 179.0
+grow_horizontal = 2
+texture = ExtResource("3_m0u3y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=632943988]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.047
+offset_top = -140.0
+offset_right = 166.04675
+offset_bottom = 329.5597
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="button_level1" type="Button" parent="VBoxContainer" unique_id=297542021]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Level 1
+"
+
+[node name="button_level2" type="Button" parent="VBoxContainer" unique_id=64181867]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Level 2"
+
+[node name="button_level3" type="Button" parent="VBoxContainer" unique_id=155398629]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Level 3
+"
+
+[node name="button_level4" type="Button" parent="VBoxContainer" unique_id=1738678051]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Level 4
+"
+
+[node name="button_level5" type="Button" parent="VBoxContainer" unique_id=2060802950]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Level 5
+"
+
+[node name="button_back" type="Button" parent="VBoxContainer" unique_id=309902070]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_qli5c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("6_l65nk")
+theme_override_styles/pressed = ExtResource("7_f431m")
+theme_override_styles/hover = ExtResource("8_1ep74")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0m03y")
+text = "Kembali"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=546412063]
+layer = -1
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1794435827]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_q3tsx")
+
+[node name="BgmMenu" type="AudioStreamPlayer" parent="." unique_id=447173524]
+unique_name_in_owner = true
+stream = ExtResource("4_0i6e4")
+volume_db = -15.0
+parameters/looping = true
+
+[connection signal="pressed" from="VBoxContainer/button_level1" to="." method="_on_button_level_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_level2" to="." method="_on_button_level_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_level3" to="." method="_on_button_level_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_level4" to="." method="_on_button_level_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_level5" to="." method="_on_button_level_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_back" to="." method="_on_button_back_pressed"]

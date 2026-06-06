@@ -79,6 +79,7 @@ func _nomor_level_dari_path(path: String) -> int:
 	if "level_3" in path: return 3
 	if "level_4" in path: return 4  
 	if "level_5" in path: return 5 
+	if "level_6" in path: return 6
 	return 0
 
 func _buat_label_interaksi() -> void:

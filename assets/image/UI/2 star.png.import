@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://owi43hqlrtrr"
-path="res://.godot/imported/kontrol.png-ee8518350dd06a76673568bf252c6e20.ctex"
+uid="uid://6hlqljx5jn7u"
+path="res://.godot/imported/2 star.png-e9aad5f1b76ef906bffd5952f56349ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/image/HowToPlay/kontrol.png"
-dest_files=["res://.godot/imported/kontrol.png-ee8518350dd06a76673568bf252c6e20.ctex"]
+source_file="res://assets/image/UI/2 star.png"
+dest_files=["res://.godot/imported/2 star.png-e9aad5f1b76ef906bffd5952f56349ff.ctex"]
 
 [params]
 

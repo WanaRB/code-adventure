@@ -11,7 +11,7 @@
 [ext_resource type="StyleBox" uid="uid://jv6ipr4t1yvs" path="res://resource/button_hover.tres" id="6_54wri"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83fsw"]
-bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.78431374)
+bg_color = Color(0.078431375, 0.105882354, 0.18039216, 0.9019608)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
@@ -134,7 +134,7 @@ Props & Interior Assets
 Karsiori & Kashdan Music
 
 UI & VFX Assets
-Gamertose, XxAshuraxX & Jan Elijo"
+Gamertose, XxAshuraxX, uutopicaa & Jan Elijo"
 horizontal_alignment = 1
 
 [node name="Spacer3" type="Control" parent="Panel/ScrollContainer/VBoxContainer" unique_id=100013]
