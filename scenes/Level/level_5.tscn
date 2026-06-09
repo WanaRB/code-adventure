@@ -1150,7 +1150,7 @@ bisa_jawab_ulang = false
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_urjwm")]
-position = Vector2(1775.9998, -183.99998)
+position = Vector2(-191.99994, 63.999996)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
