@@ -48,7 +48,7 @@ func _hitung_bintang(level: int) -> int:
 	var persen := float(poin) / float(maks) * 100.0
 	if persen >= 100.0: return 3
 	if persen >= 70.0:  return 2
-	if persen >= 50.0:  return 1
+	if persen >= 1.0:  return 1
 	return 0
 
 func _update_bintang() -> void:

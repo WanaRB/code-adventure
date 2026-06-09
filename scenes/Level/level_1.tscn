@@ -1,22 +1,22 @@
-[gd_scene format=3 uid="uid://bulwlp62y0s0e"]
+[gd_scene format=3 uid="uid://cptp2p7x7obq6"]
 
-[ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_dll1m"]
-[ext_resource type="Texture2D" uid="uid://tnhxql7dkasa" path="res://assets/image/map/GandalfHardcore city tiles 32x32.png" id="2_x81lr"]
-[ext_resource type="Texture2D" uid="uid://cpwj4apon4fl" path="res://assets/image/map/Building Tiles 32x32.png" id="3_4ekf5"]
-[ext_resource type="Texture2D" uid="uid://dugb26t4mw5v" path="res://assets/image/map/Decoration 32x32.png" id="4_37knv"]
-[ext_resource type="PackedScene" uid="uid://bdkcukgpsal8s" path="res://scenes/Map/platform_1_png.tscn" id="5_g7hk0"]
-[ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="6_kmxud"]
-[ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="6_x81lr"]
-[ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="7_l5rbr"]
-[ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="8_fpj3m"]
-[ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_25s6s"]
-[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="12_a0ek4"]
-[ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="14_rklir"]
-[ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="18_ypbuo"]
-[ext_resource type="PackedScene" uid="uid://omjcngkshg7c" path="res://scenes/UI/HudLevel.tscn" id="19_71hnv"]
+[ext_resource type="Texture2D" uid="uid://d1uuetget6vy4" path="res://assets/image/map/City background.png" id="1_864sm"]
+[ext_resource type="Texture2D" uid="uid://tnhxql7dkasa" path="res://assets/image/map/GandalfHardcore city tiles 32x32.png" id="2_d4txe"]
+[ext_resource type="Texture2D" uid="uid://cpwj4apon4fl" path="res://assets/image/map/Building Tiles 32x32.png" id="3_elcpl"]
+[ext_resource type="Texture2D" uid="uid://dugb26t4mw5v" path="res://assets/image/map/Decoration 32x32.png" id="4_w31us"]
+[ext_resource type="PackedScene" uid="uid://bdkcukgpsal8s" path="res://scenes/Map/platform_1_png.tscn" id="5_q2v2e"]
+[ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="6_4gc63"]
+[ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="7_lwhae"]
+[ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="8_60k2r"]
+[ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="9_62pr7"]
+[ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_d136w"]
+[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="11_i6v6m"]
+[ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="12_ktds5"]
+[ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="13_7npqq"]
+[ext_resource type="PackedScene" uid="uid://omjcngkshg7c" path="res://scenes/UI/HudLevel.tscn" id="14_cwkmq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
-texture = ExtResource("2_x81lr")
+texture = ExtResource("2_d4txe")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -335,7 +335,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_gbfbk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wse8f"]
-texture = ExtResource("3_4ekf5")
+texture = ExtResource("3_elcpl")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -953,7 +953,7 @@ texture = ExtResource("3_4ekf5")
 sources/0 = SubResource("TileSetAtlasSource_wse8f")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3n1d"]
-texture = ExtResource("4_37knv")
+texture = ExtResource("4_w31us")
 4:0/0 = 0
 5:0/0 = 0
 6:0/0 = 0
@@ -1040,7 +1040,7 @@ offset_right = 1600.0
 offset_bottom = -400.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_dll1m")
+texture = ExtResource("1_864sm")
 
 [node name="lantai" type="TileMap" parent="Map" unique_id=1840433433]
 texture_filter = 1
@@ -1066,7 +1066,7 @@ layer_0/tile_data = PackedInt32Array(720931, 786432, 3, 720935, 786432, 3, 65576
 
 [node name="Platform" type="Node" parent="Map" unique_id=1670196326]
 
-[node name="Platform1_png" parent="Map/Platform" unique_id=416016548 node_paths=PackedStringArray("sfx_aktif") instance=ExtResource("5_g7hk0")]
+[node name="Platform1_png" parent="Map/Platform" unique_id=416016548 node_paths=PackedStringArray("sfx_aktif") instance=ExtResource("5_q2v2e")]
 process_mode = 3
 position = Vector2(1328, 432)
 scale = Vector2(4, 3.6666667)
@@ -1075,49 +1075,49 @@ direction = 3
 jarak = 500.0
 sfx_aktif = NodePath("../AudioStreamPlayer")
 
-[node name="Platform1_png2" parent="Map/Platform" unique_id=1076731607 instance=ExtResource("5_g7hk0")]
+[node name="Platform1_png2" parent="Map/Platform" unique_id=1076731607 instance=ExtResource("5_q2v2e")]
 position = Vector2(1632, 24.000002)
 scale = Vector2(4, 3.6666667)
 
-[node name="Platform1_png6" parent="Map/Platform" unique_id=882108467 instance=ExtResource("5_g7hk0")]
+[node name="Platform1_png6" parent="Map/Platform" unique_id=882108467 instance=ExtResource("5_q2v2e")]
 position = Vector2(1632, 24.000002)
 scale = Vector2(4, 3.6666667)
 
-[node name="Platform1_png3" parent="Map/Platform" unique_id=566004603 instance=ExtResource("5_g7hk0")]
+[node name="Platform1_png3" parent="Map/Platform" unique_id=566004603 instance=ExtResource("5_q2v2e")]
 position = Vector2(1824, 24.000002)
 scale = Vector2(4, 3.6666667)
 
-[node name="Platform1_png4" parent="Map/Platform" unique_id=418777308 instance=ExtResource("5_g7hk0")]
+[node name="Platform1_png4" parent="Map/Platform" unique_id=418777308 instance=ExtResource("5_q2v2e")]
 position = Vector2(2016, 24.000002)
 scale = Vector2(4, 3.6666667)
 
-[node name="Platform1_png5" parent="Map/Platform" unique_id=500527 instance=ExtResource("5_g7hk0")]
+[node name="Platform1_png5" parent="Map/Platform" unique_id=500527 instance=ExtResource("5_q2v2e")]
 position = Vector2(2208, 24.000002)
 scale = Vector2(4, 3.6666667)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Map/Platform" unique_id=1592125535]
 process_mode = 3
-stream = ExtResource("6_x81lr")
+stream = ExtResource("6_4gc63")
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
-[node name="apple2" parent="Item" unique_id=1139145556 instance=ExtResource("6_kmxud")]
+[node name="apple2" parent="Item" unique_id=1139145556 instance=ExtResource("7_lwhae")]
 position = Vector2(1344, 200)
 
-[node name="apple3" parent="Item" unique_id=666788976 instance=ExtResource("6_kmxud")]
+[node name="apple3" parent="Item" unique_id=666788976 instance=ExtResource("7_lwhae")]
 position = Vector2(2680, 576)
 
-[node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("7_l5rbr")]
+[node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("8_60k2r")]
 position = Vector2(184, 576)
 bisa_jawab_ulang = false
 
-[node name="PintuMenang" parent="Item" unique_id=1498396234 instance=ExtResource("8_fpj3m")]
+[node name="PintuMenang" parent="Item" unique_id=1498396234 instance=ExtResource("9_62pr7")]
 position = Vector2(1920, 560)
 target_level_path = "uid://babfsu63orby"
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
-[node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_25s6s")]
+[node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_d136w")]
 position = Vector2(-191.99994, 55.999985)
 metadata/_edit_group_ = true
 
@@ -1125,12 +1125,12 @@ metadata/_edit_group_ = true
 position = Vector2(140.79999, 203.19998)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
-script = ExtResource("12_a0ek4")
+script = ExtResource("11_i6v6m")
 limit_kanan = 2760
 
-[node name="game_manager" parent="." unique_id=62453360 instance=ExtResource("14_rklir")]
+[node name="game_manager" parent="." unique_id=62453360 instance=ExtResource("12_ktds5")]
 unique_name_in_owner = true
 
-[node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("18_ypbuo")]
+[node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("13_7npqq")]
 
-[node name="UI" parent="." unique_id=1872990787 instance=ExtResource("19_71hnv")]
+[node name="UI" parent="." unique_id=1872990787 instance=ExtResource("14_cwkmq")]

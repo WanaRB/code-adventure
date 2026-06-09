@@ -197,9 +197,12 @@ func _make_title_bar(mono_font: Font) -> Control:
 
 	var title := Label.new()
 	title.text = "  code_viewer.py"
-	title.add_theme_color_override("font_color", C_LINENO)
-	title.add_theme_font_override("font", mono_font)
-	title.add_theme_font_size_override("font_size", 13)
+	title.add_theme_color_override("font_color", Color.WHITE)
+	var title_font := FontVariation.new()
+	title_font.base_font = mono_font
+	title_font.variation_embolden = 0.5
+	title.add_theme_font_override("font", title_font)
+	title.add_theme_font_size_override("font_size", 20)
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	inner.add_child(title)
 

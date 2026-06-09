@@ -118,18 +118,16 @@ func _on_quiz_solved(_variant_idx: int, world_changes: Array) -> void:
 		if entry.platform_id != platform_id:
 			continue
 
-		# Hitung jarak — pakai dari entry jika diisi, fallback ke Inspector
+		# Hitung posisi tujuan berdasarkan arah dan jarak
 		var j := entry.platform_jarak if entry.platform_jarak > 0.0 else jarak
 		var k := entry.platform_kecepatan if entry.platform_kecepatan > 0.0 else kecepatan
-
-		# Hitung posisi tujuan berdasarkan arah dan jarak
 		var tujuan_baru := _posisi_awal
 		match entry.platform_direction:
-			0: tujuan_baru = _posisi_awal + Vector2(-j,  0)  # KIRI_KANAN
-			1: tujuan_baru = _posisi_awal + Vector2( j,  0)  # KANAN_KIRI
-			2: tujuan_baru = _posisi_awal + Vector2(0,  j)   # BAWAH_ATAS
-			3: tujuan_baru = _posisi_awal + Vector2(0, -j)   # ATAS_BAWAH
-
+			0: tujuan_baru = _posisi_awal + Vector2(-j,  0)
+			1: tujuan_baru = _posisi_awal + Vector2( j,  0)
+			2: tujuan_baru = _posisi_awal + Vector2(0,  j)
+			3: tujuan_baru = _posisi_awal + Vector2(0, -j)
+		
 		# Estimasi durasi reset agar kamera menunggu sampai platform selesai berubah arah
 		var delay_kamera: float
 		if _bergerak or _resetting:

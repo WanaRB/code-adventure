@@ -19,7 +19,7 @@ var _level_results := {
 # maksimal point tiap level
 var _max_poin_per_level := {
 	"1": 170,
-	"2": 300,
+	"2": 170,
 	"3": 300,
 	"4": 300,
 	"5": 300,
@@ -44,14 +44,24 @@ func get_max_unlocked() -> int:
 	return _max_level_unlocked
 
 func save_level_result(level: int, correct: int, bonus: int, wrong: int, item_pts: int) -> void:
-	_level_results[str(level)] = {
+	var hasil_baru := {
 		"correct":  correct,
 		"bonus":    bonus,
 		"wrong":    wrong,
 		"item_pts": item_pts,
 		"played":   true,
 	}
-	save_to_file()  # simpan otomatis setelah selesai level
+	# Hitung poin baru vs lama
+	var poin_baru: int = max(0, correct * 100 + bonus + item_pts - wrong * 10)
+	var hasil_lama := get_level_result(level)
+	var poin_lama: int = max(0, int(hasil_lama["correct"]) * 100 + int(hasil_lama["bonus"]) + int(hasil_lama["item_pts"]) - int(hasil_lama["wrong"]) * 10)
+	# Hanya simpan jika poin baru lebih besar
+	if poin_baru > poin_lama:
+		_level_results[str(level)] = hasil_baru
+	else:
+		# Tetap tandai sudah dimainkan tapi jangan ubah poin
+		_level_results[str(level)]["played"] = true
+	save_to_file()
 
 func get_level_result(level: int) -> Dictionary:
 	var r: Dictionary = _level_results.get(str(level), {})

@@ -33,11 +33,8 @@ metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_jg361"]
 script = ExtResource("5_hqs4w")
-platform_jarak = 700.0
-platform_kecepatan = 100.0
 action = 1
 platform_id = 2
-platform_direction = 1
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [sub_resource type="Resource" id="Resource_h7uqh"]
@@ -59,11 +56,8 @@ metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_bw5q7"]
 script = ExtResource("5_hqs4w")
-platform_jarak = 500.0
-platform_kecepatan = 100.0
 action = 1
 platform_id = 2
-platform_direction = 3
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [sub_resource type="Resource" id="Resource_y8dm0"]

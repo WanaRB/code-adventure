@@ -8,14 +8,14 @@
 
 [sub_resource type="Resource" id="Resource_dmg7l"]
 script = ExtResource("1_6lgru")
-line = 2
-word = "True"
-options = Array[String](["true", "false", "False"])
+line = 4
+word = "not"
+options = Array[String](["!not", "and", "pass"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_rgh7d"]
 script = ExtResource("4_ahn8f")
-teks = "False"
+teks = "and"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_bvstn"]
@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("2_qeh6r")
-code_lines = Array[String](["# Sistem keamanan gedung", "func cek_akses(kartu_id):", "     pintu_terkunci = True", "", "     if kartu_id == \"ADMIN\":", "            pintu_terkunci = False", "      return pintu_terkunci"])
+code_lines = Array[String](["# Panel Otorisasi Ganda ADMIN", "func cek_metode_admin(kartu_admin, pin_admin):", "        var pintu_terbuka = false", "", "        if kartu_admin == true not pin_admin == true:", "               pintu_terbuka = true", "        return pintu_terbuka"])
 highlights = Array[ExtResource("1_6lgru")]([SubResource("Resource_dmg7l")])
 variants = Array[ExtResource("3_8hjpn")]([SubResource("Resource_v6vwi")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"
