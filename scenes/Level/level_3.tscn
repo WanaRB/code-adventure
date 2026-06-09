@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="8_40tq3"]
 [ext_resource type="Resource" uid="uid://b36c7pnjwot2f" path="res://resource/Kuis_Level2_Pintu.tres" id="10_e3h7p"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_i8c42"]
-[ext_resource type="Resource" uid="uid://b6nsdt3jidwur" path="res://resource/Kuis_Level2_platform.tres" id="11_ovh6q"]
+[ext_resource type="Resource" uid="uid://w477ro03esy" path="res://resource/Kuis_Level2_platform-3.tres" id="11_e3h7p"]
 [ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="12_c5wfh"]
 [ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="16_mytxk"]
 [ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="19_hyrjk"]
@@ -1092,7 +1092,7 @@ scale = Vector2(3.020833, 3)
 process_mode = 3
 position = Vector2(1512, 408.00003)
 scale = Vector2(3.020833, 3)
-platform_id = 2
+platform_id = 3
 direction = 2
 kecepatan = 100.0
 sfx_aktif = NodePath("AudioStreamPlayer")
@@ -1123,13 +1123,13 @@ bisa_jawab_ulang = false
 
 [node name="Laptop platform" parent="Item" unique_id=994781868 instance=ExtResource("8_40tq3")]
 position = Vector2(760, 232)
-data_kuis = ExtResource("11_ovh6q")
+data_kuis = ExtResource("11_e3h7p")
 bisa_jawab_ulang = false
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_i8c42")]
-position = Vector2(840.0001, 16)
+position = Vector2(840, 71.99994)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]

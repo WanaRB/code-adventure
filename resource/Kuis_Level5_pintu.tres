@@ -113,7 +113,7 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("2_p32ag")
-code_lines = Array[String](["# Sistem keamanan drone", "func update_drone_logic(player):", "     var current_state = \"AGGRESSIVE\"", "     var target_lock = player", "", "     if player.is_admin == False:", "          current_state = AGGRESSIVE", "     else:", "          current_state = AGGRESSIVE", "     return current_state"])
+code_lines = Array[String]([])
 highlights = Array[ExtResource("1_kysdu")]([SubResource("Resource_6lgru"), SubResource("Resource_qeh6r"), SubResource("Resource_8hjpn")])
 variants = Array[ExtResource("3_b6lio")]([SubResource("Resource_75e1r"), SubResource("Resource_gx53h"), SubResource("Resource_5ikds")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

@@ -1075,9 +1075,9 @@ layer_0/tile_data = PackedInt32Array(720931, 786432, 3, 720935, 786432, 3, 65576
 
 [node name="Platform1_png" parent="Map/Platform" unique_id=416016548 node_paths=PackedStringArray("sfx_aktif") instance=ExtResource("5_g7hk0")]
 process_mode = 3
-position = Vector2(440, 488.00003)
+position = Vector2(472, 480.00006)
 scale = Vector2(4, 3.6666667)
-platform_id = 2
+platform_id = 3
 direction = 1
 jarak = 700.0
 kecepatan = 100.0
@@ -1135,7 +1135,7 @@ target_level_path = "uid://babfsu63orby"
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_25s6s")]
-position = Vector2(-135.99988, -40.000004)
+position = Vector2(-176.00002, -56)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]

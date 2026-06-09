@@ -1081,6 +1081,41 @@ highlights = Array[ExtResource("9_w76c7")]([SubResource("Resource_lksqx"), SubRe
 variants = Array[ExtResource("11_y17vk")]([SubResource("Resource_v6vwi"), null])
 metadata/_custom_type_script = "uid://xogopct8jm5a"
 
+[sub_resource type="Resource" id="Resource_6lgru"]
+script = ExtResource("9_w76c7")
+line = 2
+word = "False"
+options = Array[String](["True", "false", "=="])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_ahn8f"]
+script = ExtResource("12_7r2lc")
+teks = "True"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_k78h6"]
+script = ExtResource("13_usxyp")
+action = 2
+door_id = 5
+platform_id = 5
+platform_jarak = 1200.0
+platform_kecepatan = 120.0
+platform_direction = 1
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_75e1r"]
+script = ExtResource("11_y17vk")
+required_answers = Array[ExtResource("12_7r2lc")]([SubResource("Resource_ahn8f")])
+world_changes = Array[ExtResource("13_usxyp")]([SubResource("Resource_k78h6")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[sub_resource type="Resource" id="Resource_enkg2"]
+script = ExtResource("10_uf7as")
+code_lines = Array[String](["# Sistem kontrol platform", "def inisialisasi_platform(platform_id):", "        aktif = False", "        arah = horizontal", "        kecepatan = 100", "        platform_id.mulai(aktif, arah, kecepatan)"])
+highlights = Array[ExtResource("9_w76c7")]([SubResource("Resource_6lgru")])
+variants = Array[ExtResource("11_y17vk")]([SubResource("Resource_75e1r")])
+metadata/_custom_type_script = "uid://xogopct8jm5a"
+
 [node name="level4" type="Node" unique_id=771745439]
 
 [node name="Map" type="Node" parent="." unique_id=1398429459]
@@ -1128,52 +1163,27 @@ layer_0/tile_data = PackedInt32Array(393300, 851968, 3, 327763, 786432, 2, 39329
 
 [node name="Platform1_png" parent="Map/Platform" unique_id=416016548 instance=ExtResource("6_w76c7")]
 position = Vector2(152, -320)
-platform_id = null
-direction = null
-jarak = null
-kecepatan = null
 
 [node name="Platform1_png3" parent="Map/Platform" unique_id=1076731607 instance=ExtResource("6_w76c7")]
 position = Vector2(344, -320)
-platform_id = null
-direction = null
-jarak = null
-kecepatan = null
 
 [node name="Platform1_png4" parent="Map/Platform" unique_id=1140420382 instance=ExtResource("6_w76c7")]
 position = Vector2(536, -320)
-platform_id = null
-direction = null
-jarak = null
-kecepatan = null
 
 [node name="Platform1_png5" parent="Map/Platform" unique_id=2135599426 instance=ExtResource("6_w76c7")]
 position = Vector2(720, -320)
-platform_id = null
-direction = null
-jarak = null
-kecepatan = null
 
 [node name="Platform1_png6" parent="Map/Platform" unique_id=1874182821 instance=ExtResource("6_w76c7")]
 position = Vector2(1152, 72)
-platform_id = null
-direction = null
-jarak = null
-kecepatan = null
+
+[node name="Platform1_png8" parent="Map/Platform" unique_id=707755565 instance=ExtResource("6_w76c7")]
+position = Vector2(1152, 72)
 
 [node name="Platform1_png7" parent="Map/Platform" unique_id=1526933011 instance=ExtResource("6_w76c7")]
-position = Vector2(1376, 456)
-platform_id = 3
+position = Vector2(1416, 456)
+platform_id = 5
 direction = 1
-jarak = null
-kecepatan = 100.0
-
-[node name="Platform1_png8" parent="Map/Platform" unique_id=652975359 instance=ExtResource("6_w76c7")]
-position = Vector2(1496, 456)
-platform_id = 3
-direction = 1
-jarak = null
-kecepatan = 100.0
+jarak = 1200.0
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
@@ -1202,15 +1212,15 @@ position = Vector2(1152, 8)
 data_kuis = ExtResource("10_n8y82")
 bisa_jawab_ulang = false
 
-[node name="Laptop3" parent="Item" unique_id=2008188869 instance=ExtResource("9_7r2lc")]
-position = Vector2(1136, 480)
-data_kuis = ExtResource("10_n8y82")
+[node name="Laptop platform" parent="Item" unique_id=1756217539 instance=ExtResource("9_7r2lc")]
+position = Vector2(1160, 476)
+data_kuis = SubResource("Resource_enkg2")
 bisa_jawab_ulang = false
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_7agcs")]
-position = Vector2(832.00006, -567.99994)
+position = Vector2(2759.9998, -156.99998)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://w477ro03esy"]
+
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_gehrk"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_cb3vq"]
+[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_jqmwy"]
+[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_ipbjc"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_a84h7"]
+
+[sub_resource type="Resource" id="Resource_dmg7l"]
+script = ExtResource("1_gehrk")
+line = 2
+word = "true"
+options = Array[String](["True", "false", "null"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_bqb84"]
+script = ExtResource("4_ipbjc")
+teks = "True"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_jg361"]
+script = ExtResource("5_a84h7")
+action = 2
+platform_id = 3
+platform_jarak = 200.0
+platform_kecepatan = 100.0
+platform_direction = 2
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_h7uqh"]
+script = ExtResource("3_jqmwy")
+required_answers = Array[ExtResource("4_ipbjc")]([SubResource("Resource_bqb84")])
+world_changes = Array[ExtResource("5_a84h7")]([SubResource("Resource_jg361")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[resource]
+script = ExtResource("2_cb3vq")
+code_lines = Array[String](["# Sistem kontrol platform", "func inisialisasi_platform(platform_id):", "     aktif = true", "     arah = horizontal", "     kecepatan = 100", "     platform_id.mulai(aktif, arah, kecepatan)"])
+highlights = Array[ExtResource("1_gehrk")]([SubResource("Resource_dmg7l")])
+variants = Array[ExtResource("3_jqmwy")]([SubResource("Resource_h7uqh")])
+metadata/_custom_type_script = "uid://xogopct8jm5a"
