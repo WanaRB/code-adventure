@@ -121,7 +121,6 @@ script = ExtResource("3_lt22e")
 [node name="pause_panel" type="Panel" parent="pause" unique_id=67484120]
 unique_name_in_owner = true
 process_mode = 3
-visible = false
 custom_minimum_size = Vector2(1000, 600)
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,7 +145,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_b1dk8")
 theme_override_font_sizes/font_size = 40
-text = "GAME PAUSED"
+text = "JEDA PERMAINAN"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="pause/pause_panel" unique_id=1780883657]
 custom_minimum_size = Vector2(0, 180)
@@ -173,7 +172,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("5_xq6u3")
 theme_override_styles/pressed = ExtResource("6_esp13")
 theme_override_styles/hover = ExtResource("7_me7jb")
-text = "Resume"
+text = "Lanjutkan"
 
 [node name="How to play" type="Button" parent="pause/pause_panel/VBoxContainer" unique_id=2105870404]
 process_mode = 3
@@ -184,7 +183,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("5_xq6u3")
 theme_override_styles/pressed = ExtResource("6_esp13")
 theme_override_styles/hover = ExtResource("7_me7jb")
-text = "How to play"
+text = "Cara Bermain"
 
 [node name="main_menu" type="Button" parent="pause/pause_panel/VBoxContainer" unique_id=141486948]
 process_mode = 3
@@ -195,7 +194,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("5_xq6u3")
 theme_override_styles/pressed = ExtResource("6_esp13")
 theme_override_styles/hover = ExtResource("7_me7jb")
-text = "Main Menu"
+text = "Menu utama"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="pause/pause_panel/VBoxContainer" unique_id=1387892995]
 layout_mode = 2

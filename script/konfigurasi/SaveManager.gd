@@ -28,7 +28,7 @@ var _max_poin_per_level := {
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	## Load otomatis saat game dibuka
-	reset() #Sementara (untuk reset data)
+	#reset() #Sementara (untuk reset data)
 	load_from_file()
 
 # ─── API Publik (tidak berubah dari versi sebelumnya) ─────────────────────────

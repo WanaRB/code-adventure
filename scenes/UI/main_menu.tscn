@@ -154,7 +154,7 @@ theme_override_styles/normal = ExtResource("5_sfthw")
 theme_override_styles/pressed = ExtResource("6_n3ahy")
 theme_override_styles/hover = ExtResource("7_scr1a")
 theme_override_styles/focus = SubResource("StyleBoxFlat_sfthw")
-text = "How to Play"
+text = "Cara Bermain"
 
 [node name="button_credit" type="Button" parent="VBoxContainer" unique_id=155398629]
 texture_filter = 1
