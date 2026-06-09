@@ -1097,7 +1097,7 @@ direction = 2
 kecepatan = 100.0
 sfx_aktif = NodePath("AudioStreamPlayer")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="Map/Platform/Platform1_png7" unique_id=809142140]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Map/Platform/Platform1_png7" unique_id=369186498]
 process_mode = 3
 stream = ExtResource("19_hyrjk")
 

@@ -1175,11 +1175,15 @@ position = Vector2(1152, 72)
 [node name="Platform1_png8" parent="Map/Platform" unique_id=707755565 instance=ExtResource("6_w76c7")]
 position = Vector2(1152, 72)
 
-[node name="Platform1_png7" parent="Map/Platform" unique_id=1526933011 instance=ExtResource("6_w76c7")]
+[node name="Platform1_png7" parent="Map/Platform" unique_id=1526933011 node_paths=PackedStringArray("sfx_aktif") instance=ExtResource("6_w76c7")]
 position = Vector2(1416, 456)
 platform_id = 5
 direction = 1
 jarak = 1200.0
+sfx_aktif = NodePath("../AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Map/Platform" unique_id=597815909]
+stream = ExtResource("7_uf7as")
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
