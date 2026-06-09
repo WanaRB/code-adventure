@@ -1038,34 +1038,30 @@ sources/0 = SubResource("TileSetAtlasSource_k3n1d")
 script = ExtResource("9_w76c7")
 line = 5
 word = "False"
-options = Array[String](["true", "null", "True"])
+options = Array[String](["true", "or", "True"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
-[sub_resource type="Resource" id="Resource_8mjuj"]
+[sub_resource type="Resource" id="Resource_ai5c3"]
 script = ExtResource("9_w76c7")
 line = 6
-word = "\"AGGRESSIVE\""
-options = Array[String](["\"PASSIVE\"", "\"AGGRESSIVE\""])
-metadata/_custom_type_script = "uid://bx8s1lc87vuad"
-
-[sub_resource type="Resource" id="Resource_3d4ho"]
-script = ExtResource("9_w76c7")
-line = 8
-word = "\"AGGRESSIVE\""
-options = Array[String](["\"AGGRESSIVE\"", "\"PASSIVE\"", ""])
+word = "AGGRESSIVE"
+options = Array[String](["PASSIVE", "True", "and"])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_rgh7d"]
 script = ExtResource("12_7r2lc")
-teks = "false"
+teks = "True"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_eur7k"]
 script = ExtResource("12_7r2lc")
+highlight_index = 1
+teks = "PASSIVEg"
 metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
 
 [sub_resource type="Resource" id="Resource_bvstn"]
 script = ExtResource("13_usxyp")
+action = 1
 metadata/_custom_type_script = "uid://cc7st7sddsu03"
 
 [sub_resource type="Resource" id="Resource_v6vwi"]
@@ -1076,9 +1072,9 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [sub_resource type="Resource" id="Resource_mnrer"]
 script = ExtResource("10_uf7as")
-code_lines = Array[String](["# Sistem keamanan drone", "func update_drone_logic(player):", "     var current_state = \"AGGRESSIVE\"", "     var target_lock = player", "", "     if player.is_admin == False:", "          current_state = \"AGGRESSIVE\"", "     else:", "          current_state = \"AGGRESSIVE\"", "     return current_state"])
-highlights = Array[ExtResource("9_w76c7")]([SubResource("Resource_lksqx"), SubResource("Resource_8mjuj"), SubResource("Resource_3d4ho")])
-variants = Array[ExtResource("11_y17vk")]([SubResource("Resource_v6vwi"), null])
+code_lines = Array[String](["# Sistem keamanan drone", "func update_drone_logic(player):", "     var current_state = AGGRESSIVE", "     var target_lock = player", "", "     if player.is_admin == False:", "          current_state = AGGRESSIVE", "     else:", "          current_state = AGGRESSIVE", "     return current_state"])
+highlights = Array[ExtResource("9_w76c7")]([SubResource("Resource_lksqx"), SubResource("Resource_ai5c3")])
+variants = Array[ExtResource("11_y17vk")]([SubResource("Resource_v6vwi")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"
 
 [sub_resource type="Resource" id="Resource_6lgru"]
@@ -1220,7 +1216,7 @@ bisa_jawab_ulang = false
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_7agcs")]
-position = Vector2(2759.9998, -156.99998)
+position = Vector2(2688.0002, -157.00002)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
@@ -1282,25 +1278,30 @@ visible = false
 position = Vector2(1400, 48)
 kecepatan = 150.0
 jarak_patroli = 310.0
+bisa_jadi_baik = true
 
 [node name="DroneMusuh2" parent="." unique_id=65343601 instance=ExtResource("14_xjnsc")]
 position = Vector2(1712, 360)
 kecepatan = 150.0
 jarak_patroli = 310.0
+bisa_jadi_baik = true
 mulai_ke_atas = true
 
 [node name="DroneMusuh3" parent="." unique_id=575066065 instance=ExtResource("14_xjnsc")]
 position = Vector2(1968, 40)
 kecepatan = 150.0
 jarak_patroli = 310.0
+bisa_jadi_baik = true
 
 [node name="DroneMusuh5" parent="." unique_id=1717236160 instance=ExtResource("14_xjnsc")]
 position = Vector2(2648, 40)
 kecepatan = 150.0
 jarak_patroli = 310.0
+bisa_jadi_baik = true
 
 [node name="DroneMusuh4" parent="." unique_id=110961696 instance=ExtResource("14_xjnsc")]
 position = Vector2(2272, 360)
 kecepatan = 150.0
 jarak_patroli = 310.0
+bisa_jadi_baik = true
 mulai_ke_atas = true
