@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="11_qj7y7"]
 [ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="12_etclb"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="12_urjwm"]
-[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="13_f72la"]
 [ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="13_xmlk6"]
 [ext_resource type="Script" uid="uid://be6iiw8cyqqar" path="res://script/konfigurasi/WorldChangeMarker.gd" id="15_8voaq"]
 [ext_resource type="PackedScene" uid="uid://d225uwnj07qnl" path="res://scenes/Character/drone_musuh.tscn" id="16_7ut0w"]
@@ -1150,15 +1149,8 @@ bisa_jawab_ulang = false
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_urjwm")]
-position = Vector2(-191.99994, 63.999996)
+position = Vector2(144.00002, 536)
 metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
-position = Vector2(140.79999, 203.19998)
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-script = ExtResource("13_f72la")
-limit_atas = -600
 
 [node name="Jebakan" type="Node" parent="." unique_id=1374830505]
 

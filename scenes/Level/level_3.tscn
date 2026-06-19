@@ -11,7 +11,6 @@
 [ext_resource type="Resource" uid="uid://b36c7pnjwot2f" path="res://resource/Kuis_Level2_Pintu.tres" id="10_e3h7p"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_i8c42"]
 [ext_resource type="Resource" uid="uid://w477ro03esy" path="res://resource/Kuis_Level2_platform-3.tres" id="11_e3h7p"]
-[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="12_c5wfh"]
 [ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="16_mytxk"]
 [ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="19_hyrjk"]
 [ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="20_atgtq"]
@@ -1129,14 +1128,8 @@ bisa_jawab_ulang = false
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_i8c42")]
-position = Vector2(840, 71.99994)
+position = Vector2(1152, 552)
 metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
-position = Vector2(140.79999, 203.19998)
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-script = ExtResource("12_c5wfh")
 
 [node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("20_atgtq")]
 

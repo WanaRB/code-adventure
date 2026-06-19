@@ -11,46 +11,61 @@ const JUMP_VELOCITY = -500.0
 @onready var sfx_langkah: AudioStreamPlayer = %lari
 const LANGKAH_INTERVAL := 0.35
 var _langkah_timer: float = 0.0
-#var _bisa_double_jump := false
+
+# ─── Skill Double Jump ──────────────────────────────────────────────────────────
+var jump_count: int = 1
+var _jump_used: int = 0
+
+# ─── Skill: Anchor Point ─────────────────────────────────────────────────────
+@export var anchor_cooldown: float = 5.0
+var has_anchor: bool = false
+var _anchor_timer: float = 0.0
+var _anchor_active: bool = false
+var _anchor_position: Vector2 = Vector2.ZERO
+var _anchor_ghost: Node2D = null
+
+# ─── Skill: Scout Drone ──────────────────────────────────────────────────────
+@export var scout_drone_scene: PackedScene
+var has_scout: bool = true
+var _scout_drone: Node2D = null
+var _kunci_input_timer: float = 0.0
 
 # Status Karakter
 var is_hurt = false
 
 func _physics_process(delta: float) -> void:
-	# 1. Logika Gravitasi
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# 2. Logika Pergerakan & Input
-	if not is_hurt:
-		handle_movement()
+		
+	# LOGIKA BARU: Jika timer aktif, paksa karakter mengerem
+	if _kunci_input_timer > 0.0:
+		_kunci_input_timer -= delta
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	elif not is_hurt:
+		if _scout_drone == null:
+			handle_movement()
+			_handle_skill_input()
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		# Friction saat terkena knockback
 		velocity.x = move_toward(velocity.x, 0, 10.0)
-
-	# 3. Update Animasi
+		
 	update_animation()
-
-	# 4. Eksekusi Fisika
+	if _anchor_timer > 0.0:
+		_anchor_timer -= delta
 	move_and_slide()
-
-func handle_movement():
 	
-	#if is_on_floor():
-		#_bisa_double_jump = true  # reset saat menyentuh tanah
-#
-	#if Input.is_action_just_pressed("lompat"):
-		#if is_on_floor():
-			#sfx_lompat.play()   # ← pindah ke sini
-			#velocity.y = JUMP_VELOCITY
-		#elif _bisa_double_jump:
-			#sfx_lompat.play()   # ← dan ke sini
-			#velocity.y = JUMP_VELOCITY
-			#_bisa_double_jump = false
-			#sprite.play("double_jump")
-	if Input.is_action_just_pressed("lompat") and is_on_floor():
+func handle_movement():
+	if is_on_floor():
+		_jump_used = 0
+
+	if Input.is_action_just_pressed("lompat") and _jump_used < jump_count:
 		sfx_lompat.play()
 		velocity.y = JUMP_VELOCITY
+		_jump_used += 1
+		if _jump_used > 1:
+			sprite.play("double_jump")
 
 	var direction := Input.get_axis("kiri", "kanan")
 	if direction:
@@ -75,8 +90,8 @@ func update_animation():
 		return
 		
 	# Prioritas 1.5: Double Jump (override jump/fall biasa)
-	if sprite.animation == "double_jump" and sprite.is_playing() and not is_on_floor():
-		return  # biarkan animasi double_jump selesai dulu
+	if sprite.animation == "double_jump" and sprite.is_playing() and not is_on_floor() and _jump_used > 1:
+		return
 
 	# Prioritas 2: Di Udara (Jump vs Fall)
 	if not is_on_floor():
@@ -120,3 +135,54 @@ func take_damage(amount: int, source_position: Vector2):
 		await tree.create_timer(0.4).timeout
 		if is_inside_tree():
 			is_hurt = false
+			
+func _handle_skill_input() -> void:
+	if Input.is_action_just_pressed("skill_use"):
+		if has_anchor and _anchor_timer <= 0.0:
+			if not _anchor_active:
+				_set_anchor()
+			else:
+				_tarik_anchor()
+		elif has_scout and _scout_drone == null:
+			_mulai_scout()
+
+func _set_anchor() -> void:
+	_anchor_active = true
+	_anchor_position = global_position
+	
+	_anchor_ghost = sprite.duplicate()
+	_anchor_ghost.modulate = Color(1, 1, 1, 0.35)
+	
+	_anchor_ghost.global_scale = sprite.global_scale
+	
+	get_parent().add_child(_anchor_ghost)
+	_anchor_ghost.global_position = _anchor_position
+	_anchor_ghost.pause()
+
+func _tarik_anchor() -> void:
+	global_position = _anchor_position
+	velocity = Vector2.ZERO
+	_anchor_active = false
+	_anchor_timer = anchor_cooldown
+	if _anchor_ghost:
+		_anchor_ghost.queue_free()
+		_anchor_ghost = null
+
+func _mulai_scout() -> void:
+	if scout_drone_scene == null:
+		push_warning("Jikri: scout_drone_scene belum diisi di Inspector")
+		return
+	_scout_drone = scout_drone_scene.instantiate()
+	get_parent().add_child(_scout_drone)
+	_scout_drone.global_position = global_position + Vector2(0, -60)
+	_scout_drone.player = self
+	_scout_drone.add_collision_exception_with(self)
+
+func _akhiri_scout() -> void:
+	if _scout_drone:
+		_scout_drone.queue_free()
+		_scout_drone = null
+	var main_cam := get_tree().get_first_node_in_group("main_camera")
+	if main_cam and main_cam.has_method("make_current"):
+		main_cam.make_current()
+	_kunci_input_timer = 0.6

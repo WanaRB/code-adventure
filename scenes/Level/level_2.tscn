@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="7_l5rbr"]
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="8_fpj3m"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_25s6s"]
-[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="12_a0ek4"]
 [ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="14_rklir"]
 [ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="18_ypbuo"]
 [ext_resource type="PackedScene" uid="uid://omjcngkshg7c" path="res://scenes/UI/HudLevel.tscn" id="19_71hnv"]
@@ -1135,15 +1134,8 @@ target_level_path = "uid://babfsu63orby"
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_25s6s")]
-position = Vector2(-176.00002, -56)
+position = Vector2(143.99995, 439.99997)
 metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
-position = Vector2(140.79999, 203.19998)
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-script = ExtResource("12_a0ek4")
-limit_kanan = 2760
 
 [node name="game_manager" parent="." unique_id=62453360 instance=ExtResource("14_rklir")]
 unique_name_in_owner = true

@@ -16,16 +16,18 @@
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="12_7agcs"]
 [ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="12_7r2lc"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="13_ka1hd"]
+[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="13_mi4e6"]
 [ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="13_usxyp"]
 [ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="14_7hdty"]
 [ext_resource type="PackedScene" uid="uid://dkwhp1x7q50mt" path="res://scenes/Character/drone_musuh_Vertical.tscn" id="14_xjnsc"]
 [ext_resource type="Script" uid="uid://be6iiw8cyqqar" path="res://script/konfigurasi/WorldChangeMarker.gd" id="16_uf7as"]
-[ext_resource type="PackedScene" uid="uid://sysml7qg2bkh" path="res://scenes/Skill/scout_drone.tscn" id="17_enkg2"]
 [ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="18_fgg63"]
 [ext_resource type="PackedScene" uid="uid://omjcngkshg7c" path="res://scenes/UI/HudLevel.tscn" id="19_ql38l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("3_424j3")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
@@ -336,8 +338,6 @@ texture = ExtResource("3_424j3")
 12:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:7/0 = 0
 13:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_ioo17"]
 physics_layer_0/collision_layer = 1
@@ -1220,9 +1220,15 @@ bisa_jawab_ulang = false
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_7agcs")]
-position = Vector2(288, 535.99994)
-scout_drone_scene = ExtResource("17_enkg2")
+position = Vector2(176.00024, 59.999985)
 metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
+position = Vector2(140.79999, 203.19998)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+script = ExtResource("13_mi4e6")
+limit_atas = -600
 
 [node name="Jebakan" type="Node" parent="." unique_id=1374830505]
 

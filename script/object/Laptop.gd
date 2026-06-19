@@ -20,7 +20,6 @@ func _ready():
 	body_exited.connect(_on_body_exited)
 	GameEvents.quiz_closed.connect(func(): _kuis_sedang_terbuka = false)
 	GameEvents.quiz_highlight_updated.connect(_on_highlight_updated)
-	print("Laptop: ", name, " | sudah_selesai: ", _sudah_selesai, " | bisa_jawab_ulang: ", bisa_jawab_ulang)
 	
 func _on_body_entered(body):
 	if body.is_in_group("player"):

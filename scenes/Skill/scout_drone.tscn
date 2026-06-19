@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://sysml7qg2bkh"]
+
+[ext_resource type="Texture2D" uid="uid://dhmukdx6toww3" path="res://assets/image/Skill/ScoutDrone/scout_drone_walk.png" id="1_io5fl"]
+[ext_resource type="Script" uid="uid://20b85ooeyeqa" path="res://scenes/Skill/scout_drone.gd" id="1_nkwbt"]
+[ext_resource type="Shader" uid="uid://4bak1o8rk36x" path="res://scenes/Skill/scout_drone.gdshader" id="3_nkwbt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvuyb"]
+atlas = ExtResource("1_io5fl")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkwbt"]
+atlas = ExtResource("1_io5fl")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgwyb"]
+atlas = ExtResource("1_io5fl")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qj2t"]
+atlas = ExtResource("1_io5fl")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_er442"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvuyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkwbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgwyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qj2t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nkwbt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nkwbt"]
+shader = ExtResource("3_nkwbt")
+shader_parameter/noise_amount = 0.0
+
+[node name="ScoutDrone" type="CharacterBody2D" unique_id=91555636]
+script = ExtResource("1_nkwbt")
+max_distance = 1000.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=692958503]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_er442")
+autoplay = "default"
+frame_progress = 0.748758
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1360334074]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_nkwbt")
+
+[node name="DroneCam" type="Camera2D" parent="." unique_id=599712584]
+unique_name_in_owner = true
+
+[node name="NoiseOverlay" type="CanvasLayer" parent="." unique_id=204616171]
+layer = 50
+
+[node name="NoiseRect" type="ColorRect" parent="NoiseOverlay" unique_id=1519699911]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_nkwbt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

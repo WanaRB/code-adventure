@@ -11,7 +11,6 @@
 [ext_resource type="Resource" uid="uid://dwgswhh1684s0" path="res://resource/Kuis_Level3_platform.tres" id="9_828s4"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_i8c42"]
 [ext_resource type="Resource" uid="uid://clhvd0lbuveym" path="res://resource/Kuis_Level3_pintu.tres" id="11_mytxk"]
-[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="12_c5wfh"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://script/konfigurasi/hud_manager.gd" id="14_7q5vj"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="15_pxuo4"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="15_unxme"]
@@ -1107,16 +1106,8 @@ bisa_jawab_ulang = false
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_i8c42")]
-position = Vector2(-87.999756, 39.99997)
+position = Vector2(143.99998, 544)
 metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="Character/jikri" unique_id=1943211563]
-position = Vector2(140.79999, 203.19998)
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-script = ExtResource("12_c5wfh")
-limit_kanan = 2720
-limit_atas = -600
 
 [node name="game_manager" type="Node" parent="." unique_id=1134001816]
 unique_name_in_owner = true
