@@ -11,6 +11,7 @@ signal item_collected(points: int)
 signal player_hit(damage_amount: int)
 signal level_won
 signal game_over
+signal skill_terminal_closed
 
 signal quiz_highlight_updated(hl_idx: int, teks: String)
 

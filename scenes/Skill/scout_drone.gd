@@ -10,7 +10,12 @@ var player: Node2D = null
 
 func _ready() -> void:
 	cam.make_current()
+	
+	# WAJIB: Hapus semua layer bawaan pabrik sebelum set layer 6
+	collision_layer = 0
 	set_collision_layer_value(6, true)
+	
+	# WAJIB: Hapus semua mask bawaan pabrik sebelum set mask 1
 	collision_mask = 0
 	set_collision_mask_value(1, true)
 

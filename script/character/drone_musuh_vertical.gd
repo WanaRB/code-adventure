@@ -68,6 +68,9 @@ func update_animation():
 		sprite.play("walk_evil")
 
 func _on_hurt_box_body_entered(body):
+	if body.name == "ScoutDrone" or body.is_in_group("drone"):
+		return
+		
 	if not is_friendly and body.is_in_group("player"):
 		body.take_damage(1, global_position)
 

@@ -29,6 +29,7 @@ var _anchor_ghost: Node2D = null
 var has_scout: bool = true
 var _scout_drone: Node2D = null
 var _kunci_input_timer: float = 0.0
+var equipped_skill: String = ""
 
 # Status Karakter
 var is_hurt = false
@@ -186,3 +187,20 @@ func _akhiri_scout() -> void:
 	if main_cam and main_cam.has_method("make_current"):
 		main_cam.make_current()
 	_kunci_input_timer = 0.6
+
+func _equip_skill(skill_id: String) -> void:
+	jump_count = 1
+	has_anchor = false
+	has_scout = false
+	equipped_skill = skill_id
+	if _anchor_active:
+		if _anchor_ghost:
+			_anchor_ghost.queue_free()
+			_anchor_ghost = null
+		_anchor_active = false
+	if _scout_drone:
+		_akhiri_scout()
+	match skill_id:
+		"double_jump": jump_count = 2
+		"anchor": has_anchor = true
+		"scout": has_scout = true

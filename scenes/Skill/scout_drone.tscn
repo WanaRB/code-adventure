@@ -41,6 +41,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nkwbt"]
+radius = 16.03122
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nkwbt"]
 shader = ExtResource("3_nkwbt")
@@ -48,16 +49,18 @@ shader_parameter/noise_amount = 0.0
 
 [node name="ScoutDrone" type="CharacterBody2D" unique_id=91555636]
 script = ExtResource("1_nkwbt")
-max_distance = 1000.0
+move_speed = 500.0
+max_distance = 1500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=692958503]
 texture_filter = 1
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_er442")
 autoplay = "default"
 frame_progress = 0.748758
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1360334074]
-position = Vector2(0, -4)
+position = Vector2(1, -6)
 shape = SubResource("CircleShape2D_nkwbt")
 
 [node name="DroneCam" type="Camera2D" parent="." unique_id=599712584]
