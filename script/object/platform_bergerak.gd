@@ -43,6 +43,7 @@ enum Direction {
 
 ## AudioStreamPlayer2D untuk suara platform mulai bergerak.
 @export var sfx_aktif: AudioStreamPlayer
+@export var bergerak_dari_awal: bool = false
 
 # ─── State ────────────────────────────────────────────────────────────────────
 var _bergerak      := false
@@ -75,6 +76,8 @@ func _ready():
 	_cycle_dur = jarak / max(kecepatan, 1.0)
 
 	GameEvents.quiz_answered_correct.connect(_on_quiz_solved)
+	if bergerak_dari_awal:
+		_bergerak = true
 
 # ─── Physics Process ─────────────────────────────────────────────────────────
 func _physics_process(delta: float) -> void:

@@ -34,6 +34,9 @@ func _on_body_exited(body):
 
 func _input(event):
 	if event.is_action_pressed("interact") and player_didalam_area:
+		var player := get_tree().get_first_node_in_group("player")
+		if player and player.has_method("is_scouting") and player.is_scouting():
+			return
 		buka_kuis()
 
 func buka_kuis():

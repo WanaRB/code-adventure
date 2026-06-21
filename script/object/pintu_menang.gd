@@ -54,6 +54,9 @@ func _on_body_exited(body):
 			
 func _input(event):
 	if event.is_action_pressed("interact") and player_di_dekat_pintu and is_open:
+		var player := get_tree().get_first_node_in_group("player")
+		if player and player.has_method("is_scouting") and player.is_scouting():
+			return
 		_pindah_level()
 
 func _pindah_level():

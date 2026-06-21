@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://gy7cbfqvfcow"]
+
+[ext_resource type="Script" uid="uid://utaflosvq6a0" path="res://scenes/Map/laser_door.gd" id="1_dv21a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_re7ei"]
+size = Vector2(8, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dv21a"]
+size = Vector2(9, 129)
+
+[node name="LaserDoor" type="StaticBody2D" unique_id=1856319037]
+script = ExtResource("1_dv21a")
+
+[node name="LaserVisual" type="ColorRect" parent="." unique_id=287862698]
+offset_right = 8.0
+offset_bottom = 128.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1032406783]
+position = Vector2(4, 64)
+shape = SubResource("RectangleShape2D_re7ei")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=839307285]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2047855700]
+position = Vector2(4, 64)
+shape = SubResource("RectangleShape2D_dv21a")
+
+[node name="LaserVisual2" type="ColorRect" parent="." unique_id=1746664474]
+offset_left = 16.0
+offset_right = 24.0
+offset_bottom = 128.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1829184650]
+position = Vector2(20, 64)
+shape = SubResource("RectangleShape2D_re7ei")
+
+[node name="HurtBox2" type="Area2D" parent="." unique_id=521665928]
+position = Vector2(16, 0)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2" unique_id=406132066]
+position = Vector2(4, 64)
+shape = SubResource("RectangleShape2D_dv21a")
+
+[node name="LaserVisual3" type="ColorRect" parent="." unique_id=631305145]
+offset_left = 32.0
+offset_right = 40.0
+offset_bottom = 128.0
+color = Color(1, 0, 0, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1587523284]
+position = Vector2(36, 64)
+shape = SubResource("RectangleShape2D_re7ei")
+metadata/_edit_group_ = true
+
+[node name="HurtBox3" type="Area2D" parent="." unique_id=1407151730]
+position = Vector2(32, 0)
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox3" unique_id=25389156]
+position = Vector2(4, 64)
+shape = SubResource("RectangleShape2D_dv21a")

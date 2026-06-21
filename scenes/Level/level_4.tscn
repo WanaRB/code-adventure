@@ -6,14 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://dugb26t4mw5v" path="res://assets/image/map/Decoration 32x32.png" id="4_fxef3"]
 [ext_resource type="PackedScene" uid="uid://bdkcukgpsal8s" path="res://scenes/Map/platform_1_png.tscn" id="5_k7svj"]
 [ext_resource type="PackedScene" uid="uid://dkxx5r2oktxf4" path="res://scenes/Map/pintu_menang.tscn" id="6_jkm0u"]
+[ext_resource type="PackedScene" uid="uid://gy7cbfqvfcow" path="res://scenes/Map/LaserDoor.tscn" id="7_1v0b6"]
 [ext_resource type="PackedScene" uid="uid://bvntwt7umpnyy" path="res://scenes/Item/apple.tscn" id="7_p2jt4"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Item/Laptop.tscn" id="8_40tq3"]
+[ext_resource type="PackedScene" uid="uid://2c5yxdtn4piy" path="res://scenes/Map/Lever.tscn" id="8_wnojr"]
+[ext_resource type="PackedScene" uid="uid://bgkb58tsi2mh5" path="res://scenes/Item/SkillTerminal.tscn" id="9_8voaq"]
 [ext_resource type="Resource" uid="uid://dwgswhh1684s0" path="res://resource/Kuis_Level3_platform.tres" id="9_828s4"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="10_i8c42"]
 [ext_resource type="Resource" uid="uid://clhvd0lbuveym" path="res://resource/Kuis_Level3_pintu.tres" id="11_mytxk"]
 [ext_resource type="Script" uid="uid://danlly5pyw5ex" path="res://script/konfigurasi/hud_manager.gd" id="14_7q5vj"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="15_pxuo4"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Map/spike.tscn" id="15_unxme"]
+[ext_resource type="PackedScene" uid="uid://sysml7qg2bkh" path="res://scenes/Skill/scout_drone.tscn" id="16_a0haa"]
 [ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="19_hyrjk"]
 [ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="20_atgtq"]
 [ext_resource type="PackedScene" uid="uid://omjcngkshg7c" path="res://scenes/UI/HudLevel.tscn" id="20_txae8"]
@@ -1074,13 +1078,23 @@ process_mode = 3
 position = Vector2(1056, 488.00006)
 scale = Vector2(4, 3.6666667)
 platform_id = 2
-direction = 3
+direction = 1
 jarak = 500.0
 sfx_aktif = NodePath("../AudioStreamPlayer")
+bergerak_dari_awal = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Map/Platform" unique_id=1592125535]
 process_mode = 3
 stream = ExtResource("19_hyrjk")
+
+[node name="LaserDoor" parent="Map/Platform" unique_id=1856319037 instance=ExtResource("7_1v0b6")]
+position = Vector2(400, 512)
+
+[node name="Lever" parent="Map/Platform" unique_id=644409738 instance=ExtResource("8_wnojr")]
+position = Vector2(1232, 328)
+
+[node name="Laptop" parent="Map/Platform" unique_id=994781868 instance=ExtResource("9_8voaq")]
+position = Vector2(280, 576)
 
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
@@ -1090,7 +1104,7 @@ position = Vector2(2672, 416)
 [node name="apple2" parent="Item" unique_id=1139145556 instance=ExtResource("7_p2jt4")]
 position = Vector2(48, -144)
 
-[node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("8_40tq3")]
+[node name="Laptop" parent="Item" unique_id=1750346414 instance=ExtResource("8_40tq3")]
 position = Vector2(720, 464)
 data_kuis = ExtResource("9_828s4")
 
@@ -1107,6 +1121,7 @@ bisa_jawab_ulang = false
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_i8c42")]
 position = Vector2(143.99998, 544)
+scout_drone_scene = ExtResource("16_a0haa")
 metadata/_edit_group_ = true
 
 [node name="game_manager" type="Node" parent="." unique_id=1134001816]

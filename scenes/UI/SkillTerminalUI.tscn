@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brk8q23kbypd2"]
 
-[ext_resource type="Script" uid="uid://dcl576plhpai6" path="res://scenes/UI/skill_terminal_ui.gd" id="1_pr4ev"]
+[ext_resource type="Script" uid="uid://dcl576plhpai6" path="res://script/Skill/skill_terminal_ui.gd" id="1_pr4ev"]
 [ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="2_1kt6q"]
 [ext_resource type="AudioStream" uid="uid://i325psqv5vhp" path="res://assets/sound/roblox_ouch.mp3" id="3_31whn"]
 

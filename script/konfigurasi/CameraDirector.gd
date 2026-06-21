@@ -26,6 +26,7 @@ func queue_cinematic(
 	delay_after: float = DELAY_AFTER_EFFECT,
 	follow_node: Node2D = null
 ):
+	print("queue_cinematic dipanggil, camera: ", _camera)
 	_event_queue.append({
 		"target": target_position,
 		"before": callback_before,

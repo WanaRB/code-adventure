@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://sysml7qg2bkh"]
 
 [ext_resource type="Texture2D" uid="uid://dhmukdx6toww3" path="res://assets/image/Skill/ScoutDrone/scout_drone_walk.png" id="1_io5fl"]
-[ext_resource type="Script" uid="uid://20b85ooeyeqa" path="res://scenes/Skill/scout_drone.gd" id="1_nkwbt"]
+[ext_resource type="Script" uid="uid://20b85ooeyeqa" path="res://script/Skill/scout_drone.gd" id="1_nkwbt"]
 [ext_resource type="Shader" uid="uid://4bak1o8rk36x" path="res://scenes/Skill/scout_drone.gdshader" id="3_nkwbt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvuyb"]
@@ -47,7 +47,7 @@ radius = 16.03122
 shader = ExtResource("3_nkwbt")
 shader_parameter/noise_amount = 0.0
 
-[node name="ScoutDrone" type="CharacterBody2D" unique_id=91555636]
+[node name="ScoutDrone" type="CharacterBody2D" unique_id=91555636 groups=["scout_drone"]]
 script = ExtResource("1_nkwbt")
 move_speed = 500.0
 max_distance = 1500.0

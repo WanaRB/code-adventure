@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const CFG_PANEL_WIDTH       := 700.0
+const CFG_PANEL_WIDTH       := 1200.0
 const CFG_FONT_SIZE_CODE    := 26
 const CFG_FONT_SIZE_HINT    := 20
 const CFG_FONT_SIZE_OPTIONS := 18
@@ -25,10 +25,37 @@ const C_BTN_HVR    := Color("#45475a")
 const C_SUCCESS    := Color("#a6e3a1")
 
 const SKILLS := [
-	{ "id": "double_jump", "label": "double_jump", "deskripsi": "Bisa lompat 2 kali" },
-	{ "id": "anchor",      "label": "anchor_point", "deskripsi": "Simpan & tarik balik posisi" },
-	{ "id": "scout",       "label": "scout_drone",  "deskripsi": "Kirim drone pengintai" },
+	{ "id": "double_jump", "label": "double_jump", "deskripsi": "Lompat dua kali di udara" },
+	{ "id": "anchor",      "label": "anchor_point", "deskripsi": "Simpan posisi, tarik balik kapan saja" },
+	{ "id": "scout",       "label": "scout_drone",  "deskripsi": "Kirim drone pengintai, lihat area dari jauh" },
 ]
+
+const SKILL_INFO := {
+	"double_jump": {
+		"judul": "Double Jump",
+		"image": "res://assets/image/HowToPlay/skill/double_jump.png",
+		"cara": "Tekan [Lompat] di udara untuk lompat kedua kalinya.",
+		"kapan": "Cocok untuk jurang lebar atau platform tinggi yang tidak terjangkau 1 lompatan."
+	},
+	"anchor": {
+		"judul": "Anchor Point",
+		"image": "res://assets/image/HowToPlay/skill/anchor.png",
+		"cara": "Tekan [R] untuk simpan posisi sekarang. Tekan [R] lagi untuk ditarik balik ke titik itu.",
+		"kapan": "Pakai sebelum lompat ke area berbahaya — kalau gagal, tarik balik ke tempat aman."
+	},
+	"scout": {
+		"judul": "Scout Drone",
+		"image": "res://assets/image/HowToPlay/skill/scout.png",
+		"cara": "Tekan [R] untuk kirim drone. Gerakkan dengan [W][A][S][D]. Tekan [R] lagi untuk kembali.",
+		"kapan": "Pakai untuk melihat jalur di depan sebelum maju, terutama area dengan banyak musuh."
+	},
+}
+
+var _root_vbox_ref: VBoxContainer
+var _konten_normal: Array[Control] = []
+
+var _howto_panel: Control = null
+var _showing_howto := false
 
 var _option_buttons: Array[Button] = []
 var _options_container: Control
@@ -99,9 +126,17 @@ func _build_ui():
 		var current: String = player.equipped_skill
 		if current != "":
 			_highlight_btn.text = "\"" + current + "\""
-		
+	
+	_root_vbox_ref = root_vbox
+	for child in root_vbox.get_children():
+		_konten_normal.append(child)
+	
 	var mc := get_tree().get_first_node_in_group("mobile_controls")
 	if mc: mc.visible = false
+
+	var hud := get_tree().get_first_node_in_group("hud_manager")
+	if hud and hud.has_method("set_hud_visible"):
+		hud.set_hud_visible(false)
 
 func _make_title_bar(mono_font: Font) -> Control:
 	var wrapper := Panel.new()
@@ -135,7 +170,7 @@ func _make_title_bar(mono_font: Font) -> Control:
 	inner.add_child(sp1)
 
 	var title := Label.new()
-	title.text = "  player_config.py"
+	title.text = "  player.gd"
 	title.add_theme_color_override("font_color", C_LINENO)
 	title.add_theme_font_size_override("font_size", 13)
 	if mono_font: title.add_theme_font_override("font", mono_font)
@@ -161,6 +196,24 @@ func _make_title_bar(mono_font: Font) -> Control:
 	s_hover.bg_color = Color("#c0392b")
 	s_hover.set_corner_radius_all(5)
 	close_btn.add_theme_stylebox_override("hover", s_hover)
+	var help_btn := Button.new()
+	help_btn.text = "?"
+	help_btn.focus_mode = Control.FOCUS_NONE
+	help_btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	help_btn.add_theme_font_size_override("font_size", 22)
+	help_btn.add_theme_color_override("font_color", C_HL_WORD)
+	help_btn.add_theme_color_override("font_hover_color", Color(1, 1, 1))
+	help_btn.custom_minimum_size = Vector2(40, 36)
+	var hs_normal := StyleBoxFlat.new()
+	hs_normal.bg_color = C_BG
+	hs_normal.set_corner_radius_all(5)
+	help_btn.add_theme_stylebox_override("normal", hs_normal)
+	var hs_hover := StyleBoxFlat.new()
+	hs_hover.bg_color = Color(C_HL_WORD.r, C_HL_WORD.g, C_HL_WORD.b, 0.3)
+	hs_hover.set_corner_radius_all(5)
+	help_btn.add_theme_stylebox_override("hover", hs_hover)
+	help_btn.pressed.connect(_toggle_howto)
+	inner.add_child(help_btn)
 	close_btn.pressed.connect(_tutup_terminal)
 	inner.add_child(close_btn)
 
@@ -172,7 +225,7 @@ func _make_instruction(mono_font: Font) -> Control:
 	m.add_theme_constant_override("margin_right", CFG_MARGIN_H)
 	m.add_theme_constant_override("margin_top", CFG_SECTION_GAP)
 	var lbl := Label.new()
-	lbl.text = "💡  Klik kata yang di-highlight untuk memilih skill"
+	lbl.text = "  Klik sintaks yang di-highlight untuk memilih skill"
 	lbl.add_theme_color_override("font_color", C_HINT)
 	lbl.add_theme_font_size_override("font_size", CFG_FONT_SIZE_HINT)
 	if mono_font: lbl.add_theme_font_override("font", mono_font)
@@ -180,24 +233,29 @@ func _make_instruction(mono_font: Font) -> Control:
 	return m
 
 func _make_code_block(mono_font: Font) -> Control:
+	# 1. KOREKSI ARRAY: Menghapus duplikasi baris equip_skill
 	var code_lines := [
-		"func _equip_skill(skill_id: String) -> void:",
-		"    jump_count = 1",
-		"    has_anchor = false",
-		"    has_scout = false",
-		"    match skill_id:",
+		"extends CharacterBody2D",
+		"",
+		"const SPEED = 400.0",
+		"const JUMP_VELOCITY = -500.0",
+		"",
+		"func _skill() -> void:",
+		"    load_movement_data()",
+		"    ", # Indeks 7: Ruang kosong khusus untuk pendaratan tombol interaktif
+		"",
 	]
-	var code_panel := Panel.new()
+	
+	# 2. STRUKTUR WADAH: Gunakan PanelContainer agar menyesuaikan ukuran otomatis
+	var code_panel := PanelContainer.new()
 	code_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	code_panel.custom_minimum_size = Vector2(0, code_lines.size() * CFG_LINE_HEIGHT + 16)
+	
 	var cps := StyleBoxFlat.new()
 	cps.bg_color = Color("#181825")
-	cps.content_margin_top = 8
-	cps.content_margin_bottom = 8
+	# Margin tidak dipakai di StyleBox ini agar garis vertikal bisa menyentuh ujung
 	code_panel.add_theme_stylebox_override("panel", cps)
 
 	var outer_hbox := HBoxContainer.new()
-	outer_hbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 	code_panel.add_child(outer_hbox)
 
 	var lineno_col := VBoxContainer.new()
@@ -207,12 +265,21 @@ func _make_code_block(mono_font: Font) -> Control:
 	var divider := ColorRect.new()
 	divider.custom_minimum_size = Vector2(1, 0)
 	divider.color = C_SEPARATOR
-	divider.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	divider.size_flags_vertical = Control.SIZE_EXPAND_FILL # Garis ini kini akan mengikuti tinggi maksimal HBox
 	outer_hbox.add_child(divider)
 
 	var code_col := VBoxContainer.new()
 	code_col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	outer_hbox.add_child(code_col)
+
+	# 3. PADDING ATAS: Mendorong teks ke bawah agar garis vertikal menjuntai ke atas
+	var pad_top_num := Control.new()
+	pad_top_num.custom_minimum_size = Vector2(0, 16)
+	lineno_col.add_child(pad_top_num)
+	
+	var pad_top_code := Control.new()
+	pad_top_code.custom_minimum_size = Vector2(0, 16)
+	code_col.add_child(pad_top_code)
 
 	for i in code_lines.size():
 		var nm := MarginContainer.new()
@@ -229,8 +296,8 @@ func _make_code_block(mono_font: Font) -> Control:
 		nm.add_child(num)
 		lineno_col.add_child(nm)
 
-
-		if i == 4: #Index skill nya
+		# 4. KOREKSI INDEKS: Pindahkan tombol interaktif ke indeks 7 (Baris ke-8)
+		if i == 7: 
 			code_col.add_child(_make_highlight_line(mono_font))
 		else:
 			var m := MarginContainer.new()
@@ -239,11 +306,26 @@ func _make_code_block(mono_font: Font) -> Control:
 			var lbl := Label.new()
 			lbl.text = code_lines[i]
 			lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-			lbl.add_theme_color_override("font_color", C_CODE)
+			
+			# Tambahan Kosmetik: Warnai hijau jika baris adalah komentar penjelasan skill
+			if code_lines[i].begins_with("#"):
+				lbl.add_theme_color_override("font_color", Color("#a6e3a1"))
+			else:
+				lbl.add_theme_color_override("font_color", C_CODE)
+				
 			lbl.add_theme_font_size_override("font_size", CFG_FONT_SIZE_CODE)
 			if mono_font: lbl.add_theme_font_override("font", mono_font)
 			m.add_child(lbl)
 			code_col.add_child(m)
+
+	# 5. PADDING BAWAH: Mendorong bagian bawah wadah agar garis vertikal menjuntai melewati angka 12
+	var pad_bot_num := Control.new()
+	pad_bot_num.custom_minimum_size = Vector2(0, 16)
+	lineno_col.add_child(pad_bot_num)
+	
+	var pad_bot_code := Control.new()
+	pad_bot_code.custom_minimum_size = Vector2(0, 16)
+	code_col.add_child(pad_bot_code)
 
 	return code_panel
 
@@ -263,7 +345,7 @@ func _make_highlight_line(mono_font: Font) -> Control:
 	hbox.add_child(lpad)
 
 	var prefix := Label.new()
-	prefix.text = "    skill = "
+	prefix.text = "    equip_skill("
 	prefix.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	prefix.add_theme_color_override("font_color", C_CODE)
 	prefix.add_theme_font_size_override("font_size", CFG_FONT_SIZE_CODE)
@@ -293,6 +375,13 @@ func _make_highlight_line(mono_font: Font) -> Control:
 
 	_highlight_btn.pressed.connect(_on_highlight_clicked)
 	hbox.add_child(_highlight_btn)
+	var suffix := Label.new()
+	suffix.text = ")"
+	suffix.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	suffix.add_theme_color_override("font_color", C_CODE)
+	suffix.add_theme_font_size_override("font_size", CFG_FONT_SIZE_CODE)
+	if mono_font: suffix.add_theme_font_override("font", mono_font)
+	hbox.add_child(suffix)
 
 	return row_panel
 
@@ -414,9 +503,9 @@ func _on_submit_pressed() -> void:
 
 func _mulai_compiling(skill_id: String) -> void:
 	_compiling_lines = [
-		"> Fetching %s.dll..." % skill_id,
-		"> Resolving dependencies...",
-		"> Compilation successful. Applied.",
+		"   > Fetching %s.dll..." % skill_id,
+		"   > Resolving dependencies...",
+		"   > Compilation successful. Applied.",
 	]
 	_compiling_label.visible = true
 	for line in _compiling_lines:
@@ -440,7 +529,128 @@ func _tutup_terminal() -> void:
 	get_tree().paused = false
 	var mc := get_tree().get_first_node_in_group("mobile_controls")
 	if mc: mc.visible = true
+	var hud := get_tree().get_first_node_in_group("hud_manager")
+	if hud and hud.has_method("set_hud_visible"):
+		hud.set_hud_visible(true)
 	queue_free()
 
 func _force_close():
 	queue_free()
+
+func _toggle_howto() -> void:
+	if _showing_howto:
+		_tutup_howto()
+	else:
+		_buka_howto()
+
+func _buka_howto() -> void:
+	_showing_howto = true
+	for c in _konten_normal:
+		c.visible = false
+
+	var mono_font := _load_mono_font()
+	var skill_id: String = _selected_skill_id if _selected_skill_id != "" else SKILLS[0]["id"]
+	var info: Dictionary = SKILL_INFO.get(skill_id, {})
+
+	_howto_panel = VBoxContainer.new()
+	_howto_panel.custom_minimum_size = Vector2(CFG_PANEL_WIDTH, 0)
+	_howto_panel.add_theme_constant_override("separation", 10)
+	_root_vbox_ref.add_child(_howto_panel)
+
+	var m := MarginContainer.new()
+	m.add_theme_constant_override("margin_left", CFG_MARGIN_H)
+	m.add_theme_constant_override("margin_right", CFG_MARGIN_H)
+	m.add_theme_constant_override("margin_top", CFG_SECTION_GAP)
+	_howto_panel.add_child(m)
+
+	var inner := VBoxContainer.new()
+	inner.add_theme_constant_override("separation", 10)
+	m.add_child(inner)
+
+	var tab_row := HBoxContainer.new()
+	tab_row.add_theme_constant_override("separation", 8)
+	inner.add_child(tab_row)
+	for skill in SKILLS:
+		var tab_btn := Button.new()
+		tab_btn.text = skill["label"]
+		tab_btn.focus_mode = Control.FOCUS_NONE
+		tab_btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		tab_btn.custom_minimum_size = Vector2(0, 44)
+		tab_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		tab_btn.add_theme_font_size_override("font_size", CFG_FONT_SIZE_OPTIONS + 2)
+		if mono_font: tab_btn.add_theme_font_override("font", mono_font)
+		var aktif: bool = skill["id"] == skill_id
+		var s := StyleBoxFlat.new()
+		s.bg_color = C_BTN_HVR if aktif else C_BTN_BG
+		s.border_color = C_HINT if aktif else C_BTN_BD
+		s.set_border_width_all(1)
+		s.set_corner_radius_all(6)
+		tab_btn.add_theme_stylebox_override("normal", s)
+		tab_btn.add_theme_color_override("font_color", Color(1, 1, 1))
+		var captured: String = skill["id"]
+		tab_btn.pressed.connect(func():
+			_selected_skill_id = captured
+			_tutup_howto()
+			_buka_howto()
+		)
+		tab_row.add_child(tab_btn)
+
+	var judul := Label.new()
+	judul.text = info.get("judul", "")
+	judul.add_theme_font_size_override("font_size", 22)
+	judul.add_theme_color_override("font_color", C_HL_WORD)
+	if mono_font: judul.add_theme_font_override("font", mono_font)
+	inner.add_child(judul)
+
+	var img_path: String = info.get("image", "")
+	var img := TextureRect.new()
+	img.custom_minimum_size = Vector2(0, 220)
+	img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	if ResourceLoader.exists(img_path):
+		img.texture = load(img_path)
+	inner.add_child(img)
+
+	var cara_lbl := Label.new()
+	cara_lbl.text = "Cara pakai: " + info.get("cara", "")
+	cara_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	cara_lbl.add_theme_font_size_override("font_size", CFG_FONT_SIZE_HINT)
+	cara_lbl.add_theme_color_override("font_color", C_CODE)
+	if mono_font: cara_lbl.add_theme_font_override("font", mono_font)
+	inner.add_child(cara_lbl)
+
+	var kapan_lbl := Label.new()
+	kapan_lbl.text = "Kapan pakai: " + info.get("kapan", "")
+	kapan_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	kapan_lbl.add_theme_font_size_override("font_size", CFG_FONT_SIZE_HINT)
+	kapan_lbl.add_theme_color_override("font_color", C_HINT)
+	if mono_font: kapan_lbl.add_theme_font_override("font", mono_font)
+	inner.add_child(kapan_lbl)
+	
+	var spacer := Control.new()
+	spacer.custom_minimum_size = Vector2(0, 10)
+	inner.add_child(spacer)
+
+	var btn_kembali := Button.new()
+	btn_kembali.text = "← Kembali ke Terminal"
+	btn_kembali.custom_minimum_size = Vector2(0, CFG_OPTION_BTN_HEIGHT)
+	btn_kembali.focus_mode = Control.FOCUS_NONE
+	btn_kembali.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	btn_kembali.add_theme_font_size_override("font_size", CFG_FONT_SIZE_OPTIONS)
+	btn_kembali.add_theme_color_override("font_color", Color(1, 1, 1))
+	if mono_font: btn_kembali.add_theme_font_override("font", mono_font)
+	var s_back := StyleBoxFlat.new()
+	s_back.bg_color = C_BTN_BG
+	s_back.border_color = C_BTN_BD
+	s_back.set_border_width_all(1)
+	s_back.set_corner_radius_all(6)
+	btn_kembali.add_theme_stylebox_override("normal", s_back)
+	btn_kembali.pressed.connect(_tutup_howto)
+	inner.add_child(btn_kembali)
+
+func _tutup_howto() -> void:
+	_showing_howto = false
+	if _howto_panel:
+		_howto_panel.queue_free()
+		_howto_panel = null
+	for c in _konten_normal:
+		c.visible = true

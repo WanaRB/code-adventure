@@ -204,3 +204,6 @@ func _equip_skill(skill_id: String) -> void:
 		"double_jump": jump_count = 2
 		"anchor": has_anchor = true
 		"scout": has_scout = true
+
+func is_scouting() -> bool:
+	return _scout_drone != null

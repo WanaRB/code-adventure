@@ -12,6 +12,7 @@ var session_item_pts := 0   # Poin dari item apel dll
 var current_level    := 1
 
 func _ready():
+	add_to_group("hud_manager")
 	GameEvents.player_hit.connect(_on_player_hit)
 	GameEvents.quiz_points_earned.connect(_on_quiz_points_earned)
 	GameEvents.item_collected.connect(_on_item_collected)   # FIX: connect yang hilang
@@ -68,3 +69,9 @@ func update_ui():
 		var darah := h_box_darah.get_children()
 		for i in range(darah.size()):
 			darah[i].visible = i < health
+
+func set_hud_visible(visible_state: bool) -> void:
+	if point_label:
+		point_label.get_parent().visible = visible_state
+	if h_box_darah:
+		h_box_darah.get_parent().visible = visible_state

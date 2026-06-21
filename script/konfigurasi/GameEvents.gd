@@ -12,6 +12,7 @@ signal player_hit(damage_amount: int)
 signal level_won
 signal game_over
 signal skill_terminal_closed
+signal lever_pulled(laser_id: int)
 
 signal quiz_highlight_updated(hl_idx: int, teks: String)
 

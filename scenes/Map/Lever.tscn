@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://2c5yxdtn4piy"]
+
+[ext_resource type="Texture2D" uid="uid://c2ve82wl6u7ju" path="res://assets/image/map/lever'.png" id="1_81cld"]
+[ext_resource type="Script" uid="uid://c54g0wvl0uu40" path="res://scenes/Map/lever.gd" id="1_e4uuk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4uuk"]
+atlas = ExtResource("1_81cld")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msh1y"]
+atlas = ExtResource("1_81cld")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mali"]
+atlas = ExtResource("1_81cld")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v110n"]
+atlas = ExtResource("1_81cld")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu4dy"]
+atlas = ExtResource("1_81cld")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqro2"]
+atlas = ExtResource("1_81cld")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3mnt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4uuk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msh1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mali")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v110n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu4dy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqro2")
+}],
+"loop": false,
+"name": &"tertarik",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbhus"]
+size = Vector2(20, 48)
+
+[node name="Lever" type="Area2D" unique_id=644409738]
+process_mode = 3
+scale = Vector2(2, 2)
+collision_mask = 33
+script = ExtResource("1_e4uuk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=57837026]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_y3mnt")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1694095710]
+shape = SubResource("RectangleShape2D_cbhus")

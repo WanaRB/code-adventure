@@ -6,17 +6,16 @@ extends CharacterBody2D
 @onready var cam: Camera2D = %DroneCam
 @onready var noise_rect: ColorRect = %NoiseRect
 
+
 var player: Node2D = null
 
 func _ready() -> void:
+	add_to_group("scout_drone")
 	cam.make_current()
-	
-	# WAJIB: Hapus semua layer bawaan pabrik sebelum set layer 6
+	CameraDirector.register_camera(cam)
 	collision_layer = 0
-	set_collision_layer_value(6, true)
-	
-	# WAJIB: Hapus semua mask bawaan pabrik sebelum set mask 1
 	collision_mask = 0
+	set_collision_layer_value(6, true)
 	set_collision_mask_value(1, true)
 
 func _physics_process(delta: float) -> void:
