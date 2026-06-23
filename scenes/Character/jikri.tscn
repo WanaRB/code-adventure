@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dlpefspkuwa8j" path="res://assets/image/character/Run (32x32).png" id="3_e3p5j"]
 [ext_resource type="AudioStream" uid="uid://bqcdmbq3or3ey" path="res://assets/sound/lari.mp3" id="6_rdh0b"]
 [ext_resource type="AudioStream" uid="uid://binwmsthvadej" path="res://assets/sound/lumora_studios-pixel-jump-319167.mp3" id="9_eh1jv"]
-[ext_resource type="Script" uid="uid://d1hebr8xctvbs" path="res://script/tampilan/camera_2d.gd" id="11_1vdee"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jl3lv"]
 atlas = ExtResource("2_ubqp2")
@@ -314,6 +313,7 @@ animations = [{
 size = Vector2(25.999979, 37.400047)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=2066080324 groups=["player"]]
+z_index = 1
 scale = Vector2(2.5, 2.5)
 collision_layer = 2
 collision_mask = 5
@@ -342,11 +342,3 @@ volume_db = -17.0
 unique_name_in_owner = true
 stream = ExtResource("9_eh1jv")
 volume_db = -27.0
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=956362589 groups=["main_camera"]]
-script = ExtResource("11_1vdee")
-
-[node name="AimLine" type="Line2D" parent="." unique_id=35788308]
-visible = false
-width = 4.0
-default_color = Color(1, 1, 0.23529412, 1)

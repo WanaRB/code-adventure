@@ -521,6 +521,12 @@ func _mulai_compiling(skill_id: String) -> void:
 	var player := get_tree().get_first_node_in_group("player")
 	if player and player.has_method("_equip_skill"):
 		player._equip_skill(skill_id)
+		GameEvents.skill_unlocked = true
+		var mc := get_tree().get_first_node_in_group("mobile_controls")
+		if mc and mc.has_method("_tambah_tombol_skill"):
+			mc._tambah_tombol_skill()
+	
+	
 
 	_tutup_terminal()
 

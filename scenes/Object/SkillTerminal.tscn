@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgkb58tsi2mh5"]
 
-[ext_resource type="Script" uid="uid://bpw2tebuiwt25" path="res://scenes/Item/skill_terminal.gd" id="1_1co3u"]
+[ext_resource type="Script" uid="uid://bpw2tebuiwt25" path="res://script/object/skill_terminal.gd" id="1_1co3u"]
 [ext_resource type="PackedScene" uid="uid://brk8q23kbypd2" path="res://scenes/UI/SkillTerminalUI.tscn" id="2_2qo01"]
 [ext_resource type="Texture2D" uid="uid://tc3gyya8ij6e" path="res://assets/image/item/laptop_depan.png" id="4_etvqt"]
 

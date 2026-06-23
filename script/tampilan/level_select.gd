@@ -36,6 +36,10 @@ func _update_kunci():
 				_terapkan_kunci(btn, 5)
 			elif "level_6" in method:
 				_terapkan_kunci(btn, 6)
+			elif "level_7" in method:
+				_terapkan_kunci(btn, 7)
+			elif "level_8" in method:
+				_terapkan_kunci(btn, 8)
 
 func _terapkan_kunci(btn: Button, level: int):
 	var terbuka := SaveManager.is_level_unlocked(level)
@@ -59,9 +63,12 @@ func _update_bintang() -> void:
 		4: "button_level4",
 		5: "button_level5",
 		6: "button_level6",
+		7: "button_level7", 
+		8: "button_level8",
 	}
 	for level in btn_names:
 		var btn: Button = vbox.find_child(btn_names[level]) as Button
+		print("level: ", level, " | btn: ", btn)
 		if btn == null: continue
 		var bintang := _hitung_bintang(level)
 		var path: String = STAR_PATHS[bintang]
@@ -120,6 +127,16 @@ func _on_button_level_6_pressed() -> void:
 		_stop_bgm()
 		_animasi_keluar("res://scenes/Level/level_6.tscn")
 
+func _on_button_level_7_pressed() -> void:
+	if SaveManager.is_level_unlocked(7):
+		_stop_bgm()
+		_animasi_keluar("res://scenes/Level/level_7.tscn")
+
+func _on_button_level_8_pressed() -> void:
+	if SaveManager.is_level_unlocked(8):
+		_stop_bgm()
+		_animasi_keluar("res://scenes/Level/level_8.tscn")
+		
 func _on_button_back_pressed() -> void:
 	_animasi_keluar("res://scenes/UI/play_menu.tscn")
 

@@ -21,12 +21,12 @@ var _kartu_data := [
 	{
 		"judul": "Kontrol Karakter",
 		"image": "res://assets/image/HowToPlay/kontrol.png",
-		"desc":  "Gunakan [A] [D] atau [←] [→] untuk bergerak ke kiri dan ke kanan.\nTekan [A] atau [↑] untuk lompat.\nDi Mobile, gunakan tombol kontrol yang muncul di layar."
+		"desc":  "Gunakan [A] [D] atau [←] [→] untuk bergerak ke kiri dan kanan.\nTekan [A] atau [↑] untuk lompat.\nDi Mobile, gunakan tombol kontrol yang muncul di layar."
 	},
 	{
 		"judul": "Laptop",
 		"image": "res://assets/image/HowToPlay/laptop.png",
-		"desc":  "Setiap level memiliki laptop yang tersebar di sekitar.\ninteraksi dengan laptop untuk membuka soal.\n"
+		"desc":  "Setiap level memiliki laptop yang tersebar di sekitar.\ninteraksi dengan laptop untuk membuka soal. \n Tips : Ada beberapa laptop yang bisa dijawab lebih dari sekali !"
 	},
 	{
 		"judul": "Cara menjawab Soal",
@@ -36,12 +36,12 @@ var _kartu_data := [
 	{
 		"judul": "Perubahan Dunia",
 		"image": "res://assets/image/HowToPlay/platform.png",
-		"desc":  "Jawaban yang benar mengubah dunia disekitarmu.\nUbah soal untuk mengubah dunia yang akan membantu kamu menyelesaikan level"
+		"desc":  "Jawaban yang benar mengubah dunia disekitarmu.\nJawab soal untuk mengubah dunia yang akan membantu kamu menyelesaikan level"
 	},
 	{
 		"judul": "Menangkan Level",
 		"image": "res://assets/image/HowToPlay/menang.png",
-		"desc":  "Masuk ke pintu untuk menyelesaikan level. Terkadang harus menyelesaikan soal dulu untuk membuka pintunya \n"
+		"desc":  "Masuk ke pintu yang terbuka untuk menyelesaikan level.  \n \n"
 	},
 ]
 

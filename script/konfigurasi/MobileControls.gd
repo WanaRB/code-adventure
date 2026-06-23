@@ -24,17 +24,21 @@ const IMG_KIRI   := "res://assets/image/MobileUI/dpad_element_east.png"
 const IMG_KANAN  := "res://assets/image/MobileUI/dpad_element_west.png"
 const IMG_LOMPAT := "res://assets/image/MobileUI/dpad_element_south.png"
 const IMG_E      := "res://assets/image/MobileUI/button_circle.png"
+const IMG_R 	 := "res://assets/image/MobileUI/button_circle.png"
+const BTN_R_SIZE := 200
+const IMG_ATAS := "res://assets/image/MobileUI/dpad_element_south.png"
 
 # ─── State ────────────────────────────────────────────────────────────────────
 var _finger_action : Dictionary = {}
 var _button_rects  : Dictionary = {}
 var _button_visuals: Dictionary = {}
 var _pause_node: Node = null
+var _mode_drone := false
 
 # ─── Lifecycle ────────────────────────────────────────────────────────────────
 func _ready():
 	# Hanya muncul di web mobile (Android/iOS) — tidak di laptop/PC
-	var is_mobile := OS.has_feature("web_android") or OS.has_feature("web_ios")
+	var is_mobile := OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios")
 	#= (debug control) OS.has_feature("web_android") or OS.has_feature("web_ios")
 	if not is_mobile:
 		queue_free()
@@ -59,15 +63,24 @@ func _build_ui():
 			H - PAD_BOTTOM - BTN_DIR_SIZE, BTN_DIR_SIZE, BTN_DIR_SIZE),
 		IMG_KANAN, "", false)
 
+	var jump_x := W - PAD_RIGHT - BTN_JUMP_SIZE
+	var jump_y := H - PAD_BOTTOM - BTN_JUMP_SIZE
+
 	_tambah("lompat",
-		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE,
-			H - PAD_BOTTOM - BTN_JUMP_SIZE, BTN_JUMP_SIZE, BTN_JUMP_SIZE),
+		Rect2(jump_x, jump_y, BTN_JUMP_SIZE, BTN_JUMP_SIZE),
 		IMG_LOMPAT, "", false)
 
+	# 2. Tombol Interaksi (E) persis di sebelah kiri tombol Lompat
+	# Menggunakan GAP_ACTION / 2.0 agar jarak antar tombol pas untuk ibu jari
+	var e_x := jump_x - BTN_E_SIZE - (GAP_ACTION / 2.0)
+	var e_y := jump_y
+	
 	_tambah("interact",
-		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE - GAP_ACTION - BTN_E_SIZE,
-			H - PAD_BOTTOM - BTN_E_SIZE, BTN_E_SIZE, BTN_E_SIZE),
+		Rect2(e_x, e_y, BTN_E_SIZE, BTN_E_SIZE),
 		IMG_E, "E", false)
+		
+	if GameEvents.skill_unlocked:
+		_tambah_tombol_skill()
 		
 	# Tombol PAUSE — tengah atas layar
 # Tombol PAUSE — tengah atas layar, pakai gambar button_circle.png
@@ -175,10 +188,10 @@ func _press(finger: int, action: String):
 		_on_pause_pressed()
 		return
 	Input.action_press(action)
-	# Untuk interact: kirim event satu kali (just_pressed)
-	if action == "interact":
+	# Untuk interact & skill_use: kirim event satu kali (just_pressed)
+	if action == "interact" or action == "skill_use":
 		var ev := InputEventAction.new()
-		ev.action  = "interact"
+		ev.action  = action
 		ev.pressed = true
 		Input.parse_input_event(ev)
 	if _button_visuals.has(action):
@@ -193,6 +206,12 @@ func _release(finger: int):
 		if _button_visuals.has("pause"):
 			_button_visuals["pause"].modulate.a = OPACITY_IDLE
 		return
+		
+	if action == "skill_use":
+		var ev := InputEventAction.new()
+		ev.action  = "skill_use"
+		ev.pressed = false
+		Input.parse_input_event(ev)
 	var masih_aktif := false
 	for a in _finger_action.values():
 		if a == action:
@@ -212,3 +231,91 @@ func _on_pause_pressed() -> void:
 	var pause_node := get_tree().get_first_node_in_group("pause_controller")
 	if pause_node != null and pause_node.has_method("_on_pause_btn_pressed"):
 		pause_node._on_pause_btn_pressed()
+
+# hapus blok tombol skill_use dari _build_ui(), ganti dengan fungsi baru:
+func _tambah_tombol_skill() -> void:
+	if _button_rects.has("skill_use"):
+		return
+		
+	var W := float(get_viewport().get_visible_rect().size.x)
+	var H := float(get_viewport().get_visible_rect().size.y)
+
+	# Mengambil titik dasar yang sama dari tombol Lompat
+	var jump_x := W - PAD_RIGHT - BTN_JUMP_SIZE
+	var jump_y := H - PAD_BOTTOM - BTN_JUMP_SIZE
+
+	# 3. Tombol Skill (R) di atas, membentuk formasi segitiga
+	# Posisinya digeser sedikit ke kiri dari Lompat, dan dinaikkan ke atas
+	var r_x := jump_x - (BTN_R_SIZE / 2.0) - (GAP_ACTION / 4.0)
+	var r_y := jump_y - BTN_R_SIZE - (GAP_ACTION / 2.0)
+
+	_tambah("skill_use",
+		Rect2(r_x, r_y, BTN_R_SIZE, BTN_R_SIZE),
+		IMG_R, "R", false)
+
+func masuk_mode_drone() -> void:
+	if _mode_drone: return
+	_mode_drone = true
+	_hapus_tombol("kiri")
+	_hapus_tombol("kanan")
+	_hapus_tombol("lompat")
+
+	var W := float(get_viewport().get_visible_rect().size.x)
+	var H := float(get_viewport().get_visible_rect().size.y)
+
+	# Menentukan titik pusat D-Pad di sisi kiri layar
+	var center_x := PAD_LEFT + BTN_DIR_SIZE
+	
+	# PERUBAHAN: Pusat Y dinaikkan dengan mengalikan ukuran tombol (dikurangi lebih banyak)
+	var center_y := H - PAD_BOTTOM - (BTN_DIR_SIZE * 2)
+
+	# Tombol Kiri
+	_tambah("drone_left",
+		Rect2(center_x - BTN_DIR_SIZE, center_y, BTN_DIR_SIZE, BTN_DIR_SIZE),
+		IMG_KIRI, "", false)
+
+	# Tombol Kanan
+	_tambah("drone_right",
+		Rect2(center_x + BTN_DIR_SIZE, center_y, BTN_DIR_SIZE, BTN_DIR_SIZE),
+		IMG_KANAN, "", false)
+
+	# Tombol Atas
+	_tambah("drone_up",
+		Rect2(center_x, center_y - BTN_DIR_SIZE, BTN_DIR_SIZE, BTN_DIR_SIZE),
+		IMG_ATAS, "", true)
+
+	# Tombol Bawah (Sekarang tidak akan tenggelam)
+	_tambah("drone_down",
+		Rect2(center_x, center_y + BTN_DIR_SIZE, BTN_DIR_SIZE, BTN_DIR_SIZE),
+		IMG_ATAS, "", false)
+
+func keluar_mode_drone() -> void:
+	if not _mode_drone: return
+	_mode_drone = false
+	_hapus_tombol("drone_left")
+	_hapus_tombol("drone_right")
+	_hapus_tombol("drone_up")
+	_hapus_tombol("drone_down")
+
+	var W := float(get_viewport().get_visible_rect().size.x)
+	var H := float(get_viewport().get_visible_rect().size.y)
+
+	_tambah("kiri",
+		Rect2(PAD_LEFT, H - PAD_BOTTOM - BTN_DIR_SIZE, BTN_DIR_SIZE, BTN_DIR_SIZE),
+		IMG_KIRI, "", false)
+
+	_tambah("kanan",
+		Rect2(PAD_LEFT + BTN_DIR_SIZE + GAP_DIR,
+			H - PAD_BOTTOM - BTN_DIR_SIZE, BTN_DIR_SIZE, BTN_DIR_SIZE),
+		IMG_KANAN, "", false)
+
+	_tambah("lompat",
+		Rect2(W - PAD_RIGHT - BTN_JUMP_SIZE,
+			H - PAD_BOTTOM - BTN_JUMP_SIZE, BTN_JUMP_SIZE, BTN_JUMP_SIZE),
+		IMG_LOMPAT, "", false)
+
+func _hapus_tombol(action: String) -> void:
+	if _button_visuals.has(action):
+		_button_visuals[action].queue_free()
+		_button_visuals.erase(action)
+	_button_rects.erase(action)

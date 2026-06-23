@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkxx5r2oktxf4"]
 
 [ext_resource type="Script" uid="uid://brtggkst565f" path="res://script/object/pintu_menang.gd" id="1_u2a78"]
-[ext_resource type="Texture2D" uid="uid://cbcbsbsa0guup" path="res://assets/image/map/pintu kuning.png" id="1_u74in"]
+[ext_resource type="Texture2D" uid="uid://bhrgom4x72cxv" path="res://assets/image/map/pintu (1).png" id="2_vbl28"]
 [ext_resource type="AudioStream" uid="uid://c312oerk4udkg" path="res://assets/sound/omaygot.mp3" id="3_oh8y5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2a78"]
@@ -15,8 +15,8 @@ sfx_buka = NodePath("AudioStreamPlayer2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=819170531]
 position = Vector2(-1.1920929e-07, 0)
-scale = Vector2(0.6175373, 0.6175373)
-texture = ExtResource("1_u74in")
+scale = Vector2(0.495, 0.495)
+texture = ExtResource("2_vbl28")
 hframes = 2
 frame = 1
 

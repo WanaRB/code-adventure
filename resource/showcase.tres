@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://d06y6pxnfhiac"]
+
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_3hpne"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_t4ef3"]
+[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_qysxx"]
+[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_bl0uw"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_0lavg"]
+
+[sub_resource type="Resource" id="Resource_dmg7l"]
+script = ExtResource("1_3hpne")
+line = 2
+word = "False"
+options = Array[String](["True", "!=", "=!"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_rgh7d"]
+script = ExtResource("4_bl0uw")
+teks = "True"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_bvstn"]
+script = ExtResource("5_0lavg")
+action = 1
+platform_id = 2
+platform_jarak = 450.0
+platform_kecepatan = 100.0
+platform_direction = 3
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_v6vwi"]
+script = ExtResource("3_qysxx")
+required_answers = Array[ExtResource("4_bl0uw")]([SubResource("Resource_rgh7d")])
+world_changes = Array[ExtResource("5_0lavg")]([SubResource("Resource_bvstn")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[resource]
+script = ExtResource("2_t4ef3")
+code_lines = Array[String](["# Sistem pembuka pintu", "func cek_akses(kartu_id):", "      var pintu_terbuka = False", "", "     return pintu_terbuka  "])
+highlights = Array[ExtResource("1_3hpne")]([SubResource("Resource_dmg7l")])
+variants = Array[ExtResource("3_qysxx")]([SubResource("Resource_v6vwi")])
+metadata/_custom_type_script = "uid://xogopct8jm5a"

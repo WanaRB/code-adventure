@@ -9,8 +9,8 @@
 [sub_resource type="Resource" id="Resource_dmg7l"]
 script = ExtResource("1_stmi1")
 line = 4
-word = "!="
-options = Array[String](["==", "=!", "="])
+word = "="
+options = Array[String](["==", "=!", "!g="])
 metadata/_custom_type_script = "uid://bx8s1lc87vuad"
 
 [sub_resource type="Resource" id="Resource_bqb84"]
@@ -31,7 +31,7 @@ metadata/_custom_type_script = "uid://by327ln5olo0j"
 
 [resource]
 script = ExtResource("2_f445g")
-code_lines = Array[String](["# Sistem Pemindai Kartu ", "func verifikasi_id(id_kartu):", "        var pintu_terbuka = false", "", "        if id_kartu != \"ADMIN\":", "               pintu_terbuka = true", "        return pintu_terbuka"])
+code_lines = Array[String](["# Sistem Pemindai Kartu ", "func verifikasi_id(id_kartu):", "        var pintu_terbuka = false", "", "        if id_kartu = \"ADMIN\":", "               pintu_terbuka = true", "        return pintu_terbuka"])
 highlights = Array[ExtResource("1_stmi1")]([SubResource("Resource_dmg7l")])
 variants = Array[ExtResource("3_7u5a1")]([SubResource("Resource_h7uqh")])
 metadata/_custom_type_script = "uid://xogopct8jm5a"

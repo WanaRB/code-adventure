@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://icoity63mswx"]
+
+[node name="MobileControls" type="CanvasLayer" unique_id=45467108]
+
+[node name="SharedButtons" type="Node2D" parent="." unique_id=913320234]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="SharedButtons" unique_id=955984378]
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="SharedButtons" unique_id=1831058407]
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="SharedButtons" unique_id=1354921087]

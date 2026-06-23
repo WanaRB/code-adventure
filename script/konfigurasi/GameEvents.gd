@@ -2,6 +2,7 @@ extends Node
 
 var sudah_lewat_splash: bool = false
 var sudah_lihat_howtoplay: bool = false
+var skill_unlocked: bool = false
 
 signal quiz_opened
 signal quiz_closed

@@ -45,10 +45,10 @@ func _buat_label_interaksi() -> void:
 	add_child(container)
 	_label_interaksi = container
 	var label := Label.new()
-	label.text = "Tekan [E] untuk konfigurasi skill"
-	label.add_theme_font_size_override("font_size", 16)
-	label.add_theme_color_override("font_color", Color(1, 1, 1, 1))
-	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
+	label.text = "Tekan [E] untuk interaksi"
+	label.add_theme_font_size_override("font_size", 25)
+	label.add_theme_color_override("font_color", Color("ffffffff"))
+	label.add_theme_color_override("font_outline_color", Color("000000ff"))
 	label.add_theme_constant_override("outline_size", 4)
-	label.position = Vector2(-110, -10)
+	label.position = Vector2(-130, -10)
 	container.add_child(label)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2c5yxdtn4piy"]
 
 [ext_resource type="Texture2D" uid="uid://c2ve82wl6u7ju" path="res://assets/image/map/lever'.png" id="1_81cld"]
-[ext_resource type="Script" uid="uid://c54g0wvl0uu40" path="res://scenes/Map/lever.gd" id="1_e4uuk"]
+[ext_resource type="Script" uid="uid://c54g0wvl0uu40" path="res://script/object/lever.gd" id="1_e4uuk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e4uuk"]
 atlas = ExtResource("1_81cld")
@@ -64,7 +64,8 @@ size = Vector2(20, 48)
 [node name="Lever" type="Area2D" unique_id=644409738]
 process_mode = 3
 scale = Vector2(2, 2)
-collision_mask = 33
+collision_layer = 0
+collision_mask = 32
 script = ExtResource("1_e4uuk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=57837026]

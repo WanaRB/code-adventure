@@ -14,6 +14,8 @@ var _level_results := {
 	"4": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
 	"5": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
 	"6": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
+	"7": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
+	"8": { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false },
 }
 
 # maksimal point tiap level
@@ -79,13 +81,13 @@ func get_level_net_points(level: int) -> int:
 
 func get_total_points() -> int:
 	var total := 0
-	for k in ["1", "2", "3", "4", "5", "6"]:
+	for k in ["1", "2", "3", "4", "5", "6", "7", "8"]:
 		total += get_level_net_points(int(k))
 	return total
 
 func reset() -> void:
 	_max_level_unlocked = 1
-	for k in ["1", "2", "3", "4", "5"]:
+	for k in ["1", "2", "3", "4", "5", "6", "7", "8"]:
 		_level_results[k] = { "correct": 0, "bonus": 0, "wrong": 0, "item_pts": 0, "played": false }
 	GameEvents.sudah_lihat_howtoplay = false
 	var data := _load_raw()
@@ -128,7 +130,7 @@ func load_from_file() -> void:
 	# Restore data — gunakan .get() agar tidak crash jika key tidak ada
 	_max_level_unlocked = int(parsed.get("max_level_unlocked", 1))
 	var saved_results: Dictionary = parsed.get("level_results", {})
-	for k in ["1", "2", "3", "4", "5"]:
+	for k in ["1", "2", "3", "4", "5", "6", "7", "8"]:
 		if saved_results.has(k):
 			_level_results[k] = saved_results[k]
 	

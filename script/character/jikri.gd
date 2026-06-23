@@ -13,7 +13,7 @@ const LANGKAH_INTERVAL := 0.35
 var _langkah_timer: float = 0.0
 
 # ─── Skill Double Jump ──────────────────────────────────────────────────────────
-var jump_count: int = 1
+var jump_count: int = 2
 var _jump_used: int = 0
 
 # ─── Skill: Anchor Point ─────────────────────────────────────────────────────
@@ -178,6 +178,9 @@ func _mulai_scout() -> void:
 	_scout_drone.global_position = global_position + Vector2(0, -60)
 	_scout_drone.player = self
 	_scout_drone.add_collision_exception_with(self)
+	var mc := get_tree().get_first_node_in_group("mobile_controls")
+	if mc and mc.has_method("masuk_mode_drone"):
+		mc.masuk_mode_drone()
 
 func _akhiri_scout() -> void:
 	if _scout_drone:
@@ -186,6 +189,9 @@ func _akhiri_scout() -> void:
 	var main_cam := get_tree().get_first_node_in_group("main_camera")
 	if main_cam and main_cam.has_method("make_current"):
 		main_cam.make_current()
+	var mc := get_tree().get_first_node_in_group("mobile_controls")
+	if mc and mc.has_method("keluar_mode_drone"):
+		mc.keluar_mode_drone()
 	_kunci_input_timer = 0.6
 
 func _equip_skill(skill_id: String) -> void:

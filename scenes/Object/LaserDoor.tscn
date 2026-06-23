@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gy7cbfqvfcow"]
 
-[ext_resource type="Script" uid="uid://utaflosvq6a0" path="res://scenes/Map/laser_door.gd" id="1_dv21a"]
+[ext_resource type="Script" uid="uid://utaflosvq6a0" path="res://script/object/laser_door.gd" id="1_dv21a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_re7ei"]
 size = Vector2(8, 128)
@@ -12,6 +12,7 @@ size = Vector2(9, 129)
 script = ExtResource("1_dv21a")
 
 [node name="LaserVisual" type="ColorRect" parent="." unique_id=287862698]
+offset_top = 8.0
 offset_right = 8.0
 offset_bottom = 128.0
 color = Color(1, 0, 0, 1)
@@ -29,6 +30,7 @@ shape = SubResource("RectangleShape2D_dv21a")
 
 [node name="LaserVisual2" type="ColorRect" parent="." unique_id=1746664474]
 offset_left = 16.0
+offset_top = 8.0
 offset_right = 24.0
 offset_bottom = 128.0
 color = Color(1, 0, 0, 1)
@@ -47,21 +49,57 @@ shape = SubResource("RectangleShape2D_dv21a")
 
 [node name="LaserVisual3" type="ColorRect" parent="." unique_id=631305145]
 offset_left = 32.0
+offset_top = 8.0
 offset_right = 40.0
 offset_bottom = 128.0
 color = Color(1, 0, 0, 1)
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1587523284]
 position = Vector2(36, 64)
 shape = SubResource("RectangleShape2D_re7ei")
-metadata/_edit_group_ = true
 
 [node name="HurtBox3" type="Area2D" parent="." unique_id=1407151730]
 position = Vector2(32, 0)
 collision_mask = 3
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox3" unique_id=25389156]
+position = Vector2(4, 64)
+shape = SubResource("RectangleShape2D_dv21a")
+
+[node name="LaserVisual4" type="ColorRect" parent="." unique_id=1443837149]
+offset_left = 48.0
+offset_top = 8.0
+offset_right = 56.0
+offset_bottom = 128.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=215915655]
+position = Vector2(52, 64)
+shape = SubResource("RectangleShape2D_re7ei")
+
+[node name="HurtBox4" type="Area2D" parent="." unique_id=119877314]
+position = Vector2(48, 0)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox4" unique_id=975603275]
+position = Vector2(4, 64)
+shape = SubResource("RectangleShape2D_dv21a")
+
+[node name="LaserVisual5" type="ColorRect" parent="." unique_id=1597873790]
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 128.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="." unique_id=1855527870]
+position = Vector2(68, 64)
+shape = SubResource("RectangleShape2D_re7ei")
+
+[node name="HurtBox5" type="Area2D" parent="." unique_id=781795088]
+position = Vector2(64, 0)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox5" unique_id=2009156698]
 position = Vector2(4, 64)
 shape = SubResource("RectangleShape2D_dv21a")
