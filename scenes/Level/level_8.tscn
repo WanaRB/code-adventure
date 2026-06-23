@@ -1144,16 +1144,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_i6v6m")
 
-[node name="Node" type="Node2D" parent="Map/bg" unique_id=851019563 node_paths=PackedStringArray("sfx_player")]
-position = Vector2(1931, 760)
-script = ExtResource("19_rutds")
-sfx_player = NodePath("AudioStreamPlayer2D")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Map/bg/Node" unique_id=1050754335]
-process_mode = 3
-position = Vector2(-413, 464)
-stream = ExtResource("7_cao4p")
-
 [node name="lantai" type="TileMap" parent="Map" unique_id=1840433433]
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
@@ -1202,12 +1192,22 @@ data_kuis = SubResource("Resource_8ts4m")
 position = Vector2(176, 120)
 data_kuis = SubResource("Resource_toto3")
 
+[node name="Node" type="Node2D" parent="Map" unique_id=851019563 node_paths=PackedStringArray("sfx_player")]
+position = Vector2(1928, 200)
+script = ExtResource("19_rutds")
+sfx_player = NodePath("AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Map/Node" unique_id=1050754335]
+process_mode = 3
+position = Vector2(-413, 464)
+stream = ExtResource("7_cao4p")
+
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("16_kyrgw")]
-position = Vector2(416.00024, 560)
+position = Vector2(168.00003, 95.99997)
 scout_drone_scene = ExtResource("17_rsqx2")
 metadata/_edit_group_ = true
 
