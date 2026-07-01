@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://omjcngkshg7c" path="res://scenes/UI/HudLevel.tscn" id="15_82h2r"]
 [ext_resource type="PackedScene" uid="uid://dkwhp1x7q50mt" path="res://scenes/Character/drone_musuh_Vertical.tscn" id="15_s8o7b"]
 [ext_resource type="PackedScene" uid="uid://d225uwnj07qnl" path="res://scenes/Character/drone_musuh.tscn" id="16_kuol8"]
+[ext_resource type="PackedScene" uid="uid://sysml7qg2bkh" path="res://scenes/Object/scout_drone.tscn" id="20_h36n4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbfbk"]
 texture = ExtResource("2_0pvft")
@@ -1141,10 +1142,10 @@ position = Vector2(-368, 632)
 [node name="Item" type="Node" parent="." unique_id=162585964]
 
 [node name="apple2" parent="Item" unique_id=1139145556 instance=ExtResource("8_kuol8")]
-position = Vector2(-88, 568)
+position = Vector2(-24, 576)
 
 [node name="Laptop" parent="Item" unique_id=994781868 instance=ExtResource("9_0pvm5")]
-position = Vector2(80, 576)
+position = Vector2(136, 576)
 data_kuis = ExtResource("12_0pvm5")
 bisa_jawab_ulang = false
 
@@ -1152,9 +1153,6 @@ bisa_jawab_ulang = false
 position = Vector2(1919, 560)
 terbuka_dari_awal = true
 target_level_path = "uid://babfsu63orby"
-
-[node name="Lever" parent="Item" unique_id=644409738 instance=ExtResource("11_0pvft")]
-position = Vector2(2544, 584)
 
 [node name="Lever2" parent="Item" unique_id=2045184641 instance=ExtResource("11_0pvft")]
 position = Vector2(1472, 392)
@@ -1166,17 +1164,18 @@ position = Vector2(1448, 512)
 position = Vector2(1344, 600)
 
 [node name="DroneMusuh" parent="Item" unique_id=1779015776 instance=ExtResource("15_s8o7b")]
-position = Vector2(248, 576)
+position = Vector2(328, 568)
 bisa_jadi_baik = true
 mulai_ke_atas = true
 
 [node name="DroneMusuh2" parent="Item" unique_id=2110415646 instance=ExtResource("16_kuol8")]
-position = Vector2(408, 576)
+position = Vector2(760, 568)
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("11_06y44")]
-position = Vector2(-1368, 552)
+position = Vector2(1095.9996, 560)
+scout_drone_scene = ExtResource("20_h36n4")
 metadata/_edit_group_ = true
 
 [node name="Camera2D2" type="Camera2D" parent="Character/jikri" unique_id=662452175 groups=["main_camera"]]

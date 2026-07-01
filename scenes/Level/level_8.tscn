@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="10_mmain"]
 [ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="11_8ts4m"]
 [ext_resource type="PackedScene" uid="uid://2c5yxdtn4piy" path="res://scenes/Object/Lever.tscn" id="11_q2v2e"]
-[ext_resource type="Resource" uid="uid://bn216flpoa73x" path="res://resource/8platform.tres" id="11_x2yxg"]
 [ext_resource type="PackedScene" uid="uid://dkwhp1x7q50mt" path="res://scenes/Character/drone_musuh_Vertical.tscn" id="12_kj3fc"]
 [ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="12_x2yxg"]
 [ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="13_nyneu"]
@@ -1038,6 +1037,40 @@ texture = ExtResource("5_eb4oi")
 [sub_resource type="TileSet" id="TileSet_2o6r5"]
 sources/0 = SubResource("TileSetAtlasSource_k3n1d")
 
+[sub_resource type="Resource" id="Resource_lfm1x"]
+script = ExtResource("10_mmain")
+line = 3
+word = "\"HORIZONTAL\""
+options = Array[String](["horizontal", "\"VERTIKAL\"", "vertikal"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_bqb84"]
+script = ExtResource("13_nyneu")
+teks = "\"VERTIKAL\""
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_jg361"]
+script = ExtResource("14_2kixf")
+action = 2
+platform_id = 2
+platform_jarak = 800.0
+platform_kecepatan = 100.0
+platform_direction = 3
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_h7uqh"]
+script = ExtResource("12_x2yxg")
+required_answers = Array[ExtResource("13_nyneu")]([SubResource("Resource_bqb84")])
+world_changes = Array[ExtResource("14_2kixf")]([SubResource("Resource_jg361")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[sub_resource type="Resource" id="Resource_2kixf"]
+script = ExtResource("11_8ts4m")
+code_lines = Array[String](["# Sistem kontrol platform", "def inisialisasi_platform(platform_id):", "     aktif = True", "     arah = \"HORIZONTAL\"", "     kecepatan = 100", "     platform_id.mulai(aktif, arah, kecepatan)"])
+highlights = Array[ExtResource("10_mmain")]([SubResource("Resource_lfm1x")])
+variants = Array[ExtResource("12_x2yxg")]([SubResource("Resource_h7uqh")])
+metadata/_custom_type_script = "uid://xogopct8jm5a"
+
 [sub_resource type="Resource" id="Resource_dmg7l"]
 script = ExtResource("10_mmain")
 line = 6
@@ -1182,7 +1215,7 @@ position = Vector2(80, -248)
 
 [node name="Laptop" parent="Map" unique_id=994781868 instance=ExtResource("9_n0jkk")]
 position = Vector2(3352, 592)
-data_kuis = ExtResource("11_x2yxg")
+data_kuis = SubResource("Resource_2kixf")
 
 [node name="Laptop2" parent="Map" unique_id=50962516 instance=ExtResource("9_n0jkk")]
 position = Vector2(296, -328)
@@ -1207,7 +1240,7 @@ stream = ExtResource("7_cao4p")
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("16_kyrgw")]
-position = Vector2(168.00003, 95.99997)
+position = Vector2(144.00012, 544.00006)
 scout_drone_scene = ExtResource("17_rsqx2")
 metadata/_edit_group_ = true
 
@@ -1300,7 +1333,7 @@ visible = false
 [node name="game_manager" parent="." unique_id=62453360 instance=ExtResource("22_nhtyt")]
 
 [node name="Laptop" parent="." unique_id=1057980316 instance=ExtResource("24_ccncr")]
-position = Vector2(816, 592)
+position = Vector2(1168, 464)
 
 [node name="DroneMusuh" parent="." unique_id=934999764 instance=ExtResource("18_q2v2e")]
 position = Vector2(2472, 416)

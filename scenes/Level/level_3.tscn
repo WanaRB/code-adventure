@@ -1138,7 +1138,7 @@ bisa_jawab_ulang = false
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_i8c42")]
-position = Vector2(2664.0002, 584)
+position = Vector2(1168, 552)
 metadata/_edit_group_ = true
 
 [node name="Camera2D2" type="Camera2D" parent="Character/jikri" unique_id=105384766 groups=["main_camera"]]
@@ -1146,6 +1146,7 @@ script = ExtResource("13_e3h7p")
 zoom_desktop = 1.4
 limit_kanan = 3480
 limit_atas = -560
+limit_bawah = 730
 
 [node name="MobileControls" parent="." unique_id=922406915 instance=ExtResource("20_atgtq")]
 

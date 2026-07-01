@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://5gmactsc306l"]
+
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_l15sn"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_ksdj2"]
+[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_2sv25"]
+[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_h85xn"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_poq3y"]
+
+[sub_resource type="Resource" id="Resource_lfm1x"]
+script = ExtResource("1_l15sn")
+line = 2
+word = "\"horizontal\""
+options = Array[String](["horizontal", "\"vertikal\"", "\"diagonal\""])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_bqg3y"]
+script = ExtResource("1_l15sn")
+line = 5
+word = "\"atas\""
+options = Array[String](["\"kiri\"", "\"kanan\"", "\"bawah\""])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_l15sn"]
+script = ExtResource("1_l15sn")
+line = 6
+word = ">"
+options = Array[String](["<", "=", "=="])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_bqb84"]
+script = ExtResource("4_h85xn")
+teks = "\"horizontal\""
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_lsale"]
+script = ExtResource("4_h85xn")
+highlight_index = 1
+teks = "\"bawah\""
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_ksdj2"]
+script = ExtResource("4_h85xn")
+highlight_index = 2
+teks = ">"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_jg361"]
+script = ExtResource("5_poq3y")
+action = 2
+platform_id = 2
+platform_jarak = 450.0
+platform_kecepatan = 150.0
+platform_direction = 3
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_h7uqh"]
+script = ExtResource("3_2sv25")
+required_answers = Array[ExtResource("4_h85xn")]([SubResource("Resource_bqb84"), SubResource("Resource_lsale"), SubResource("Resource_ksdj2")])
+world_changes = Array[ExtResource("5_poq3y")]([SubResource("Resource_jg361")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[resource]
+script = ExtResource("2_ksdj2")
+code_lines = Array[String](["# Sistem kontrol platform", "def gerak_mesin(tipe, posisi, batas):", "     if tipe == \"horizontal\":", "          arah = \"kanan\"", "     else:", "          arah = \"atas\"", "     if posisi > batas:", "          arah = \"balik\"", "     return arah"])
+highlights = Array[ExtResource("1_l15sn")]([SubResource("Resource_lfm1x"), SubResource("Resource_bqg3y"), SubResource("Resource_l15sn")])
+variants = Array[ExtResource("3_2sv25")]([SubResource("Resource_h7uqh")])
+metadata/_custom_type_script = "uid://xogopct8jm5a"

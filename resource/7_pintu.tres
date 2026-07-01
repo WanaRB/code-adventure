@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="QuizResource" format=3 uid="uid://c26xe3q3hw18g"]
+
+[ext_resource type="Script" uid="uid://bx8s1lc87vuad" path="res://script/konfigurasi/Highlightquestion.gd" id="1_xc25q"]
+[ext_resource type="Script" uid="uid://xogopct8jm5a" path="res://script/konfigurasi/QuizResource.gd" id="2_x5w6h"]
+[ext_resource type="Script" uid="uid://by327ln5olo0j" path="res://script/konfigurasi/QuizVariant.gd" id="3_ymcy1"]
+[ext_resource type="Script" uid="uid://bp1nabs4ij5y3" path="res://script/konfigurasi/QuizAnswer.gd" id="4_rccay"]
+[ext_resource type="Script" uid="uid://cc7st7sddsu03" path="res://script/konfigurasi/Worldchangeentry.gd" id="5_xm7cm"]
+
+[sub_resource type="Resource" id="Resource_dmg7l"]
+script = ExtResource("1_xc25q")
+line = 4
+word = "True"
+options = Array[String](["true", "False", "none"])
+metadata/_custom_type_script = "uid://bx8s1lc87vuad"
+
+[sub_resource type="Resource" id="Resource_rgh7d"]
+script = ExtResource("4_rccay")
+teks = "False"
+metadata/_custom_type_script = "uid://bp1nabs4ij5y3"
+
+[sub_resource type="Resource" id="Resource_bvstn"]
+script = ExtResource("5_xm7cm")
+metadata/_custom_type_script = "uid://cc7st7sddsu03"
+
+[sub_resource type="Resource" id="Resource_v6vwi"]
+script = ExtResource("3_ymcy1")
+required_answers = Array[ExtResource("4_rccay")]([SubResource("Resource_rgh7d")])
+world_changes = Array[ExtResource("5_xm7cm")]([SubResource("Resource_bvstn")])
+metadata/_custom_type_script = "uid://by327ln5olo0j"
+
+[resource]
+script = ExtResource("2_x5w6h")
+code_lines = Array[String](["# Pintu darurat: terbuka HANYA saat alarm aktif, dan ", "# TIDAK pada mode kunci permanen", "def cek_pintu_darurat(alarm_aktif, kunci_permanen):", "     alarm_ok = alarm_aktif == True", "     kunci_ok = kunci_permanen == True", "     if alarm_ok or kunci_ok:", "          return \"terbuka\"", "     return \"tertutup\""])
+highlights = Array[ExtResource("1_xc25q")]([SubResource("Resource_dmg7l")])
+variants = Array[ExtResource("3_ymcy1")]([SubResource("Resource_v6vwi")])
+metadata/_custom_type_script = "uid://xogopct8jm5a"

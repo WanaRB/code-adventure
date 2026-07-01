@@ -27,7 +27,7 @@ const C_SUCCESS    := Color("#a6e3a1")
 const SKILLS := [
 	{ "id": "double_jump", "label": "double_jump", "deskripsi": "Lompat dua kali di udara" },
 	{ "id": "anchor",      "label": "anchor_point", "deskripsi": "Simpan posisi, tarik balik kapan saja" },
-	{ "id": "scout",       "label": "scout_drone",  "deskripsi": "Kirim drone pengintai, lihat area dari jauh" },
+	{ "id": "scout",       "label": "scout_drone",  "deskripsi": "Kirim drone pengintai, lihat area dari jauh, bisa berinteraksi dengan lever untuk membuka pintu laser" },
 ]
 
 const SKILL_INFO := {
@@ -47,7 +47,7 @@ const SKILL_INFO := {
 		"judul": "Scout Drone",
 		"image": "res://assets/image/HowToPlay/skill/scout.png",
 		"cara": "Tekan [R] untuk kirim drone. Gerakkan dengan [W][A][S][D]. Tekan [R] lagi untuk kembali.",
-		"kapan": "Pakai untuk melihat jalur di depan sebelum maju, terutama area dengan banyak musuh."
+		"kapan": "Pakai untuk melihat jalur dan berinteraksi dengan lever untuk membuka pintu laser"
 	},
 }
 

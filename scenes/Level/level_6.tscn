@@ -1221,7 +1221,7 @@ bisa_jawab_ulang = false
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("12_7agcs")]
-position = Vector2(1182, -107.99988)
+position = Vector2(228, 558)
 scout_drone_scene = ExtResource("17_enkg2")
 metadata/_edit_group_ = true
 
@@ -1230,6 +1230,7 @@ script = ExtResource("18_hjkbe")
 zoom_desktop = 1.4
 limit_kanan = 3480
 limit_atas = -560
+limit_bawah = 730
 
 [node name="Jebakan" type="Node" parent="." unique_id=1374830505]
 

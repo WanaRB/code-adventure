@@ -1135,14 +1135,15 @@ target_level_path = "uid://babfsu63orby"
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_25s6s")]
-position = Vector2(143.99995, 439.99997)
+position = Vector2(72.00012, 432)
 metadata/_edit_group_ = true
 
 [node name="Camera2D2" type="Camera2D" parent="Character/jikri" unique_id=697311008 groups=["main_camera"]]
 script = ExtResource("13_oenqr")
 zoom_desktop = 1.4
-limit_kanan = 3480
+limit_kanan = 2760
 limit_atas = -560
+limit_bawah = 730
 
 [node name="game_manager" parent="." unique_id=62453360 instance=ExtResource("14_rklir")]
 unique_name_in_owner = true

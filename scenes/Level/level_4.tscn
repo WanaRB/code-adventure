@@ -1106,22 +1106,23 @@ position = Vector2(400, -80)
 target_level_path = "uid://babfsu63orby"
 
 [node name="Laptop2" parent="Item" unique_id=583794567 instance=ExtResource("8_40tq3")]
-position = Vector2(2584, 584)
+position = Vector2(2448, 592)
 data_kuis = ExtResource("11_mytxk")
 bisa_jawab_ulang = false
 
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("10_i8c42")]
-position = Vector2(456, 559.99994)
+position = Vector2(136.00012, 552)
 scout_drone_scene = ExtResource("16_a0haa")
 metadata/_edit_group_ = true
 
 [node name="Camera2D2" type="Camera2D" parent="Character/jikri" unique_id=534002960 groups=["main_camera"]]
 script = ExtResource("17_ekpky")
 zoom_desktop = 1.4
-limit_kanan = 3480
+limit_kanan = 2720
 limit_atas = -560
+limit_bawah = 730
 
 [node name="game_manager" type="Node" parent="." unique_id=1134001816]
 unique_name_in_owner = true

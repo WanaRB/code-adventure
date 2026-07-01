@@ -1128,8 +1128,9 @@ metadata/_edit_group_ = true
 [node name="Camera2D2" type="Camera2D" parent="Character/jikri" unique_id=662452175 groups=["main_camera"]]
 script = ExtResource("11_cavwn")
 zoom_desktop = 1.4
-limit_kanan = 3480
+limit_kanan = 2760
 limit_atas = -560
+limit_bawah = 730
 
 [node name="game_manager" parent="." unique_id=62453360 instance=ExtResource("12_ktds5")]
 unique_name_in_owner = true

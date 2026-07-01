@@ -13,14 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://dvy7kwtgmlur6" path="res://scenes/map/sign_8.tscn" id="12_4gc63"]
 [ext_resource type="PackedScene" uid="uid://cfhry3uycfkfg" path="res://scenes/Object/Laptop.tscn" id="16_60k2r"]
 [ext_resource type="PackedScene" uid="uid://c8cp71tu2bx71" path="res://scenes/Character/jikri.tscn" id="16_kyrgw"]
-[ext_resource type="Resource" uid="uid://ceejq5e48jakd" path="res://resource/7platforms.tres" id="17_d136w"]
+[ext_resource type="Resource" uid="uid://5gmactsc306l" path="res://resource/7_platform.tres" id="17_d136w"]
 [ext_resource type="PackedScene" uid="uid://sysml7qg2bkh" path="res://scenes/Object/scout_drone.tscn" id="17_rsqx2"]
 [ext_resource type="PackedScene" uid="uid://dmtvlijg7cwnr" path="res://scenes/Object/spike.tscn" id="18_p1qli"]
 [ext_resource type="Script" uid="uid://be6iiw8cyqqar" path="res://script/konfigurasi/WorldChangeMarker.gd" id="19_rutds"]
 [ext_resource type="PackedScene" uid="uid://7v7helod5jl0" path="res://scenes/UI/canvas_layer.tscn" id="20_3dnbp"]
 [ext_resource type="PackedScene" uid="uid://2c5yxdtn4piy" path="res://scenes/Object/Lever.tscn" id="20_lwhae"]
 [ext_resource type="PackedScene" uid="uid://omjcngkshg7c" path="res://scenes/UI/HudLevel.tscn" id="21_e441r"]
-[ext_resource type="Resource" uid="uid://qskkur2jrsi6" path="res://resource/7pintu.tres" id="22_cwkmq"]
+[ext_resource type="Resource" uid="uid://c26xe3q3hw18g" path="res://resource/7_pintu.tres" id="22_62pr7"]
 [ext_resource type="PackedScene" uid="uid://cupijubbntjt2" path="res://scenes/UI/GameManager.tscn" id="22_nhtyt"]
 [ext_resource type="PackedScene" uid="uid://bgkb58tsi2mh5" path="res://scenes/Object/SkillTerminal.tscn" id="24_ccncr"]
 
@@ -1099,8 +1099,9 @@ position = Vector2(448, 592)
 
 [node name="Platform1_png2" parent="Map" unique_id=764942138 instance=ExtResource("6_xb5lg")]
 process_mode = 3
-position = Vector2(936, 312)
-platform_id = 3
+position = Vector2(936, 325)
+platform_id = 2
+direction = 3
 
 [node name="Platform1_png3" parent="Map" unique_id=662837659 instance=ExtResource("6_xb5lg")]
 position = Vector2(216, -140)
@@ -1122,24 +1123,20 @@ position = Vector2(3192, 400)
 [node name="Character" type="Node" parent="." unique_id=386953154]
 
 [node name="jikri" parent="Character" unique_id=2066080324 instance=ExtResource("16_kyrgw")]
-position = Vector2(288.00003, 559.99994)
+position = Vector2(104.00003, 560.00006)
 scout_drone_scene = ExtResource("17_rsqx2")
 metadata/_edit_group_ = true
 
 [node name="Camera2D2" type="Camera2D" parent="Character/jikri" unique_id=1733317706 groups=["main_camera"]]
 script = ExtResource("11_d4txe")
 zoom_desktop = 1.4
-limit_kanan = 999999999
-limit_atas = -999999999
-limit_bawah = 99999999999
+limit_kanan = 3520
+limit_atas = -560
+limit_bawah = 730
 
-[node name="Laptop" parent="Character" unique_id=367906915 instance=ExtResource("16_60k2r")]
-position = Vector2(512, 352)
+[node name="Laptop" parent="Character" unique_id=759967062 instance=ExtResource("16_60k2r")]
+position = Vector2(512, 360)
 data_kuis = ExtResource("17_d136w")
-
-[node name="Laptop2" parent="Character" unique_id=311773465 instance=ExtResource("16_60k2r")]
-position = Vector2(208, -208)
-data_kuis = ExtResource("22_cwkmq")
 
 [node name="Jebakan" type="Node" parent="." unique_id=1374830505]
 
@@ -1200,3 +1197,7 @@ bergerak_dari_awal = true
 
 [node name="Lever" parent="." unique_id=644409738 instance=ExtResource("20_lwhae")]
 position = Vector2(616, 352)
+
+[node name="Laptop" parent="." unique_id=325909533 instance=ExtResource("16_60k2r")]
+position = Vector2(272, -208)
+data_kuis = ExtResource("22_62pr7")
